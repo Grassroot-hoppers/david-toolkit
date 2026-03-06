@@ -236,6 +236,89 @@ p {
   gap: 18px;
 }
 
+.supplier-cadence-strip {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.cadence-chip {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(255, 252, 247, 0.84);
+  border: 1px solid var(--line);
+}
+
+.cadence-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.cadence-name {
+  font-family: var(--display);
+  font-size: 1.02rem;
+  line-height: 1.1;
+}
+
+.cadence-urgency {
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.cadence-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.cadence-meta span:not(:last-child)::after {
+  content: "•";
+  margin-left: 6px;
+  color: rgba(23, 17, 15, 0.35);
+}
+
+.cadence-chip[data-urgency="urgent"] {
+  border-color: rgba(180, 72, 45, 0.32);
+  background: linear-gradient(135deg, rgba(180, 72, 45, 0.13), rgba(255, 252, 247, 0.92));
+}
+
+.cadence-chip[data-urgency="urgent"] .cadence-urgency {
+  background: rgba(180, 72, 45, 0.18);
+  color: var(--red);
+}
+
+.cadence-chip[data-urgency="soon"] {
+  border-color: rgba(191, 122, 33, 0.28);
+  background: linear-gradient(135deg, rgba(191, 122, 33, 0.12), rgba(255, 252, 247, 0.92));
+}
+
+.cadence-chip[data-urgency="soon"] .cadence-urgency {
+  background: rgba(191, 122, 33, 0.16);
+  color: #8d5a13;
+}
+
+.cadence-chip[data-urgency="scheduled"] {
+  border-color: rgba(53, 100, 79, 0.28);
+  background: linear-gradient(135deg, rgba(44, 109, 116, 0.1), rgba(255, 252, 247, 0.9));
+}
+
+.cadence-chip[data-urgency="scheduled"] .cadence-urgency {
+  background: rgba(53, 100, 79, 0.14);
+  color: var(--green);
+}
+
 .supplier-card {
   padding: 22px;
   border-radius: 22px;
@@ -473,6 +556,19 @@ p {
 @media (max-width: 720px) {
   .page-shell {
     padding: 18px 14px 40px;
+  }
+
+  .supplier-cadence-strip {
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .cadence-chip {
+    flex: 0 0 220px;
+    min-width: 220px;
+    scroll-snap-align: start;
   }
 
   .hero-copy,

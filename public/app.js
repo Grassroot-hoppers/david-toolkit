@@ -31,6 +31,29 @@ function itemMarkup(item) {
   `;
 }
 
+function cadenceChipMarkup(supplier) {
+  const cadence = supplier.cadence || {};
+  const orderDay = cadence.orderDay || supplier.orderDay || "Unknown";
+  const cutoff = cadence.cutoff || supplier.cutoff || "Unknown";
+  const deliveryDay = cadence.deliveryDay || supplier.deliveryDay || "Unknown";
+  const urgency = cadence.urgency || "scheduled";
+  const urgencyLabel = cadence.urgencyLabel || "Scheduled";
+
+  return `
+    <article class="cadence-chip" data-urgency="${urgency}">
+      <div class="cadence-head">
+        <strong class="cadence-name">${supplier.name}</strong>
+        <span class="cadence-urgency">${urgencyLabel}</span>
+      </div>
+      <p class="cadence-meta">
+        <span>${orderDay}</span>
+        <span>cutoff ${cutoff}</span>
+        <span>delivers ${deliveryDay}</span>
+      </p>
+    </article>
+  `;
+}
+
 fetch("./data/demo.json")
   .then((response) => response.json())
   .then((data) => {
@@ -71,6 +94,8 @@ fetch("./data/demo.json")
         `
       )
       .join("");
+
+    document.getElementById("supplier-cadence-strip").innerHTML = data.suppliers.map(cadenceChipMarkup).join("");
 
     document.getElementById("supplier-grid").innerHTML = data.suppliers
       .map(
@@ -208,4 +233,3 @@ fetch("./data/demo.json")
       )
       .join("");
   });
-

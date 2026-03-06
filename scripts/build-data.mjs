@@ -31,6 +31,54 @@ function normalizeKey(value) {
     .toUpperCase();
 }
 
+const WEEKDAY_ORDER = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+const WEEKDAY_TO_INDEX = Object.fromEntries(WEEKDAY_ORDER.map((day, index) => [day.toLowerCase(), index]));
+
+function getRunDateWeekdayIndex(runDate) {
+  if (!runDate) {
+    return null;
+  }
+  const parsed = new Date(`${runDate}T00:00:00Z`);
+  if (Number.isNaN(parsed.getTime())) {
+    return null;
+  }
+  return (parsed.getUTCDay() + 6) % 7;
+}
+
+function buildSupplierCadence(meta, runDateWeekdayIndex) {
+  const orderDay = String(meta.orderDay || "").trim();
+  const cutoff = String(meta.cutoff || "").trim();
+  const deliveryDay = String(meta.deliveryDay || "").trim();
+  const normalizedOrderDay = orderDay.toLowerCase();
+  let daysUntilOrder = null;
+
+  if (normalizedOrderDay === "daily") {
+    daysUntilOrder = 0;
+  } else if (runDateWeekdayIndex !== null && WEEKDAY_TO_INDEX[normalizedOrderDay] !== undefined) {
+    daysUntilOrder = (WEEKDAY_TO_INDEX[normalizedOrderDay] - runDateWeekdayIndex + 7) % 7;
+  }
+
+  let urgency = "scheduled";
+  let urgencyLabel = "Scheduled";
+
+  if (daysUntilOrder === 0) {
+    urgency = "urgent";
+    urgencyLabel = "Order today";
+  } else if (daysUntilOrder === 1) {
+    urgency = "soon";
+    urgencyLabel = "Order tomorrow";
+  }
+
+  return {
+    orderDay,
+    cutoff,
+    deliveryDay,
+    daysUntilOrder,
+    urgency,
+    urgencyLabel
+  };
+}
+
 function parseExport(fileName, yearPrefix) {
   const rows = parseDelimited(path.join(rawDir, fileName));
   const header = rows.shift();
@@ -148,6 +196,7 @@ function buildProducts() {
   const margins = parseMargins("analyse-2025.csv");
   const corrections = JSON.parse(fs.readFileSync(path.join(configDir, "product-corrections.json"), "utf8"));
   const context = JSON.parse(fs.readFileSync(path.join(configDir, "context.json"), "utf8"));
+  const runDateWeekdayIndex = getRunDateWeekdayIndex(context.runDate);
 
   const allKeys = [...products2025.keys()];
   const products = allKeys.map((key) => {
@@ -230,6 +279,7 @@ function buildProducts() {
     return {
       name,
       ...meta,
+      cadence: buildSupplierCadence(meta, runDateWeekdayIndex),
       order,
       watch,
       skip,
@@ -326,4 +376,3 @@ function buildOutput() {
 }
 
 buildOutput();
-

@@ -12,6 +12,7 @@ This first demo is built around a real independent food shop context. It reads r
 
 - Parses `ExportStatVente`, `STA_satvente`, `STA_ratioCAT`, and `Analyse_00` style exports
 - Builds a browser-ready intelligence center with:
+  - supplier cadence strip with urgency states
   - supplier command panels
   - product and category intelligence
   - raw vs interpreted demand signals
