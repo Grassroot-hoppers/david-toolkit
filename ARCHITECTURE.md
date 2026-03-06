@@ -20,6 +20,7 @@ public/index.html + app.js + styles.css
 - works on static hosting
 - keeps private imports local
 - makes the evidence pipeline inspectable
+- keeps repo docs English while allowing operator-facing copy to be localized
 
 ## Subsystems
 
@@ -68,6 +69,8 @@ Every insight card carries:
 
 Plain HTML/CSS/JS.
 
+The product surface is locale-aware. Operator-facing copy can be switched through config while repository docs stay in English.
+
 Sections:
 
 - overview
@@ -77,4 +80,3 @@ Sections:
 - product movers
 - raw vs interpreted evidence
 - macro health
-

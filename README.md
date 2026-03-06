@@ -19,6 +19,7 @@ This first demo is built around a real independent food shop context. It reads r
   - 3-year macro context when a finance workbook is present
 - Ships with a sanitized sample dataset so outsiders can run the demo without private shop data
 - Includes a verification script that checks parser and scoring assumptions
+- Supports a French operator-facing product surface through `sample-data/config/context.json` while keeping the repo and docs in English
 
 ## Quick Start
 

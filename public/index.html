@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="David Toolkit turns old retail exports into a clean intelligence surface for independent shop owners.">
-  <title>David Toolkit — Intelligence Center</title>
+  <meta name="description" content="David Toolkit transforme de vieux exports de vente en tableau de pilotage clair pour les commerces indépendants.">
+  <title>David Toolkit — Tableau de pilotage</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -15,23 +15,23 @@
     <header class="hero">
       <div class="hero-copy">
         <p class="eyebrow">David Toolkit v0.1</p>
-        <h1>Old POS in. Clean retail intelligence out.</h1>
+        <h1>Ancien POS dedans. Pilotage clair dehors.</h1>
         <p class="lede">
-          A browser-first intelligence center for independent shops. The raw exports stay visible. The inferred story stays honest.
+          Un centre de pilotage dans le navigateur pour les commerces indépendants. Les exports bruts restent visibles. L'interprétation reste honnête.
         </p>
         <div class="hero-meta" id="hero-meta"></div>
       </div>
       <div class="hero-rail">
         <div class="metric-card">
-          <span class="metric-label">Actionable order signals</span>
+          <span class="metric-label">Signaux de commande</span>
           <strong class="metric-value" id="metric-orders">0</strong>
         </div>
         <div class="metric-card">
-          <span class="metric-label">Stockout suspicions</span>
+          <span class="metric-label">Risque de rupture</span>
           <strong class="metric-value" id="metric-stockouts">0</strong>
         </div>
         <div class="metric-card">
-          <span class="metric-label">Revenue in 2025 sample</span>
+          <span class="metric-label">CA échantillon 2025</span>
           <strong class="metric-value" id="metric-revenue">€0</strong>
         </div>
       </div>
@@ -43,24 +43,24 @@
       <section class="panel-stack">
         <section class="panel">
           <div class="panel-head">
-            <p class="eyebrow">Morning briefing</p>
-            <h2>What the shop is saying today</h2>
+            <p class="eyebrow">Brief du matin</p>
+            <h2>Ce que dit le magasin aujourd'hui</h2>
           </div>
           <div class="briefing-list" id="briefing-list"></div>
         </section>
 
         <section class="panel">
           <div class="panel-head">
-            <p class="eyebrow">Supplier command center</p>
-            <h2>Order, watch, skip</h2>
+            <p class="eyebrow">Centre fournisseurs</p>
+            <h2>Commander, surveiller, laisser</h2>
           </div>
           <div class="supplier-grid" id="supplier-grid"></div>
         </section>
 
         <section class="panel">
           <div class="panel-head">
-            <p class="eyebrow">Interpreted evidence</p>
-            <h2>Raw numbers, explicit inference</h2>
+            <p class="eyebrow">Indices interprétés</p>
+            <h2>Chiffres bruts, inférence explicite</h2>
           </div>
           <div class="insight-grid" id="insight-grid"></div>
         </section>
@@ -69,32 +69,32 @@
       <aside class="sidebar">
         <section class="panel compact">
           <div class="panel-head">
-            <p class="eyebrow">Category pressure</p>
-            <h2>Mix shift</h2>
+            <p class="eyebrow">Pression catégories</p>
+            <h2>Évolution du mix</h2>
           </div>
           <div id="category-list" class="category-list"></div>
         </section>
 
         <section class="panel compact">
           <div class="panel-head">
-            <p class="eyebrow">Top movers</p>
-            <h2>Revenue leaders</h2>
+            <p class="eyebrow">Meilleurs mouvements</p>
+            <h2>Leaders de chiffre</h2>
           </div>
           <div id="top-products" class="product-list"></div>
         </section>
 
         <section class="panel compact">
           <div class="panel-head">
-            <p class="eyebrow">Slow movers</p>
-            <h2>Space drags</h2>
+            <p class="eyebrow">Lents</p>
+            <h2>Freins de rayon</h2>
           </div>
           <div id="slow-products" class="product-list"></div>
         </section>
 
         <section class="panel compact">
           <div class="panel-head">
-            <p class="eyebrow">Macro context</p>
-            <h2>3-year line of sight</h2>
+            <p class="eyebrow">Contexte macro</p>
+            <h2>Visibilité sur 3 ans</h2>
           </div>
           <div id="macro-year-strip" class="macro-year-strip"></div>
           <div id="macro-trend" class="macro-trend"></div>
@@ -105,7 +105,7 @@
 
   <template id="confidence-template">
     <div class="confidence">
-      <span>Confidence</span>
+      <span>Confiance</span>
       <div class="confidence-bar"><span></span></div>
     </div>
   </template>
@@ -113,4 +113,3 @@
   <script type="module" src="./app.js"></script>
 </body>
 </html>
-

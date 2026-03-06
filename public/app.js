@@ -1,30 +1,114 @@
-const euro = new Intl.NumberFormat("en-BE", {
-  style: "currency",
-  currency: "EUR",
-  maximumFractionDigits: 0
-});
+const UI_COPY = {
+  en: {
+    runDate: "Run date",
+    weather: "Weather",
+    calendar: "Calendar",
+    method: "Method",
+    inferenceHeadline: "Inference stays visible",
+    confidence: "Confidence",
+    delivery: "Delivers",
+    cutoff: "cutoff",
+    order: "Order",
+    watch: "Watch",
+    skip: "Skip",
+    noOrder: "No hard order signal.",
+    noWatch: "No watchlist item.",
+    noSkip: "No stable item yet.",
+    tasks: "Suggested tasks",
+    rawRevenue: "Raw revenue",
+    interpretedDemand: "Interpreted demand",
+    units: "units",
+    inStock: "in stock",
+    actions: {
+      order: "order",
+      watch: "watch",
+      skip: "hold"
+    },
+    months: {
+      Jan: "Jan",
+      Feb: "Feb",
+      Mar: "Mar",
+      Apr: "Apr",
+      May: "May",
+      Jun: "Jun",
+      Jul: "Jul",
+      Aug: "Aug",
+      Sep: "Sep",
+      Oct: "Oct",
+      Nov: "Nov",
+      Dec: "Dec"
+    }
+  },
+  fr: {
+    runDate: "Analyse du",
+    weather: "Météo",
+    calendar: "Calendrier",
+    method: "Méthode",
+    inferenceHeadline: "L'inférence reste visible",
+    confidence: "Confiance",
+    delivery: "Livré",
+    cutoff: "limite",
+    order: "Commander",
+    watch: "Surveiller",
+    skip: "Laisser",
+    noOrder: "Aucun signal fort de commande.",
+    noWatch: "Aucun article en surveillance.",
+    noSkip: "Aucun article stable pour l'instant.",
+    tasks: "Actions suggérées",
+    rawRevenue: "Chiffre brut",
+    interpretedDemand: "Demande interprétée",
+    units: "unités",
+    inStock: "en stock",
+    actions: {
+      order: "commander",
+      watch: "surveiller",
+      skip: "laisser"
+    },
+    months: {
+      Jan: "janv.",
+      Feb: "févr.",
+      Mar: "mars",
+      Apr: "avr.",
+      May: "mai",
+      Jun: "juin",
+      Jul: "juil.",
+      Aug: "août",
+      Sep: "sept.",
+      Oct: "oct.",
+      Nov: "nov.",
+      Dec: "déc."
+    }
+  }
+};
 
-const percent = new Intl.NumberFormat("en-BE", {
-  style: "percent",
-  maximumFractionDigits: 0
-});
+function getLanguage(locale) {
+  return String(locale || "fr")
+    .toLowerCase()
+    .startsWith("fr")
+    ? "fr"
+    : "en";
+}
 
-function confidenceMarkup(value) {
+function translateMonth(label, ui) {
+  return ui.months[label] || label;
+}
+
+function confidenceMarkup(value, ui) {
   const pct = Math.round(value * 100);
   return `
     <div class="confidence">
-      <span>Confidence ${pct}%</span>
+      <span>${ui.confidence} ${pct}%</span>
       <div class="confidence-bar"><span style="width:${pct}%"></span></div>
     </div>
   `;
 }
 
-function itemMarkup(item) {
+function itemMarkup(item, ui) {
   return `
     <article class="item item-${item.action}">
       <header>
         <strong>${item.displayName}</strong>
-        <span>${item.action}</span>
+        <span>${ui.actions[item.action]}</span>
       </header>
       <p>${item.evidence.join(" · ")}</p>
     </article>
@@ -34,29 +118,38 @@ function itemMarkup(item) {
 fetch("./data/demo.json")
   .then((response) => response.json())
   .then((data) => {
+    const language = getLanguage(data.productLocale);
+    const ui = UI_COPY[language];
+    const euro = new Intl.NumberFormat(data.productLocale || "fr-BE", {
+      style: "currency",
+      currency: "EUR",
+      maximumFractionDigits: 0
+    });
+
+    document.documentElement.lang = language;
     document.getElementById("metric-orders").textContent = data.kpis.orderSignals;
     document.getElementById("metric-stockouts").textContent = data.kpis.stockoutFlags;
     document.getElementById("metric-revenue").textContent = euro.format(data.kpis.revenue2025);
     document.getElementById("hero-meta").innerHTML = `
       <span>${data.store}, ${data.location}</span>
-      <span>Run date ${data.runDate}</span>
+      <span>${ui.runDate} ${data.runDate}</span>
       <span>${data.methodology.rawVsInterpreted}</span>
     `;
 
     document.getElementById("context-band").innerHTML = `
       <div class="context-card hot">
-        <span class="context-label">Weather</span>
+        <span class="context-label">${ui.weather}</span>
         <strong>${data.context.weather.headline}</strong>
-        <p>${data.context.weather.temperatureC}°C · confidence ${Math.round(data.context.weather.confidence * 100)}%</p>
+        <p>${data.context.weather.temperatureC}°C · ${ui.confidence.toLowerCase()} ${Math.round(data.context.weather.confidence * 100)}%</p>
       </div>
       <div class="context-card">
-        <span class="context-label">Calendar</span>
+        <span class="context-label">${ui.calendar}</span>
         <strong>${data.context.calendar.publicHoliday}</strong>
         <p>${data.context.calendar.schoolBreak}</p>
       </div>
       <div class="context-card">
-        <span class="context-label">Method</span>
-        <strong>Inference stays visible</strong>
+        <span class="context-label">${ui.method}</span>
+        <strong>${ui.inferenceHeadline}</strong>
         <p>${data.methodology.rawVsInterpreted}</p>
       </div>
     `;
@@ -78,28 +171,28 @@ fetch("./data/demo.json")
           <section class="supplier-card">
             <div class="supplier-head">
               <div>
-                <p class="eyebrow">${supplier.orderDay} · cutoff ${supplier.cutoff}</p>
+                <p class="eyebrow">${supplier.orderDay} · ${ui.cutoff} ${supplier.cutoff}</p>
                 <h3>${supplier.name}</h3>
               </div>
-              <p class="delivery-note">Delivers ${supplier.deliveryDay}</p>
+              <p class="delivery-note">${ui.delivery} ${supplier.deliveryDay}</p>
             </div>
             <p class="supplier-summary">${supplier.summary}</p>
             <div class="supplier-columns">
               <div>
-                <h4>Order</h4>
-                ${(supplier.order.length ? supplier.order : []).map(itemMarkup).join("") || "<p class='empty-state'>No hard order signal.</p>"}
+                <h4>${ui.order}</h4>
+                ${(supplier.order.length ? supplier.order : []).map((item) => itemMarkup(item, ui)).join("") || `<p class='empty-state'>${ui.noOrder}</p>`}
               </div>
               <div>
-                <h4>Watch</h4>
-                ${(supplier.watch.length ? supplier.watch : []).map(itemMarkup).join("") || "<p class='empty-state'>No watchlist item.</p>"}
+                <h4>${ui.watch}</h4>
+                ${(supplier.watch.length ? supplier.watch : []).map((item) => itemMarkup(item, ui)).join("") || `<p class='empty-state'>${ui.noWatch}</p>`}
               </div>
               <div>
-                <h4>Skip</h4>
-                ${(supplier.skip.length ? supplier.skip : []).map(itemMarkup).join("") || "<p class='empty-state'>No stable item yet.</p>"}
+                <h4>${ui.skip}</h4>
+                ${(supplier.skip.length ? supplier.skip : []).map((item) => itemMarkup(item, ui)).join("") || `<p class='empty-state'>${ui.noSkip}</p>`}
               </div>
             </div>
             <div class="task-block">
-              <span class="context-label">Suggested tasks</span>
+              <span class="context-label">${ui.tasks}</span>
               <ul>
                 ${supplier.tasks.map((task) => `<li>${task}</li>`).join("")}
               </ul>
@@ -120,15 +213,15 @@ fetch("./data/demo.json")
             </div>
             <div class="raw-interpreted">
               <div>
-                <span class="context-label">Raw revenue</span>
+                <span class="context-label">${ui.rawRevenue}</span>
                 <strong>${euro.format(insight.rawRevenue)}</strong>
               </div>
               <div>
-                <span class="context-label">Interpreted demand</span>
-                <strong>${Math.round(insight.interpretedDemand)} units</strong>
+                <span class="context-label">${ui.interpretedDemand}</span>
+                <strong>${Math.round(insight.interpretedDemand)} ${ui.units}</strong>
               </div>
             </div>
-            ${confidenceMarkup(insight.confidence)}
+            ${confidenceMarkup(insight.confidence, ui)}
           </article>
         `
       )
@@ -158,7 +251,7 @@ fetch("./data/demo.json")
             </div>
             <div>
               <strong>${euro.format(product.totalRevenue)}</strong>
-              <span>${product.action}</span>
+              <span>${ui.actions[product.action]}</span>
             </div>
           </div>
         `
@@ -175,7 +268,7 @@ fetch("./data/demo.json")
             </div>
             <div>
               <strong>${euro.format(product.totalRevenue)}</strong>
-              <span>${product.stock} in stock</span>
+              <span>${product.stock} ${ui.inStock}</span>
             </div>
           </div>
         `
@@ -197,7 +290,7 @@ fetch("./data/demo.json")
       .map(
         (row) => `
           <div class="trend-row">
-            <span>${row.month}</span>
+            <span>${translateMonth(row.month, ui)}</span>
             <div class="trend-bars">
               <span style="height:${row.revenue2023 / 900}px"></span>
               <span style="height:${row.revenue2024 / 900}px"></span>
@@ -208,4 +301,3 @@ fetch("./data/demo.json")
       )
       .join("");
   });
-

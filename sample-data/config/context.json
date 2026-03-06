@@ -1,44 +1,44 @@
 {
+  "productLocale": "fr-BE",
   "runDate": "2026-03-09",
   "storeName": "Chez Julien",
-  "storeLocation": "Brussels",
+  "storeLocation": "Bruxelles",
   "weather": {
-    "headline": "Sunny Friday-Saturday with a mild aperitivo bump",
+    "headline": "Vendredi-samedi ensoleillés avec un léger effet apéro",
     "temperatureC": 16,
     "condition": "sunny",
     "confidence": 0.74
   },
   "calendar": {
-    "publicHoliday": "No Belgian public holiday this week",
-    "schoolBreak": "Francophone school break tailwind still in the city",
-    "note": "Expect more neighborhood browsing and stronger weekend grazing demand."
+    "publicHoliday": "Aucun jour férié belge cette semaine",
+    "schoolBreak": "Fin des congés francophones encore perceptible en ville",
+    "note": "Attendre plus de flânerie de quartier et une demande plus forte sur le week-end."
   },
   "suppliers": {
     "Terra": {
-      "orderDay": "Monday",
+      "orderDay": "Lundi",
       "cutoff": "10:30",
-      "deliveryDay": "Tuesday"
+      "deliveryDay": "mardi"
     },
     "Affineur": {
-      "orderDay": "Monday",
+      "orderDay": "Lundi",
       "cutoff": "12:00",
-      "deliveryDay": "Wednesday"
+      "deliveryDay": "mercredi"
     },
     "Pantry": {
-      "orderDay": "Tuesday",
+      "orderDay": "Mardi",
       "cutoff": "17:00",
-      "deliveryDay": "Thursday"
+      "deliveryDay": "jeudi"
     },
     "Interbio": {
-      "orderDay": "Tuesday",
+      "orderDay": "Mardi",
       "cutoff": "09:30",
-      "deliveryDay": "Tuesday"
+      "deliveryDay": "mardi"
     },
     "Atelier": {
-      "orderDay": "Daily",
+      "orderDay": "Tous les jours",
       "cutoff": "16:00",
-      "deliveryDay": "Next morning"
+      "deliveryDay": "lendemain matin"
     }
   }
 }
-

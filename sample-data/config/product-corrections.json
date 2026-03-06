@@ -2,23 +2,23 @@
   "MOZZARELLA DI BUFALA": {
     "supplier": "Terra",
     "displayName": "Mozzarella di Bufala",
-    "canonicalCategory": "Fresh Italian",
+    "canonicalCategory": "Frais italien",
     "weatherSensitivity": "sunny-weekend",
     "perishability": "fast",
     "substituteGroup": "fresh-italian-cheese"
   },
   "BURRATA CREMEUSE": {
     "supplier": "Terra",
-    "displayName": "Burrata cremeuse",
-    "canonicalCategory": "Fresh Italian",
+    "displayName": "Burrata crémeuse",
+    "canonicalCategory": "Frais italien",
     "weatherSensitivity": "sunny-weekend",
     "perishability": "fast",
     "substituteGroup": "fresh-italian-cheese"
   },
   "RICOTTA FRAICHE": {
     "supplier": "Terra",
-    "displayName": "Ricotta fraiche",
-    "canonicalCategory": "Fresh Italian",
+    "displayName": "Ricotta fraîche",
+    "canonicalCategory": "Frais italien",
     "weatherSensitivity": "neutral",
     "perishability": "fast",
     "substituteGroup": "fresh-italian-cheese"
@@ -26,7 +26,7 @@
   "TOMATES DATTERINO BIO": {
     "supplier": "Terra",
     "displayName": "Tomates datterino bio",
-    "canonicalCategory": "Fresh produce",
+    "canonicalCategory": "Fruits et légumes frais",
     "weatherSensitivity": "sunny-weekend",
     "perishability": "fast",
     "substituteGroup": "summer-produce"
@@ -34,31 +34,31 @@
   "BASILIC BIO": {
     "supplier": "Terra",
     "displayName": "Basilic bio",
-    "canonicalCategory": "Fresh produce",
+    "canonicalCategory": "Fruits et légumes frais",
     "weatherSensitivity": "sunny-weekend",
     "perishability": "fast",
     "substituteGroup": "summer-produce"
   },
   "POIRE CONFERENCE BIO": {
     "supplier": "Interbio",
-    "displayName": "Poire conference bio",
-    "canonicalCategory": "Fresh produce",
+    "displayName": "Poire Conférence bio",
+    "canonicalCategory": "Fruits et légumes frais",
     "weatherSensitivity": "cold-week",
     "perishability": "medium",
     "substituteGroup": "winter-fruit"
   },
   "EARL GREY TEA 100G": {
     "supplier": "Pantry",
-    "displayName": "Earl Grey Tea 100g",
-    "canonicalCategory": "Tea & pantry",
+    "displayName": "Thé Earl Grey 100 g",
+    "canonicalCategory": "Thé et épicerie",
     "weatherSensitivity": "cold-week",
     "perishability": "slow",
     "substituteGroup": "tea"
   },
   "HUILE D'OLIVE 750ML": {
     "supplier": "Pantry",
-    "displayName": "Huile d'olive 750ml",
-    "canonicalCategory": "Pantry staples",
+    "displayName": "Huile d'olive 750 ml",
+    "canonicalCategory": "Épicerie de base",
     "weatherSensitivity": "neutral",
     "perishability": "slow",
     "substituteGroup": "olive-oil"
@@ -66,7 +66,7 @@
   "GRANOLA MAISON": {
     "supplier": "Pantry",
     "displayName": "Granola maison",
-    "canonicalCategory": "Breakfast pantry",
+    "canonicalCategory": "Petit-déjeuner",
     "weatherSensitivity": "neutral",
     "perishability": "slow",
     "substituteGroup": "breakfast"
@@ -74,15 +74,15 @@
   "PAIN AU LEVAIN": {
     "supplier": "Atelier",
     "displayName": "Pain au levain",
-    "canonicalCategory": "Bakery",
+    "canonicalCategory": "Boulangerie",
     "weatherSensitivity": "neutral",
     "perishability": "fast",
     "substituteGroup": "daily-bread"
   },
   "COMTE 18 MOIS": {
     "supplier": "Affineur",
-    "displayName": "Comte 18 mois",
-    "canonicalCategory": "Cheese classics",
+    "displayName": "Comté 18 mois",
+    "canonicalCategory": "Fromages classiques",
     "weatherSensitivity": "neutral",
     "perishability": "medium",
     "substituteGroup": "hard-cheese"
@@ -90,7 +90,7 @@
   "TOMME DU LARZAC": {
     "supplier": "Affineur",
     "displayName": "Tomme du Larzac",
-    "canonicalCategory": "Cheese classics",
+    "canonicalCategory": "Fromages classiques",
     "weatherSensitivity": "neutral",
     "perishability": "medium",
     "substituteGroup": "hard-cheese"
@@ -98,18 +98,17 @@
   "TALEGGIO DOP": {
     "supplier": "Affineur",
     "displayName": "Taleggio DOP",
-    "canonicalCategory": "Cheese classics",
+    "canonicalCategory": "Fromages classiques",
     "weatherSensitivity": "aperitivo-spike",
     "perishability": "medium",
     "substituteGroup": "washed-rind"
   },
   "MIX APERO OLIVES": {
     "supplier": "Pantry",
-    "displayName": "Mix apero olives",
-    "canonicalCategory": "Aperitivo",
+    "displayName": "Olives apéro",
+    "canonicalCategory": "Apéritif",
     "weatherSensitivity": "sunny-weekend",
     "perishability": "medium",
     "substituteGroup": "aperitivo"
   }
 }
-

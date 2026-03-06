@@ -76,13 +76,17 @@ The human cleanup layer. This is the most important file if the raw catalog is m
 Defines:
 
 - run date
+- product locale for the operator-facing UI
 - weather snapshot
 - holiday / calendar signals
 - supplier deadlines
+
+Note:
+
+- `context.json` is product-facing content. If the UI locale is French, the weather and calendar copy in this file should also be French.
 
 ## Privacy Standard
 
 Public repos should use sanitized sample data only.
 
 If you run the app on private exports, keep those files outside the repo and do not commit generated artifacts containing sensitive information.
-

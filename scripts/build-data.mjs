@@ -7,6 +7,87 @@ const rawDir = path.join(root, "sample-data", "raw");
 const configDir = path.join(root, "sample-data", "config");
 const outputPath = path.join(root, "public", "data", "demo.json");
 
+const COPY = {
+  en: {
+    evidenceStock: (stock) => `stock ${stock}`,
+    evidenceRecent: (quantity) => `recent ${quantity.toFixed(0)} units`,
+    evidenceYoY: (yoy) => `YoY ${Math.round(yoy * 100)}%`,
+    evidenceCover: (weeks) => `cover ${weeks.toFixed(1)} weeks`,
+    evidenceSuppressedDemand: (confidence) => `possible suppressed demand ${(confidence * 100).toFixed(0)}%`,
+    evidenceWeatherBoost: (boost) => `weather boost x${boost.toFixed(2)}`,
+    supplierTask: (product) => `${product.displayName} -> ${product.evidence[0]}, ${product.evidence[1]}`,
+    supplierSummaryOrder: (count) => `${count} items need a real decision before cutoff.`,
+    supplierSummaryWatch: (count) => `No hard order signal, but ${count} items deserve a look.`,
+    supplierSummaryHealthy: "Healthy position. No urgent move today.",
+    insightAction: {
+      order: "buy now",
+      watch: "watch carefully",
+      skip: "hold steady"
+    },
+    insightBodyStockout: (name) =>
+      `${name} likely hit a ceiling imposed by stock, not demand. The raw recent sell-through is already strong, and the low remaining stock makes the historical curve understate real appetite.`,
+    insightBodyOrder: (name) =>
+      `${name} is moving faster than its baseline while stock cover is tightening. The dashboard treats it as a live order candidate, not a vanity trend.`,
+    insightBodyWatch: (name) =>
+      `${name} is not a blind reorder, but it sits in the zone where one more good weekend can change the call.`,
+    insightBodySkip: (name) =>
+      `${name} looks stable enough to deprioritize. Space and attention are more valuable elsewhere this week.`,
+    briefingOpening: (headline) =>
+      `The week opens with ${headline.toLowerCase()}. Fresh Italian and aperitivo signals should be treated as live, not decorative.`,
+    briefingSupplier: (name, summary) =>
+      `${name} is the sharpest supplier panel today: ${summary.toLowerCase()}`,
+    briefingTop: (names) =>
+      names.length === 1
+        ? `${names[0]} is the strongest decision candidate right now.`
+        : `${names.join(", ")} are the strongest decision candidates right now.`,
+    briefingSlow: (names) =>
+      names.length === 1
+        ? `${names[0]} looks like a space-and-cash drag unless the next cycle proves otherwise.`
+        : `${names.join(", ")} look like space-and-cash drags unless the next cycle proves otherwise.`,
+    methodologyRawVsInterpreted:
+      "Raw exports stay visible. Interpretation cards are explicit inference, not hidden truth."
+  },
+  fr: {
+    evidenceStock: (stock) => `stock ${stock}`,
+    evidenceRecent: (quantity) => `ventes récentes ${quantity.toFixed(0)} unités`,
+    evidenceYoY: (yoy) => `vs N-1 ${Math.round(yoy * 100)}%`,
+    evidenceCover: (weeks) => `couverture ${weeks.toFixed(1)} semaines`,
+    evidenceSuppressedDemand: (confidence) => `demande sous-estimée possible ${(confidence * 100).toFixed(0)}%`,
+    evidenceWeatherBoost: (boost) => `effet météo x${boost.toFixed(2)}`,
+    supplierTask: (product) => `${product.displayName} -> ${product.evidence[0]}, ${product.evidence[1]}`,
+    supplierSummaryOrder: (count) => `${count} articles demandent une vraie décision avant l'heure limite.`,
+    supplierSummaryWatch: (count) => `Aucun réassort évident, mais ${count} articles méritent un contrôle.`,
+    supplierSummaryHealthy: "Position saine. Aucun mouvement urgent aujourd'hui.",
+    insightAction: {
+      order: "à commander",
+      watch: "à surveiller",
+      skip: "à laisser"
+    },
+    insightBodyStockout: (name) =>
+      `${name} a probablement été limité par le stock, pas par la demande. Les ventes récentes sont déjà fortes et le faible reliquat réduit artificiellement la courbe historique.`,
+    insightBodyOrder: (name) =>
+      `${name} accélère plus vite que sa base pendant que la couverture de stock se resserre. Le tableau le traite comme un vrai candidat de commande, pas comme une tendance décorative.`,
+    insightBodyWatch: (name) =>
+      `${name} n'est pas un réassort automatique, mais il est dans la zone où un bon week-end supplémentaire peut faire basculer la décision.`,
+    insightBodySkip: (name) =>
+      `${name} paraît assez stable pour passer après le reste. La place et l'attention valent plus ailleurs cette semaine.`,
+    briefingOpening: (headline) =>
+      `La semaine commence avec ${headline.toLowerCase()}. Les signaux apéritif et frais doivent être traités comme réels, pas décoratifs.`,
+    briefingSupplier: (name, summary) =>
+      `${name} est le panneau fournisseur le plus tendu aujourd'hui : ${summary.toLowerCase()}`,
+    briefingTop: (names) =>
+      names.length === 1
+        ? `${names[0]} est le candidat de décision le plus fort ce matin.`
+        : `${names.join(", ")} sont les candidats de décision les plus forts ce matin.`,
+    briefingSlow: (names) =>
+      names.length === 1
+        ? `${names[0]} ressemble à un frein de place et de cash si le prochain cycle ne contredit pas ce signal.`
+        : `${names.join(", ")} ressemblent à des freins de place et de cash si le prochain cycle ne contredit pas ce signal.`,
+    methodologyRawVsInterpreted:
+      "Les exports bruts restent visibles. Les cartes d'interprétation sont des inférences explicites, jamais une vérité cachée."
+  }
+};
+
 function parseDelimited(filePath) {
   const text = fs.readFileSync(filePath, "latin1").replace(/\r/g, "");
   return text
@@ -29,6 +110,18 @@ function normalizeKey(value) {
     .replace(/[^A-Z0-9]+/gi, " ")
     .trim()
     .toUpperCase();
+}
+
+function getLanguage(locale) {
+  return String(locale || "en")
+    .toLowerCase()
+    .startsWith("fr")
+    ? "fr"
+    : "en";
+}
+
+function getCopy(locale) {
+  return COPY[getLanguage(locale)];
 }
 
 function parseExport(fileName, yearPrefix) {
@@ -141,13 +234,12 @@ function parseFinanceWorkbook(fileName) {
   };
 }
 
-function buildProducts() {
+function buildProducts(context, copy) {
   const products2024 = parseExport("export-stat-vente-2024.csv", "24_");
   const products2025 = parseExport("export-stat-vente-2025.csv", "25_");
   const recent = parseRecentSales("sta-satvente-2025.csv");
   const margins = parseMargins("analyse-2025.csv");
   const corrections = JSON.parse(fs.readFileSync(path.join(configDir, "product-corrections.json"), "utf8"));
-  const context = JSON.parse(fs.readFileSync(path.join(configDir, "context.json"), "utf8"));
 
   const allKeys = [...products2025.keys()];
   const products = allKeys.map((key) => {
@@ -183,16 +275,16 @@ function buildProducts() {
     const confidence = Math.max(0.42, Math.min(0.94, 0.52 + Math.abs(score) / 6));
 
     const evidence = [
-      `stock ${current.stock}`,
-      `recent ${recency.recentQuantity.toFixed(0)} units`,
-      `YoY ${Math.round(yoy * 100)}%`,
-      `cover ${stockCoverWeeks.toFixed(1)} weeks`
+      copy.evidenceStock(current.stock),
+      copy.evidenceRecent(recency.recentQuantity),
+      copy.evidenceYoY(yoy),
+      copy.evidenceCover(stockCoverWeeks)
     ];
     if (stockoutSuspicion > 0.6) {
-      evidence.push(`possible suppressed demand ${(stockoutSuspicion * 100).toFixed(0)}%`);
+      evidence.push(copy.evidenceSuppressedDemand(stockoutSuspicion));
     }
     if (weatherBoost > 1) {
-      evidence.push(`weather boost x${weatherBoost.toFixed(2)}`);
+      evidence.push(copy.evidenceWeatherBoost(weatherBoost));
     }
 
     return {
@@ -233,12 +325,12 @@ function buildProducts() {
       order,
       watch,
       skip,
-      tasks: taskProducts.map((product) => `${product.displayName} -> ${product.evidence[0]}, ${product.evidence[1]}`),
+      tasks: taskProducts.map((product) => copy.supplierTask(product)),
       summary: order.length
-        ? `${order.length} items need a real decision before cutoff.`
+        ? copy.supplierSummaryOrder(order.length)
         : watch.length
-          ? `No hard order signal, but ${watch.length} items deserve a look.`
-          : `Healthy position. No urgent move today.`
+          ? copy.supplierSummaryWatch(watch.length)
+          : copy.supplierSummaryHealthy
     };
   });
 
@@ -247,15 +339,15 @@ function buildProducts() {
     .sort((left, right) => right.confidence + right.stockoutSuspicion - (left.confidence + left.stockoutSuspicion))
     .slice(0, 6)
     .map((product) => ({
-      title: `${product.displayName}: ${product.action === "order" ? "buy now" : product.action === "watch" ? "watch carefully" : "hold steady"}`,
+      title: `${product.displayName}: ${copy.insightAction[product.action]}`,
       body:
         product.stockoutSuspicion > 0.7
-          ? `${product.displayName} likely hit a ceiling imposed by stock, not demand. The raw recent sell-through is already strong, and the low remaining stock makes the historical curve understate real appetite.`
+          ? copy.insightBodyStockout(product.displayName)
           : product.action === "order"
-            ? `${product.displayName} is moving faster than its baseline while stock cover is tightening. The dashboard treats it as a live order candidate, not a vanity trend.`
+            ? copy.insightBodyOrder(product.displayName)
             : product.action === "watch"
-              ? `${product.displayName} is not a blind reorder, but it sits in the zone where one more good weekend can change the call.`
-              : `${product.displayName} looks stable enough to deprioritize. Space and attention are more valuable elsewhere this week.`,
+              ? copy.insightBodyWatch(product.displayName)
+              : copy.insightBodySkip(product.displayName),
       confidence: product.confidence,
       evidence: product.evidence,
       rawRevenue: product.totalRevenue,
@@ -269,7 +361,7 @@ function buildProducts() {
   };
 }
 
-function buildBriefing(products, suppliers, context) {
+function buildBriefing(products, suppliers, context, copy) {
   const topOrder = products.filter((product) => product.action === "order").slice(0, 4);
   const slow = products
     .filter((product) => product.action === "skip")
@@ -280,19 +372,20 @@ function buildBriefing(products, suppliers, context) {
     .sort((left, right) => right.order.length - left.order.length)[0];
 
   return [
-    `The week opens with ${context.weather.headline.toLowerCase()}. Fresh Italian and aperitivo signals should be treated as live, not decorative.`,
-    `${hottestSupplier.name} is the sharpest supplier panel today: ${hottestSupplier.summary.toLowerCase()}`,
-    `${topOrder.map((product) => product.displayName).join(", ")} are the strongest decision candidates right now.`,
-    `${slow.map((product) => product.displayName).join(", ")} look like space-and-cash drags unless the next cycle proves otherwise.`
+    copy.briefingOpening(context.weather.headline),
+    copy.briefingSupplier(hottestSupplier.name, hottestSupplier.summary),
+    copy.briefingTop(topOrder.map((product) => product.displayName)),
+    copy.briefingSlow(slow.map((product) => product.displayName))
   ];
 }
 
 function buildOutput() {
   const context = JSON.parse(fs.readFileSync(path.join(configDir, "context.json"), "utf8"));
+  const copy = getCopy(context.productLocale);
   const macro = parseFinanceWorkbook("chez-julien-finance-demo.xlsx");
   const categoryMix = parseCategoryMix("sta-ratioCAT-2025.csv");
-  const { products, suppliers, insights } = buildProducts();
-  const briefing = buildBriefing(products, suppliers, context);
+  const { products, suppliers, insights } = buildProducts(context, copy);
+  const briefing = buildBriefing(products, suppliers, context, copy);
 
   const kpis = {
     revenue2025: products.reduce((sum, product) => sum + product.totalRevenue, 0),
@@ -303,6 +396,7 @@ function buildOutput() {
 
   const payload = {
     generatedAt: new Date().toISOString(),
+    productLocale: context.productLocale || "en-BE",
     store: context.storeName,
     location: context.storeLocation,
     runDate: context.runDate,
@@ -316,7 +410,7 @@ function buildOutput() {
     insights,
     macro,
     methodology: {
-      rawVsInterpreted: "Raw exports stay visible. Interpretation cards are explicit inference, not hidden truth."
+      rawVsInterpreted: copy.methodologyRawVsInterpreted
     }
   };
 
@@ -326,4 +420,3 @@ function buildOutput() {
 }
 
 buildOutput();
-
