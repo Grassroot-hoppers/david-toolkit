@@ -42,3 +42,11 @@ npm test
 - evidence-card UI improvements
 - accessibility fixes
 - stronger tests around decimal commas, encodings, and malformed rows
+
+## Cursor / Agent Contributions
+
+If you are using Cursor, Slack agents, or background agents, also read:
+
+- [`docs/CURSOR-SETUP.md`](docs/CURSOR-SETUP.md)
+- [`docs/CURSOR-AUTOMATIONS.md`](docs/CURSOR-AUTOMATIONS.md)
+- `.cursor/BUGBOT.md`

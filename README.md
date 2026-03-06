@@ -62,6 +62,8 @@ npm run build:data
 - [`DEMO.md`](DEMO.md) gives a demo script for talks, videos, and a `Show HN` style launch.
 - [`ROADMAP.md`](ROADMAP.md) shows what comes next.
 - [`docs/ISSUE_BACKLOG.md`](docs/ISSUE_BACKLOG.md) seeds the first public issue backlog.
+- [`docs/CURSOR-SETUP.md`](docs/CURSOR-SETUP.md) defines the recommended Cursor, Slack, mobile, and MCP workflow for this repo.
+- [`docs/CURSOR-AUTOMATIONS.md`](docs/CURSOR-AUTOMATIONS.md) contains the first automation specs worth creating.
 
 ## Contribution Standard
 
@@ -70,6 +72,7 @@ This repo is meant to be contributor-ready from day one.
 - Read [`CONTRIBUTING.md`](CONTRIBUTING.md) before opening a pull request.
 - Respect the [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md).
 - Report security issues through [`SECURITY.md`](SECURITY.md).
+- Agent-based contributors should also read `.cursor/BUGBOT.md` and the PR template expectations.
 
 ## Why AGPL
 
