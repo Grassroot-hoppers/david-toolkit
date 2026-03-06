@@ -1,0 +1,44 @@
+{
+  "runDate": "2026-03-09",
+  "storeName": "Chez Julien",
+  "storeLocation": "Brussels",
+  "weather": {
+    "headline": "Sunny Friday-Saturday with a mild aperitivo bump",
+    "temperatureC": 16,
+    "condition": "sunny",
+    "confidence": 0.74
+  },
+  "calendar": {
+    "publicHoliday": "No Belgian public holiday this week",
+    "schoolBreak": "Francophone school break tailwind still in the city",
+    "note": "Expect more neighborhood browsing and stronger weekend grazing demand."
+  },
+  "suppliers": {
+    "Terra": {
+      "orderDay": "Monday",
+      "cutoff": "10:30",
+      "deliveryDay": "Tuesday"
+    },
+    "Affineur": {
+      "orderDay": "Monday",
+      "cutoff": "12:00",
+      "deliveryDay": "Wednesday"
+    },
+    "Pantry": {
+      "orderDay": "Tuesday",
+      "cutoff": "17:00",
+      "deliveryDay": "Thursday"
+    },
+    "Interbio": {
+      "orderDay": "Tuesday",
+      "cutoff": "09:30",
+      "deliveryDay": "Tuesday"
+    },
+    "Atelier": {
+      "orderDay": "Daily",
+      "cutoff": "16:00",
+      "deliveryDay": "Next morning"
+    }
+  }
+}
+

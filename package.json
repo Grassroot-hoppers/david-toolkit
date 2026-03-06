@@ -1,0 +1,32 @@
+{
+  "name": "david-toolkit",
+  "version": "0.1.0",
+  "private": false,
+  "description": "A browser-first retail intelligence demo for independent shop owners.",
+  "type": "module",
+  "scripts": {
+    "build:data": "node scripts/build-data.mjs",
+    "build": "npm run build:data",
+    "serve": "node scripts/serve.mjs",
+    "dev": "npm run build:data && npm run serve",
+    "prepare:sample": "node scripts/generate-finance-workbook.mjs",
+    "test": "npm run build:data && node scripts/verify-data.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Grassroot-hoppers/david-toolkit.git"
+  },
+  "keywords": [
+    "retail",
+    "open-source",
+    "inventory",
+    "forecasting",
+    "grassroot-hoppers"
+  ],
+  "author": "Julien Thibaut",
+  "license": "AGPL-3.0-only",
+  "dependencies": {
+    "xlsx": "^0.18.5"
+  }
+}
+
