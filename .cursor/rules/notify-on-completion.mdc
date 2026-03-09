@@ -1,0 +1,47 @@
+---
+description: Send phone notification via ntfy when a task is completed. Always active for david-toolkit.
+alwaysApply: true
+---
+
+# Task Completion Notification
+
+After completing any user-requested task, send a push notification to the user's phone via ntfy.
+
+## When to notify
+
+- After finishing implementation, fix, debug, refactor, or any concrete work the user asked for
+- After committing code (if a commit was part of the task)
+- After completing a plan, research document, or review
+
+## When NOT to notify
+
+- After asking a clarifying question (nothing was completed)
+- After only providing information or answering a question
+- Mid-task when pausing for user input or approval
+- If the task failed and you're reporting the failure
+
+## How to notify
+
+Run this shell command as the **very last action** of your turn:
+
+```sh
+curl -s -o /dev/null ntfy.sh/david-toolkit-notify -d "Task finished: <one sentence summary>"
+```
+
+Replace `<one sentence summary>` with a concise, specific description of what was done.
+
+### Examples
+
+```sh
+curl -s -o /dev/null ntfy.sh/david-toolkit-notify -d "Task finished: Added CSV export validation with error handling for malformed rows"
+curl -s -o /dev/null ntfy.sh/david-toolkit-notify -d "Task finished: Fixed mobile layout overflow on dashboard cards"
+curl -s -o /dev/null ntfy.sh/david-toolkit-notify -d "Task finished: Created implementation plan for inventory tracking feature"
+```
+
+## Rules
+
+- ONE sentence, max ~15 words — enough to know what happened, not a changelog
+- Be specific about what was done, not generic ("Fixed the bug" is bad; "Fixed decimal comma parsing in CSV importer" is good)
+- Do NOT include file paths, stack traces, or technical jargon
+- This is the LAST thing you do — after all verification, commits, and cleanup
+- Do NOT wait for confirmation to send the notification — just send it
