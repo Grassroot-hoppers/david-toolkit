@@ -457,6 +457,31 @@ function buildBriefing(products, suppliers, context, copy) {
 
 // --- Main ---
 
+function buildSupplierRanking(products) {
+  const bySupplier = new Map();
+  for (const p of products) {
+    const name = p.supplier;
+    if (name === "Non assigné") continue;
+    const existing = bySupplier.get(name) || {
+      name,
+      notionUrl: p.supplierNotionUrl || "",
+      totalRevenue: 0,
+      productCount: 0,
+      enHausse: 0,
+      enBaisse: 0,
+    };
+    existing.totalRevenue += p.totalRevenue;
+    existing.productCount += 1;
+    if (p.action === "hausse") existing.enHausse += 1;
+    if (p.action === "baisse") existing.enBaisse += 1;
+    bySupplier.set(name, existing);
+  }
+
+  return [...bySupplier.values()]
+    .sort((a, b) => b.totalRevenue - a.totalRevenue)
+    .map((s, i) => ({ ...s, rank: i + 1 }));
+}
+
 function buildWeeklyMetrics(dailySales, runDate) {
   if (!dailySales || dailySales.length === 0) return null;
 
@@ -594,6 +619,7 @@ function buildFromGold() {
 
   const weeklyMetrics = buildWeeklyMetrics(dailySales, context.runDate);
   const timeline = buildTimeline(dailySales);
+  const supplierRanking = buildSupplierRanking(products);
 
   const macro = {
     years: storeSummary.years.map((y) => ({
@@ -628,6 +654,7 @@ function buildFromGold() {
     topProducts: products.slice().sort((left, right) => right.totalRevenue - left.totalRevenue).slice(0, 8),
     slowProducts: products.slice().sort((left, right) => left.totalRevenue - right.totalRevenue).slice(0, 6),
     categoryMix,
+    supplierRanking,
     insights,
     macro,
     methodology: {
