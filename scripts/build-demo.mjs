@@ -4,7 +4,7 @@ import path from "node:path";
 const root = process.cwd();
 const goldDir = path.join(root, "data", "gold");
 const configDir = path.join(root, "sample-data", "config");
-const outputPath = path.join(root, "public", "data", "demo.json");
+const outputPath = path.join(root, "demo", "data", "demo.json");
 
 const COPY = {
   en: {
@@ -100,6 +100,44 @@ function normalizeKey(value) {
     .replace(/[^A-Z0-9]+/gi, " ")
     .trim()
     .toUpperCase();
+}
+
+const CATEGORY_FILTERS = /^(DIV\. EAN|Fictif|CARTE CADEAUX|\(uncategorized\))/i;
+
+const CATEGORY_DISPLAY = {
+  "FRUIT ET LEGUME": "Fruits & Légumes",
+  "FRUITS ET LEGUMES": "Fruits & Légumes",
+  "FROMAGE": "Fromages",
+  "FROMAGE - CHARCU": "Fromages & Charcuterie",
+  "CHARCUTERIE": "Charcuterie",
+  "COPRO": "Coprosain",
+  "FRAIS": "Frais",
+  "OEUF": "Oeufs",
+  "PATE FRAICHE": "Pâtes Fraîches",
+  "BOISSON": "Boissons",
+  "EPICERIE": "Épicerie",
+  "EPICERIE SUCREE": "Épicerie Sucrée",
+  "SURGELE": "Surgelés",
+  "HYGIENE": "Hygiène",
+  "ENTRETIENT": "Entretien",
+  "COSMETIQUE": "Cosmétique",
+  "AROMA": "Aromathérapie",
+  "VIDANGE": "Vidanges & Consignes",
+  "BOULANGERIE": "Boulangerie",
+  "REUTILISABLE": "Réutilisable",
+  "A TRIER": "À trier",
+  "VIANDE": "Viandes",
+  "CONSERV - A TRIER": "Conserves",
+  "LEGUMINEUSE": "Légumineuses",
+  "TARTIN - OLEA": "Tartinables & Oléagineux",
+  "SACS ET EXTRA": "Sacs & Extras",
+};
+
+function cleanCategory(raw) {
+  if (!raw || CATEGORY_FILTERS.test(raw)) return null;
+  const stripped = raw.replace(/^\d+\.\s*/, "").replace(/\s+\d+%$/, "").trim();
+  if (!stripped || CATEGORY_FILTERS.test(stripped)) return null;
+  return CATEGORY_DISPLAY[stripped.toUpperCase()] || stripped;
 }
 
 // --- Data Loading from Gold ---
@@ -435,18 +473,32 @@ function buildFromGold() {
   const latestYear = yearInfo.recent || yearInfo.current;
   let categoryMix = [];
   if (categoryEvolution) {
-    categoryMix = categoryEvolution
-      .map((ce) => {
-        const yr = ce.years.find((y) => y.year === latestYear) || ce.years[ce.years.length - 1];
-        if (!yr) return null;
-        return {
-          category: ce.category,
+    const merged = new Map();
+    for (const ce of categoryEvolution) {
+      const clean = cleanCategory(ce.category);
+      if (!clean) continue;
+      const yr = ce.years.find((y) => y.year === latestYear) || ce.years[ce.years.length - 1];
+      const prevYr = yearInfo.previous ? ce.years.find((y) => y.year === yearInfo.previous) : null;
+      if (!yr) continue;
+      const existing = merged.get(clean);
+      if (existing) {
+        existing.totalRevenue += yr.revenue;
+        existing.productCount += yr.productCount;
+        if (prevYr) existing.prevRevenue += prevYr.revenue;
+      } else {
+        merged.set(clean, {
+          category: clean,
           productCount: yr.productCount,
           totalRevenue: yr.revenue,
-          share: yr.share
-        };
-      })
-      .filter(Boolean);
+          prevRevenue: prevYr ? prevYr.revenue : 0,
+          share: 0,
+        });
+      }
+    }
+    const totalRev = [...merged.values()].reduce((s, c) => s + c.totalRevenue, 0);
+    categoryMix = [...merged.values()]
+      .map((c) => ({ ...c, share: totalRev > 0 ? (c.totalRevenue / totalRev) * 100 : 0, yoy: c.prevRevenue > 0 ? (c.totalRevenue - c.prevRevenue) / c.prevRevenue : 0 }))
+      .sort((a, b) => b.totalRevenue - a.totalRevenue);
   }
 
   // Macro data from store summary
