@@ -5,7 +5,6 @@ public/data/demo.json
 
 # Real POS exports and normalized pipeline output (private shop data)
 data/real/
-data/normalized/
 data/silver/
 data/gold/
 data/external/
