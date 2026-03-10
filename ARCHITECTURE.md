@@ -22,7 +22,7 @@ demo/data/demo.json
 public/index.html + app.js + styles.css
 ```
 
-If no Gold data is present, `build-demo.mjs` falls back to the legacy `build-data.mjs` path so the demo keeps working from `sample-data/raw/`.
+Gold data is required. If missing, `build-demo.mjs` exits with instructions to run the full pipeline.
 
 ## Pipeline Commands
 

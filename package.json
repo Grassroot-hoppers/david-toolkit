@@ -12,7 +12,6 @@
     "build:full": "npm run import && npm run build:gold && npm run build:demo",
     "serve": "node scripts/serve.mjs",
     "dev": "npm run build:demo && npm run serve",
-    "prepare:sample": "node scripts/generate-finance-workbook.mjs",
     "test": "npm run build:full && node scripts/verify-data.mjs"
   },
   "repository": {
@@ -27,9 +26,5 @@
     "grassroot-hoppers"
   ],
   "author": "Julien Thibaut",
-  "license": "AGPL-3.0-only",
-  "dependencies": {
-    "xlsx": "^0.18.5"
-  }
+  "license": "AGPL-3.0-only"
 }
-

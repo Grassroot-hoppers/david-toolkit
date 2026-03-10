@@ -667,17 +667,13 @@ function buildFromGold() {
   console.log(`  Wrote ${outputPath}`);
 }
 
-async function buildFromLegacy() {
-  console.log("  No Gold data found. Falling back to legacy build-data.mjs...");
-  const { execSync } = await import("node:child_process");
-  execSync("node scripts/build-data.mjs", { stdio: "inherit", cwd: root });
-
-  const legacyPath = path.join(root, "public", "data", "demo.json");
-  if (fs.existsSync(legacyPath) && legacyPath !== outputPath) {
-    fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-    fs.copyFileSync(legacyPath, outputPath);
-    console.log(`  Copied ${legacyPath} → ${outputPath}`);
-  }
+function buildFromLegacy() {
+  console.error("  ERROR: No Gold data found. Run the full pipeline first:");
+  console.error("    npm run import      # Bronze → Silver");
+  console.error("    npm run build:gold  # Silver → Gold");
+  console.error("    npm run build:demo  # Gold → demo.json");
+  console.error("  Or all at once: npm run build:full");
+  process.exit(1);
 }
 
 async function run() {
@@ -690,7 +686,6 @@ async function run() {
     console.log("  Source: Gold layer\n");
     buildFromGold();
   } else {
-    console.log("  Source: Legacy (sample-data)\n");
     buildFromLegacy();
   }
 }

@@ -25,35 +25,28 @@ This first demo is built around a real independent food shop context. It reads r
 
 ```bash
 npm install
-npm run prepare:sample
-npm run build:data
+npm run build:demo   # requires Gold data in data/gold/
 npm run serve
 ```
 
 Open `http://localhost:4173`.
 
-You can also just run:
+Or build everything from raw CSVs:
 
 ```bash
 npm install
-npm run dev
+npm run build:full   # import → gold → demo in one step
+npm run serve
 ```
 
 ## Using Your Own Data
 
-The demo ships with sanitized files in [`sample-data/raw`](sample-data/raw). Replace them with your own exports that follow the same shapes:
-
-- `export-stat-vente-2024.csv`
-- `export-stat-vente-2025.csv`
-- `sta-satvente-2025.csv`
-- `sta-ratioCAT-2025.csv`
-- `analyse-2025.csv`
-- `chez-julien-finance-demo.xlsx` or another workbook with the same sheet names
+Place your POS CSV exports in `data/real/` (gitignored). The pipeline auto-detects 7 file types by header fingerprint: monthly stats, annual stats, transactions, category mix, margin analysis, hourly patterns, and product master.
 
 Then run:
 
 ```bash
-npm run build:data
+npm run build:full
 ```
 
 ## Repository Guide
