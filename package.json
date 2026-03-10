@@ -5,12 +5,15 @@
   "description": "A browser-first retail intelligence demo for independent shop owners.",
   "type": "module",
   "scripts": {
-    "build:data": "node scripts/build-data.mjs",
-    "build": "npm run build:data",
+    "import": "node scripts/import-silver.mjs",
+    "build:gold": "node scripts/build-gold.mjs",
+    "build:demo": "node scripts/build-demo.mjs",
+    "build": "npm run build:demo",
+    "build:full": "npm run import && npm run build:gold && npm run build:demo",
     "serve": "node scripts/serve.mjs",
-    "dev": "npm run build:data && npm run serve",
+    "dev": "npm run build:demo && npm run serve",
     "prepare:sample": "node scripts/generate-finance-workbook.mjs",
-    "test": "npm run build:data && node scripts/verify-data.mjs"
+    "test": "npm run build:full && node scripts/verify-data.mjs"
   },
   "repository": {
     "type": "git",

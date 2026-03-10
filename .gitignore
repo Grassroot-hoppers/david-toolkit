@@ -3,3 +3,10 @@ node_modules/
 public/data/demo.json
 .worktrees/
 
+# Real POS exports and normalized pipeline output (private shop data)
+data/real/
+data/normalized/
+data/silver/
+data/gold/
+data/external/
+
