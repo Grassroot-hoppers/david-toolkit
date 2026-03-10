@@ -157,6 +157,77 @@ function renderSidebarPerf(data) {
   }
 }
 
+const WMO_CODES = {
+  0: { desc: 'Soleil', icon: 'sun' },
+  1: { desc: 'Éclaircies', icon: 'sun-cloud' },
+  2: { desc: 'Nuageux', icon: 'cloud' },
+  3: { desc: 'Couvert', icon: 'cloud' },
+  45: { desc: 'Brouillard', icon: 'cloud' },
+  48: { desc: 'Brouillard', icon: 'cloud' },
+  51: { desc: 'Bruine', icon: 'rain' },
+  53: { desc: 'Bruine', icon: 'rain' },
+  55: { desc: 'Bruine', icon: 'rain' },
+  61: { desc: 'Pluie', icon: 'rain' },
+  63: { desc: 'Pluie mod.', icon: 'rain' },
+  65: { desc: 'Forte pluie', icon: 'rain' },
+  71: { desc: 'Neige', icon: 'snow' },
+  73: { desc: 'Neige', icon: 'snow' },
+  75: { desc: 'Neige', icon: 'snow' },
+  80: { desc: 'Averses', icon: 'rain' },
+  81: { desc: 'Averses', icon: 'rain' },
+  82: { desc: 'Fortes averses', icon: 'rain' },
+  95: { desc: 'Orage', icon: 'storm' },
+};
+
+const WEATHER_ICONS = {
+  sun: `<svg class="weather-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>`,
+  'sun-cloud': `<svg class="weather-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="M20 12h2"/><path d="m19.07 4.93-1.41 1.41"/><path d="M15.947 12.65a4 4 0 0 0-5.925-4.128"/><path d="M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6Z"/></svg>`,
+  cloud: `<svg class="weather-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>`,
+  rain: `<svg class="weather-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M8 19v1"/><path d="M8 14v1"/><path d="M16 19v1"/><path d="M16 14v1"/><path d="M12 21v1"/><path d="M12 16v1"/></svg>`,
+  snow: `<svg class="weather-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M8 15h.01"/><path d="M8 19h.01"/><path d="M12 17h.01"/><path d="M12 21h.01"/><path d="M16 15h.01"/><path d="M16 19h.01"/></svg>`,
+  storm: `<svg class="weather-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="m9.2 22 3-7H8l4-7"/></svg>`,
+};
+
+const DAY_NAMES = ['DIM', 'LUN', 'MAR', 'MER', 'JEU', 'VEN', 'SAM'];
+
+async function fetchWeather() {
+  try {
+    const url = 'https://api.open-meteo.com/v1/forecast?latitude=50.85&longitude=4.35&daily=temperature_2m_max,weathercode&timezone=Europe/Brussels&forecast_days=7';
+    const res = await fetch(url);
+    const data = await res.json();
+    return data.daily.time.map((date, i) => {
+      const code = data.daily.weathercode[i];
+      const info = WMO_CODES[code] || { desc: '—', icon: 'cloud' };
+      return {
+        date,
+        temp: Math.round(data.daily.temperature_2m_max[i]),
+        ...info,
+      };
+    });
+  } catch {
+    return null;
+  }
+}
+
+function renderWeather(days) {
+  if (!days) return;
+  const today = new Date().toISOString().slice(0, 10);
+  const cards = days.map(d => {
+    const dt = new Date(d.date + 'T00:00:00');
+    const dayLabel = `${DAY_NAMES[dt.getDay()]} ${dt.getDate()}`;
+    const isToday = d.date === today;
+    const muted = d.icon === 'rain' || d.icon === 'snow' || d.icon === 'storm';
+    return `
+      <div class="weather-card">
+        <span class="weather-day ${isToday ? 'weather-day--today' : ''}">${dayLabel}</span>
+        ${WEATHER_ICONS[d.icon] || WEATHER_ICONS.cloud}
+        <span class="weather-temp ${muted ? 'weather-temp--muted' : ''}">${d.temp}°</span>
+        <span class="weather-desc ${muted ? 'weather-desc--muted' : ''}">${d.desc}</span>
+      </div>`;
+  }).join('');
+  html('weather-strip', cards);
+}
+
 function setupNav() {
   const navItems = document.querySelectorAll('.nav-item[data-screen]');
   const screens = document.querySelectorAll('.main-content');
@@ -183,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!r.ok) throw new Error(`${r.status} ${r.statusText}`);
       return r.json();
     })
-    .then(data => {
+    .then(async data => {
       document.title = `David — ${data.store}`;
       renderSignal(data);
       renderKPIs(data);
@@ -191,6 +262,8 @@ document.addEventListener('DOMContentLoaded', () => {
       renderCategories(data);
       renderPerformanceZone(data);
       renderSidebarPerf(data);
+      const weather = await fetchWeather();
+      renderWeather(weather);
     })
     .catch(err => {
       console.error('Failed to load demo.json:', err);
