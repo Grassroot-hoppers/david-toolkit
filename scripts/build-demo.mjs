@@ -457,12 +457,87 @@ function buildBriefing(products, suppliers, context, copy) {
 
 // --- Main ---
 
+function buildWeeklyMetrics(dailySales, runDate) {
+  if (!dailySales || dailySales.length === 0) return null;
+
+  const salesByDate = new Map(dailySales.map((d) => [d.date, d.revenue]));
+  const ref = new Date(runDate);
+
+  const lastSat = new Date(ref);
+  lastSat.setDate(ref.getDate() - ref.getDay());
+  lastSat.setDate(lastSat.getDate() - 1);
+  const lastMon = new Date(lastSat);
+  lastMon.setDate(lastSat.getDate() - 5);
+
+  let lastWeekRev = 0;
+  for (let d = new Date(lastMon); d <= lastSat; d.setDate(d.getDate() + 1)) {
+    const key = d.toISOString().slice(0, 10);
+    lastWeekRev += salesByDate.get(key) || 0;
+  }
+
+  const lastYearMon = new Date(lastMon);
+  lastYearMon.setFullYear(lastYearMon.getFullYear() - 1);
+  const lastYearSat = new Date(lastYearMon);
+  lastYearSat.setDate(lastYearMon.getDate() + 5);
+
+  let sameWeekLastYear = 0;
+  for (let d = new Date(lastYearMon); d <= lastYearSat; d.setDate(d.getDate() + 1)) {
+    const key = d.toISOString().slice(0, 10);
+    sameWeekLastYear += salesByDate.get(key) || 0;
+  }
+
+  const weekYoY = sameWeekLastYear > 0 ? (lastWeekRev - sameWeekLastYear) / sameWeekLastYear : 0;
+
+  const monthStart = new Date(ref.getFullYear(), ref.getMonth(), 1);
+  let mtdRevenue = 0;
+  for (let d = new Date(monthStart); d < ref; d.setDate(d.getDate() + 1)) {
+    const key = d.toISOString().slice(0, 10);
+    mtdRevenue += salesByDate.get(key) || 0;
+  }
+
+  const lastYearMonthStart = new Date(ref.getFullYear() - 1, ref.getMonth(), 1);
+  const lastYearRef = new Date(ref);
+  lastYearRef.setFullYear(ref.getFullYear() - 1);
+  let mtdLastYear = 0;
+  for (let d = new Date(lastYearMonthStart); d < lastYearRef; d.setDate(d.getDate() + 1)) {
+    const key = d.toISOString().slice(0, 10);
+    mtdLastYear += salesByDate.get(key) || 0;
+  }
+
+  const zone = lastWeekRev >= 10500 ? "bleu" : lastWeekRev >= 9000 ? "vert" : lastWeekRev >= 7500 ? "orange" : "rouge";
+
+  return {
+    lastWeekRevenue: Math.round(lastWeekRev),
+    lastWeekStart: lastMon.toISOString().slice(0, 10),
+    lastWeekEnd: lastSat.toISOString().slice(0, 10),
+    sameWeekLastYear: Math.round(sameWeekLastYear),
+    weekYoY,
+    mtdRevenue: Math.round(mtdRevenue),
+    mtdLastYear: Math.round(mtdLastYear),
+    mtdYoY: mtdLastYear > 0 ? (mtdRevenue - mtdLastYear) / mtdLastYear : 0,
+    zone,
+  };
+}
+
+function buildTimeline(dailySales) {
+  if (!dailySales || dailySales.length === 0) return [];
+  const monthly = new Map();
+  for (const d of dailySales) {
+    const month = d.date.slice(0, 7);
+    monthly.set(month, (monthly.get(month) || 0) + d.revenue);
+  }
+  return [...monthly.entries()]
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([month, revenue]) => ({ month, revenue: Math.round(revenue) }));
+}
+
 function buildFromGold() {
   const catalog = readGold("product-catalog.json");
   const monthlyStats = readGold("monthly-product-stats.json");
   const storeSummary = readGold("store-summary.json");
   const categoryEvolution = readGold("category-evolution.json");
   const marginRanking = readGold("margin-ranking.json");
+  const dailySales = readGold("daily-sales.json");
 
   if (!catalog || !storeSummary) {
     console.log("Missing Gold files. Run 'npm run build:gold' first.");
@@ -517,13 +592,15 @@ function buildFromGold() {
       .sort((a, b) => b.totalRevenue - a.totalRevenue);
   }
 
-  // Macro data from store summary
+  const weeklyMetrics = buildWeeklyMetrics(dailySales, context.runDate);
+  const timeline = buildTimeline(dailySales);
+
   const macro = {
     years: storeSummary.years.map((y) => ({
       year: y.year,
       revenue: y.totalRevenue
     })),
-    timeline: []
+    timeline,
   };
 
   const kpis = {
@@ -545,6 +622,7 @@ function buildFromGold() {
     runDate: context.runDate,
     context,
     kpis,
+    weeklyMetrics,
     briefing,
     suppliers,
     topProducts: products.slice().sort((left, right) => right.totalRevenue - left.totalRevenue).slice(0, 8),
