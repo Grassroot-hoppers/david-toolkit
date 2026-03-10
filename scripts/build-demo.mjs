@@ -140,6 +140,38 @@ function cleanCategory(raw) {
   return CATEGORY_DISPLAY[stripped.toUpperCase()] || stripped;
 }
 
+function titleCase(str) {
+  return str
+    .toLowerCase()
+    .replace(/(?:^|\s|[-/])\S/g, (c) => c.toUpperCase())
+    .replace(/\b(Bio|Dop|Aoc|Aop|Igp)\b/gi, (m) => m.toUpperCase())
+    .replace(/\b(\d+)(gr|ml|cl|kg|l)\b/gi, (_, n, u) => n + u.toLowerCase());
+}
+
+function cleanProductName(rawName) {
+  let name = rawName.replace(/^\([^)]*\)/, "").trim();
+  return titleCase(name);
+}
+
+function loadSupplierMap() {
+  const fp = path.join(configDir, "supplier-map.json");
+  if (!fs.existsSync(fp)) return new Map();
+  const raw = JSON.parse(fs.readFileSync(fp, "utf8"));
+  const map = new Map();
+  for (const [key, val] of Object.entries(raw)) {
+    if (key.startsWith("_")) continue;
+    map.set(key, val);
+  }
+  return map;
+}
+
+function resolveSupplier(hint, supplierMap) {
+  if (!hint) return { name: "Non assigné", notionUrl: "" };
+  const entry = supplierMap.get(hint) || supplierMap.get(hint.toUpperCase());
+  if (entry) return entry;
+  return { name: titleCase(hint), notionUrl: "" };
+}
+
 // --- Data Loading from Gold ---
 
 function detectYears(storeSummary) {
@@ -277,6 +309,7 @@ function buildMarginMap(marginRanking) {
 
 function buildProducts(context, copy, productsCurrent, productsPrevious, recentMap, margins) {
   const corrections = JSON.parse(fs.readFileSync(path.join(configDir, "product-corrections.json"), "utf8"));
+  const supplierMap = loadSupplierMap();
 
   const hasMonthlyData = [...productsCurrent.values()].some((p) => p.monthly && p.monthly.length > 0);
   const hasStockData = [...productsCurrent.values()].some((p) => p.stock > 0);
@@ -351,11 +384,17 @@ function buildProducts(context, copy, productsCurrent, productsPrevious, recentM
     if (stockoutSuspicion > 0.6) evidence.push(copy.evidenceSuppressedDemand(stockoutSuspicion));
     if (weatherBoost > 1) evidence.push(copy.evidenceWeatherBoost(weatherBoost));
 
+    const resolvedSupplier = resolveSupplier(
+      correction.supplier || current.supplierHint,
+      supplierMap
+    );
+
     return {
       key,
-      displayName: correction.displayName || current.rawName,
-      supplier: correction.supplier || current.supplierHint || "Unmapped",
-      category: correction.canonicalCategory || current.rawCategory,
+      displayName: correction.displayName || cleanProductName(current.rawName),
+      supplier: resolvedSupplier.name,
+      supplierNotionUrl: resolvedSupplier.notionUrl,
+      category: correction.canonicalCategory || cleanCategory(current.rawCategory) || current.rawCategory,
       rawCategory: current.rawCategory,
       totalRevenue: current.totalRevenue,
       totalRevenuePrevious: previous?.totalRevenue || 0,
