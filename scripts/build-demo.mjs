@@ -343,46 +343,24 @@ function buildProducts(context, copy, productsCurrent, productsPrevious, recentM
             ? 1.1
             : 1;
 
-    let demandPressure = 0;
-    let stockCoverWeeks = 0;
-    let stockoutSuspicion = 0;
+    const yoyScore = yoy > 0.20 ? 2 : yoy > 0.10 ? 1 : yoy > -0.10 ? 0 : yoy > -0.20 ? -1 : -2;
+    const revenueTier = current.totalRevenue > 5000 ? 1 : current.totalRevenue > 1000 ? 0.5 : 0;
+    const marginTier = margin.marginRatio > 2.0 ? 0.5 : margin.marginRatio > 0 && margin.marginRatio < 1.2 ? -0.5 : 0;
+    const score = yoyScore + revenueTier + marginTier;
 
-    if (hasMonthlyData && current.monthly.length > 0) {
-      const avgMonthly = current.monthly.reduce((sum, v) => sum + v, 0) / current.monthly.length;
-      demandPressure = recency.recentQuantity / Math.max(avgMonthly, 1);
-      if (hasStockData) {
-        stockCoverWeeks = current.stock / Math.max(recency.recentQuantity / 4, 1);
-        stockoutSuspicion = current.stock <= 12 && demandPressure > 1.2
-          ? Math.min(0.92, 0.55 + demandPressure / 4) : 0;
-      }
-    }
-
-    let score;
-    if (hasMonthlyData && hasStockData) {
-      score =
-        (stockCoverWeeks < 1.3 ? 2 : stockCoverWeeks < 2.4 ? 1 : -0.5) +
-        (demandPressure > 1.25 ? 2 : demandPressure > 0.9 ? 1 : -0.5) +
-        (yoy > 0.16 ? 1 : yoy < -0.08 ? -1 : 0) +
-        (weatherBoost > 1 ? 0.8 : 0) +
-        (stockoutSuspicion > 0.75 ? 0.8 : 0);
-    } else {
-      const revenueTier = current.totalRevenue > 5000 ? 1 : current.totalRevenue > 1000 ? 0 : -0.5;
-      const yoyTier = yoy > 0.20 ? 1.5 : yoy > 0.05 ? 0.5 : yoy < -0.15 ? -1.5 : yoy < -0.05 ? -0.5 : 0;
-      const marginTier = margin.marginRatio > 2.0 ? 0.5 : margin.marginRatio > 0 && margin.marginRatio < 1.3 ? -0.5 : 0;
-      score = revenueTier + yoyTier + marginTier + (weatherBoost > 1 ? 0.5 : 0);
-    }
-
-    const action = score >= 2 ? "order" : score >= 0.5 ? "watch" : score < -0.5 ? "skip" : "watch";
+    const trend = score >= 1.5 ? "hausse" : score <= -1 ? "baisse" : "stable";
     const confidence = Math.max(0.42, Math.min(0.94, 0.52 + Math.abs(score) / 6));
 
+    const demandPressure = 0;
+    const stockCoverWeeks = 0;
+    const stockoutSuspicion = 0;
+
+    const action = trend;
+
     const evidence = [];
-    if (hasStockData && current.stock > 0) evidence.push(copy.evidenceStock(current.stock));
     evidence.push(copy.evidenceRecent(recency.recentQuantity || current.totalQuantity));
     evidence.push(copy.evidenceYoY(yoy));
-    if (hasStockData && stockCoverWeeks > 0) evidence.push(copy.evidenceCover(stockCoverWeeks));
     if (margin.marginRatio > 0) evidence.push(`marge x${margin.marginRatio.toFixed(2)}`);
-    if (stockoutSuspicion > 0.6) evidence.push(copy.evidenceSuppressedDemand(stockoutSuspicion));
-    if (weatherBoost > 1) evidence.push(copy.evidenceWeatherBoost(weatherBoost));
 
     const resolvedSupplier = resolveSupplier(
       correction.supplier || current.supplierHint,
@@ -418,9 +396,9 @@ function buildProducts(context, copy, productsCurrent, productsPrevious, recentM
 
   const suppliers = Object.entries(context.suppliers).map(([name, meta]) => {
     const supplierProducts = products.filter((product) => product.supplier === name);
-    const order = supplierProducts.filter((product) => product.action === "order");
-    const watch = supplierProducts.filter((product) => product.action === "watch");
-    const skip = supplierProducts.filter((product) => product.action === "skip");
+    const order = supplierProducts.filter((product) => product.action === "hausse");
+    const watch = supplierProducts.filter((product) => product.action === "stable");
+    const skip = supplierProducts.filter((product) => product.action === "baisse");
     const taskProducts = order.length ? order : watch.slice(0, 2);
     return {
       name,
@@ -437,20 +415,19 @@ function buildProducts(context, copy, productsCurrent, productsPrevious, recentM
     };
   });
 
+  const actionLabel = { hausse: "en hausse", stable: "stable", baisse: "en baisse" };
   const insights = products
     .slice()
-    .sort((left, right) => right.confidence + right.stockoutSuspicion - (left.confidence + left.stockoutSuspicion))
+    .sort((left, right) => right.confidence - left.confidence)
     .slice(0, 6)
     .map((product) => ({
-      title: `${product.displayName}: ${copy.insightAction[product.action]}`,
+      title: `${product.displayName}: ${actionLabel[product.action] || product.action}`,
       body:
-        product.stockoutSuspicion > 0.7
-          ? copy.insightBodyStockout(product.displayName)
-          : product.action === "order"
-            ? copy.insightBodyOrder(product.displayName)
-            : product.action === "watch"
-              ? copy.insightBodyWatch(product.displayName)
-              : copy.insightBodySkip(product.displayName),
+        product.action === "hausse"
+          ? copy.insightBodyOrder(product.displayName)
+          : product.action === "stable"
+            ? copy.insightBodyWatch(product.displayName)
+            : copy.insightBodySkip(product.displayName),
       confidence: product.confidence,
       evidence: product.evidence,
       rawRevenue: product.totalRevenue,
@@ -461,9 +438,9 @@ function buildProducts(context, copy, productsCurrent, productsPrevious, recentM
 }
 
 function buildBriefing(products, suppliers, context, copy) {
-  const topOrder = products.filter((product) => product.action === "order").slice(0, 4);
+  const topOrder = products.filter((product) => product.action === "hausse").slice(0, 4);
   const slow = products
-    .filter((product) => product.action === "skip")
+    .filter((product) => product.action === "baisse")
     .sort((left, right) => left.totalRevenue - right.totalRevenue)
     .slice(0, 3);
   const hottestSupplier = suppliers
@@ -550,10 +527,14 @@ function buildFromGold() {
   };
 
   const kpis = {
-    revenue2025: products.reduce((sum, product) => sum + product.totalRevenue, 0),
-    orderSignals: products.filter((product) => product.action === "order").length,
-    watchSignals: products.filter((product) => product.action === "watch").length,
-    stockoutFlags: products.filter((product) => product.stockoutSuspicion > 0.6).length
+    totalRevenue: products.reduce((sum, p) => sum + p.totalRevenue, 0),
+    productCount: products.length,
+    enHausse: products.filter((p) => p.action === "hausse").length,
+    stable: products.filter((p) => p.action === "stable").length,
+    enBaisse: products.filter((p) => p.action === "baisse").length,
+    avgMargin: products.filter((p) => p.marginRatio > 0).length > 0
+      ? products.filter((p) => p.marginRatio > 0).reduce((s, p) => s + p.marginRatio, 0) / products.filter((p) => p.marginRatio > 0).length
+      : 0,
   };
 
   const payload = {
@@ -585,6 +566,13 @@ async function buildFromLegacy() {
   console.log("  No Gold data found. Falling back to legacy build-data.mjs...");
   const { execSync } = await import("node:child_process");
   execSync("node scripts/build-data.mjs", { stdio: "inherit", cwd: root });
+
+  const legacyPath = path.join(root, "public", "data", "demo.json");
+  if (fs.existsSync(legacyPath) && legacyPath !== outputPath) {
+    fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+    fs.copyFileSync(legacyPath, outputPath);
+    console.log(`  Copied ${legacyPath} → ${outputPath}`);
+  }
 }
 
 async function run() {
