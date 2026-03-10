@@ -575,6 +575,13 @@ html, body {
   color: var(--text-muted);
 }
 
+.supplier-summary-text {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
 .supplier-btn {
   display: inline-flex;
   padding: 8px 14px;
