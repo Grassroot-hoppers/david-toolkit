@@ -4,8 +4,12 @@ import xlsx from "xlsx";
 
 const root = process.cwd();
 const rawDir = path.join(root, "sample-data", "raw");
+const normalizedDir = path.join(root, "data", "normalized");
 const configDir = path.join(root, "sample-data", "config");
 const outputPath = path.join(root, "public", "data", "demo.json");
+
+const useNormalized = fs.existsSync(normalizedDir) &&
+  fs.readdirSync(normalizedDir).some((f) => f.endsWith(".json") && f !== "import-report.json");
 
 const COPY = {
   en: {
@@ -234,25 +238,129 @@ function parseFinanceWorkbook(fileName) {
   };
 }
 
+function loadNormalizedProducts(year) {
+  const filePath = path.join(normalizedDir, `products-${year}.json`);
+  if (!fs.existsSync(filePath)) return new Map();
+  const products = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  return new Map(products.map((p) => [p.key, {
+    ...p,
+    totalQuantity: p.totalQuantity ?? p.quantity ?? 0,
+    totalRevenue: p.totalRevenue ?? p.revenue ?? 0,
+    stock: p.stock ?? 0,
+    monthly: p.monthly ?? [],
+    rawCategory: p.rawCategory ?? p.category ?? "",
+    supplierHint: p.supplierHint ?? "",
+    weightedType: p.weightedType ?? ""
+  }]));
+}
+
+function loadNormalizedRecent() {
+  const filePath = path.join(normalizedDir, "recent-sales.json");
+  if (!fs.existsSync(filePath)) return new Map();
+  const sales = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  return new Map(sales.map((s) => [s.key, s]));
+}
+
+function loadNormalizedMargins() {
+  const filePath = path.join(normalizedDir, "margins.json");
+  if (!fs.existsSync(filePath)) return new Map();
+  const margins = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  return new Map(margins.map((m) => [m.key, m]));
+}
+
+function loadNormalizedCategoryMix() {
+  const filePath = path.join(normalizedDir, "category-mix.json");
+  if (!fs.existsSync(filePath)) return [];
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function detectAvailableYears() {
+  if (!useNormalized) return { all: [2024, 2025], current: 2025, previous: 2024, recent: null };
+  const files = fs.readdirSync(normalizedDir).filter((f) => /^products-\d{4}\.json$/.test(f));
+  const years = files.map((f) => parseInt(f.match(/(\d{4})/)[1], 10)).sort();
+  if (years.length < 2) return { all: years, current: years[0], previous: null, recent: null };
+
+  // Detect partial years: if the latest year has <60% products of the year before, it's partial
+  const latestCount = JSON.parse(fs.readFileSync(path.join(normalizedDir, `products-${years[years.length - 1]}.json`), "utf8")).length;
+  const prevCount = JSON.parse(fs.readFileSync(path.join(normalizedDir, `products-${years[years.length - 2]}.json`), "utf8")).length;
+  const latestIsPartial = latestCount < prevCount * 0.6;
+
+  if (latestIsPartial && years.length >= 3) {
+    // Use second-to-last as current (full year), third-to-last as previous, latest as recent
+    return {
+      all: years,
+      current: years[years.length - 2],
+      previous: years[years.length - 3],
+      recent: years[years.length - 1]
+    };
+  }
+  if (latestIsPartial) {
+    return {
+      all: years,
+      current: years[years.length - 2],
+      previous: years.length >= 3 ? years[years.length - 3] : null,
+      recent: years[years.length - 1]
+    };
+  }
+  return { all: years, current: years[years.length - 1], previous: years[years.length - 2], recent: null };
+}
+
 function buildProducts(context, copy) {
-  const products2024 = parseExport("export-stat-vente-2024.csv", "24_");
-  const products2025 = parseExport("export-stat-vente-2025.csv", "25_");
-  const recent = parseRecentSales("sta-satvente-2025.csv");
-  const margins = parseMargins("analyse-2025.csv");
+  const yearInfo = detectAvailableYears();
+
+  let productsCurrent, productsPrevious, recent, margins;
+
+  if (useNormalized) {
+    console.log(`  Using normalized data (years: ${yearInfo.all.join(", ")})`);
+    console.log(`  Current year: ${yearInfo.current}, Previous: ${yearInfo.previous || "none"}, Recent partial: ${yearInfo.recent || "none"}`);
+    productsCurrent = loadNormalizedProducts(yearInfo.current);
+    productsPrevious = yearInfo.previous ? loadNormalizedProducts(yearInfo.previous) : new Map();
+    // Use the partial/recent year for recency if available, otherwise the current year
+    recent = yearInfo.recent ? loadNormalizedProducts(yearInfo.recent) : loadNormalizedRecent();
+    if (yearInfo.recent) {
+      // Convert product data into recent-sales format
+      const recentMap = new Map();
+      for (const [key, p] of recent) {
+        recentMap.set(key, {
+          recentQuantity: p.totalQuantity,
+          recentRevenue: p.totalRevenue,
+          categoryHint: p.rawCategory
+        });
+      }
+      recent = recentMap;
+    }
+    margins = loadNormalizedMargins();
+  } else {
+    console.log("  Using sample-data/raw/ (no normalized data found)");
+    productsCurrent = parseExport("export-stat-vente-2025.csv", "25_");
+    productsPrevious = parseExport("export-stat-vente-2024.csv", "24_");
+    recent = parseRecentSales("sta-satvente-2025.csv");
+    margins = parseMargins("analyse-2025.csv");
+  }
+
   const corrections = JSON.parse(fs.readFileSync(path.join(configDir, "product-corrections.json"), "utf8"));
 
-  const allKeys = [...products2025.keys()];
+  const hasMonthlyData = [...productsCurrent.values()].some((p) => p.monthly && p.monthly.length > 0);
+  const hasStockData = [...productsCurrent.values()].some((p) => p.stock > 0);
+
+  const JUNK_PATTERNS = /^(-TARE|BON[\s.]?REMB|REMB |CARTE CADEAU|FICTIF|#ACOMPTE|RETOUR VIDANGE|RETOUR CAUTION|VIDANGE |CAUTION )/i;
+  const allKeys = [...productsCurrent.keys()].filter((key) => {
+    const p = productsCurrent.get(key);
+    if (JUNK_PATTERNS.test(p.rawName)) return false;
+    if (p.totalRevenue <= 0) return false;
+    return true;
+  });
   const products = allKeys.map((key) => {
-    const current = products2025.get(key);
-    const previous = products2024.get(key);
+    const current = productsCurrent.get(key);
+    const previous = productsPrevious.get(key);
     const correction = corrections[key] || {};
     const recency = recent.get(key) || { recentQuantity: 0, recentRevenue: 0 };
     const margin = margins.get(key) || { marginRatio: 0, marginHt: 0 };
 
-    const avgMonthly = current.monthly.reduce((sum, value) => sum + value, 0) / current.monthly.length;
-    const yoy = previous ? (current.totalRevenue - previous.totalRevenue) / previous.totalRevenue : 0;
-    const demandPressure = recency.recentQuantity / Math.max(avgMonthly, 1);
-    const stockCoverWeeks = current.stock / Math.max(recency.recentQuantity / 4, 1);
+    const yoy = previous && previous.totalRevenue > 0
+      ? (current.totalRevenue - previous.totalRevenue) / previous.totalRevenue
+      : 0;
+
     const weatherBoost =
       correction.weatherSensitivity === "sunny-weekend" && context.weather.condition === "sunny"
         ? 1.2
@@ -262,24 +370,52 @@ function buildProducts(context, copy) {
             ? 1.1
             : 1;
 
-    const adjustedDemand = recency.recentQuantity * weatherBoost;
-    const stockoutSuspicion = current.stock <= 12 && demandPressure > 1.2 ? Math.min(0.92, 0.55 + demandPressure / 4) : 0;
-    const score =
-      (stockCoverWeeks < 1.3 ? 2 : stockCoverWeeks < 2.4 ? 1 : -0.5) +
-      (demandPressure > 1.25 ? 2 : demandPressure > 0.9 ? 1 : -0.5) +
-      (yoy > 0.16 ? 1 : yoy < -0.08 ? -1 : 0) +
-      (weatherBoost > 1 ? 0.8 : 0) +
-      (stockoutSuspicion > 0.75 ? 0.8 : 0);
+    let demandPressure = 0;
+    let stockCoverWeeks = 0;
+    let stockoutSuspicion = 0;
 
-    const action = score >= 3 ? "order" : score >= 1.2 ? "watch" : score < 0 ? "skip" : "watch";
+    if (hasMonthlyData && current.monthly.length > 0) {
+      const avgMonthly = current.monthly.reduce((sum, v) => sum + v, 0) / current.monthly.length;
+      demandPressure = recency.recentQuantity / Math.max(avgMonthly, 1);
+      if (hasStockData) {
+        stockCoverWeeks = current.stock / Math.max(recency.recentQuantity / 4, 1);
+        stockoutSuspicion = current.stock <= 12 && demandPressure > 1.2
+          ? Math.min(0.92, 0.55 + demandPressure / 4) : 0;
+      }
+    }
+
+    // Scoring adapts to available data
+    let score;
+    if (hasMonthlyData && hasStockData) {
+      score =
+        (stockCoverWeeks < 1.3 ? 2 : stockCoverWeeks < 2.4 ? 1 : -0.5) +
+        (demandPressure > 1.25 ? 2 : demandPressure > 0.9 ? 1 : -0.5) +
+        (yoy > 0.16 ? 1 : yoy < -0.08 ? -1 : 0) +
+        (weatherBoost > 1 ? 0.8 : 0) +
+        (stockoutSuspicion > 0.75 ? 0.8 : 0);
+    } else {
+      // Revenue-and-margin-based scoring when no stock/monthly data
+      const revenueTier = current.totalRevenue > 5000 ? 1 : current.totalRevenue > 1000 ? 0 : -0.5;
+      const yoyTier = yoy > 0.20 ? 1.5 : yoy > 0.05 ? 0.5 : yoy < -0.15 ? -1.5 : yoy < -0.05 ? -0.5 : 0;
+      const marginTier = margin.marginRatio > 2.0 ? 0.5 : margin.marginRatio > 0 && margin.marginRatio < 1.3 ? -0.5 : 0;
+      score = revenueTier + yoyTier + marginTier + (weatherBoost > 1 ? 0.5 : 0);
+    }
+
+    const action = score >= 2 ? "order" : score >= 0.5 ? "watch" : score < -0.5 ? "skip" : "watch";
     const confidence = Math.max(0.42, Math.min(0.94, 0.52 + Math.abs(score) / 6));
 
-    const evidence = [
-      copy.evidenceStock(current.stock),
-      copy.evidenceRecent(recency.recentQuantity),
-      copy.evidenceYoY(yoy),
-      copy.evidenceCover(stockCoverWeeks)
-    ];
+    const evidence = [];
+    if (hasStockData && current.stock > 0) {
+      evidence.push(copy.evidenceStock(current.stock));
+    }
+    evidence.push(copy.evidenceRecent(recency.recentQuantity || current.totalQuantity));
+    evidence.push(copy.evidenceYoY(yoy));
+    if (hasStockData && stockCoverWeeks > 0) {
+      evidence.push(copy.evidenceCover(stockCoverWeeks));
+    }
+    if (margin.marginRatio > 0) {
+      evidence.push(`marge x${margin.marginRatio.toFixed(2)}`);
+    }
     if (stockoutSuspicion > 0.6) {
       evidence.push(copy.evidenceSuppressedDemand(stockoutSuspicion));
     }
@@ -294,16 +430,16 @@ function buildProducts(context, copy) {
       category: correction.canonicalCategory || current.rawCategory,
       rawCategory: current.rawCategory,
       totalRevenue: current.totalRevenue,
-      totalRevenue2024: previous?.totalRevenue || 0,
-      recentQuantity: recency.recentQuantity,
-      recentRevenue: recency.recentRevenue,
+      totalRevenuePrevious: previous?.totalRevenue || 0,
+      recentQuantity: recency.recentQuantity || current.totalQuantity,
+      recentRevenue: recency.recentRevenue || current.totalRevenue,
       stock: current.stock,
       demandPressure,
       stockCoverWeeks,
       yoy,
       action,
       confidence,
-      adjustedDemand,
+      adjustedDemand: (recency.recentQuantity || current.totalQuantity) * weatherBoost,
       stockoutSuspicion,
       marginRatio: margin.marginRatio,
       marginHt: margin.marginHt,
@@ -379,12 +515,35 @@ function buildBriefing(products, suppliers, context, copy) {
   ];
 }
 
+function buildMacroFromCategories() {
+  const { all: years } = detectAvailableYears();
+  const macroYears = [];
+  for (const year of years) {
+    const catPath = path.join(normalizedDir, `category-mix-${year}.json`);
+    if (fs.existsSync(catPath)) {
+      const cats = JSON.parse(fs.readFileSync(catPath, "utf8"));
+      const revenue = cats.reduce((sum, c) => sum + c.totalRevenue, 0);
+      macroYears.push({ year, revenue: Math.round(revenue) });
+    }
+  }
+  return { years: macroYears, timeline: [] };
+}
+
 function buildOutput() {
   const context = JSON.parse(fs.readFileSync(path.join(configDir, "context.json"), "utf8"));
   const copy = getCopy(context.productLocale);
-  const macro = parseFinanceWorkbook("chez-julien-finance-demo.xlsx");
-  const categoryMix = parseCategoryMix("sta-ratioCAT-2025.csv");
+
+  let macro;
+  if (useNormalized) {
+    macro = buildMacroFromCategories();
+    console.log(`  Macro from category totals: ${macro.years.map((y) => `${y.year}: €${y.revenue}`).join(", ")}`);
+  } else {
+    macro = parseFinanceWorkbook("chez-julien-finance-demo.xlsx");
+  }
+
+  const categoryMix = useNormalized ? loadNormalizedCategoryMix() : parseCategoryMix("sta-ratioCAT-2025.csv");
   const { products, suppliers, insights } = buildProducts(context, copy);
+  console.log(`  Products: ${products.length}, Suppliers: ${suppliers.length}`);
   const briefing = buildBriefing(products, suppliers, context, copy);
 
   const kpis = {

@@ -1,0 +1,6392 @@
+[
+  {
+    "key": "OEUF BIO",
+    "recentQuantity": 1221,
+    "recentRevenue": 742.83,
+    "categoryHint": "02. OEUF"
+  },
+  {
+    "key": "BOITE 6 OEUFS BIO",
+    "recentQuantity": 461,
+    "recentRevenue": 1716.49,
+    "categoryHint": "02. OEUF"
+  },
+  {
+    "key": "BANANE BIO",
+    "recentQuantity": 252166,
+    "recentRevenue": 874.42,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "FILET DE POULET COPROSAIN",
+    "recentQuantity": 61664,
+    "recentRevenue": 1513.35,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "AVOCAT HASS BIO",
+    "recentQuantity": 96496,
+    "recentRevenue": 1112.87,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "MELOCAKE",
+    "recentQuantity": 440,
+    "recentRevenue": 658.5,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "POMME NATYRA BIO",
+    "recentQuantity": 190794,
+    "recentRevenue": 848.7,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "COOKIE GATEAU SUR LA CERISE",
+    "recentQuantity": 35578,
+    "recentRevenue": 1268.46,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "ORANGE A FEUILLE IT BIO",
+    "recentQuantity": 160968,
+    "recentRevenue": 694.23,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "CHEVRE FRAIS BIO",
+    "recentQuantity": 170,
+    "recentRevenue": 662.61,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "TOMME DU LARZAC",
+    "recentQuantity": 25724,
+    "recentRevenue": 823.19,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "POIRE CONFERENCE BIO",
+    "recentQuantity": 123096,
+    "recentRevenue": 542.36,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "CONCOMBRE BIO",
+    "recentQuantity": 175,
+    "recentRevenue": 520.55,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "JAMBON A L OS FERMIER",
+    "recentQuantity": 27996,
+    "recentRevenue": 935.11,
+    "categoryHint": "02. CHARCUTERIE"
+  },
+  {
+    "key": "TOMME AUX FLEURS MOOSBRUGGER",
+    "recentQuantity": 23052,
+    "recentRevenue": 915.06,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "CLEMENTINES FEUILLES IT BIO",
+    "recentQuantity": 83534,
+    "recentRevenue": 449.86,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "COURGETTE IT BIO",
+    "recentQuantity": 69780,
+    "recentRevenue": 511.21,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "FUETEC",
+    "recentQuantity": 99,
+    "recentRevenue": 641.55,
+    "categoryHint": "02. CHARCUTERIE"
+  },
+  {
+    "key": "CHICON BIO PLEINE TERRE",
+    "recentQuantity": 53786,
+    "recentRevenue": 503.39,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "RACLETTE JUMI NATURE",
+    "recentQuantity": 31061,
+    "recentRevenue": 907.94,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "CAROTTE NOUVELLE BIO",
+    "recentQuantity": 132498,
+    "recentRevenue": 249.39,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "POMME BOSKOOP BIO COMPOTE",
+    "recentQuantity": 109350,
+    "recentRevenue": 418.33,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "POIRE DOYENNE BIO",
+    "recentQuantity": 92360,
+    "recentRevenue": 393.28,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "TOMME DE BREBIS CAUSSENARD",
+    "recentQuantity": 15580,
+    "recentRevenue": 643.59,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "POIREAU BIO",
+    "recentQuantity": 78858,
+    "recentRevenue": 341.18,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "GRUYERE SUISSE",
+    "recentQuantity": 18732,
+    "recentRevenue": 718.57,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "CITRON JAUNE IT BIO",
+    "recentQuantity": 56712,
+    "recentRevenue": 262.53,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "GOUDA AOP JEUNE",
+    "recentQuantity": 24326,
+    "recentRevenue": 467.83,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "PARMIGIANO REGGIANO 24M",
+    "recentQuantity": 14502,
+    "recentRevenue": 563.55,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "TOMME DE CHEVRE",
+    "recentQuantity": 12350,
+    "recentRevenue": 491.53,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "BASE A PIZZA RUSTICA FEU DE BOIS",
+    "recentQuantity": 70,
+    "recentRevenue": 458.71,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "PARMIGIANA",
+    "recentQuantity": 51,
+    "recentRevenue": 585.35,
+    "categoryHint": "02. PATE FRAICHE"
+  },
+  {
+    "key": "HACHE PORC BOEUF",
+    "recentQuantity": 28868,
+    "recentRevenue": 519.22,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "CHAMPIGNON CHATAIGNE BIO",
+    "recentQuantity": 28942,
+    "recentRevenue": 307.68,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "CHEVRE FRAIS AUX HERBES BIO",
+    "recentQuantity": 79,
+    "recentRevenue": 331.38,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "RACLETTE FUMEE",
+    "recentQuantity": 16316,
+    "recentRevenue": 514.72,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "BOLOGNAISE FRAICHE 750G",
+    "recentQuantity": 40016,
+    "recentRevenue": 713.75,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "POIVRON ROUGE BIO",
+    "recentQuantity": 30828,
+    "recentRevenue": 301.5,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "YAOURT BREBIS GROS CHENE",
+    "recentQuantity": 73,
+    "recentRevenue": 331.7,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "TOMME BREBIS ESTAING",
+    "recentQuantity": 9730,
+    "recentRevenue": 387.22,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "LA CROSETA",
+    "recentQuantity": 60,
+    "recentRevenue": 370.76,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "HACHE PORC VEAU",
+    "recentQuantity": 24892,
+    "recentRevenue": 472.32,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "ALPENHORN",
+    "recentQuantity": 9812,
+    "recentRevenue": 440.57,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "ABONDANCE",
+    "recentQuantity": 11782,
+    "recentRevenue": 444.77,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "BRIE DE MEAUX",
+    "recentQuantity": 11492,
+    "recentRevenue": 338.67,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "BROCOLI IT BIO",
+    "recentQuantity": 39101,
+    "recentRevenue": 230.3,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "KIWI VERT BIO",
+    "recentQuantity": 32034,
+    "recentRevenue": 210.26,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "BOUDIN BLANC",
+    "recentQuantity": 16022,
+    "recentRevenue": 360.85,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "COMTE 8 MOIS",
+    "recentQuantity": 12556,
+    "recentRevenue": 378.32,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "XV DU PIC CENDRE",
+    "recentQuantity": 61,
+    "recentRevenue": 301.46,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "GAUFRINETTE TANTE ARLETTE",
+    "recentQuantity": 59,
+    "recentRevenue": 308.85,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "EMMENTALER SUISSE AOP",
+    "recentQuantity": 12958,
+    "recentRevenue": 376.7,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "TOMATE GRAPPE IT BIO",
+    "recentQuantity": 37762,
+    "recentRevenue": 217.75,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "CHIPOLATA",
+    "recentQuantity": 17416,
+    "recentRevenue": 336.83,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "SAUCISSE SECHE",
+    "recentQuantity": 76,
+    "recentRevenue": 218.6,
+    "categoryHint": "02. CHARCUTERIE"
+  },
+  {
+    "key": "CHOU FLEUR BIO",
+    "recentQuantity": 66,
+    "recentRevenue": 247.37,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "SAUMON FUME GRAND BIO",
+    "recentQuantity": 30,
+    "recentRevenue": 544.1,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "QUICHE EPINARD TOMATE FETA",
+    "recentQuantity": 40,
+    "recentRevenue": 397.8,
+    "categoryHint": "02. PATE FRAICHE"
+  },
+  {
+    "key": "MOZZARELLA BUFALA CAMAPANA DOP",
+    "recentQuantity": 69,
+    "recentRevenue": 227.46,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "GOUDA CHEVRE",
+    "recentQuantity": 12278,
+    "recentRevenue": 348.09,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "APPENZELLER SURCHOIX",
+    "recentQuantity": 8506,
+    "recentRevenue": 336.32,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "SALAMI DE MILAN BIO",
+    "recentQuantity": 56,
+    "recentRevenue": 273.48,
+    "categoryHint": "02. CHARCUTERIE"
+  },
+  {
+    "key": "GRIS DU PERIGORD",
+    "recentQuantity": 7902,
+    "recentRevenue": 302.56,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "BEAUFORT D ETE",
+    "recentQuantity": 10176,
+    "recentRevenue": 456.48,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "ORANGE SANGUINE MORO BIO",
+    "recentQuantity": 48642,
+    "recentRevenue": 215.79,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "OIGNON JAUNE BE BIO",
+    "recentQuantity": 59674,
+    "recentRevenue": 117.49,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "HIDALGO AU ROMARIN",
+    "recentQuantity": 8200,
+    "recentRevenue": 319.2,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "KIWI JAUNE BIO",
+    "recentQuantity": 23386,
+    "recentRevenue": 179.21,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "YAOURT ENTIER VIDANGE 0 15",
+    "recentQuantity": 69,
+    "recentRevenue": 196.65,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "VIDANGE 0 25",
+    "recentQuantity": 232,
+    "recentRevenue": 58,
+    "categoryHint": "11. VIDANGE"
+  },
+  {
+    "key": "QUICHE CAROTTE CHEVRE THYM CITRON",
+    "recentQuantity": 36,
+    "recentRevenue": 367.5,
+    "categoryHint": "02. PATE FRAICHE"
+  },
+  {
+    "key": "FETA KOLIOS AOP",
+    "recentQuantity": 56,
+    "recentRevenue": 233.52,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "1 2 CAMEMBERT ST LOUP",
+    "recentQuantity": 57,
+    "recentRevenue": 226.86,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "MAGRET DE CANARD",
+    "recentQuantity": 11144,
+    "recentRevenue": 461.13,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "CROTTIN BIO",
+    "recentQuantity": 58,
+    "recentRevenue": 222.3,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "CHENE VERTE BIO",
+    "recentQuantity": 72,
+    "recentRevenue": 178.3,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "RACLETTE PUR AIL DES OURS",
+    "recentQuantity": 9286,
+    "recentRevenue": 442.42,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "MAIGRE DU NORD",
+    "recentQuantity": 8136,
+    "recentRevenue": 319.91,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "PDT FARINEUSE BIO",
+    "recentQuantity": 89008,
+    "recentRevenue": 142.95,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "AGED RED LEICESTER",
+    "recentQuantity": 7110,
+    "recentRevenue": 267.86,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "PATATE DOUCE BIO",
+    "recentQuantity": 39664,
+    "recentRevenue": 196.18,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "TOMME DE SAVOIE",
+    "recentQuantity": 7340,
+    "recentRevenue": 238.35,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "BEURRE DE CAMPAGNE NON SALE",
+    "recentQuantity": 51,
+    "recentRevenue": 229.5,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "PDT BIO FERME SAC 2 5KG",
+    "recentQuantity": 51,
+    "recentRevenue": 215.9,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "PESTO FRESCO",
+    "recentQuantity": 44,
+    "recentRevenue": 248.24,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "TOMME DU DOYARD BIO",
+    "recentQuantity": 5990,
+    "recentRevenue": 265.89,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "BOERENTROTS TENTATION",
+    "recentQuantity": 8414,
+    "recentRevenue": 314.26,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "FRUIT DE LA PASSION ES",
+    "recentQuantity": 10800,
+    "recentRevenue": 260.7,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "SAUMON FUME PETIT BIO",
+    "recentQuantity": 33,
+    "recentRevenue": 306.65,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "TOMME DE SAVOIE A LA TRUFFE",
+    "recentQuantity": 6030,
+    "recentRevenue": 239.99,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "GOUDA AOP MI VIEUX",
+    "recentQuantity": 11860,
+    "recentRevenue": 263.33,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "CREME LIQUIDE BIO 20CL",
+    "recentQuantity": 72,
+    "recentRevenue": 137.01,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "CHEVRE MIEL THYM",
+    "recentQuantity": 7122,
+    "recentRevenue": 280.95,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "OSSAU IRATY",
+    "recentQuantity": 6978,
+    "recentRevenue": 303.57,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "AIL BIO",
+    "recentQuantity": 8028,
+    "recentRevenue": 103.03,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "MER DU NORD FUME BIO",
+    "recentQuantity": 7078,
+    "recentRevenue": 304.68,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "CUISSE DE POULET",
+    "recentQuantity": 19012,
+    "recentRevenue": 294.51,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "HORLOGER SUISSE",
+    "recentQuantity": 6360,
+    "recentRevenue": 298.3,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "LASAGNE AL RAGU",
+    "recentQuantity": 27,
+    "recentRevenue": 301.3,
+    "categoryHint": "02. PATE FRAICHE"
+  },
+  {
+    "key": "APPASSIMENTO PUGLIA",
+    "recentQuantity": 24,
+    "recentRevenue": 333.6,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "GNOCCHETTI DI PATATE",
+    "recentQuantity": 46,
+    "recentRevenue": 168.16,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "OIGNON CIBOULE BIO",
+    "recentQuantity": 48,
+    "recentRevenue": 158.85,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "BOUILLON DE VOLAILLES FERMIERES",
+    "recentQuantity": 30,
+    "recentRevenue": 253.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MOUSSE DE TRUITE SAUMONEE",
+    "recentQuantity": 29,
+    "recentRevenue": 258.1,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "VIDANGE 0 10",
+    "recentQuantity": 273,
+    "recentRevenue": 27.3,
+    "categoryHint": "11. VIDANGE"
+  },
+  {
+    "key": "BEURRE DE CAMPAGNE SALE",
+    "recentQuantity": 40,
+    "recentRevenue": 184.61,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "AUBERGINE BIO",
+    "recentQuantity": 18506,
+    "recentRevenue": 148.04,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "BIQUEDON BIO",
+    "recentQuantity": 43,
+    "recentRevenue": 167.7,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "ROQUEFORT NOIR",
+    "recentQuantity": 5380,
+    "recentRevenue": 212.51,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "1 2 SAUCISSON EN U ARDECHE",
+    "recentQuantity": 27,
+    "recentRevenue": 256.5,
+    "categoryHint": "02. CHARCUTERIE"
+  },
+  {
+    "key": "BURRATA DI BUFALA 125GR",
+    "recentQuantity": 44,
+    "recentRevenue": 155.32,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "TOMATE MINI SAN MARZANO BIO",
+    "recentQuantity": 13896,
+    "recentRevenue": 136.6,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "APPENBERGER",
+    "recentQuantity": 8142,
+    "recentRevenue": 283.77,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "GUANCIALE AMATRICIANA",
+    "recentQuantity": 39,
+    "recentRevenue": 174.05,
+    "categoryHint": "02. CHARCUTERIE"
+  },
+  {
+    "key": "ANTI GASPI",
+    "recentQuantity": 23,
+    "recentRevenue": 294.34,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "BRIE DE CHEVRE",
+    "recentQuantity": 4702,
+    "recentRevenue": 197.47,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "RACLETTE A LA TRUFFE",
+    "recentQuantity": 5540,
+    "recentRevenue": 370.41,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "APRES SOLEIL",
+    "recentQuantity": 5792,
+    "recentRevenue": 227.56,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "BRILLAT SAVARIN AFFINE",
+    "recentQuantity": 5404,
+    "recentRevenue": 193.48,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "COURGETTE BIO",
+    "recentQuantity": 23702,
+    "recentRevenue": 155.68,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "EPINARD JEUNE POUSSE BIO",
+    "recentQuantity": 7098,
+    "recentRevenue": 153.84,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "COMTE 16 MOIS",
+    "recentQuantity": 6972,
+    "recentRevenue": 244.02,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "RACLETTE PORTO POIVRE",
+    "recentQuantity": 6486,
+    "recentRevenue": 251.47,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "RACLETTE POIVRE ROSE",
+    "recentQuantity": 7350,
+    "recentRevenue": 285.26,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "TROTTINETTE IPA SANS ALCOHOL VID 0 10 CT",
+    "recentQuantity": 52,
+    "recentRevenue": 119.6,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "GUIMAUVE OURSON",
+    "recentQuantity": 95,
+    "recentRevenue": 65.42,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "GALLETOUT CHEVRE",
+    "recentQuantity": 30,
+    "recentRevenue": 198,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "VIEUX APPENBERGER",
+    "recentQuantity": 5350,
+    "recentRevenue": 203.29,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "VACHERIN MONT D OR",
+    "recentQuantity": 6382,
+    "recentRevenue": 189.8,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "ST NECTAIRE FERMIER PRUGNES",
+    "recentQuantity": 4698,
+    "recentRevenue": 177.74,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "PDT BIO FARINEUSE SAC 2 5KG",
+    "recentQuantity": 37,
+    "recentRevenue": 157.25,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "LARDON FUME 300G",
+    "recentQuantity": 7968,
+    "recentRevenue": 223.16,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "PECORINO ROMANO AOP",
+    "recentQuantity": 4851,
+    "recentRevenue": 203.03,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "TOMATE ROMA ES BIO",
+    "recentQuantity": 20764,
+    "recentRevenue": 129.72,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "VIANDE DES GRISONS SUISSE IGP",
+    "recentQuantity": 2366,
+    "recentRevenue": 210.75,
+    "categoryHint": "02. CHARCUTERIE"
+  },
+  {
+    "key": "SOUPE BROCOLI POIREAU",
+    "recentQuantity": 29,
+    "recentRevenue": 185.9,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SAUCISSE PORC BOEUF",
+    "recentQuantity": 9702,
+    "recentRevenue": 171.65,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "PARISIENNES TANTE ARLETTE",
+    "recentQuantity": 36,
+    "recentRevenue": 147.67,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CHENE ROUGE BIO",
+    "recentQuantity": 47,
+    "recentRevenue": 113,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "BREBIS MIEL",
+    "recentQuantity": 6028,
+    "recentRevenue": 262.19,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "STEAK HACHE DE BOEUF 300G",
+    "recentQuantity": 8298,
+    "recentRevenue": 198.45,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "MANGUE BIO",
+    "recentQuantity": 10756,
+    "recentRevenue": 177.64,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "CANON HUPPE 2024",
+    "recentQuantity": 20,
+    "recentRevenue": 256.71,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "MANCHEGO DOP",
+    "recentQuantity": 4934,
+    "recentRevenue": 195.84,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "CHEDDAR FARMHOUSE",
+    "recentQuantity": 4752,
+    "recentRevenue": 169.65,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "BDJ CITRON BERGAMOTE ROMARIN",
+    "recentQuantity": 19,
+    "recentRevenue": 264.1,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "PETIT SAUCISSON ARDECHE DIOT",
+    "recentQuantity": 30,
+    "recentRevenue": 165,
+    "categoryHint": "02. CHARCUTERIE"
+  },
+  {
+    "key": "SAVEUR DU MATIN",
+    "recentQuantity": 9372,
+    "recentRevenue": 257.78,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "ENTRECOTE COPROSAIN",
+    "recentQuantity": 8578,
+    "recentRevenue": 305.46,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "LAIT ENTIER BIO 1L",
+    "recentQuantity": 48,
+    "recentRevenue": 100.8,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "BUTTERNUT BIO",
+    "recentQuantity": 49592,
+    "recentRevenue": 130.58,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "JESUS D ARDECHE",
+    "recentQuantity": 3514,
+    "recentRevenue": 192.21,
+    "categoryHint": "02. CHARCUTERIE"
+  },
+  {
+    "key": "EXPRESSO ROYAL",
+    "recentQuantity": 8949,
+    "recentRevenue": 228.54,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MADELEINE",
+    "recentQuantity": 31,
+    "recentRevenue": 154.38,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "PARMIGIANO REGGIANO SEGARATI 30M",
+    "recentQuantity": 5314,
+    "recentRevenue": 227.25,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "PROSCIUTTO COTTO BASILIC",
+    "recentQuantity": 27,
+    "recentRevenue": 175.5,
+    "categoryHint": "02. CHARCUTERIE"
+  },
+  {
+    "key": "BUCHE FONDANT",
+    "recentQuantity": 32,
+    "recentRevenue": 145.6,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "MORTADELLA CON PISTACCHIO IT",
+    "recentQuantity": 5444,
+    "recentRevenue": 159.52,
+    "categoryHint": "02. CHARCUTERIE"
+  },
+  {
+    "key": "OEUFS PAQUES",
+    "recentQuantity": 4442,
+    "recentRevenue": 219.52,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "YAOURT NATURE MAIGRE 0 5 VIDANGE 0 15",
+    "recentQuantity": 40,
+    "recentRevenue": 109.15,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "TOURNEDOS",
+    "recentQuantity": 7122,
+    "recentRevenue": 255.94,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "POTIMARRON BIO",
+    "recentQuantity": 53824,
+    "recentRevenue": 101.84,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "ETIVAZ AOC",
+    "recentQuantity": 4198,
+    "recentRevenue": 209.05,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "VIEUX SCHLOSSBERGER",
+    "recentQuantity": 5214,
+    "recentRevenue": 176.61,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "COSTE DI MORO DEMETER MONTEPULCIANO",
+    "recentQuantity": 17,
+    "recentRevenue": 237.1,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "HUILE D OLIVES EXTRA VIERGE 1L CANOLIVA",
+    "recentQuantity": 17,
+    "recentRevenue": 236.95,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "PANCETTA CUBATTA DOLCE",
+    "recentQuantity": 32,
+    "recentRevenue": 124.82,
+    "categoryHint": "02. CHARCUTERIE"
+  },
+  {
+    "key": "REBLOCHON CREMIER",
+    "recentQuantity": 5796,
+    "recentRevenue": 173.33,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "TOMME AUX NOISETTES",
+    "recentQuantity": 4220,
+    "recentRevenue": 196.23,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "MOZZA PER PIZZA",
+    "recentQuantity": 35,
+    "recentRevenue": 111.5,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "GORGONZOLA CREMOSO",
+    "recentQuantity": 5722,
+    "recentRevenue": 133.6,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "COCKTAIL DU PATRON",
+    "recentQuantity": 9241,
+    "recentRevenue": 242.14,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "ORANGE WASHINGTON BIO",
+    "recentQuantity": 26982,
+    "recentRevenue": 104.98,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "MORBIER LAIT CRU MONTAGNON",
+    "recentQuantity": 5762,
+    "recentRevenue": 161.45,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "CITRON FEUILLE BIO",
+    "recentQuantity": 17778,
+    "recentRevenue": 84.08,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "BOULE GINGEMBRE",
+    "recentQuantity": 2956,
+    "recentRevenue": 143.92,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "COMTE 30 MOIS",
+    "recentQuantity": 4138,
+    "recentRevenue": 198.64,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "OIGNON ROUGE BIO",
+    "recentQuantity": 18534,
+    "recentRevenue": 49.48,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "KOMBUCHA MENTHE VERVEUINE SUREAU 75CL",
+    "recentQuantity": 28,
+    "recentRevenue": 127.04,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "GINGEMBRE BIO",
+    "recentQuantity": 7060,
+    "recentRevenue": 67.67,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "CAVA BRUT GRAN FERRAN",
+    "recentQuantity": 18,
+    "recentRevenue": 190.45,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "1 2 GALET DE LA LOIRE",
+    "recentQuantity": 30,
+    "recentRevenue": 112.15,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "ENCALAT DE BREBIS",
+    "recentQuantity": 3188,
+    "recentRevenue": 124.36,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "BUDDY BUDDY ALMOND",
+    "recentQuantity": 15,
+    "recentRevenue": 216,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "KOMBUCHA CITRON VERT GINGEMBRE 75CL",
+    "recentQuantity": 26,
+    "recentRevenue": 123.71,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "BRINDILLE COLOMBARD SAUVIGNON IGP",
+    "recentQuantity": 19,
+    "recentRevenue": 169.1,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "COPPA BELGE",
+    "recentQuantity": 2562,
+    "recentRevenue": 125.96,
+    "categoryHint": "02. CHARCUTERIE"
+  },
+  {
+    "key": "RAVIOLI RICOTTA E SPINACI",
+    "recentQuantity": 22,
+    "recentRevenue": 141.7,
+    "categoryHint": "02. PATE FRAICHE"
+  },
+  {
+    "key": "COPPA DI PARMA BIO",
+    "recentQuantity": 25,
+    "recentRevenue": 124.59,
+    "categoryHint": "02. CHARCUTERIE"
+  },
+  {
+    "key": "GAUFRES AUX OEUFS CHOCO BIO",
+    "recentQuantity": 22,
+    "recentRevenue": 138.45,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "BRESAOLA BIO",
+    "recentQuantity": 20,
+    "recentRevenue": 149.74,
+    "categoryHint": "02. CHARCUTERIE"
+  },
+  {
+    "key": "POMME PIROUETTE BIO",
+    "recentQuantity": 22890,
+    "recentRevenue": 80.15,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "MANCHEGO A LA TRUFFE DOP",
+    "recentQuantity": 3088,
+    "recentRevenue": 148.24,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "MANGUES SECHEES 100G",
+    "recentQuantity": 30,
+    "recentRevenue": 98.5,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "SAUCISSON EXTRA D ARDECHE",
+    "recentQuantity": 14,
+    "recentRevenue": 203,
+    "categoryHint": "02. CHARCUTERIE"
+  },
+  {
+    "key": "GAUFRES AUX OEUFS BIO",
+    "recentQuantity": 26,
+    "recentRevenue": 109.2,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "NOISETTES TOASTEES ITALIE 250GR",
+    "recentQuantity": 19,
+    "recentRevenue": 148.37,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "CELERI VERT BIO",
+    "recentQuantity": 32,
+    "recentRevenue": 84.44,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "POMME WILTON STAR BIO",
+    "recentQuantity": 23748,
+    "recentRevenue": 79.29,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "PERSIL PLAT BIO",
+    "recentQuantity": 32,
+    "recentRevenue": 83.55,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "CAFE PEROU BIO",
+    "recentQuantity": 6819,
+    "recentRevenue": 218.21,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "POMELO STAR RUBY BIO",
+    "recentQuantity": 15588,
+    "recentRevenue": 62.24,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "HUILE D OLIVE EXTRA VIERGE PUGLIA",
+    "recentQuantity": 13,
+    "recentRevenue": 194.87,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "FILETS ANCHOIS HUILE D OLIVE",
+    "recentQuantity": 21,
+    "recentRevenue": 119.95,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "FINGER SESAME CHOCOLAT",
+    "recentQuantity": 2928,
+    "recentRevenue": 122.77,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "BETTERAVE CUITE SOUS VID",
+    "recentQuantity": 29,
+    "recentRevenue": 84.62,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "SKYR BIO NATURE",
+    "recentQuantity": 29,
+    "recentRevenue": 83.21,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "SPAGHETTI EPAUTRE RAFINE GIROLOMONI",
+    "recentQuantity": 27,
+    "recentRevenue": 86.01,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "BOUDIN NOIR SUCRE RAISINS",
+    "recentQuantity": 5922,
+    "recentRevenue": 119.68,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "GINGER BEER ANNEXE",
+    "recentQuantity": 30,
+    "recentRevenue": 72,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "RAVIOLI CARNE",
+    "recentQuantity": 17,
+    "recentRevenue": 126.78,
+    "categoryHint": "02. PATE FRAICHE"
+  },
+  {
+    "key": "CABRIOULET A L ESPELETTE",
+    "recentQuantity": 2576,
+    "recentRevenue": 126.39,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "ETHIOPIE",
+    "recentQuantity": 6252,
+    "recentRevenue": 162.55,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "POMME TOPAZ DE TEMPLOUX BE BIO",
+    "recentQuantity": 19990,
+    "recentRevenue": 67.98,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "BOULETTES CUITES 4P",
+    "recentQuantity": 8462,
+    "recentRevenue": 123.63,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "K PHILUS BREBIS",
+    "recentQuantity": 19,
+    "recentRevenue": 110.45,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "LAITUE POMME BIO",
+    "recentQuantity": 30,
+    "recentRevenue": 69.44,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "ENERGY BAR GINGER LIME",
+    "recentQuantity": 34,
+    "recentRevenue": 61.2,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "BLU DI BUFALA MUSCAT",
+    "recentQuantity": 2568,
+    "recentRevenue": 151.51,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "PDT FERME BIO",
+    "recentQuantity": 33002,
+    "recentRevenue": 52.55,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "MANDARINE TNGO IT BIO",
+    "recentQuantity": 12566,
+    "recentRevenue": 85.46,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "CORNICHONS FR",
+    "recentQuantity": 20,
+    "recentRevenue": 93.53,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "OLD EMMENTALER SUISSE AOP",
+    "recentQuantity": 3198,
+    "recentRevenue": 142.31,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "CHIPS LUCIEN SEL BIO",
+    "recentQuantity": 25,
+    "recentRevenue": 73.75,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "COMTESSE DE VICHY",
+    "recentQuantity": 2932,
+    "recentRevenue": 99.69,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "RICOTTA ARTISANALE",
+    "recentQuantity": 5290,
+    "recentRevenue": 104.74,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "BOUDIN NOIR SALE",
+    "recentQuantity": 5398,
+    "recentRevenue": 98.86,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "GINGEMBRE CONFIT BIO",
+    "recentQuantity": 18,
+    "recentRevenue": 98.45,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "VACHERIN DU HAUT DOUBS",
+    "recentQuantity": 11,
+    "recentRevenue": 159.5,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "KEFIR HIBISCUS VID 0 10",
+    "recentQuantity": 26,
+    "recentRevenue": 66.99,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "PASSATA RUSTICA",
+    "recentQuantity": 24,
+    "recentRevenue": 70.21,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "BODEGAS MATEOS TEMPRANILLO",
+    "recentQuantity": 13,
+    "recentRevenue": 128.7,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "VIDANGE 0 15",
+    "recentQuantity": 105,
+    "recentRevenue": 15.75,
+    "categoryHint": "11. VIDANGE"
+  },
+  {
+    "key": "GOUDA EXTRA VIEUX WEYDELANDER 36M",
+    "recentQuantity": 3630,
+    "recentRevenue": 123.41,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "BONBONS VRAC",
+    "recentQuantity": 3370,
+    "recentRevenue": 65.74,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "TARALLINI CACIO E PEPE",
+    "recentQuantity": 20,
+    "recentRevenue": 78.61,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "JUS DE POMME PAJOT VID 0 25",
+    "recentQuantity": 22,
+    "recentRevenue": 71.27,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "CAMEMBERT ST LOUP",
+    "recentQuantity": 14,
+    "recentRevenue": 111.44,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "SARDINES A L HUILE D OLIVE BIO",
+    "recentQuantity": 21,
+    "recentRevenue": 71.4,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "FILET D ARDENNE AU POIVRE",
+    "recentQuantity": 2186,
+    "recentRevenue": 104.37,
+    "categoryHint": "02. CHARCUTERIE"
+  },
+  {
+    "key": "LAIT DEMI ECREME BIO",
+    "recentQuantity": 28,
+    "recentRevenue": 51.8,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "PORSCUITTO RISERVA BIO",
+    "recentQuantity": 14,
+    "recentRevenue": 103.1,
+    "categoryHint": "02. CHARCUTERIE"
+  },
+  {
+    "key": "ST AGUR",
+    "recentQuantity": 2344,
+    "recentRevenue": 89.08,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "ORANGETTES COURBE",
+    "recentQuantity": 1402,
+    "recentRevenue": 83.43,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "AMANDES TOASTES BIO 100G",
+    "recentQuantity": 16,
+    "recentRevenue": 88,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "LES P TITS SKROUNCHS JAUNES",
+    "recentQuantity": 16,
+    "recentRevenue": 88,
+    "categoryHint": "12. BOULANGERIE"
+  },
+  {
+    "key": "GRISSINI DE TIMILIA FENOUIL",
+    "recentQuantity": 18,
+    "recentRevenue": 77.4,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "FLOCONS D AVOINE PETITS GDC 500G",
+    "recentQuantity": 18,
+    "recentRevenue": 77.2,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "BAR PROTEIN NO SUGAR CHOCOLATE PEANUT",
+    "recentQuantity": 23,
+    "recentRevenue": 59.67,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "MINI MADELEINES MIX",
+    "recentQuantity": 16,
+    "recentRevenue": 84,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "RIZ BASMATI BLANC DEMETER",
+    "recentQuantity": 15,
+    "recentRevenue": 89.25,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MANGUES SECHEES PEPITE",
+    "recentQuantity": 16,
+    "recentRevenue": 83.21,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "SALADE BIO",
+    "recentQuantity": 24,
+    "recentRevenue": 54.69,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "CHIPS SOUR CREAM ONION",
+    "recentQuantity": 21,
+    "recentRevenue": 61.95,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "KEFIR FLEUR DE SUREAU VID 0 10",
+    "recentQuantity": 22,
+    "recentRevenue": 58.65,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "CORDON BLEU",
+    "recentQuantity": 4640,
+    "recentRevenue": 85.28,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "PAIN DE GRAINES SS GLUTEN BIO",
+    "recentQuantity": 15,
+    "recentRevenue": 84.75,
+    "categoryHint": "12. BOULANGERIE"
+  },
+  {
+    "key": "CHIPS HOUMOUS SEA SALTED",
+    "recentQuantity": 20,
+    "recentRevenue": 63.4,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "JAMBON SERRANO BELLOTA 30 MOIS PATA NEGRA",
+    "recentQuantity": 13,
+    "recentRevenue": 97.5,
+    "categoryHint": "02. CHARCUTERIE"
+  },
+  {
+    "key": "MANDARINE CIACULLI IT BIO",
+    "recentQuantity": 12498,
+    "recentRevenue": 52.11,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "BLEU D AUVERGNE",
+    "recentQuantity": 2584,
+    "recentRevenue": 68.84,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "LES P TITS SKROUNCHS VERTS",
+    "recentQuantity": 15,
+    "recentRevenue": 82.5,
+    "categoryHint": "12. BOULANGERIE"
+  },
+  {
+    "key": "PECORINO POIVRE 5M",
+    "recentQuantity": 3224,
+    "recentRevenue": 122.52,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "PINOT GRIGIO TERRE DI CHIETI IGP",
+    "recentQuantity": 9,
+    "recentRevenue": 134.5,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "BRESAOLA PUNTA D ANCA IGP",
+    "recentQuantity": 1404,
+    "recentRevenue": 109.89,
+    "categoryHint": "02. CHARCUTERIE"
+  },
+  {
+    "key": "TARAMA BRUT 150G",
+    "recentQuantity": 15,
+    "recentRevenue": 79.34,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "ECHALOTTE NL",
+    "recentQuantity": 7470,
+    "recentRevenue": 44.07,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "CHORIZO COLLIER 200G",
+    "recentQuantity": 13,
+    "recentRevenue": 90.66,
+    "categoryHint": "02. CHARCUTERIE"
+  },
+  {
+    "key": "GIMBER BRUT 200ML",
+    "recentQuantity": 10,
+    "recentRevenue": 117.7,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "CHEVRE WHISKEY ERABLE",
+    "recentQuantity": 2290,
+    "recentRevenue": 90.47,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "L ESPRIT TRIPLE 33CL VID 0 10 CT",
+    "recentQuantity": 21,
+    "recentRevenue": 55.65,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "CHIPS ROSEMARY HUMMUS",
+    "recentQuantity": 19,
+    "recentRevenue": 61.43,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CHEVRE AMANDE CARAMELISEE",
+    "recentQuantity": 19,
+    "recentRevenue": 60.8,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "TAGARO PRIMITIVO",
+    "recentQuantity": 10,
+    "recentRevenue": 115,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "DEUX GRIVES PAYS D OC",
+    "recentQuantity": 10,
+    "recentRevenue": 115,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "MERGUEZ",
+    "recentQuantity": 4416,
+    "recentRevenue": 95.52,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "POMME JULIETTE BIO",
+    "recentQuantity": 12096,
+    "recentRevenue": 56.39,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "BDJ ROSE GINGEMBRE",
+    "recentQuantity": 9,
+    "recentRevenue": 125.1,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "GRISSINI DE TIMILIA",
+    "recentQuantity": 17,
+    "recentRevenue": 65.91,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "LEVIN BLANC DE BLANC SS ALCOOL",
+    "recentQuantity": 9,
+    "recentRevenue": 123.71,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "LARD FUME",
+    "recentQuantity": 2906,
+    "recentRevenue": 78.64,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "LENTILLES VERTES GDC 500G",
+    "recentQuantity": 14,
+    "recentRevenue": 78.4,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "ENERGY BAR DELUXE",
+    "recentQuantity": 26,
+    "recentRevenue": 41.6,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "FENOUIL BIO",
+    "recentQuantity": 10716,
+    "recentRevenue": 48.81,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "LE PTIT MEJE LAIT CRU",
+    "recentQuantity": 17,
+    "recentRevenue": 62.9,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "SAUCISSE DE FRANCFORT",
+    "recentQuantity": 3292,
+    "recentRevenue": 73.84,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "TOMATE CERISE BIO",
+    "recentQuantity": 6644,
+    "recentRevenue": 51.34,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "SIROP D AUBEL POMMES POIRES",
+    "recentQuantity": 13,
+    "recentRevenue": 76.7,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "TARALLI AU ROMARIN",
+    "recentQuantity": 15,
+    "recentRevenue": 66,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "BMX IPA SANS ALCOHOL VID 0 10 CT",
+    "recentQuantity": 20,
+    "recentRevenue": 49,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "ST VALENTIN",
+    "recentQuantity": 11,
+    "recentRevenue": 88.9,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "GIMBER BRUT 500ML",
+    "recentQuantity": 6,
+    "recentRevenue": 162,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "ORANGE NAVELINE BIO",
+    "recentQuantity": 16462,
+    "recentRevenue": 48.55,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "CHEVRE LARDE",
+    "recentQuantity": 14,
+    "recentRevenue": 68.72,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "CHILI CON CARNE 450G VIDANGE 1",
+    "recentQuantity": 8,
+    "recentRevenue": 119.2,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "BOUILLON DE BOEUF FERMIER",
+    "recentQuantity": 10,
+    "recentRevenue": 95,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SOUPE CAROTTE GINGEMBRE LAIT DE COCO",
+    "recentQuantity": 12,
+    "recentRevenue": 78,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "SARDINES TOMATE",
+    "recentQuantity": 16,
+    "recentRevenue": 58.14,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "LES P TITS SKROUNCHS ROSES",
+    "recentQuantity": 13,
+    "recentRevenue": 71.5,
+    "categoryHint": "12. BOULANGERIE"
+  },
+  {
+    "key": "MUESLI 4 CEREALES FRUITS GRILLON D OR",
+    "recentQuantity": 13,
+    "recentRevenue": 71.5,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "FUSILLI GIROLOMONI",
+    "recentQuantity": 22,
+    "recentRevenue": 41.8,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CIRONE",
+    "recentQuantity": 2134,
+    "recentRevenue": 101.33,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "JUS PUR GINGEMBRE VID 0 25 75CL",
+    "recentQuantity": 9,
+    "recentRevenue": 100.5,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "PERAIL LOU LARZAC",
+    "recentQuantity": 12,
+    "recentRevenue": 74.4,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "COEUR ROSE PRALINE",
+    "recentQuantity": 1416,
+    "recentRevenue": 72.94,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "PECORINOTERRE DI CHIETI",
+    "recentQuantity": 8,
+    "recentRevenue": 108.42,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "LINGUINE BIO GIROLOMONI",
+    "recentQuantity": 22,
+    "recentRevenue": 39.16,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "KEFIR CONCOMBRE VID 0 10",
+    "recentQuantity": 18,
+    "recentRevenue": 47.83,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "MENDIANTS SANS RAISIN PAQUET",
+    "recentQuantity": 12,
+    "recentRevenue": 71.52,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SAUCISSON CACCIATORE BIO",
+    "recentQuantity": 10,
+    "recentRevenue": 85,
+    "categoryHint": "02. CHARCUTERIE"
+  },
+  {
+    "key": "CHOCOLAT NOIR ORANGE 70 BIO",
+    "recentQuantity": 15,
+    "recentRevenue": 56.25,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "TOMATES PELEES CUBES",
+    "recentQuantity": 20,
+    "recentRevenue": 42,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "LIME BIO",
+    "recentQuantity": 4050,
+    "recentRevenue": 29.84,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "DOUBLE CONCENTRE DE TOMATE 28",
+    "recentQuantity": 17,
+    "recentRevenue": 48.2,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "GRAINES DE CHIA VAJRA",
+    "recentQuantity": 12,
+    "recentRevenue": 68.13,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SALSA POMODORO RICOTTA LUNICA",
+    "recentQuantity": 14,
+    "recentRevenue": 56.73,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "TARALLI WITH EXTRA VIRGIN OLIVE OIL",
+    "recentQuantity": 13,
+    "recentRevenue": 60.97,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "C EST BON",
+    "recentQuantity": 10,
+    "recentRevenue": 79,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "MENDIANTS AVEC RAISIN",
+    "recentQuantity": 13,
+    "recentRevenue": 60.45,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "OLIVES KALAMATA DENOYAUTEE",
+    "recentQuantity": 12,
+    "recentRevenue": 65.05,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "PERSIL FRISE BIO",
+    "recentQuantity": 18,
+    "recentRevenue": 43.3,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "RAISINS SULTANA",
+    "recentQuantity": 14,
+    "recentRevenue": 55.3,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "STROZZAPRETI GIROLOMONI",
+    "recentQuantity": 19,
+    "recentRevenue": 40.42,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "RACLETTE AUX HERBES SAUVAGES",
+    "recentQuantity": 3428,
+    "recentRevenue": 127.54,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "PAIN DES FLEURS SARRASIN 150G",
+    "recentQuantity": 13,
+    "recentRevenue": 58.65,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "OSCAR BLANC IGP 2021",
+    "recentQuantity": 8,
+    "recentRevenue": 95.2,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "BOUILLON DE POULE BIO",
+    "recentQuantity": 18,
+    "recentRevenue": 42.3,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "JUS DE SANTE VID 0 25",
+    "recentQuantity": 13,
+    "recentRevenue": 58.5,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "NOIX DU BRESIL",
+    "recentQuantity": 10,
+    "recentRevenue": 76,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CRANBERRIES BIO",
+    "recentQuantity": 13,
+    "recentRevenue": 57.76,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "RATATOUILLE FRANCAISE BIO",
+    "recentQuantity": 10,
+    "recentRevenue": 73.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "PEANUTS RINGS BIO",
+    "recentQuantity": 17,
+    "recentRevenue": 43.16,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "BOUILLON DE LEGUMES CUBE",
+    "recentQuantity": 17,
+    "recentRevenue": 42.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "JUS POMME PECHE ABRICOT VID 0 25",
+    "recentQuantity": 12,
+    "recentRevenue": 59.4,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "LIMONADE MYRTILLE TIMUT ANNEXE",
+    "recentQuantity": 17,
+    "recentRevenue": 41.65,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "PANAIS BIO",
+    "recentQuantity": 8674,
+    "recentRevenue": 32.08,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "ST EUGENE GRENACHE ROSE",
+    "recentQuantity": 9,
+    "recentRevenue": 78.32,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "POIRE PERRY",
+    "recentQuantity": 14,
+    "recentRevenue": 49,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "PAIN DE FLEURS QUINOA",
+    "recentQuantity": 11,
+    "recentRevenue": 61.85,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "VINAIGRETTE CESAR BIO 25CL",
+    "recentQuantity": 13,
+    "recentRevenue": 51.78,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CHIPS LUCIEN PAPRIKA",
+    "recentQuantity": 15,
+    "recentRevenue": 44.25,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "HALUMI CHEVRE BREBIS",
+    "recentQuantity": 14,
+    "recentRevenue": 47.26,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "FOURME D AMBERT AOP",
+    "recentQuantity": 1952,
+    "recentRevenue": 50.74,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "KEFIR PAMPLEMOUSSE VID 0 10",
+    "recentQuantity": 16,
+    "recentRevenue": 40.8,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "HUILE D OLIVE DOP TENUTA ARCAMONE",
+    "recentQuantity": 7,
+    "recentRevenue": 90.9,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CHOCOLAT NOIR CRANBERRY ST DOMINGO 70 BIO",
+    "recentQuantity": 13,
+    "recentRevenue": 48.75,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "FLOWER LIME GINGER",
+    "recentQuantity": 17,
+    "recentRevenue": 37.18,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "BRUT LUXEMBOURG LONGCHAMPS",
+    "recentQuantity": 8,
+    "recentRevenue": 78.4,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "CLEMENTINES ES BIO",
+    "recentQuantity": 8728,
+    "recentRevenue": 47.99,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "PASSATA DI POMODORO",
+    "recentQuantity": 14,
+    "recentRevenue": 44.1,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "POIS CHICHES CONSERVE",
+    "recentQuantity": 16,
+    "recentRevenue": 38.56,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SOUPE POTIMARRON",
+    "recentQuantity": 10,
+    "recentRevenue": 61.1,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "GALET DE LA LOIRE",
+    "recentQuantity": 9,
+    "recentRevenue": 67.4,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "MELANGE SPORTIF",
+    "recentQuantity": 9,
+    "recentRevenue": 67.05,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MOUTARDE A L ANCIENNE BLISTER BELGE",
+    "recentQuantity": 12,
+    "recentRevenue": 49.98,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MANDARINE NADOROCT IT",
+    "recentQuantity": 6830,
+    "recentRevenue": 42.83,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "LE P TIT BAZOEF VERT",
+    "recentQuantity": 8,
+    "recentRevenue": 73.6,
+    "categoryHint": "12. BOULANGERIE"
+  },
+  {
+    "key": "LE P TIT BAZOEF JAUNE",
+    "recentQuantity": 8,
+    "recentRevenue": 73.6,
+    "categoryHint": "12. BOULANGERIE"
+  },
+  {
+    "key": "HOUMOUS POIS CHICHE BASILIC CAJOU",
+    "recentQuantity": 11,
+    "recentRevenue": 53.41,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "1 2 TRAPPE ECHOURGNAC",
+    "recentQuantity": 9,
+    "recentRevenue": 64.53,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "BOUILLON DE LEGUMES EN PATE MORGA",
+    "recentQuantity": 9,
+    "recentRevenue": 64.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "PROSECCO DOC TREVISO",
+    "recentQuantity": 7,
+    "recentRevenue": 82.56,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "BOISSON AMANDE BIO 1L",
+    "recentQuantity": 15,
+    "recentRevenue": 38.25,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SAVEUR DU MAQUIS",
+    "recentQuantity": 1802,
+    "recentRevenue": 71.19,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "TARAMA AUX OEUFS DE TRUITE 100G",
+    "recentQuantity": 11,
+    "recentRevenue": 51.7,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "PRUNEAUX D AGEN DENOYAUTES 250G",
+    "recentQuantity": 9,
+    "recentRevenue": 63.1,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "IGP D OC ROSE FANDANGO 2023",
+    "recentQuantity": 7,
+    "recentRevenue": 80.5,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "SALADE DE BLE BIO",
+    "recentQuantity": 1762,
+    "recentRevenue": 35.17,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "OLIVES VERTES KALAMATA DENOYAUTEE",
+    "recentQuantity": 10,
+    "recentRevenue": 55.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SKYR MYRTILLE",
+    "recentQuantity": 17,
+    "recentRevenue": 32.3,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "MIEL DE FLEURS",
+    "recentQuantity": 9,
+    "recentRevenue": 60.75,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "MAYONNAISE BIO 310GR",
+    "recentQuantity": 11,
+    "recentRevenue": 49.68,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CHOCOLAT NOIR 70 SANTO DOMINGO BIO",
+    "recentQuantity": 12,
+    "recentRevenue": 45,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "RACLETTE A L AIL",
+    "recentQuantity": 2548,
+    "recentRevenue": 106.42,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "EPINARD BIO",
+    "recentQuantity": 4766,
+    "recentRevenue": 35.38,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "LA SAISON BLONDE 33CL VID 0 10 CT",
+    "recentQuantity": 15,
+    "recentRevenue": 35.25,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "CERNEAUX DE NOIX 125GR",
+    "recentQuantity": 13,
+    "recentRevenue": 40.51,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "GRISSINI DE TIMILIA A L ORIGAN",
+    "recentQuantity": 11,
+    "recentRevenue": 47.3,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CHOU VERT DE SAVOIE",
+    "recentQuantity": 15,
+    "recentRevenue": 34.47,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "LA GOUTTE DU SEIGNEUR BLANC",
+    "recentQuantity": 6,
+    "recentRevenue": 86.1,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "BAGUETTES AUX GRAINES SS GLUTEN",
+    "recentQuantity": 10,
+    "recentRevenue": 50.98,
+    "categoryHint": "12. BOULANGERIE"
+  },
+  {
+    "key": "COMPOTE DE POMMES 3 WIGLEN",
+    "recentQuantity": 11,
+    "recentRevenue": 46.2,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CHOCOLAT NOIR 86",
+    "recentQuantity": 11,
+    "recentRevenue": 46.2,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CHIPS CHEVRE ET PIMENT D ESPELETTE",
+    "recentQuantity": 13,
+    "recentRevenue": 38.87,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MANDARINE SS PEPINS",
+    "recentQuantity": 7274,
+    "recentRevenue": 36.01,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "BAGUETTES CLASSIQUE SS GLUTEN",
+    "recentQuantity": 10,
+    "recentRevenue": 49.9,
+    "categoryHint": "12. BOULANGERIE"
+  },
+  {
+    "key": "LA BARONNE LES LANES 2021",
+    "recentQuantity": 6,
+    "recentRevenue": 82.31,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "ORANGE TAROCCO MI SANGUINE BIO",
+    "recentQuantity": 8140,
+    "recentRevenue": 37.79,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "SAUCISSE FRANCFORT",
+    "recentQuantity": 2324,
+    "recentRevenue": 54.5,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "CHIPS LUCIEN SOURCREAM ONION",
+    "recentQuantity": 13,
+    "recentRevenue": 37.7,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CHOU DE BRUXELLES BIO",
+    "recentQuantity": 5926,
+    "recentRevenue": 37.56,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "PENNE BIO GIROLOMONI",
+    "recentQuantity": 16,
+    "recentRevenue": 30.25,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CELERI RAVE BIO",
+    "recentQuantity": 14,
+    "recentRevenue": 34.47,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "SAINT FELICIEN",
+    "recentQuantity": 7,
+    "recentRevenue": 68.66,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "CAVIAR D ARTICHAUD",
+    "recentQuantity": 10,
+    "recentRevenue": 48,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "BUDDY BUDDY MOCHA",
+    "recentQuantity": 5,
+    "recentRevenue": 95.55,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "BARE EXPRESSO BISCOTTI 40G",
+    "recentQuantity": 17,
+    "recentRevenue": 28.05,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "TAPENADE D OLIVES NOIRES",
+    "recentQuantity": 10,
+    "recentRevenue": 47.52,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CHAMPIGNON PORTOBELLO BIO",
+    "recentQuantity": 3186,
+    "recentRevenue": 47.47,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "PATE AMANDES COMPLETE",
+    "recentQuantity": 7,
+    "recentRevenue": 67.55,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "DATTES DEGLET NOUR FRAICHE 250G",
+    "recentQuantity": 10,
+    "recentRevenue": 47,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "KOMBUCHA PASSION SUREAU YUGEN",
+    "recentQuantity": 12,
+    "recentRevenue": 38.4,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "SARDINES CITRON",
+    "recentQuantity": 11,
+    "recentRevenue": 41.8,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "ORANGETTES DROITE",
+    "recentQuantity": 990,
+    "recentRevenue": 45.52,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "LENTILLES CORAIL GDC",
+    "recentQuantity": 9,
+    "recentRevenue": 50.1,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "GAUFRES AU MIEL",
+    "recentQuantity": 11,
+    "recentRevenue": 40.15,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "POMME ELSTAR DE TEMPLOUX BIO",
+    "recentQuantity": 9906,
+    "recentRevenue": 27.55,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "CHOCOLAT NOIR FLEUR DE SEL CARAMEL BIO",
+    "recentQuantity": 11,
+    "recentRevenue": 39.96,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CITRONADE PAJOT VID 0 25",
+    "recentQuantity": 10,
+    "recentRevenue": 42.74,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "GRISSINI DE TIMILIA ROMARIN",
+    "recentQuantity": 10,
+    "recentRevenue": 42.57,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MADELEINE CHOCO",
+    "recentQuantity": 9,
+    "recentRevenue": 47.25,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "BUDDY BUDDY PEANUT",
+    "recentQuantity": 7,
+    "recentRevenue": 60.3,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "AMANDES 150G",
+    "recentQuantity": 10,
+    "recentRevenue": 42,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CHIANTI CLASSICO 2021",
+    "recentQuantity": 5,
+    "recentRevenue": 84,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "OUTREBLOCHON FERMIER",
+    "recentQuantity": 1926,
+    "recentRevenue": 69.98,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "BAR PROTEIN PISTACHIO",
+    "recentQuantity": 13,
+    "recentRevenue": 32.25,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "PETITS FOURS MASSEPAIN ST VALENTIN",
+    "recentQuantity": 838,
+    "recentRevenue": 37.8,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "PIGNON DE PIN BIO",
+    "recentQuantity": 8,
+    "recentRevenue": 51.6,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "TAHIN SESAME BIO",
+    "recentQuantity": 8,
+    "recentRevenue": 49.6,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "SARDINES PIMENTS",
+    "recentQuantity": 10,
+    "recentRevenue": 39.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SURREALISTE VID 0 10 CT",
+    "recentQuantity": 11,
+    "recentRevenue": 35.75,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "ORANGETTES CHOCO LAIT",
+    "recentQuantity": 1000,
+    "recentRevenue": 48.21,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "POMMES SECHEES ARDECHE BIO",
+    "recentQuantity": 9,
+    "recentRevenue": 42.3,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CHIPS LUCIEN TRUFFE",
+    "recentQuantity": 10,
+    "recentRevenue": 38,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CHIPS HOUMOUS PAPRIKA",
+    "recentQuantity": 11,
+    "recentRevenue": 34.46,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MELANGE SOMMEIL TISANE BIO",
+    "recentQuantity": 8,
+    "recentRevenue": 47.2,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SABLES PUR BEURRE CARAMEL BEURRE SALE",
+    "recentQuantity": 8,
+    "recentRevenue": 47.2,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "ROQUEFORT COULET",
+    "recentQuantity": 1150,
+    "recentRevenue": 47.15,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "JUS DE MULTIFRUITS VID 0 25",
+    "recentQuantity": 9,
+    "recentRevenue": 41.85,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "CREME LIQUIDE VEGAN BIO",
+    "recentQuantity": 9,
+    "recentRevenue": 40.5,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "CHIPS SWEET CHILLI DOUX",
+    "recentQuantity": 11,
+    "recentRevenue": 32.59,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "RUVIANO ROSSO PICENO 2022",
+    "recentQuantity": 6,
+    "recentRevenue": 59.7,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "NIDI TAGLIATELLE SEMI COMPLET",
+    "recentQuantity": 11,
+    "recentRevenue": 32.45,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "RIGATONI GIROLOMONI",
+    "recentQuantity": 13,
+    "recentRevenue": 27.3,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "LES PIERRES PLATES 2022",
+    "recentQuantity": 5,
+    "recentRevenue": 69.5,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "FILET DE SAUMON SAUVAGE",
+    "recentQuantity": 6,
+    "recentRevenue": 57.9,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "NOIR MASSEPAIN AMARETTO BIO 100",
+    "recentQuantity": 10,
+    "recentRevenue": 34.5,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CAVIAR D ARTICHAUTS ET OLIVES VERTES",
+    "recentQuantity": 9,
+    "recentRevenue": 38.16,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CHOCOLAT AU LAIT",
+    "recentQuantity": 10,
+    "recentRevenue": 34,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "MANDARINE TANGO IT BIO",
+    "recentQuantity": 4960,
+    "recentRevenue": 33.73,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "TRAPPE ECHOURGNAC",
+    "recentQuantity": 5,
+    "recentRevenue": 67.05,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "LAIT AVOINE BIO 1L",
+    "recentQuantity": 12,
+    "recentRevenue": 27.6,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CHIPS PICKLES LUCIEN",
+    "recentQuantity": 11,
+    "recentRevenue": 30.09,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "ROSE EN CHOCO",
+    "recentQuantity": 93,
+    "recentRevenue": 25.07,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "RADIS ROUGE BIO",
+    "recentQuantity": 11,
+    "recentRevenue": 29.15,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "SARDINES PIMENT PICKLES",
+    "recentQuantity": 9,
+    "recentRevenue": 35.55,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "TOMATE NOIRE ES",
+    "recentQuantity": 4038,
+    "recentRevenue": 31.99,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "JUS D ORANGE VID 0 25",
+    "recentQuantity": 8,
+    "recentRevenue": 39.84,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "PECORINO SARDE",
+    "recentQuantity": 1470,
+    "recentRevenue": 52.92,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "ECHALOTE BIO",
+    "recentQuantity": 3990,
+    "recentRevenue": 19.76,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "BRUNE DES BRAVES 33CL VID 0 10 CT",
+    "recentQuantity": 11,
+    "recentRevenue": 28.6,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "BACON FUME",
+    "recentQuantity": 1334,
+    "recentRevenue": 44.92,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "POIS CHICHES A LA TOSCANE",
+    "recentQuantity": 7,
+    "recentRevenue": 44.8,
+    "categoryHint": "04. CONSERV - A TRIER"
+  },
+  {
+    "key": "CONCHIGLIE GIROLOMONI",
+    "recentQuantity": 12,
+    "recentRevenue": 26.1,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "FARFALLE GIROLOMONI",
+    "recentQuantity": 12,
+    "recentRevenue": 25.96,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "THE NOIR BREAKFAST BIO",
+    "recentQuantity": 653,
+    "recentRevenue": 38.52,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SARDINADE RICOTTA ET CITRON",
+    "recentQuantity": 8,
+    "recentRevenue": 38.4,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MANCHEGO A L AIL NOIR",
+    "recentQuantity": 1136,
+    "recentRevenue": 51.12,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "PATE A TARTINER CHOCOLAT ARTISANALE",
+    "recentQuantity": 6,
+    "recentRevenue": 51,
+    "categoryHint": "05. TARTIN - OLEA"
+  },
+  {
+    "key": "RAVIOLI SPIAGA TRUFFE",
+    "recentQuantity": 6,
+    "recentRevenue": 51,
+    "categoryHint": "02. PATE FRAICHE"
+  },
+  {
+    "key": "CAVIAR CHORIZO POIVRON TOMATES SECHES",
+    "recentQuantity": 8,
+    "recentRevenue": 37.92,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "BLEU DES CAUSSES AOC",
+    "recentQuantity": 1132,
+    "recentRevenue": 33.39,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "SEDANINI MULTIGRAINS SANS GLUTEN",
+    "recentQuantity": 8,
+    "recentRevenue": 37.2,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "PICO BELLO ALCOHOL FREE VID 0 10 CT",
+    "recentQuantity": 10,
+    "recentRevenue": 29.5,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "APIBUL POMMES",
+    "recentQuantity": 7,
+    "recentRevenue": 41.65,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "CHIPS TORTILLA NATURE",
+    "recentQuantity": 11,
+    "recentRevenue": 26.45,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CHIPS LUCIEN SEL VINAIGRE",
+    "recentQuantity": 10,
+    "recentRevenue": 29,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "HUILE D OLIVE MANZANILLA BIO",
+    "recentQuantity": 5,
+    "recentRevenue": 57.6,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "LA CAMBREE 33CL VID 0 10 CT",
+    "recentQuantity": 11,
+    "recentRevenue": 25.85,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "CHIPS LUCIEN POIVRE",
+    "recentQuantity": 10,
+    "recentRevenue": 28.32,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "POMODORINI AL NATURALE BIO",
+    "recentQuantity": 8,
+    "recentRevenue": 35.16,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "QUINTA DO PORTAL FINE WHITE",
+    "recentQuantity": 4,
+    "recentRevenue": 69.6,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "FLOWER RASPBERRY YUZU",
+    "recentQuantity": 11,
+    "recentRevenue": 25.3,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "MINI SAN MARZANO BIO",
+    "recentQuantity": 2478,
+    "recentRevenue": 25.26,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "CIDRE ORIGINAL RAMBORN",
+    "recentQuantity": 9,
+    "recentRevenue": 30.6,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "POMME GALA BIO",
+    "recentQuantity": 6190,
+    "recentRevenue": 22.58,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "SABLES PUR BEURRE PEPITES DE CHOCOLAT",
+    "recentQuantity": 4,
+    "recentRevenue": 67.6,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "FLOWER PEACH LEMON",
+    "recentQuantity": 11,
+    "recentRevenue": 24.2,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "SPECULOOS PUR BEURRE",
+    "recentQuantity": 9,
+    "recentRevenue": 28.98,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "MIEL D ACACIA ESPAGNOL",
+    "recentQuantity": 4,
+    "recentRevenue": 63.8,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "POMME IDARED DE TEMPLOUX BE BIO",
+    "recentQuantity": 6592,
+    "recentRevenue": 23.03,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "CHOCOLAT NOIR 85 SANTO DOMINGO BIO",
+    "recentQuantity": 8,
+    "recentRevenue": 31.6,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "HUILE D OLIVES EXTRA 1L",
+    "recentQuantity": 5,
+    "recentRevenue": 50.14,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "DAMIANO PATE AMANDES BLANCHES BIO",
+    "recentQuantity": 5,
+    "recentRevenue": 49.75,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "PROSECCO DOC VALDOBBIADENE SUPERIOIR",
+    "recentQuantity": 4,
+    "recentRevenue": 62,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "DAMIANO PATE AMANDES GRILLEES",
+    "recentQuantity": 5,
+    "recentRevenue": 49,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CORNICHONS MALOSSOL FR AIGRE DOUX A L ANETH",
+    "recentQuantity": 6,
+    "recentRevenue": 40.8,
+    "categoryHint": "04. CONSERV - A TRIER"
+  },
+  {
+    "key": "FLOCONS DE SARASIN SS GLUTEN",
+    "recentQuantity": 6,
+    "recentRevenue": 40.5,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "1 2 CAMEMBERT DE CHEVRE JOUVENCEAU",
+    "recentQuantity": 7,
+    "recentRevenue": 34.43,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "JUS DE GRENADE VID 0 25",
+    "recentQuantity": 6,
+    "recentRevenue": 39.9,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "RIZ COMPLET SAUVAGE",
+    "recentQuantity": 7,
+    "recentRevenue": 33.95,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "ABRICOT SEC NON SOUFFRE BIO",
+    "recentQuantity": 6,
+    "recentRevenue": 39,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CHOCOLAT NOIR GINGEMBRE",
+    "recentQuantity": 8,
+    "recentRevenue": 29.2,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CHOCOLAT NOIR 56 ORANGE",
+    "recentQuantity": 8,
+    "recentRevenue": 29.2,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "SOUPE DEPOISSONS AU SAFRAN",
+    "recentQuantity": 6,
+    "recentRevenue": 38.7,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SKYR MANGUE",
+    "recentQuantity": 11,
+    "recentRevenue": 20.9,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "PAIN BURGER SESAME BIO",
+    "recentQuantity": 5,
+    "recentRevenue": 45.75,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "BISCUITS AMARETTI",
+    "recentQuantity": 8,
+    "recentRevenue": 28.45,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "SUGO PRONTO MELANZANE",
+    "recentQuantity": 8,
+    "recentRevenue": 28.44,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "BUDDY BUDDY BEURRE CACAHUETE AU CHOCOLAT NOIR",
+    "recentQuantity": 5,
+    "recentRevenue": 45.5,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "NIDS MASSEPAIN",
+    "recentQuantity": 734,
+    "recentRevenue": 37.7,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "BAR PROTEIN FLAP JACK VEGAN",
+    "recentQuantity": 9,
+    "recentRevenue": 24.92,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "HARICOTS BLANCS",
+    "recentQuantity": 10,
+    "recentRevenue": 22.4,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "BEAUJOLAIS LES BRUERES",
+    "recentQuantity": 4,
+    "recentRevenue": 55.6,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "RANDONNEUR BIO",
+    "recentQuantity": 1020,
+    "recentRevenue": 43.87,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "MIEL TOUTES FLEUR ETE 100 BELGE",
+    "recentQuantity": 4,
+    "recentRevenue": 54,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "POMME MARIBELLE DE TEMPLOUX BIO",
+    "recentQuantity": 6650,
+    "recentRevenue": 21.54,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "BAR PROTEIN NO SUGAR SALTY CARAMEL",
+    "recentQuantity": 9,
+    "recentRevenue": 23.76,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "TOMATES SECHEES A L HUILE",
+    "recentQuantity": 6,
+    "recentRevenue": 34.8,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "POMME WELLANT BIO",
+    "recentQuantity": 7086,
+    "recentRevenue": 34.36,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "SPAGHETTI GIROLOMONI",
+    "recentQuantity": 10,
+    "recentRevenue": 20.58,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "TORTILLA WRAP 6PC",
+    "recentQuantity": 8,
+    "recentRevenue": 25.6,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "TOMATES PELEES",
+    "recentQuantity": 9,
+    "recentRevenue": 22.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "PESTO VERDE LUNICA",
+    "recentQuantity": 7,
+    "recentRevenue": 28.7,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "NOIX D AMAZONIE",
+    "recentQuantity": 6,
+    "recentRevenue": 33.4,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "COTES DE PORC AU FILET",
+    "recentQuantity": 2506,
+    "recentRevenue": 40.04,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "TAJINE AUX PRUNEAUX BIO",
+    "recentQuantity": 5,
+    "recentRevenue": 39.85,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "NOIX DE CAJOU FLEUR DE SEL 150GR",
+    "recentQuantity": 6,
+    "recentRevenue": 33,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "GAZPACHO 1L BIO",
+    "recentQuantity": 6,
+    "recentRevenue": 33,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CORNICHONS FR AU VINAIGRE ET A L ECHALOTE",
+    "recentQuantity": 5,
+    "recentRevenue": 39.5,
+    "categoryHint": "04. CONSERV - A TRIER"
+  },
+  {
+    "key": "EARL GREY THE VERT BERGAMOTE",
+    "recentQuantity": 506,
+    "recentRevenue": 32.6,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "FILET DE THON A L HUILE D OLIVE BIO",
+    "recentQuantity": 6,
+    "recentRevenue": 32.45,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "COUSCOUS",
+    "recentQuantity": 7,
+    "recentRevenue": 27.65,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CREME FRAICHE LIQUIDE BIO",
+    "recentQuantity": 7,
+    "recentRevenue": 27.65,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "CHOU ROUGE POMME",
+    "recentQuantity": 9,
+    "recentRevenue": 21.15,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "LA CHINETTE BLONDE 33CL VID 0 10 CT",
+    "recentQuantity": 9,
+    "recentRevenue": 21,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "VINAIGRE BALSAMIQUE DE MODENE",
+    "recentQuantity": 5,
+    "recentRevenue": 37.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "JUS DE POMME 20CL",
+    "recentQuantity": 12,
+    "recentRevenue": 15.6,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "LAIT DE COCO 400ML",
+    "recentQuantity": 8,
+    "recentRevenue": 23.32,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "ORANGE SANGUINE BIO",
+    "recentQuantity": 5250,
+    "recentRevenue": 23.25,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "CAPRES AU VINAIGRE",
+    "recentQuantity": 6,
+    "recentRevenue": 29.7,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "NOIX DE CAJOU AU WASABI PEPITE",
+    "recentQuantity": 6,
+    "recentRevenue": 29.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "PARMIGIANO REGGIANO SEGARATI 36M",
+    "recentQuantity": 982,
+    "recentRevenue": 44.19,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "NOIX DE CAJOU 150GR",
+    "recentQuantity": 6,
+    "recentRevenue": 29.4,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SUCRE DE CANNE BLOND 1KG",
+    "recentQuantity": 6,
+    "recentRevenue": 29.4,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CHOCOLAT LAIT CAPPUCCINO BIO",
+    "recentQuantity": 7,
+    "recentRevenue": 25,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "RIZ JASMIN BLANC",
+    "recentQuantity": 7,
+    "recentRevenue": 24.78,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "QUINOA BIO BELGE",
+    "recentQuantity": 5,
+    "recentRevenue": 34.45,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CHOUCROUTE NATURE",
+    "recentQuantity": 10,
+    "recentRevenue": 17.2,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "VINAIGRE DE CIDRE 75CL",
+    "recentQuantity": 6,
+    "recentRevenue": 28.62,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "VALENCAY BLANC",
+    "recentQuantity": 4,
+    "recentRevenue": 42,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "CHOCOLAT LAIT PRALINE",
+    "recentQuantity": 7,
+    "recentRevenue": 23.8,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "RIZ CARNAROLI RISOTTO",
+    "recentQuantity": 5,
+    "recentRevenue": 32.75,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "BOUDIN NOIR DU PAYS BASQUE",
+    "recentQuantity": 5,
+    "recentRevenue": 32.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SOUPE FRAICHE BIO BUTTERNUT THAI",
+    "recentQuantity": 5,
+    "recentRevenue": 32.5,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "MORBIER AOP BIO",
+    "recentQuantity": 998,
+    "recentRevenue": 32.45,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "THYM FEUILLES",
+    "recentQuantity": 6,
+    "recentRevenue": 27,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "POMELO SWEETIE OROBLANCO BIO",
+    "recentQuantity": 4400,
+    "recentRevenue": 19.92,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "HARICOTS VERTS BIO",
+    "recentQuantity": 7,
+    "recentRevenue": 22.75,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "SAUCE SOJA BEC VERSEUR BIO",
+    "recentQuantity": 5,
+    "recentRevenue": 31.85,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "COEURS D ARTICHAUD ANTICA",
+    "recentQuantity": 4,
+    "recentRevenue": 39.6,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "RAVIOLI PANZEROTTO CEPES",
+    "recentQuantity": 5,
+    "recentRevenue": 31.56,
+    "categoryHint": "02. PATE FRAICHE"
+  },
+  {
+    "key": "CONCENTRATO DI POMODORO LUNICA",
+    "recentQuantity": 7,
+    "recentRevenue": 22.4,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "TAMARI SAUCE SOJA",
+    "recentQuantity": 5,
+    "recentRevenue": 31,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "NOUILLES DE RIZ THAI",
+    "recentQuantity": 6,
+    "recentRevenue": 25.67,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CHIPS DE BANANE BIO 100G",
+    "recentQuantity": 9,
+    "recentRevenue": 17.1,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "ANANAS SECHES",
+    "recentQuantity": 6,
+    "recentRevenue": 25.58,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "TRAFO CORN FLIP CHEESE BIO",
+    "recentQuantity": 8,
+    "recentRevenue": 19.17,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MELANGE ANTI STRESS BIO",
+    "recentQuantity": 6,
+    "recentRevenue": 25.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "TOFU GRILLE TOMATE BASILIC",
+    "recentQuantity": 6,
+    "recentRevenue": 25.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "PAIN PITA SS GLUTEN BIO",
+    "recentQuantity": 6,
+    "recentRevenue": 25.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "BUDDY BUDDY CHOCOLATE HAZELNUT",
+    "recentQuantity": 3,
+    "recentRevenue": 50.85,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "OAT STRAWBERRY GRANOLA",
+    "recentQuantity": 6,
+    "recentRevenue": 25.37,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CHAMPAGNE BLANC DE BLANC BERNARD GAUCHER",
+    "recentQuantity": 2,
+    "recentRevenue": 76,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "CONFITURE 4 FRUITS DELICATESSE",
+    "recentQuantity": 5,
+    "recentRevenue": 29.51,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "MOLITERNO AL TARTUFO",
+    "recentQuantity": 714,
+    "recentRevenue": 49.12,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "SAUCISSE ITALIENNE",
+    "recentQuantity": 1496,
+    "recentRevenue": 29.17,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "FARINE T65 BIO 2KG",
+    "recentQuantity": 7,
+    "recentRevenue": 20.65,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CHIPS LUCIEN NON SALE",
+    "recentQuantity": 7,
+    "recentRevenue": 20.65,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MUFFIN MYRTILLES SS GLUTEN BIO",
+    "recentQuantity": 6,
+    "recentRevenue": 24.03,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "VIDANGE LILI BULK 1",
+    "recentQuantity": 12,
+    "recentRevenue": 12,
+    "categoryHint": "11. VIDANGE"
+  },
+  {
+    "key": "SIROP D ERABLE BIO 250ML",
+    "recentQuantity": 4,
+    "recentRevenue": 35.8,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CHIPS LUCIEN BARBECUE",
+    "recentQuantity": 7,
+    "recentRevenue": 20.36,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CLEMENTINE CAISSETTE",
+    "recentQuantity": 4,
+    "recentRevenue": 35.6,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "ORANGE AOP SICILE BIO",
+    "recentQuantity": 4986,
+    "recentRevenue": 23.58,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "CHOCOLAT NOIR AUX DATTES MOULUES 60 BIO",
+    "recentQuantity": 5,
+    "recentRevenue": 28.25,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "NOIR FLEUR DE SEL 75 PANAMA",
+    "recentQuantity": 6,
+    "recentRevenue": 23.31,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "FLOWER ELDERFLOWER",
+    "recentQuantity": 8,
+    "recentRevenue": 17.34,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "MADELEINE PEPITE CHOCO",
+    "recentQuantity": 5,
+    "recentRevenue": 27.7,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "GRANOLA FRUIT DES BOIS BIO",
+    "recentQuantity": 5,
+    "recentRevenue": 27.35,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "SOUPE FRAICHE BIO A L OIGNON",
+    "recentQuantity": 5,
+    "recentRevenue": 27.3,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "OLIVES VERTES COCKTAIL",
+    "recentQuantity": 4,
+    "recentRevenue": 33.4,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "POIS CHICHES DEMETER",
+    "recentQuantity": 7,
+    "recentRevenue": 18.98,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "COMPOTE DE POMMES 350G",
+    "recentQuantity": 7,
+    "recentRevenue": 18.9,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "MUESLI EXTRA",
+    "recentQuantity": 5,
+    "recentRevenue": 26,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "ENERGY BAR PECAN CINAMON",
+    "recentQuantity": 9,
+    "recentRevenue": 14.4,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "POMME DE TERRE CUITE SOUS VIDE",
+    "recentQuantity": 6,
+    "recentRevenue": 21.6,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "MOZZARELLA",
+    "recentQuantity": 9,
+    "recentRevenue": 14.24,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "GIMBER",
+    "recentQuantity": 2,
+    "recentRevenue": 64,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "OLIVES VERTES DENOYAUTEE",
+    "recentQuantity": 5,
+    "recentRevenue": 25.55,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "TERRINE DE CAMPAGNE ARDECHE GINEY",
+    "recentQuantity": 4,
+    "recentRevenue": 31.6,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "CHOCOLAT NOIR AMANDES BIO",
+    "recentQuantity": 6,
+    "recentRevenue": 21,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "BDJ RAISIN BLANC NOIX",
+    "recentQuantity": 3,
+    "recentRevenue": 41.7,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "MANDARINE NADORCOT BIO",
+    "recentQuantity": 3184,
+    "recentRevenue": 17.84,
+    "categoryHint": "01. FRUITS ET LEGUMES"
+  },
+  {
+    "key": "MULTI GRAINES A L EPAUTRE 450GR",
+    "recentQuantity": 5,
+    "recentRevenue": 24.75,
+    "categoryHint": "12. BOULANGERIE"
+  },
+  {
+    "key": "MYRTILLE BIO 125G",
+    "recentQuantity": 5,
+    "recentRevenue": 24.75,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "NOISETTES BIO CRUES",
+    "recentQuantity": 5,
+    "recentRevenue": 24.75,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "VINAIGRE BLANC CONDIMENTO",
+    "recentQuantity": 4,
+    "recentRevenue": 30.7,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "HOUMOUS TOMATES SECHEES",
+    "recentQuantity": 5,
+    "recentRevenue": 24.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SAUCE TOMATE CERISE PRONTO",
+    "recentQuantity": 6,
+    "recentRevenue": 20.4,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "FARINE DE SARRASIN GDC",
+    "recentQuantity": 5,
+    "recentRevenue": 24,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "PENNE EPAUTRE COMPLETE GIROLOMONI",
+    "recentQuantity": 6,
+    "recentRevenue": 19.8,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "HARICOTS ROUGES",
+    "recentQuantity": 7,
+    "recentRevenue": 16.95,
+    "categoryHint": "04. CONSERV - A TRIER"
+  },
+  {
+    "key": "TUBETTI GIROLOMONI",
+    "recentQuantity": 8,
+    "recentRevenue": 14.8,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MAQUERAU A L HUILE D OLIVE BIO",
+    "recentQuantity": 5,
+    "recentRevenue": 23.25,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "PETITS POIS FRAIS DEMETER",
+    "recentQuantity": 6,
+    "recentRevenue": 19.2,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "FIGUES CALABACITAS BIO",
+    "recentQuantity": 5,
+    "recentRevenue": 22.9,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "BDJ FIGUES FRUITS ROUGES",
+    "recentQuantity": 2,
+    "recentRevenue": 57,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "NOIR 92 PANAMA BIO",
+    "recentQuantity": 5,
+    "recentRevenue": 22.5,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "BLOC FOIE GRAS DE CANAD",
+    "recentQuantity": 3,
+    "recentRevenue": 37.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CONFITURE FRUITS DES BIOS BIO 80",
+    "recentQuantity": 4,
+    "recentRevenue": 27.93,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CONFITURE FIGUE BIO 80",
+    "recentQuantity": 4,
+    "recentRevenue": 27.92,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "MARMELADE D ORANGE BIO 80",
+    "recentQuantity": 4,
+    "recentRevenue": 27.92,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CONGO BIO",
+    "recentQuantity": 1244,
+    "recentRevenue": 37.14,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "FIGUES MOELLESES BIO",
+    "recentQuantity": 4,
+    "recentRevenue": 27.6,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "PISTACHES GRILLEES SALEES 125GR",
+    "recentQuantity": 4,
+    "recentRevenue": 27.4,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "BISQUE DE HOMARD BRETON",
+    "recentQuantity": 4,
+    "recentRevenue": 27.2,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "PROSECCO DOC TREVISO BRUT NATURE",
+    "recentQuantity": 3,
+    "recentRevenue": 36.12,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "BLANC DE NOIRS BRUT VAN T HOOGHOF",
+    "recentQuantity": 2,
+    "recentRevenue": 54,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "PECORINO CRU RONCIONE 5M",
+    "recentQuantity": 546,
+    "recentRevenue": 26.75,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "FLOWER PASSION FRUIT",
+    "recentQuantity": 7,
+    "recentRevenue": 15.18,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "CHIPS LUCIEN OIGNON",
+    "recentQuantity": 6,
+    "recentRevenue": 17.7,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MOUTARDE DE DIJON BISTER",
+    "recentQuantity": 6,
+    "recentRevenue": 17.7,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SAUCE ROUILLE",
+    "recentQuantity": 5,
+    "recentRevenue": 20.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "PAIN DES FLEURS AU MAIS",
+    "recentQuantity": 5,
+    "recentRevenue": 19.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "COMTE MP ELEGANCE 8 MOIS",
+    "recentQuantity": 912,
+    "recentRevenue": 31.92,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "GRAINES DE TOURNESOL",
+    "recentQuantity": 7,
+    "recentRevenue": 13.65,
+    "categoryHint": "04. LEGUMINEUSE"
+  },
+  {
+    "key": "PERER NOEL VID 0 10 CT",
+    "recentQuantity": 6,
+    "recentRevenue": 15.9,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "MOUSSE DE LANGOUSTINE TOMATES PORTO",
+    "recentQuantity": 4,
+    "recentRevenue": 23.8,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "DATTES MAZAFATI FRAICHES BIO",
+    "recentQuantity": 4,
+    "recentRevenue": 23.8,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "SABLES PUR BEURRE PEPITES DE CITRON",
+    "recentQuantity": 4,
+    "recentRevenue": 23.6,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "SABLES PEPITES DE FRAMBOISE",
+    "recentQuantity": 4,
+    "recentRevenue": 23.6,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "FRUJI GINGEMBRE PAMPLEMOUSSE 25CL",
+    "recentQuantity": 6,
+    "recentRevenue": 15.6,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "MOUTARDE BLISTER BELGE",
+    "recentQuantity": 6,
+    "recentRevenue": 15.6,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CONFITURE FRAMBOISE DELICATESSE",
+    "recentQuantity": 4,
+    "recentRevenue": 23.32,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CHOCOLAT BLANC VANILLE BIO",
+    "recentQuantity": 5,
+    "recentRevenue": 18.62,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CHOCOLAT NOIR NOISETTES ENTIERES BIO",
+    "recentQuantity": 5,
+    "recentRevenue": 18.5,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "HERBS CRACKERS",
+    "recentQuantity": 5,
+    "recentRevenue": 18.5,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "SUPERBON HERBES CRETOISES",
+    "recentQuantity": 6,
+    "recentRevenue": 15.39,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "PUREE DE CACAHUETES CREAMY BIO",
+    "recentQuantity": 4,
+    "recentRevenue": 23,
+    "categoryHint": "05. TARTIN - OLEA"
+  },
+  {
+    "key": "PAMPLEMOUSSE",
+    "recentQuantity": 2770,
+    "recentRevenue": 15.24,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "HOUMOUS 175G",
+    "recentQuantity": 5,
+    "recentRevenue": 18.24,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "NOIX FRAICHES BELGES BIO",
+    "recentQuantity": 1830,
+    "recentRevenue": 18.13,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "MANDARINE NADORCOT BIO",
+    "recentQuantity": 2340,
+    "recentRevenue": 12.94,
+    "categoryHint": "01. FRUITS"
+  },
+  {
+    "key": "CONFITURE MYRTILLES DELICATESSE",
+    "recentQuantity": 4,
+    "recentRevenue": 22.5,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CAMEMBERT DE CHEVRE JOUVENCEAU",
+    "recentQuantity": 3,
+    "recentRevenue": 29.94,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "KARE CHOCO NOISETTE",
+    "recentQuantity": 3,
+    "recentRevenue": 29.75,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CREME VEGETALE AMANDE 200ML",
+    "recentQuantity": 7,
+    "recentRevenue": 12.6,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "TOMATES SECHES BIO ANTICA",
+    "recentQuantity": 3,
+    "recentRevenue": 28.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "BONNE NOUVELLE FINE BULLE SS ALCOOL",
+    "recentQuantity": 3,
+    "recentRevenue": 28.5,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "BISCUIT FROMAGE DE BREBIS PIMENT D ESPELETTE",
+    "recentQuantity": 4,
+    "recentRevenue": 21.3,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "LE P TIT BAZOEF ROSE",
+    "recentQuantity": 3,
+    "recentRevenue": 27.6,
+    "categoryHint": "12. BOULANGERIE"
+  },
+  {
+    "key": "SAUCE PIZZA BIO 390GR",
+    "recentQuantity": 6,
+    "recentRevenue": 13.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "PDT VITABELLA FERME BIO",
+    "recentQuantity": 8620,
+    "recentRevenue": 13.36,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "PISTACHES DECORTIQUEES",
+    "recentQuantity": 3,
+    "recentRevenue": 26.7,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CHOCOLAT BLANC",
+    "recentQuantity": 5,
+    "recentRevenue": 16,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "RACLETTE DE SAVOIE A LA TRUFFE",
+    "recentQuantity": 830,
+    "recentRevenue": 39.84,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "TAPENADE D OLIVES NOIRES KALAMATA BIO",
+    "recentQuantity": 4,
+    "recentRevenue": 19.8,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CHOU ROMANESCO BIO",
+    "recentQuantity": 4,
+    "recentRevenue": 19.8,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "MALA COSTE BLANC 2022",
+    "recentQuantity": 2,
+    "recentRevenue": 39.6,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "SEL DE GUERANDE GROS 1KG",
+    "recentQuantity": 4,
+    "recentRevenue": 19.8,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MAYONNAISE D ORLEANS A L ESTRAGON",
+    "recentQuantity": 4,
+    "recentRevenue": 19.8,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "FOCCHETTO ALLE OLIVE",
+    "recentQuantity": 4,
+    "recentRevenue": 19.6,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "HOUMOUS AUX POIS CHICHE ET EPICES DOUCES",
+    "recentQuantity": 4,
+    "recentRevenue": 19.4,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CORNICHONS FR EXTRA FIN BIO",
+    "recentQuantity": 3,
+    "recentRevenue": 25.81,
+    "categoryHint": "04. CONSERV - A TRIER"
+  },
+  {
+    "key": "CURCUMA",
+    "recentQuantity": 836,
+    "recentRevenue": 7.74,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "PATE A TARTINER NOISETTES",
+    "recentQuantity": 3,
+    "recentRevenue": 25.5,
+    "categoryHint": "05. TARTIN - OLEA"
+  },
+  {
+    "key": "PATE A TARTINER CHOCOLAT SS SUCRE",
+    "recentQuantity": 3,
+    "recentRevenue": 25.5,
+    "categoryHint": "05. TARTIN - OLEA"
+  },
+  {
+    "key": "CHORIZO",
+    "recentQuantity": 4,
+    "recentRevenue": 19,
+    "categoryHint": "02. CHARCUTERIE"
+  },
+  {
+    "key": "LAIT DE COCO 200ML",
+    "recentQuantity": 5,
+    "recentRevenue": 14.5,
+    "categoryHint": "04. CONSERV - A TRIER"
+  },
+  {
+    "key": "POIVRON JAUNE BIO",
+    "recentQuantity": 2006,
+    "recentRevenue": 17.86,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "LAIT SOJA BIO 1L",
+    "recentQuantity": 6,
+    "recentRevenue": 11.88,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "COMPOTE DE POMMES 700GR",
+    "recentQuantity": 4,
+    "recentRevenue": 17.8,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CAMOMILLE MATRICAIRE BIO",
+    "recentQuantity": 4,
+    "recentRevenue": 17.8,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "EXPRESS TRESOR DES INDES BIO",
+    "recentQuantity": 4,
+    "recentRevenue": 17.6,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "OLIVES AUX ANCHOIS",
+    "recentQuantity": 4,
+    "recentRevenue": 17.3,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "BOULETTES CUITES",
+    "recentQuantity": 1426,
+    "recentRevenue": 22.7,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "FARINE EPAUTRE T65 25KG",
+    "recentQuantity": 1,
+    "recentRevenue": 68,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "RAW APPLE COOKIE",
+    "recentQuantity": 4,
+    "recentRevenue": 16.8,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "SALSA PRONTA DI DATTERINO",
+    "recentQuantity": 4,
+    "recentRevenue": 16.8,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MELANGE DETENTE TISANE BIO",
+    "recentQuantity": 4,
+    "recentRevenue": 16.8,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "PROSECCO DOC TREVISO 200ML",
+    "recentQuantity": 4,
+    "recentRevenue": 16.8,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "POUSSIN EN SUCRE",
+    "recentQuantity": 302,
+    "recentRevenue": 11.2,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "PANINI CHOCOLAT SS GLUTEN",
+    "recentQuantity": 4,
+    "recentRevenue": 16.77,
+    "categoryHint": "12. BOULANGERIE"
+  },
+  {
+    "key": "OLIVES AU SAUMON CITRON ET ANETH",
+    "recentQuantity": 4,
+    "recentRevenue": 16.4,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "RISONI GIROLOMONI",
+    "recentQuantity": 6,
+    "recentRevenue": 10.8,
+    "categoryHint": ""
+  },
+  {
+    "key": "TOMATE RONDE BIO",
+    "recentQuantity": 2348,
+    "recentRevenue": 10.57,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "LAIT NOISETTES ENTIERES BIO",
+    "recentQuantity": 4,
+    "recentRevenue": 15.8,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CHOCOLAT BLANC ECLATS DE CACAO BIO",
+    "recentQuantity": 4,
+    "recentRevenue": 15.8,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CREME DE COCO 200ML",
+    "recentQuantity": 4,
+    "recentRevenue": 15.8,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "VINAIGRETTE A L ANCIENNE BIO 25CL",
+    "recentQuantity": 4,
+    "recentRevenue": 15.78,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "GRAINES DE COURGE",
+    "recentQuantity": 4,
+    "recentRevenue": 15.72,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CONFITURE CERISES BIO 80",
+    "recentQuantity": 3,
+    "recentRevenue": 20.94,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "PESTO ROSSO LUNICA",
+    "recentQuantity": 4,
+    "recentRevenue": 15.69,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MOINEAU SANS TETE 300G",
+    "recentQuantity": 988,
+    "recentRevenue": 20.89,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "RED CURRY PASTE",
+    "recentQuantity": 4,
+    "recentRevenue": 15.65,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CHOCOBELLA NOISETTES CACAO",
+    "recentQuantity": 3,
+    "recentRevenue": 20.85,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "TERRINE DE SANGLIER A LA MOUTARDE D ORLEANS",
+    "recentQuantity": 3,
+    "recentRevenue": 20.85,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "ORANGE SANGUINE MARMELLATA BIO",
+    "recentQuantity": 3,
+    "recentRevenue": 20.85,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "RAW BROWNIE VANILLA",
+    "recentQuantity": 5,
+    "recentRevenue": 12.5,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "MAIS DOUX",
+    "recentQuantity": 4,
+    "recentRevenue": 15.6,
+    "categoryHint": "04. CONSERV - A TRIER"
+  },
+  {
+    "key": "FRUJI GINGEMBRE PAMPLEMOUSSE",
+    "recentQuantity": 5,
+    "recentRevenue": 12.47,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "FARINE EPAUTRE T150 25KG",
+    "recentQuantity": 1,
+    "recentRevenue": 60.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CHOCOLAT LAIT CARAMEL SEL INCA DE MARAS BIO",
+    "recentQuantity": 4,
+    "recentRevenue": 15,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "MUESLI AUX NOIX BIO",
+    "recentQuantity": 3,
+    "recentRevenue": 19.65,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "LA BLANCHE 33CL VID 0 10 CT",
+    "recentQuantity": 5,
+    "recentRevenue": 11.5,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "LIEVRE RIEUR LAIT ALL",
+    "recentQuantity": 446,
+    "recentRevenue": 28.1,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "PROTEIN OAT COOKIE",
+    "recentQuantity": 4,
+    "recentRevenue": 14,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "PETITS POIS CAROTTES FRAIS CONSERVE",
+    "recentQuantity": 4,
+    "recentRevenue": 14,
+    "categoryHint": "04. CONSERV - A TRIER"
+  },
+  {
+    "key": "TENUTA ULISSE MONTEPULCIANO ABRUZZO",
+    "recentQuantity": 2,
+    "recentRevenue": 27.8,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "CHOCOLAT NOIR 71 BIO",
+    "recentQuantity": 4,
+    "recentRevenue": 13.8,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "PATE LASAGNE GIROLOMONI",
+    "recentQuantity": 4,
+    "recentRevenue": 13.8,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "PECORINO TERRE DI CHIETI",
+    "recentQuantity": 2,
+    "recentRevenue": 26.82,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "EUCALYPTUS TISANE BIO",
+    "recentQuantity": 4,
+    "recentRevenue": 13.3,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SIROP D AGAVE BIO",
+    "recentQuantity": 3,
+    "recentRevenue": 17.7,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CONFITURE MYRTILLES",
+    "recentQuantity": 3,
+    "recentRevenue": 17.7,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "LAIT DE COCO 200ML",
+    "recentQuantity": 5,
+    "recentRevenue": 10.56,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SAUCISSE DE CAMPAGNE",
+    "recentQuantity": 950,
+    "recentRevenue": 17.57,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "CONFITURE FRAISES DELICATESSE",
+    "recentQuantity": 3,
+    "recentRevenue": 17.49,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "JUS DE TOMATE VID 0 25",
+    "recentQuantity": 4,
+    "recentRevenue": 13.1,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "PROSECCO EXTRA DRY SERENA",
+    "recentQuantity": 2,
+    "recentRevenue": 25.8,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "NOIR FLEUR DE SEO 75 PANAMA",
+    "recentQuantity": 4,
+    "recentRevenue": 12.8,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "KIMCHI DOUX",
+    "recentQuantity": 3,
+    "recentRevenue": 16.95,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "TRIO GOURMAND DE RILETTES",
+    "recentQuantity": 2,
+    "recentRevenue": 25,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SPAGHETTI EPAUTRE GIROLOMONI",
+    "recentQuantity": 4,
+    "recentRevenue": 12.4,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "POULET DE FERME",
+    "recentQuantity": 2526,
+    "recentRevenue": 47.87,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "ANANAS SECHES",
+    "recentQuantity": 3,
+    "recentRevenue": 15.75,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CHIPS A L HUILE D OLIVE BIO",
+    "recentQuantity": 4,
+    "recentRevenue": 11.8,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CROUTONS A L AIL",
+    "recentQuantity": 4,
+    "recentRevenue": 11.8,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CREME D AMANDES BLANCHIES BIO",
+    "recentQuantity": 2,
+    "recentRevenue": 23.2,
+    "categoryHint": "05. TARTIN - OLEA"
+  },
+  {
+    "key": "TOP LESSE PILS 33CL VID 0 10 CT",
+    "recentQuantity": 5,
+    "recentRevenue": 9.25,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "FAMILLE GUILHEM VIOGNIER 2023",
+    "recentQuantity": 2,
+    "recentRevenue": 23,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "FRICASSEE DE VOLAILLE A LA CREME CROZETS",
+    "recentQuantity": 2,
+    "recentRevenue": 23,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MICHELINE SAUVIGNON BLANC BIO",
+    "recentQuantity": 2,
+    "recentRevenue": 23,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "HAZELNUT BUTTER CREAMY",
+    "recentQuantity": 2,
+    "recentRevenue": 22.9,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "MAYONNAISE D ORLEANS AUX MORCEAUX DE CORNICHONS",
+    "recentQuantity": 3,
+    "recentRevenue": 14.93,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "DEMI GRIS A L EPAUTRE 600GR",
+    "recentQuantity": 3,
+    "recentRevenue": 14.85,
+    "categoryHint": "12. BOULANGERIE"
+  },
+  {
+    "key": "CHOCOLAT COCO 70 DE CACAO",
+    "recentQuantity": 3,
+    "recentRevenue": 14.7,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "PENNE SS GLUTEN MULTIGRAIN",
+    "recentQuantity": 3,
+    "recentRevenue": 14.7,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "NOUILLES DE RIZ COMPLETE",
+    "recentQuantity": 3,
+    "recentRevenue": 14.7,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "TARALLI ALLE OLIVE NERE",
+    "recentQuantity": 3,
+    "recentRevenue": 14.7,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SIROP BRUT DE MENTHE",
+    "recentQuantity": 2,
+    "recentRevenue": 21.9,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "SIROP BRUT DE LITCHI",
+    "recentQuantity": 2,
+    "recentRevenue": 21.9,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "SIROP BRUT DE GRENADINE",
+    "recentQuantity": 2,
+    "recentRevenue": 21.9,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "SIROP BRUT DE BASILIC",
+    "recentQuantity": 2,
+    "recentRevenue": 21.9,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "SIROP BRUT DE PECHE",
+    "recentQuantity": 2,
+    "recentRevenue": 21.9,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "EXPRESS QUINOA LENTILLES EPAUTRE CUITES BIO",
+    "recentQuantity": 3,
+    "recentRevenue": 14.55,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "TAPENADE D OLIVE VERTE AU CITRON CONFIT",
+    "recentQuantity": 3,
+    "recentRevenue": 14.4,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "TAPENADE D OLIVES VERTES",
+    "recentQuantity": 3,
+    "recentRevenue": 14.4,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SPIERINGUE FUME",
+    "recentQuantity": 494,
+    "recentRevenue": 14.32,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "HOUMOUS LENTILLE CORAIL PATATE DOUCE CORIANDRE",
+    "recentQuantity": 3,
+    "recentRevenue": 14.1,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "HOUMOUS TRES SESAME",
+    "recentQuantity": 3,
+    "recentRevenue": 14.1,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "POMODORI PELATI 670G",
+    "recentQuantity": 3,
+    "recentRevenue": 13.9,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "BOUQUET GARNI BIO",
+    "recentQuantity": 4,
+    "recentRevenue": 10.36,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "INTERCCIATA AMANDE POIVRE",
+    "recentQuantity": 3,
+    "recentRevenue": 13.8,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MARRON ENTIER CUIT",
+    "recentQuantity": 3,
+    "recentRevenue": 13.8,
+    "categoryHint": "05. TARTIN - OLEA"
+  },
+  {
+    "key": "HARICOTS ROUGES",
+    "recentQuantity": 3,
+    "recentRevenue": 13.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "BAR PROTEIN BLACK CURRANT",
+    "recentQuantity": 4,
+    "recentRevenue": 10,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "KROUNCHY NATURE 5KG",
+    "recentQuantity": 1,
+    "recentRevenue": 39.45,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "SIROP BRUT DE VIOLETTE",
+    "recentQuantity": 2,
+    "recentRevenue": 19.71,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "LAIT EXPRESSO BIO 38",
+    "recentQuantity": 3,
+    "recentRevenue": 12.96,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "PANCETTA",
+    "recentQuantity": 3,
+    "recentRevenue": 12.6,
+    "categoryHint": "02. CHARCUTERIE"
+  },
+  {
+    "key": "LIEVRE GUIMAUVE GRAND",
+    "recentQuantity": 5,
+    "recentRevenue": 7.5,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "PARMESAN RAPE 24M",
+    "recentQuantity": 470,
+    "recentRevenue": 17.86,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "NOIR 70 AU CHILLI SANTO DOMINGO BIO",
+    "recentQuantity": 3,
+    "recentRevenue": 11.85,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CHIPS SARRASIN",
+    "recentQuantity": 3,
+    "recentRevenue": 11.85,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "COUSCOUS TIMILIA SICILIA",
+    "recentQuantity": 3,
+    "recentRevenue": 11.7,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MINI JAMBONNEAU",
+    "recentQuantity": 3,
+    "recentRevenue": 11.7,
+    "categoryHint": "02. VIANDE"
+  },
+  {
+    "key": "GREEN CURRY PASTE",
+    "recentQuantity": 3,
+    "recentRevenue": 11.6,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CHAMPAGNE POISSENOT BERTHELOT",
+    "recentQuantity": 1,
+    "recentRevenue": 34.5,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "BOUDIN MASSEPAIN ARTISANAL",
+    "recentQuantity": 442,
+    "recentRevenue": 17.23,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "MELANGE HIVERNALE TISANE BIO",
+    "recentQuantity": 3,
+    "recentRevenue": 11.4,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MUESLI CHOCOLAT NOIR GRILLON D OR",
+    "recentQuantity": 2,
+    "recentRevenue": 17,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "SALSA JALAPENO DI MODENA",
+    "recentQuantity": 2,
+    "recentRevenue": 17,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "GRAINES DE LIN 200G",
+    "recentQuantity": 3,
+    "recentRevenue": 11.3,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "BOURGOGNE ROUGE CHASSELAY",
+    "recentQuantity": 1,
+    "recentRevenue": 33.85,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "PROSCIUTTO DI PARMA BIO",
+    "recentQuantity": 2,
+    "recentRevenue": 16.9,
+    "categoryHint": "02. CHARCUTERIE"
+  },
+  {
+    "key": "JUS DE POMME PAJOTTENLANDER VID 0 25",
+    "recentQuantity": 3,
+    "recentRevenue": 11.13,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "CHAPELURE BIO",
+    "recentQuantity": 3,
+    "recentRevenue": 11.1,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SUGO PRONTO POMODORO BASILICO",
+    "recentQuantity": 3,
+    "recentRevenue": 11.1,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "DIV EAN 2601358",
+    "recentQuantity": 2,
+    "recentRevenue": 16.58,
+    "categoryHint": "DIV. EAN 2601358"
+  },
+  {
+    "key": "FILET DE POULET 250G",
+    "recentQuantity": 620,
+    "recentRevenue": 16.32,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "EARL GREY NOIR",
+    "recentQuantity": 248,
+    "recentRevenue": 16.12,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "POUILLY FUISSE AOC",
+    "recentQuantity": 1,
+    "recentRevenue": 32,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "CHOUCROUTE AUX HERBES",
+    "recentQuantity": 4,
+    "recentRevenue": 7.96,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "CHIPS LENTILLES PESTO BASILIC",
+    "recentQuantity": 3,
+    "recentRevenue": 10.59,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MAYONNAISE BLISTER BELGE",
+    "recentQuantity": 3,
+    "recentRevenue": 10.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SEL FIN DE GUERANDE",
+    "recentQuantity": 3,
+    "recentRevenue": 10.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SUPER DEJEUNE CACAO",
+    "recentQuantity": 2,
+    "recentRevenue": 15.66,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "STILTON",
+    "recentQuantity": 418,
+    "recentRevenue": 15.47,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "CHAMPIGNON PLEUROTE BIO",
+    "recentQuantity": 780,
+    "recentRevenue": 10.24,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "BELGIAN BALANCE 0 ALCOOL",
+    "recentQuantity": 3,
+    "recentRevenue": 10.2,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "FIGUE SECHEES EQUITABLE BIO",
+    "recentQuantity": 786,
+    "recentRevenue": 10.19,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "RAVIOLI AUX 5 LEGUMES BIO",
+    "recentQuantity": 2,
+    "recentRevenue": 15.2,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SAUCE TORTILLA DOUCE",
+    "recentQuantity": 3,
+    "recentRevenue": 10.05,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SUPER PETIT DEJEUNER FRAMBOISE CACAHU ETES",
+    "recentQuantity": 2,
+    "recentRevenue": 15,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "MOUTARDE D ORLEANS MIEL CHARDONNAY",
+    "recentQuantity": 2,
+    "recentRevenue": 15,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "SPICE BLENDS OF THE WORLD THE SPICE BOX",
+    "recentQuantity": 1,
+    "recentRevenue": 29.99,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CREME DE COCO BIO 400ML",
+    "recentQuantity": 3,
+    "recentRevenue": 9.93,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "WIGNAC CIDRE NATUREL 750ML",
+    "recentQuantity": 2,
+    "recentRevenue": 14.8,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "SUGO PRONTO COURGETTE GRILLES",
+    "recentQuantity": 3,
+    "recentRevenue": 9.8,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "EFFERVESCENCE AU PALAIS 2022 GUDULE",
+    "recentQuantity": 1,
+    "recentRevenue": 28.9,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "NOIX DE CAJOU 125G",
+    "recentQuantity": 3,
+    "recentRevenue": 9.6,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "FLORA MIMOSA CRAFT",
+    "recentQuantity": 3,
+    "recentRevenue": 9.6,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "LEGUMES POUR COUSCOUS BIO",
+    "recentQuantity": 2,
+    "recentRevenue": 14.4,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "OUT POULET FERMIER",
+    "recentQuantity": 1978,
+    "recentRevenue": 28.48,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "AMATRICIANA 250G VIDANGE 1",
+    "recentQuantity": 2,
+    "recentRevenue": 14.2,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CONFITURE PECHE BIO 80",
+    "recentQuantity": 2,
+    "recentRevenue": 13.96,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CITRON MARMELLATA BIO",
+    "recentQuantity": 2,
+    "recentRevenue": 13.85,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "FILET DE SAXE",
+    "recentQuantity": 378,
+    "recentRevenue": 13.82,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "VELOUTE DE LANGOUSTINE A LA CREME",
+    "recentQuantity": 2,
+    "recentRevenue": 13.8,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "RILLETTES DE TRUITE FUMEE MENTHE CITRON",
+    "recentQuantity": 2,
+    "recentRevenue": 13.6,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "RIBEAUVILLE MARCEL DEISS",
+    "recentQuantity": 1,
+    "recentRevenue": 26.9,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "CHIPS LUCIEN PESTO",
+    "recentQuantity": 3,
+    "recentRevenue": 8.7,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CAPONATA SICILIENNE",
+    "recentQuantity": 2,
+    "recentRevenue": 13,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "POIVRE NOIR BIO MALABAR",
+    "recentQuantity": 2,
+    "recentRevenue": 13,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CHIPS TORTILLA NACHO",
+    "recentQuantity": 3,
+    "recentRevenue": 8.54,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "FLEUR DE SEL DE GUERANDE",
+    "recentQuantity": 2,
+    "recentRevenue": 12.73,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MANDARINE MARMELLATA BIO",
+    "recentQuantity": 2,
+    "recentRevenue": 12.52,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "10 OEUFS BIO",
+    "recentQuantity": 2,
+    "recentRevenue": 12.5,
+    "categoryHint": "02. OEUF"
+  },
+  {
+    "key": "JE CHERCHE LE CIEL IGP 2022",
+    "recentQuantity": 1,
+    "recentRevenue": 24.9,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "KEFIR ORANGE BREAKFAST TEA VID 0 10",
+    "recentQuantity": 3,
+    "recentRevenue": 8.1,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "CASSOULET DE CASTELNAUDARY",
+    "recentQuantity": 1,
+    "recentRevenue": 23.9,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MOUSSE DE HOMARD BRETON AU COGNAC",
+    "recentQuantity": 2,
+    "recentRevenue": 11.9,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "RILLETTES DE SARDINES CITRON CONFIT BASILIC",
+    "recentQuantity": 2,
+    "recentRevenue": 11.9,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CUISSE DE CANARD CONFITE",
+    "recentQuantity": 660,
+    "recentRevenue": 23.76,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CREME D ARTICHAUD ANTICA",
+    "recentQuantity": 2,
+    "recentRevenue": 11.8,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "PETITS SABLES POMME CARAMEL",
+    "recentQuantity": 2,
+    "recentRevenue": 11.8,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "GUIMAUVE ST NIC PETIT",
+    "recentQuantity": 6,
+    "recentRevenue": 3.9,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "OLIVES NOIRES KALAMATA DENOYAUTES",
+    "recentQuantity": 2,
+    "recentRevenue": 11.6,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "HUILE D OLIVE BASILIC",
+    "recentQuantity": 2,
+    "recentRevenue": 11.4,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "AMANDES EFFILEES 50 GR",
+    "recentQuantity": 3,
+    "recentRevenue": 7.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MARTIN MATIN COOKIES AVOINE",
+    "recentQuantity": 2,
+    "recentRevenue": 11.2,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "OLIVES VERTES DENOYAUTEE CRU BIO",
+    "recentQuantity": 2,
+    "recentRevenue": 11,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "YAOURT BREBIS CHATAIGNE BIO",
+    "recentQuantity": 3,
+    "recentRevenue": 7.32,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "SOIREE A L OPERA 2021 GUDULE",
+    "recentQuantity": 1,
+    "recentRevenue": 21.47,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "PAIN DES FLEURS RIZ NOIR",
+    "recentQuantity": 2,
+    "recentRevenue": 10.6,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MAXI CRACKER BASILIC",
+    "recentQuantity": 2,
+    "recentRevenue": 10.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "RIESLING D ALSACE AOC VIBRATIONS NATURE",
+    "recentQuantity": 1,
+    "recentRevenue": 21,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "SPIERING FUME",
+    "recentQuantity": 716,
+    "recentRevenue": 10.46,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "CRESSON DE JARDIN BIO",
+    "recentQuantity": 3,
+    "recentRevenue": 6.75,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "MOULIN A POIVRE",
+    "recentQuantity": 1,
+    "recentRevenue": 19.99,
+    "categoryHint": "13. REUTILISABLE"
+  },
+  {
+    "key": "HUILE DE COCO BIO",
+    "recentQuantity": 2,
+    "recentRevenue": 9.96,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "BLANC A L EPAUTRE 600GR",
+    "recentQuantity": 2,
+    "recentRevenue": 9.9,
+    "categoryHint": "12. BOULANGERIE"
+  },
+  {
+    "key": "HERBES DE PROVENCE",
+    "recentQuantity": 2,
+    "recentRevenue": 9.9,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "PINOT NOIR KATZ 2023",
+    "recentQuantity": 1,
+    "recentRevenue": 19.8,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "CHOCOLAT NOIR 94",
+    "recentQuantity": 2,
+    "recentRevenue": 9.9,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "GRAND VIN DU CHATEAU GUILHEM 2019",
+    "recentQuantity": 1,
+    "recentRevenue": 19.8,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "BETTERAVE FERMENTEE AUX BAIES DE GOJI",
+    "recentQuantity": 2,
+    "recentRevenue": 9.8,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "GEWURZTRAMINER",
+    "recentQuantity": 1,
+    "recentRevenue": 19.2,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "RILLETTES DE THON AU CONFIT D OIGNON ET CIDRE",
+    "recentQuantity": 2,
+    "recentRevenue": 9.6,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "HAUT MEDOC CLOSERIE DE MALESCASSE 2018",
+    "recentQuantity": 1,
+    "recentRevenue": 18.5,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "PIU ANFORA ROSSO 2018",
+    "recentQuantity": 1,
+    "recentRevenue": 18.5,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "JESUS BASQUE",
+    "recentQuantity": 156,
+    "recentRevenue": 9.21,
+    "categoryHint": "02. CHARCUTERIE"
+  },
+  {
+    "key": "NOIX DE CAJOU SACHET",
+    "recentQuantity": 2,
+    "recentRevenue": 9.2,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MAYONNAISE D ORLEANS A LA TRUFFE",
+    "recentQuantity": 2,
+    "recentRevenue": 9.1,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "BUCHE FRAMBOISE",
+    "recentQuantity": 2,
+    "recentRevenue": 9.1,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "OLIVES A LA FARCE DE POIVRON",
+    "recentQuantity": 2,
+    "recentRevenue": 9,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "PICENO SUPERIOR IGP MARCHE",
+    "recentQuantity": 1,
+    "recentRevenue": 18,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "ROTI ORLOFF",
+    "recentQuantity": 766,
+    "recentRevenue": 17.99,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "FOIE GRAS DE CANARD IGP",
+    "recentQuantity": 1,
+    "recentRevenue": 17.9,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "OAT PECAN GRANOLA",
+    "recentQuantity": 2,
+    "recentRevenue": 8.9,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "OUT COTE DE PORC AU FILET",
+    "recentQuantity": 1248,
+    "recentRevenue": 17.75,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "GRAINES DE SESAME BIO 200G",
+    "recentQuantity": 2,
+    "recentRevenue": 8.7,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SPAGHETTONI GIROLOMONI",
+    "recentQuantity": 3,
+    "recentRevenue": 5.72,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SABLES PUR BEURRE PEPITES CARAMEL FRAMBOISE",
+    "recentQuantity": 1,
+    "recentRevenue": 16.9,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "OLIVES AUX PIMENTS D ESPELETTE",
+    "recentQuantity": 2,
+    "recentRevenue": 8.4,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "BERRY BITES AND COCONUT",
+    "recentQuantity": 2,
+    "recentRevenue": 8.4,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "SAISON BARRIQUEE CHAMPAGNE ROSE 8M",
+    "recentQuantity": 1,
+    "recentRevenue": 16.75,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "SAISON BARRIQUEE CHAMPAGNE",
+    "recentQuantity": 1,
+    "recentRevenue": 16.75,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "VINAIGRETTE AU MIEL BIO 25CL",
+    "recentQuantity": 2,
+    "recentRevenue": 8.3,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "TERRA AMBRA",
+    "recentQuantity": 1,
+    "recentRevenue": 16.5,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "BARBERA D ALBA DINA",
+    "recentQuantity": 1,
+    "recentRevenue": 16.5,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "ELEXIR DE PARMESAN A LA TRUFFE",
+    "recentQuantity": 1,
+    "recentRevenue": 16,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "LES PIERRES BLANCHES",
+    "recentQuantity": 1,
+    "recentRevenue": 15.95,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "PATE CACAHUETES BIO",
+    "recentQuantity": 2,
+    "recentRevenue": 7.9,
+    "categoryHint": "05. TARTIN - OLEA"
+  },
+  {
+    "key": "LAIT DE COCO 400ML",
+    "recentQuantity": 2,
+    "recentRevenue": 7.9,
+    "categoryHint": "04. CONSERV - A TRIER"
+  },
+  {
+    "key": "YELLOW CURRY PASTE",
+    "recentQuantity": 2,
+    "recentRevenue": 7.85,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CHOCOLAT NOIR BIO 73",
+    "recentQuantity": 2,
+    "recentRevenue": 7.7,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "MUFFIN CHOCOLAT SS GLUTEN BIO",
+    "recentQuantity": 2,
+    "recentRevenue": 7.7,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MIX TROPICAL BIO 150G",
+    "recentQuantity": 2,
+    "recentRevenue": 7.7,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "PAPRIKA FUME PICANT",
+    "recentQuantity": 2,
+    "recentRevenue": 7.6,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "HOUMOUS LENTILLE BUTTERNUT TIMUR",
+    "recentQuantity": 2,
+    "recentRevenue": 7.51,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "TOMATE NOIRE BIO",
+    "recentQuantity": 944,
+    "recentRevenue": 7.5,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "MIEL DE FORET DURABLE ET PROTEGEE",
+    "recentQuantity": 1,
+    "recentRevenue": 14.9,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "PIMENT JALAPENOS",
+    "recentQuantity": 2,
+    "recentRevenue": 7.4,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "ELEXIR DE PARMESAN AUX NOIX",
+    "recentQuantity": 1,
+    "recentRevenue": 14.5,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "ELEXIR DE PARMESAN AUX CAPRES OLIVES",
+    "recentQuantity": 1,
+    "recentRevenue": 14.5,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "FEUILLES DE RIZ",
+    "recentQuantity": 2,
+    "recentRevenue": 7.2,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SAUCE BOLOGNESE VIDANGE 1",
+    "recentQuantity": 1,
+    "recentRevenue": 14.35,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "STRAWBERRY OAT COOKIE",
+    "recentQuantity": 2,
+    "recentRevenue": 7,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "HUILE D OLIVE LAGAR DE SOTO",
+    "recentQuantity": 1,
+    "recentRevenue": 13.95,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "PROSECCO ROSE PERLAGE",
+    "recentQuantity": 1,
+    "recentRevenue": 13.9,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "PETIT SALTO BLANC",
+    "recentQuantity": 1,
+    "recentRevenue": 13.9,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "CHATEAU BAS ROUGE",
+    "recentQuantity": 1,
+    "recentRevenue": 13.85,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "CHOCOLAT NOIR NOUGAT BIO",
+    "recentQuantity": 2,
+    "recentRevenue": 6.9,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "LAPIN GUIMAUVE PETIT",
+    "recentQuantity": 4,
+    "recentRevenue": 3.4,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "PAELLA KIT LA BARCA",
+    "recentQuantity": 1,
+    "recentRevenue": 13.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "COFFRET DECOUVERTE 4 VINAIGRES",
+    "recentQuantity": 1,
+    "recentRevenue": 13.44,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "SAUCE TORTILLA HOT",
+    "recentQuantity": 2,
+    "recentRevenue": 6.7,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "ZIBIBO IGP SICILIA",
+    "recentQuantity": 1,
+    "recentRevenue": 13.35,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "CUISSE DE CANARD CONFITE",
+    "recentQuantity": 330,
+    "recentRevenue": 13.2,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "HUILE DE NOIX DE COCO",
+    "recentQuantity": 1,
+    "recentRevenue": 12.95,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "POULIGNY ST PIERRE",
+    "recentQuantity": 1,
+    "recentRevenue": 12.9,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "CUBI 3L JUS DE POMME BIO",
+    "recentQuantity": 1,
+    "recentRevenue": 12.9,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "PAIN D EPICES ORANGE REFILL",
+    "recentQuantity": 1,
+    "recentRevenue": 12.9,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "LYCHEE WHITE PEONY TIN CAN",
+    "recentQuantity": 1,
+    "recentRevenue": 12.9,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "JAMBON A L OS SANS OS",
+    "recentQuantity": 424,
+    "recentRevenue": 12.57,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "SAUCISSES AUX LENTILLES VERTES DU PUY",
+    "recentQuantity": 1,
+    "recentRevenue": 12.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "LA DEMOISELLE BLANC",
+    "recentQuantity": 1,
+    "recentRevenue": 12.5,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "HUILE L ALLIE DES ARTISTES",
+    "recentQuantity": 1,
+    "recentRevenue": 12.3,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "OUTREBLOCHON 450 GR",
+    "recentQuantity": 1,
+    "recentRevenue": 12,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "HERITAGE AOP COTAUX D AIX",
+    "recentQuantity": 1,
+    "recentRevenue": 11.9,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "GARDIANNE DE TAUREAU DE CAMARGUE AOP",
+    "recentQuantity": 1,
+    "recentRevenue": 11.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CARBONNADE",
+    "recentQuantity": 512,
+    "recentRevenue": 11.49,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "OSCAR ROUGE IGP 2021",
+    "recentQuantity": 1,
+    "recentRevenue": 11.35,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "OLIVES NOIRES DE NYONS",
+    "recentQuantity": 1,
+    "recentRevenue": 11.2,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "BAR PROTEIN NO SUGAR VANNILA",
+    "recentQuantity": 2,
+    "recentRevenue": 5.4,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "BOISSON RIZ RICE DRINK LIMA",
+    "recentQuantity": 2,
+    "recentRevenue": 5.2,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "FRUJI GINGER BEER 25CL",
+    "recentQuantity": 2,
+    "recentRevenue": 5.2,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "LIMONADE ARTISANALE AGRUMES",
+    "recentQuantity": 2,
+    "recentRevenue": 5.2,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "SABLES FAUVES BLANC",
+    "recentQuantity": 1,
+    "recentRevenue": 10.35,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "RAW PROTEIN COFFEE",
+    "recentQuantity": 2,
+    "recentRevenue": 5,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "TOAST APERO",
+    "recentQuantity": 2,
+    "recentRevenue": 5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "EVEIL DU BOUDHA BANANE FRAISE",
+    "recentQuantity": 1,
+    "recentRevenue": 9.99,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "RAVIOLI AU BOEUF BIO",
+    "recentQuantity": 1,
+    "recentRevenue": 9.95,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "GUANCIALE IT",
+    "recentQuantity": 226,
+    "recentRevenue": 9.94,
+    "categoryHint": "02. CHARCUTERIE"
+  },
+  {
+    "key": "COTE DE PORC FERMIER EXTRA",
+    "recentQuantity": 552,
+    "recentRevenue": 9.94,
+    "categoryHint": "02. VIANDE"
+  },
+  {
+    "key": "HACHE PORC BOEUF",
+    "recentQuantity": 524,
+    "recentRevenue": 9.93,
+    "categoryHint": "02. VIANDE"
+  },
+  {
+    "key": "RIZ CARNAROLI",
+    "recentQuantity": 1,
+    "recentRevenue": 9.9,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "APPENZELLER SURCHOIX 9M",
+    "recentQuantity": 198,
+    "recentRevenue": 9.6,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "FILET DE DINDE",
+    "recentQuantity": 388,
+    "recentRevenue": 9.27,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "MOBIUS IPA SANS ALCOHOL VID 0 10 CT",
+    "recentQuantity": 2,
+    "recentRevenue": 4.5,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "CHICOREE NATURE MOULUE",
+    "recentQuantity": 1,
+    "recentRevenue": 8.75,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "PROSCIUTTO DI SAN DANIELE",
+    "recentQuantity": 1,
+    "recentRevenue": 8.7,
+    "categoryHint": "02. CHARCUTERIE"
+  },
+  {
+    "key": "GRISETTE BLANCHE BIO 25CL VID 0 10 CT",
+    "recentQuantity": 2,
+    "recentRevenue": 4.3,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "PRALINES DE NOEL",
+    "recentQuantity": 172,
+    "recentRevenue": 8.58,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "PANCETTA ARROTOLATA",
+    "recentQuantity": 214,
+    "recentRevenue": 8.56,
+    "categoryHint": "02. CHARCUTERIE"
+  },
+  {
+    "key": "CAVE AGED CHEDDAR AOP",
+    "recentQuantity": 118,
+    "recentRevenue": 4.25,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "POIVRE BLANC DU SRI LANKA BIO",
+    "recentQuantity": 1,
+    "recentRevenue": 8.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SAUCE BBQ RHUM ANTILLAIS",
+    "recentQuantity": 1,
+    "recentRevenue": 8.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "NAO PATE A TARTINER CHOCOLAT AU LAIT",
+    "recentQuantity": 1,
+    "recentRevenue": 8.5,
+    "categoryHint": "05. TARTIN - OLEA"
+  },
+  {
+    "key": "BOUILLON ORIENTAL",
+    "recentQuantity": 1,
+    "recentRevenue": 8.45,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "LARDON FUME",
+    "recentQuantity": 296,
+    "recentRevenue": 8.38,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "PDT GRENAILLE BIO",
+    "recentQuantity": 868,
+    "recentRevenue": 2.69,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "SONS DE MAR SPRARKLING WINE",
+    "recentQuantity": 1,
+    "recentRevenue": 7.96,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "TERRINE DE CAMPAGNE ARDECHE STE EULILIE",
+    "recentQuantity": 1,
+    "recentRevenue": 7.9,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "CORNICHONS AIGRES DOUX BIO",
+    "recentQuantity": 1,
+    "recentRevenue": 7.9,
+    "categoryHint": "04. CONSERV - A TRIER"
+  },
+  {
+    "key": "BOLO DODO",
+    "recentQuantity": 1,
+    "recentRevenue": 7.9,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "ROOIBOS ZEST TEA MISSTEA",
+    "recentQuantity": 142,
+    "recentRevenue": 7.81,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "BOLOGNESE 250G VIDANGE 1",
+    "recentQuantity": 1,
+    "recentRevenue": 7.8,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "LARD DE POITRINE DE PORC",
+    "recentQuantity": 534,
+    "recentRevenue": 7.64,
+    "categoryHint": "02. COPRO"
+  },
+  {
+    "key": "VINAIGRE D ORLEANS DE VIN BLANC AU JUS D AGRUMES",
+    "recentQuantity": 1,
+    "recentRevenue": 7.5,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "NOISETTES ITALIE 250GR",
+    "recentQuantity": 1,
+    "recentRevenue": 7.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "GELEE DE PIMENT D ESPELETTE",
+    "recentQuantity": 1,
+    "recentRevenue": 7.5,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "HUILE DE COCO BIO 200G",
+    "recentQuantity": 1,
+    "recentRevenue": 7.3,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MARMELADE DE MANDARINE",
+    "recentQuantity": 1,
+    "recentRevenue": 7.25,
+    "categoryHint": "01. FRUITS ET LEGUMES"
+  },
+  {
+    "key": "CONFITURE FRAMBOISE BIO 80",
+    "recentQuantity": 1,
+    "recentRevenue": 6.98,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "PIPAILLON MANDARINE ROSE ET CARDAMOME",
+    "recentQuantity": 1,
+    "recentRevenue": 6.95,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CREME AU VINAIGRE BALSAMIQUE",
+    "recentQuantity": 1,
+    "recentRevenue": 6.95,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "NOIX DU BRESIL 125G",
+    "recentQuantity": 1,
+    "recentRevenue": 6.95,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "HABANERO TOMATILLO CBS",
+    "recentQuantity": 1,
+    "recentRevenue": 6.9,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MELANGE 5 BAIES BIO",
+    "recentQuantity": 1,
+    "recentRevenue": 6.9,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "VADOUVAN BIO FRAICHEMENT MOULU",
+    "recentQuantity": 1,
+    "recentRevenue": 6.9,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "RILETTES AUX DEUX SAUMONS",
+    "recentQuantity": 1,
+    "recentRevenue": 6.75,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "GRAINES DE COURGE BELGRAINE",
+    "recentQuantity": 1,
+    "recentRevenue": 6.75,
+    "categoryHint": "01. FRUITS ET LEGUMES"
+  },
+  {
+    "key": "HUILE DE SESAME TOASTEE",
+    "recentQuantity": 1,
+    "recentRevenue": 6.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "BOLETS SILVESTRES SECHES",
+    "recentQuantity": 1,
+    "recentRevenue": 6.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "HUILE D OLIVE FUMEE SPRAY",
+    "recentQuantity": 1,
+    "recentRevenue": 6.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "TISANE GOURMANDE TARTE AUX POMMES",
+    "recentQuantity": 1,
+    "recentRevenue": 6.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "ZAATAR BIO FRAICHEMENT MOULU",
+    "recentQuantity": 1,
+    "recentRevenue": 6.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "SUCRE DE FLEUR DE COCO",
+    "recentQuantity": 1,
+    "recentRevenue": 6.32,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "VYLMER SPRITZ MINI",
+    "recentQuantity": 1,
+    "recentRevenue": 6,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "ORGANICUS LUPULUS GRANDE",
+    "recentQuantity": 1,
+    "recentRevenue": 5.98,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "NOIX RAISINS A L EPAUTRE 430GR",
+    "recentQuantity": 1,
+    "recentRevenue": 5.95,
+    "categoryHint": "12. BOULANGERIE"
+  },
+  {
+    "key": "RILLETTES DE MAQUEREAU ORANGES CONFITES GINGEMBR",
+    "recentQuantity": 1,
+    "recentRevenue": 5.95,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "OLIVET AU POIVRE",
+    "recentQuantity": 1,
+    "recentRevenue": 5.9,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "BISCUITS FONDANT THE EARL GREY",
+    "recentQuantity": 1,
+    "recentRevenue": 5.9,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "RISOTTO ALLA NORMA",
+    "recentQuantity": 1,
+    "recentRevenue": 5.9,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "PATE AU FOIE DE CANARD",
+    "recentQuantity": 1,
+    "recentRevenue": 5.9,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CHOCOLAT NOIR AMANDES",
+    "recentQuantity": 1,
+    "recentRevenue": 5.9,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "SUCRE DE CANNE MORCEAUX BIO 1KG",
+    "recentQuantity": 1,
+    "recentRevenue": 5.9,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "MERRY PEPPERMINT 10 SACHETS",
+    "recentQuantity": 1,
+    "recentRevenue": 5.9,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MANDARINE NADOROCT BIO",
+    "recentQuantity": 1,
+    "recentRevenue": 5.6,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "OLIVES MIX DENOYAUTEE",
+    "recentQuantity": 1,
+    "recentRevenue": 5.6,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CHARLOTTE CHOCOLAT",
+    "recentQuantity": 1,
+    "recentRevenue": 5.6,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "VERVEINE MENTHE",
+    "recentQuantity": 1,
+    "recentRevenue": 5.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CAKE FIGUE AMANDE FOR CHEESE",
+    "recentQuantity": 1,
+    "recentRevenue": 5.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "STRUDEL MYRTILLE SS GLUTEN",
+    "recentQuantity": 1,
+    "recentRevenue": 5.4,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "SARDINES SS PEAU SS ARETES TOMATE",
+    "recentQuantity": 1,
+    "recentRevenue": 5.2,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "HOUMOUS CLASSIQUE",
+    "recentQuantity": 1,
+    "recentRevenue": 4.98,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "CREME BALSAMIQUE FIGUE",
+    "recentQuantity": 1,
+    "recentRevenue": 4.95,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MAYONNAISE D ORLEANS A L AIL DES OURS",
+    "recentQuantity": 1,
+    "recentRevenue": 4.95,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "PIERRE P TIT BEURRE",
+    "recentQuantity": 1,
+    "recentRevenue": 4.95,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "POIS CHICHES PICCINO",
+    "recentQuantity": 1,
+    "recentRevenue": 4.95,
+    "categoryHint": "04. CONSERV - A TRIER"
+  },
+  {
+    "key": "TARALLINI CLASSIC",
+    "recentQuantity": 1,
+    "recentRevenue": 4.9,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "RIZ ROUGE DU KERALA BIO",
+    "recentQuantity": 1,
+    "recentRevenue": 4.85,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "OIGNONS AU VINAIGRE",
+    "recentQuantity": 1,
+    "recentRevenue": 4.8,
+    "categoryHint": "04. CONSERV - A TRIER"
+  },
+  {
+    "key": "TAPENADE D OLIVES VERTES BIO",
+    "recentQuantity": 1,
+    "recentRevenue": 4.8,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "TARTARE DE POIVRONS GRILLES ET TOMATES",
+    "recentQuantity": 1,
+    "recentRevenue": 4.8,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "GUIMAUVE ST NIC GRAND",
+    "recentQuantity": 2,
+    "recentRevenue": 2.4,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "POMODORI SPACCATI 670G",
+    "recentQuantity": 1,
+    "recentRevenue": 4.65,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "BISCUITS NOISETTE FOUREE CHOCOLAT",
+    "recentQuantity": 1,
+    "recentRevenue": 4.6,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "BISCUIT LEMON CURD",
+    "recentQuantity": 1,
+    "recentRevenue": 4.6,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "BUCHE CITRON",
+    "recentQuantity": 1,
+    "recentRevenue": 4.55,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "PATE DE CAMPAGNE",
+    "recentQuantity": 1,
+    "recentRevenue": 4.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MELANGE CHAI DE L HERBIER",
+    "recentQuantity": 1,
+    "recentRevenue": 4.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "PAIN SEIGLE NOIX RAISIN 500G",
+    "recentQuantity": 1,
+    "recentRevenue": 4.2,
+    "categoryHint": "12. BOULANGERIE"
+  },
+  {
+    "key": "COOKIE A L ARGOUSIER",
+    "recentQuantity": 1,
+    "recentRevenue": 4.2,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "COEUR PRALINE",
+    "recentQuantity": 82,
+    "recentRevenue": 4.1,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "BEAUMONT DE SAVOIE",
+    "recentQuantity": 126,
+    "recentRevenue": 4.03,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "PANIER CADEAU",
+    "recentQuantity": 1,
+    "recentRevenue": 4,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "TARALLINI SPECK E PROVOLA",
+    "recentQuantity": 1,
+    "recentRevenue": 3.95,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "EPICES A PAELLA SAFFRAN ET PAPRIKA FUME",
+    "recentQuantity": 1,
+    "recentRevenue": 3.9,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "COOKIES OAT LEMON",
+    "recentQuantity": 1,
+    "recentRevenue": 3.8,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CHOCOLAT LAIT 37 SANTO DOMINGO BIO",
+    "recentQuantity": 1,
+    "recentRevenue": 3.75,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CHOCOLAT NOIR LAIT 50 PANAMA BIO",
+    "recentQuantity": 1,
+    "recentRevenue": 3.75,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "POMME BIO GALA",
+    "recentQuantity": 792,
+    "recentRevenue": 3.64,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "SEA CRUNCHY WASABI",
+    "recentQuantity": 1,
+    "recentRevenue": 3.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "ORIGAN EN FLEUR BIO 30G",
+    "recentQuantity": 1,
+    "recentRevenue": 3.5,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "CLEMENTINES ORTANIQUE ES BIO",
+    "recentQuantity": 772,
+    "recentRevenue": 3.44,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "OEUFS DRAGEIFIES",
+    "recentQuantity": 56,
+    "recentRevenue": 3.25,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CHOCOLAT NOIR 56",
+    "recentQuantity": 1,
+    "recentRevenue": 3.25,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "BEKOMBUCHA FLOWER POWER 25CL",
+    "recentQuantity": 1,
+    "recentRevenue": 3.2,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "THE VERT EARL GREY BIO",
+    "recentQuantity": 66,
+    "recentRevenue": 3.11,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MAIS DOUX DEMETER",
+    "recentQuantity": 1,
+    "recentRevenue": 3.1,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "MAQUEE BIO ARTISANALE",
+    "recentQuantity": 1,
+    "recentRevenue": 3.1,
+    "categoryHint": "02. FRAIS"
+  },
+  {
+    "key": "GIMBER BRUT 20ML",
+    "recentQuantity": 1,
+    "recentRevenue": 2.95,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "ROOIBOS NATURE",
+    "recentQuantity": 60,
+    "recentRevenue": 2.94,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "RADIS NOIR",
+    "recentQuantity": 532,
+    "recentRevenue": 1.42,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "FRUJI FLEURS DE SUREAU 25CL",
+    "recentQuantity": 1,
+    "recentRevenue": 2.7,
+    "categoryHint": "03. BOISSON"
+  },
+  {
+    "key": "LAIT EPEAUTRE BIO 1L",
+    "recentQuantity": 1,
+    "recentRevenue": 2.45,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "BUCATINI GIROLOMONI",
+    "recentQuantity": 1,
+    "recentRevenue": 2.2,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "PDT DESIREE FARINEUSE BIO",
+    "recentQuantity": 1090,
+    "recentRevenue": 1.69,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "ENERGY BAR CASHEW APRICOT",
+    "recentQuantity": 1,
+    "recentRevenue": 1.6,
+    "categoryHint": "05. EPICERIE SUCREE"
+  },
+  {
+    "key": "CHOU ROMANESCO",
+    "recentQuantity": 1,
+    "recentRevenue": 1.49,
+    "categoryHint": "01. FRUIT ET LEGUME"
+  },
+  {
+    "key": "CAMOMILLE MATRICAIRE VRAC",
+    "recentQuantity": 22,
+    "recentRevenue": 1.3,
+    "categoryHint": "04. EPICERIE"
+  },
+  {
+    "key": "VIDANGE GREENZ 0 5",
+    "recentQuantity": 1,
+    "recentRevenue": 0.5,
+    "categoryHint": "11. VIDANGE"
+  },
+  {
+    "key": "SAC PAPIER COURSES",
+    "recentQuantity": 1,
+    "recentRevenue": 0.25,
+    "categoryHint": "14. SACS ET EXTRA"
+  },
+  {
+    "key": "TARE VIDANGE 210GR",
+    "recentQuantity": 1,
+    "recentRevenue": 0,
+    "categoryHint": "Fictif"
+  },
+  {
+    "key": "TARE VIDANGE 162GR",
+    "recentQuantity": 4,
+    "recentRevenue": 0,
+    "categoryHint": "Fictif"
+  },
+  {
+    "key": "TARE VIDANGE 80GR",
+    "recentQuantity": 3,
+    "recentRevenue": 0,
+    "categoryHint": "Fictif"
+  },
+  {
+    "key": "TARE VIDANGE 78GR",
+    "recentQuantity": 1,
+    "recentRevenue": 0,
+    "categoryHint": "Fictif"
+  },
+  {
+    "key": "TARE VIDANGE 75GR",
+    "recentQuantity": 1,
+    "recentRevenue": 0,
+    "categoryHint": "Fictif"
+  },
+  {
+    "key": "TARE VIDANGE 300GR",
+    "recentQuantity": 1,
+    "recentRevenue": 0,
+    "categoryHint": "Fictif"
+  },
+  {
+    "key": "TARE VIDANGE 208GR",
+    "recentQuantity": 3,
+    "recentRevenue": 0,
+    "categoryHint": "Fictif"
+  },
+  {
+    "key": "TARE VIDANGE 314GR",
+    "recentQuantity": 1,
+    "recentRevenue": 0,
+    "categoryHint": "Fictif"
+  },
+  {
+    "key": "TARE VIDANGE 220GR",
+    "recentQuantity": 1,
+    "recentRevenue": 0,
+    "categoryHint": "Fictif"
+  },
+  {
+    "key": "TARE VIDANGE 238GR",
+    "recentQuantity": 1,
+    "recentRevenue": 0,
+    "categoryHint": "Fictif"
+  },
+  {
+    "key": "TARE VIDANGE 245GR",
+    "recentQuantity": 1,
+    "recentRevenue": 0,
+    "categoryHint": "Fictif"
+  },
+  {
+    "key": "TARE VIDANGE 620GR",
+    "recentQuantity": 1,
+    "recentRevenue": 0,
+    "categoryHint": "Fictif"
+  },
+  {
+    "key": "TARE VIDANGE 58GR",
+    "recentQuantity": 1,
+    "recentRevenue": 0,
+    "categoryHint": "Fictif"
+  },
+  {
+    "key": "TARE VIDANGE 350GR",
+    "recentQuantity": 1,
+    "recentRevenue": 0,
+    "categoryHint": "Fictif"
+  },
+  {
+    "key": "LINK EAN 2120006",
+    "recentQuantity": 0,
+    "recentRevenue": 0,
+    "categoryHint": "02. FROMAGE"
+  },
+  {
+    "key": "TARE VIDANGE 185GR",
+    "recentQuantity": 4,
+    "recentRevenue": 0,
+    "categoryHint": "Fictif"
+  },
+  {
+    "key": "TARE VIDANGE 144GR",
+    "recentQuantity": 2,
+    "recentRevenue": 0,
+    "categoryHint": "Fictif"
+  },
+  {
+    "key": "DIV EAN 2605378",
+    "recentQuantity": 1,
+    "recentRevenue": 0,
+    "categoryHint": "DIV. EAN 2605378"
+  },
+  {
+    "key": "DIV EAN 2607337",
+    "recentQuantity": 1,
+    "recentRevenue": 0,
+    "categoryHint": "DIV. EAN 2607337"
+  },
+  {
+    "key": "TARE VIDANGE 100GR",
+    "recentQuantity": 1,
+    "recentRevenue": 0,
+    "categoryHint": "Fictif"
+  },
+  {
+    "key": "TARE VIDANGE 125GR",
+    "recentQuantity": 1,
+    "recentRevenue": 0,
+    "categoryHint": "Fictif"
+  },
+  {
+    "key": "TARE VIDANGE 110GR",
+    "recentQuantity": 1,
+    "recentRevenue": 0,
+    "categoryHint": "Fictif"
+  },
+  {
+    "key": "TARE VIDANGE 104GR",
+    "recentQuantity": 2,
+    "recentRevenue": 0,
+    "categoryHint": "Fictif"
+  },
+  {
+    "key": "TARE VIDANGE 88GR",
+    "recentQuantity": 1,
+    "recentRevenue": 0,
+    "categoryHint": "Fictif"
+  },
+  {
+    "key": "TARE VIDANGE 150GR",
+    "recentQuantity": 2,
+    "recentRevenue": 0,
+    "categoryHint": "Fictif"
+  },
+  {
+    "key": "DIV EAN 2603219",
+    "recentQuantity": 1,
+    "recentRevenue": 0,
+    "categoryHint": "DIV. EAN 2603219"
+  }
+]

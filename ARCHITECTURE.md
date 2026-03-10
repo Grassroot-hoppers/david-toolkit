@@ -17,7 +17,7 @@ data/gold/*.json  (dashboard-ready aggregates — gitignored)
         ↓
 scripts/build-demo.mjs  (score, rank, assemble)
         ↓
-public/data/demo.json
+demo/data/demo.json
         ↓
 public/index.html + app.js + styles.css
 ```
@@ -70,7 +70,7 @@ Cross-referenced, enriched files built from Silver by `build-gold.mjs`:
 | `margin-ranking.json` | Products ranked by margin contribution |
 | `store-summary.json` | Per-year totals, data coverage, date range |
 
-### Demo: Scored payload (`public/data/demo.json`)
+### Demo: Scored payload (`demo/data/demo.json`)
 
 `build-demo.mjs` reads Gold, applies the scoring engine (demand pressure, stock cover, weather sensitivity, YoY change), and produces the final dashboard payload.
 

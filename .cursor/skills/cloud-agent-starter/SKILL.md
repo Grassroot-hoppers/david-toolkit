@@ -85,7 +85,7 @@ Then run:
 
 Check:
 
-- `public/data/demo.json` was regenerated
+- `demo/data/demo.json` was regenerated
 - the dashboard still renders at `http://localhost:4173`
 
 ### `npm run prepare:sample`
@@ -113,7 +113,7 @@ Use this workflow when touching parsing, normalization, supplier scoring, or JSO
 1. Make the change.
 2. Run `npm run build:data`.
 3. Run `npm test`.
-4. Inspect `public/data/demo.json` if the task changes payload shape or scenario output.
+4. Inspect `demo/data/demo.json` if the task changes payload shape or scenario output.
 5. Reload the app and confirm the dashboard still renders real data, not a blank state.
 
 High-signal checks:
@@ -175,7 +175,7 @@ Use this workflow when changing instructions rather than product behavior:
 
 ## Fast troubleshooting
 
-- `npm test` fails because `public/data/demo.json` is missing: run `npm run build:data`.
+- `npm test` fails because `demo/data/demo.json` is missing: run `npm run build:demo`.
 - `npm run build:data` fails because the workbook is missing: run `npm run prepare:sample`.
 - The app loads blank or stale data: rebuild with `npm run build:data`, then hard-refresh the browser.
 - Port `4173` is busy: run `PORT=4174 npm run serve`.

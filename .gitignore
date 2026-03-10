@@ -1,6 +1,6 @@
 node_modules/
 .DS_Store
-public/data/demo.json
+demo/data/demo.json
 .worktrees/
 
 # Real POS exports and normalized pipeline output (private shop data)

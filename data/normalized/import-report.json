@@ -1,0 +1,149 @@
+{
+  "importedAt": "2026-03-10T11:22:05.521Z",
+  "sourceDir": "C:\\Users\\julien\\Documents\\dev\\david-toolkit\\data\\real",
+  "files": [
+    {
+      "filename": "Analyse-2025-1.csv",
+      "detectedType": "margin-analysis",
+      "encoding": "cp1252",
+      "year": 2025,
+      "rowCount": 1618,
+      "status": "ok",
+      "warnings": [
+        "65 junk/zero rows filtered",
+        "Aggregated 18762 transaction rows into 1618 products"
+      ],
+      "error": null
+    },
+    {
+      "filename": "Analyse2025-2.csv",
+      "detectedType": "margin-analysis",
+      "encoding": "cp1252",
+      "year": 2025,
+      "rowCount": 1676,
+      "status": "ok",
+      "warnings": [
+        "75 junk/zero rows filtered",
+        "Aggregated 20936 transaction rows into 1676 products"
+      ],
+      "error": null
+    },
+    {
+      "filename": "Analyse2026-2mois.csv",
+      "detectedType": "margin-analysis",
+      "encoding": "cp1252",
+      "year": 2026,
+      "rowCount": 1001,
+      "status": "ok",
+      "warnings": [
+        "25 junk/zero rows filtered",
+        "Aggregated 7613 transaction rows into 1001 products"
+      ],
+      "error": null
+    },
+    {
+      "filename": "STA_2023todo_010123_311223.csv",
+      "detectedType": "product-sales",
+      "encoding": "cp1252",
+      "year": 2023,
+      "rowCount": 3811,
+      "status": "ok",
+      "warnings": [
+        "15 refund rows (REMB) excluded"
+      ],
+      "error": null
+    },
+    {
+      "filename": "STA_2024todo_010124_311224.csv",
+      "detectedType": "product-sales",
+      "encoding": "cp1252",
+      "year": 2024,
+      "rowCount": 2994,
+      "status": "ok",
+      "warnings": [
+        "32 refund rows (REMB) excluded"
+      ],
+      "error": null
+    },
+    {
+      "filename": "STA_2025todo_010125_311225.csv",
+      "detectedType": "product-sales",
+      "encoding": "cp1252",
+      "year": 2025,
+      "rowCount": 2407,
+      "status": "ok",
+      "warnings": [
+        "27 refund rows (REMB) excluded"
+      ],
+      "error": null
+    },
+    {
+      "filename": "STA_2026-09-03_010126_080326.csv",
+      "detectedType": "product-sales",
+      "encoding": "cp1252",
+      "year": 2026,
+      "rowCount": 1065,
+      "status": "ok",
+      "warnings": [
+        "18 refund rows (REMB) excluded"
+      ],
+      "error": null
+    },
+    {
+      "filename": "STA_sta-ratioCAT-2023_010123_311223.csv",
+      "detectedType": "category-mix",
+      "encoding": "utf8",
+      "year": 2023,
+      "rowCount": 37,
+      "status": "ok",
+      "warnings": [
+        "60 summary/junk rows filtered"
+      ],
+      "error": null
+    },
+    {
+      "filename": "STA_sta-ratioCAT-2024_010124_311224.csv",
+      "detectedType": "category-mix",
+      "encoding": "utf8",
+      "year": 2024,
+      "rowCount": 31,
+      "status": "ok",
+      "warnings": [
+        "54 summary/junk rows filtered"
+      ],
+      "error": null
+    },
+    {
+      "filename": "STA_sta-ratioCAT-2025_010125_311225.csv",
+      "detectedType": "category-mix",
+      "encoding": "utf8",
+      "year": 2025,
+      "rowCount": 29,
+      "status": "ok",
+      "warnings": [
+        "35 summary/junk rows filtered"
+      ],
+      "error": null
+    },
+    {
+      "filename": "STA_sta-ratioCAT-2026-09-03_010126_080326.csv",
+      "detectedType": "category-mix",
+      "encoding": "utf8",
+      "year": 2026,
+      "rowCount": 29,
+      "status": "ok",
+      "warnings": [
+        "35 summary/junk rows filtered"
+      ],
+      "error": null
+    }
+  ],
+  "errors": [],
+  "summary": {
+    "totalFiles": 11,
+    "successfulImports": 11,
+    "failedImports": 0,
+    "totalProducts": 14698,
+    "yearsFound": []
+  }
+}

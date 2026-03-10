@@ -1,0 +1,188 @@
+[
+  {
+    "category": "0%",
+    "productCount": 1,
+    "totalRevenue": 14.8,
+    "share": 0
+  },
+  {
+    "category": "6%",
+    "productCount": 67,
+    "totalRevenue": 493.9,
+    "share": 0.11
+  },
+  {
+    "category": "01. FRUIT ET LEGUME 0%",
+    "productCount": 252,
+    "totalRevenue": 1560.36,
+    "share": 0.35
+  },
+  {
+    "category": "01. FRUIT ET LEGUME 6%",
+    "productCount": 26858,
+    "totalRevenue": 73248.52,
+    "share": 16.59
+  },
+  {
+    "category": "02. CHARCUTERIE 6%",
+    "productCount": 3377,
+    "totalRevenue": 18651.14,
+    "share": 4.22
+  },
+  {
+    "category": "02. COPRO 6%",
+    "productCount": 4318,
+    "totalRevenue": 35097.76,
+    "share": 7.95
+  },
+  {
+    "category": "02. FRAIS 6%",
+    "productCount": 2729,
+    "totalRevenue": 13828.91,
+    "share": 3.13
+  },
+  {
+    "category": "02. FROMAGE 0%",
+    "productCount": 771,
+    "totalRevenue": 7179.91,
+    "share": 1.63
+  },
+  {
+    "category": "02. FROMAGE 2%",
+    "productCount": 168,
+    "totalRevenue": 659.58,
+    "share": 0.15
+  },
+  {
+    "category": "02. FROMAGE 6%",
+    "productCount": 15573,
+    "totalRevenue": 95890.43,
+    "share": 21.71
+  },
+  {
+    "category": "02. OEUF 6%",
+    "productCount": 2923,
+    "totalRevenue": 7198.48,
+    "share": 1.63
+  },
+  {
+    "category": "02. PATE FRAICHE 6%",
+    "productCount": 1848,
+    "totalRevenue": 14753,
+    "share": 3.34
+  },
+  {
+    "category": "03. BOISSON 21%",
+    "productCount": 3583,
+    "totalRevenue": 33557.41,
+    "share": 7.6
+  },
+  {
+    "category": "03. BOISSON 6%",
+    "productCount": 2043,
+    "totalRevenue": 7871.38,
+    "share": 1.78
+  },
+  {
+    "category": "04. EPICERIE 21%",
+    "productCount": 3,
+    "totalRevenue": 24.3,
+    "share": 0.01
+  },
+  {
+    "category": "04. EPICERIE 6%",
+    "productCount": 12454,
+    "totalRevenue": 60781.54,
+    "share": 13.76
+  },
+  {
+    "category": "05. EPICERIE SUCREE 0%",
+    "productCount": 50,
+    "totalRevenue": 161.35,
+    "share": 0.04
+  },
+  {
+    "category": "05. EPICERIE SUCREE 21%",
+    "productCount": 6,
+    "totalRevenue": 12.02,
+    "share": 0
+  },
+  {
+    "category": "05. EPICERIE SUCREE 6%",
+    "productCount": 12226,
+    "totalRevenue": 52887.29,
+    "share": 11.98
+  },
+  {
+    "category": "06. SURGELE 6%",
+    "productCount": 90,
+    "totalRevenue": 484.86,
+    "share": 0.11
+  },
+  {
+    "category": "07. HYGIENE 21%",
+    "productCount": 27,
+    "totalRevenue": 217.32,
+    "share": 0.05
+  },
+  {
+    "category": "08. ENTRETIENT 21%",
+    "productCount": 18,
+    "totalRevenue": 232.45,
+    "share": 0.05
+  },
+  {
+    "category": "08. ENTRETIENT 6%",
+    "productCount": 1,
+    "totalRevenue": 2,
+    "share": 0
+  },
+  {
+    "category": "09. COSMETIQUE 21%",
+    "productCount": 1,
+    "totalRevenue": 5.9,
+    "share": 0
+  },
+  {
+    "category": "09. COSMETIQUE 6%",
+    "productCount": 8,
+    "totalRevenue": 88.38,
+    "share": 0.02
+  },
+  {
+    "category": "10. AROMA 6%",
+    "productCount": 5,
+    "totalRevenue": 25.9,
+    "share": 0.01
+  },
+  {
+    "category": "11. VIDANGE 0%",
+    "productCount": 3927,
+    "totalRevenue": 306.45,
+    "share": 0.07
+  },
+  {
+    "category": "12. BOULANGERIE 6%",
+    "productCount": 3088,
+    "totalRevenue": 15272.47,
+    "share": 3.46
+  },
+  {
+    "category": "13. REUTILISABLE 21%",
+    "productCount": 52,
+    "totalRevenue": 42.31,
+    "share": 0.01
+  },
+  {
+    "category": "13. REUTILISABLE 6%",
+    "productCount": 26,
+    "totalRevenue": 87.9,
+    "share": 0.02
+  },
+  {
+    "category": "22. A TRIER 21%",
+    "productCount": 1,
+    "totalRevenue": 10.32,
+    "share": 0
+  }
+]
