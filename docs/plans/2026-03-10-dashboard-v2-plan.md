@@ -4,6 +4,24 @@
 
 **Goal:** Transform the alpha dashboard from a metrics summary into a multi-tab retail intelligence tool with trusted data, pipeline visualization, and actionable product/category intelligence.
 
+---
+
+## Pre-Phase: Data Validation Session (Day 3 addition)
+
+**Before writing any code**, run a live Q&A session with the operator.
+
+The operator asks 10-15 questions they know the answer to from running the shop ("what was our best week last year?", "which category grew the most?", "who is our biggest supplier by revenue?"). The AI answers from the pipeline data. Any wrong answers reveal pipeline issues to fix before building on top of them.
+
+**How to run it:**
+- Operator asks questions one at a time in chat
+- AI reads `public/data/demo.json` and Gold files to answer
+- Discrepancies get logged and fixed in the pipeline
+- Session ends when operator trusts the data
+
+**Note:** `shelf-allocation.json` will use operator estimates (fill in rough numbers from memory). Photo-based shelf mapping is optional/future — parked to avoid scope creep.
+
+---
+
 **Architecture:** Single-page vanilla HTML/CSS/JS app. One expanded `demo.json` produced by `build-demo.mjs` from Gold layer data + config files. 8 tabs, all rendered client-side from the JSON. No framework, no backend.
 
 **Tech Stack:** Node.js scripts (ESM), vanilla HTML/CSS/JS, Open-Meteo API (weather).
