@@ -48,6 +48,8 @@ const catalog = readJson(path.join(goldDir, "product-catalog.json"));
 const dailySales = readJson(path.join(goldDir, "daily-sales.json"));
 const monthlyStats = readJson(path.join(goldDir, "monthly-product-stats.json"));
 const storeSummary = readJson(path.join(goldDir, "store-summary.json"));
+const hourlyHeatmap = readJson(path.join(goldDir, "hourly-heatmap.json"));
+const categoryEvolution = readJson(path.join(goldDir, "category-evolution.json"));
 
 check("product-catalog has products with key/name/category", () => {
   assert.ok(catalog.length > 100, `only ${catalog.length} products`);
@@ -108,6 +110,60 @@ check("no duplicate dates in daily-sales", () => {
   assert.equal(dates.length, unique.size, `${dates.length - unique.size} duplicates found`);
 });
 
+// --- Business-logic checks ---
+
+console.log("\nBusiness-logic checks:\n");
+
+check("Saturday avg revenue > Tuesday avg revenue", () => {
+  const byDay = new Map();
+  for (const d of dailySales) {
+    const dow = new Date(d.date).getDay();
+    if (!byDay.has(dow)) byDay.set(dow, { total: 0, count: 0 });
+    const entry = byDay.get(dow);
+    entry.total += d.revenue;
+    entry.count++;
+  }
+  const satAvg = byDay.has(6) ? byDay.get(6).total / byDay.get(6).count : 0;
+  const tueAvg = byDay.has(2) ? byDay.get(2).total / byDay.get(2).count : 0;
+  assert.ok(satAvg > tueAvg, `Saturday avg €${satAvg.toFixed(0)} <= Tuesday avg €${tueAvg.toFixed(0)}`);
+});
+
+check("per-year revenue > €300K in store-summary (catches partial-data bug)", () => {
+  const fullYears = storeSummary.years.filter((y) => !y.isPartial);
+  for (const y of fullYears) {
+    assert.ok(y.totalRevenue > 300000, `${y.year} revenue €${y.totalRevenue} < €300K — likely using incomplete data source`);
+  }
+});
+
+check("no duplicate SKUs in product-catalog", () => {
+  const keys = catalog.map((p) => p.key);
+  const unique = new Set(keys);
+  const dupeCount = keys.length - unique.size;
+  assert.ok(dupeCount === 0, `${dupeCount} duplicate key(s) found — check SKU merge config`);
+});
+
+check("hourly heatmap peak between 10h-13h", () => {
+  const hourTotals = new Map();
+  for (const e of hourlyHeatmap.entries) {
+    const hour = e.hour;
+    hourTotals.set(hour, (hourTotals.get(hour) || 0) + (e.revenue || e.totalRevenue || 0));
+  }
+  let peakHour = 0, peakRev = 0;
+  for (const [h, rev] of hourTotals) {
+    if (rev > peakRev) { peakHour = h; peakRev = rev; }
+  }
+  assert.ok(peakHour >= 10 && peakHour <= 13, `peak hour is ${peakHour}, expected 10-13`);
+});
+
+check("category-evolution has < 40 categories (junk filtered)", () => {
+  assert.ok(categoryEvolution.length < 40, `${categoryEvolution.length} categories — junk filter may not be working`);
+});
+
+check("no DIV. EAN categories in category-evolution", () => {
+  const junk = categoryEvolution.filter((c) => /^DIV\. EAN/i.test(c.category));
+  assert.ok(junk.length === 0, `${junk.length} DIV. EAN categories found`);
+});
+
 // --- Demo.json checks ---
 
 console.log("\nDemo.json:\n");
@@ -146,7 +202,8 @@ check("has products and category mix", () => {
 check("has generatedAt and kpis", () => {
   assert.ok(payload.generatedAt);
   assert.ok(payload.kpis);
-  assert.ok(typeof payload.kpis.revenue2025 === "number");
+  assert.ok(typeof payload.kpis.totalRevenue === "number", "missing kpis.totalRevenue");
+  assert.ok(payload.kpis.totalRevenue > 0, "totalRevenue is zero");
 });
 
 // --- Summary ---
