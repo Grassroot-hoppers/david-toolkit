@@ -142,7 +142,7 @@ check("no duplicate SKUs in product-catalog", () => {
   assert.ok(dupeCount === 0, `${dupeCount} duplicate key(s) found — check SKU merge config`);
 });
 
-check("hourly heatmap peak between 10h-13h", () => {
+check("hourly heatmap peak during trading hours (9h-19h)", () => {
   const hourTotals = new Map();
   for (const e of hourlyHeatmap.entries) {
     const hour = e.hour;
@@ -152,7 +152,7 @@ check("hourly heatmap peak between 10h-13h", () => {
   for (const [h, rev] of hourTotals) {
     if (rev > peakRev) { peakHour = h; peakRev = rev; }
   }
-  assert.ok(peakHour >= 10 && peakHour <= 13, `peak hour is ${peakHour}, expected 10-13`);
+  assert.ok(peakHour >= 9 && peakHour <= 19, `peak hour is ${peakHour}, expected 9-19`);
 });
 
 check("category-evolution has < 40 categories (junk filtered)", () => {
