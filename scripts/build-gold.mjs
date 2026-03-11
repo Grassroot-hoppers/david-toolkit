@@ -231,10 +231,13 @@ function buildCategoryEvolution() {
   }
 
   const byCategory = new Map();
+  const JUNK_RE = /^(DIV\. EAN|Fictif|CARTE CADEAUX|\(uncategorized\))/i;
 
   for (const cf of catFiles) {
     for (const c of cf.categories) {
-      const baseCategory = c.category;
+      const stripped = c.category.replace(/^\d+\.\s*/, "").replace(/\s+\d+%$/, "").trim();
+      if (!stripped || JUNK_RE.test(stripped) || JUNK_RE.test(c.category)) continue;
+      const baseCategory = stripped;
       if (!byCategory.has(baseCategory)) {
         byCategory.set(baseCategory, { category: baseCategory, years: new Map() });
       }
@@ -361,6 +364,39 @@ function buildStoreSummary(dailySales, catalog, categoryEvolution) {
     }
   }
 
+  // Revenue priority cascade: monthly-stats > category-mix > transactions
+  const monthlyRevByYear = new Map();
+  for (const mf of monthlyFiles) {
+    const total = mf.products.reduce((s, p) => s + p.totalRevenue, 0);
+    monthlyRevByYear.set(mf.year, total);
+  }
+  const catMixRevByYear = new Map();
+  for (const cf of catFiles) {
+    const total = cf.categories.reduce((s, c) => s + c.totalRevenue, 0);
+    catMixRevByYear.set(cf.year, total);
+  }
+
+  for (const year of [...monthlyRevByYear.keys(), ...catMixRevByYear.keys()]) {
+    if (!yearStats.has(year)) {
+      yearStats.set(year, { year, totalRevenue: 0, tradingDays: 0, dates: [] });
+    }
+  }
+
+  for (const [year, ys] of yearStats) {
+    const monthlyRev = monthlyRevByYear.get(year);
+    const catMixRev = catMixRevByYear.get(year);
+
+    if (monthlyRev && monthlyRev > 0) {
+      ys.totalRevenue = monthlyRev;
+      ys.revenueSource = "monthly-stats";
+    } else if (catMixRev && catMixRev > 0) {
+      ys.totalRevenue = catMixRev;
+      ys.revenueSource = "category-mix";
+    } else {
+      ys.revenueSource = "transactions";
+    }
+  }
+
   // Enrich with product counts from annual stats
   const productCountByYear = new Map();
   for (const af of annualFiles) {
@@ -380,6 +416,7 @@ function buildStoreSummary(dailySales, catalog, categoryEvolution) {
     .map((ys) => ({
       year: ys.year,
       totalRevenue: Math.round(ys.totalRevenue),
+      revenueSource: ys.revenueSource || "transactions",
       productCount: productCountByYear.get(ys.year) || 0,
       categoryCount: categoryCountByYear.get(ys.year) || 0,
       tradingDays: ys.tradingDays,
