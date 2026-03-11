@@ -1,0 +1,18 @@
+{
+  "_doc": "Category corrections applied during Silver import. Cross-reference runs first; keyword fallback handles unmatched FRAIS items.",
+  "crossReference": {
+    "enabled": true,
+    "sourceYears": [2024, 2025],
+    "targetCategory": "FRAIS",
+    "note": "2023 FRAIS was a catch-all. Products that exist in 2024/2025 with a real category get remapped."
+  },
+  "keywordFallback": [
+    { "target": "FROMAGE", "keywords": ["fromage", "comté", "comte", "brie", "camembert", "morbier", "reblochon", "raclette", "tomme", "beaufort", "gruyère", "gruyere", "emmental", "roquefort", "chèvre", "chevre", "pecorino", "parmesan", "parmigiano", "gorgonzola", "taleggio", "stilton", "gouda", "cheddar", "manchego", "feta", "mozzarella", "burrata", "ricotta", "mascarpone", "scamorza", "provolone", "mont d'or", "mont d or", "époisses", "epoisses", "munster", "maroilles", "pont l'évêque", "livarot", "cantal", "ossau", "laguiole", "salers", "abondance", "langres", "chaource", "brillat", "saint nectaire", "saint-nectaire", "fourme", "bleu d'auvergne", "bleu de gex", "vacherin"] },
+    { "target": "CHARCUTERIE", "keywords": ["jambon", "saucisson", "coppa", "bresaola", "salami", "chorizo", "lard", "pâté", "pate", "rillettes", "terrine", "mortadelle", "mortadella", "pancetta", "guanciale", "nduja", "speck", "prosciutto", "fiocco", "lonza", "capocollo"] },
+    { "target": "OEUF", "keywords": ["oeuf", "oeufs", "œuf", "œufs", "egg"] },
+    { "target": "PATE FRAICHE", "keywords": ["pâte fraîche", "pate fraiche", "tagliatelle", "ravioli", "tortellini", "gnocchi", "pasta fresca", "linguine", "fettuccine", "pappardelle", "orecchiette"] },
+    { "target": "FRUIT ET LEGUME", "keywords": ["tomate", "salade", "carotte", "courgette", "aubergine", "poivron", "concombre", "radis", "navet", "betterave", "chou", "brocoli", "epinard", "fenouil", "artichaut", "asperge", "pomme", "poire", "banane", "orange", "citron", "fraise", "framboise", "cerise", "raisin", "figue", "kiwi", "mangue", "ananas", "avocat", "melon", "pastèque", "peche", "abricot", "prune", "nectarine", "clementine", "mandarine", "pamplemousse", "grenade", "litchi", "fruit de la passion", "datte", "noix de coco"] }
+  ],
+  "productOverrides": {},
+  "junkCategories": ["DIV. EAN", "Fictif", "CARTE CADEAUX", "(uncategorized)"]
+}

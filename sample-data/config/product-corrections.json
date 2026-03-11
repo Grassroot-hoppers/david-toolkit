@@ -1,4 +1,8 @@
 {
+  "_meta": {
+    "skuMerges": [],
+    "doc": "Canonical key + aliases. During Silver import, all alias keys get remapped to canonical before aggregation."
+  },
   "MOZZARELLA DI BUFALA": {
     "supplier": "Terra",
     "displayName": "Mozzarella di Bufala",
@@ -23,25 +27,25 @@
     "perishability": "fast",
     "substituteGroup": "fresh-italian-cheese"
   },
-  "TOMATES DATTERINO BIO": {
+  "TOMATES DATTERINO": {
     "supplier": "Terra",
-    "displayName": "Tomates datterino bio",
+    "displayName": "Tomates datterino",
     "canonicalCategory": "Fruits et légumes frais",
     "weatherSensitivity": "sunny-weekend",
     "perishability": "fast",
     "substituteGroup": "summer-produce"
   },
-  "BASILIC BIO": {
+  "BASILIC": {
     "supplier": "Terra",
-    "displayName": "Basilic bio",
+    "displayName": "Basilic",
     "canonicalCategory": "Fruits et légumes frais",
     "weatherSensitivity": "sunny-weekend",
     "perishability": "fast",
     "substituteGroup": "summer-produce"
   },
-  "POIRE CONFERENCE BIO": {
+  "POIRE CONFERENCE": {
     "supplier": "Interbio",
-    "displayName": "Poire Conférence bio",
+    "displayName": "Poire Conférence",
     "canonicalCategory": "Fruits et légumes frais",
     "weatherSensitivity": "cold-week",
     "perishability": "medium",
