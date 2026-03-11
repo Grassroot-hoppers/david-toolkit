@@ -8,21 +8,16 @@ const outputPath = path.join(root, "demo", "data", "demo.json");
 
 const COPY = {
   en: {
-    evidenceStock: (stock) => `stock ${stock}`,
     evidenceRecent: (quantity) => `recent ${quantity.toFixed(0)} units`,
     evidenceYoY: (yoy) => `YoY ${Math.round(yoy * 100)}%`,
-    evidenceCover: (weeks) => `cover ${weeks.toFixed(1)} weeks`,
-    evidenceSuppressedDemand: (confidence) => `possible suppressed demand ${(confidence * 100).toFixed(0)}%`,
     evidenceWeatherBoost: (boost) => `weather boost x${boost.toFixed(2)}`,
     supplierTask: (product) => `${product.displayName} -> ${product.evidence[0]}, ${product.evidence[1]}`,
     supplierSummaryOrder: (count) => `${count} items need a real decision before cutoff.`,
     supplierSummaryWatch: (count) => `No hard order signal, but ${count} items deserve a look.`,
     supplierSummaryHealthy: "Healthy position. No urgent move today.",
     insightAction: { order: "buy now", watch: "watch carefully", skip: "hold steady" },
-    insightBodyStockout: (name) =>
-      `${name} likely hit a ceiling imposed by stock, not demand. The raw recent sell-through is already strong, and the low remaining stock makes the historical curve understate real appetite.`,
     insightBodyOrder: (name) =>
-      `${name} is moving faster than its baseline while stock cover is tightening. The dashboard treats it as a live order candidate, not a vanity trend.`,
+      `${name} is growing significantly faster than its prior-year baseline. Revenue trend and margin profile both support restocking attention.`,
     insightBodyWatch: (name) =>
       `${name} is not a blind reorder, but it sits in the zone where one more good weekend can change the call.`,
     insightBodySkip: (name) =>
@@ -40,24 +35,19 @@ const COPY = {
         ? `${names[0]} looks like a space-and-cash drag unless the next cycle proves otherwise.`
         : `${names.join(", ")} look like space-and-cash drags unless the next cycle proves otherwise.`,
     methodologyRawVsInterpreted:
-      "Raw exports stay visible. Interpretation cards are explicit inference, not hidden truth."
+      "Raw exports stay visible. Interpretation cards are explicit inference, not hidden truth. No inventory data is available — all signals are growth-based."
   },
   fr: {
-    evidenceStock: (stock) => `stock ${stock}`,
     evidenceRecent: (quantity) => `ventes récentes ${quantity.toFixed(0)} unités`,
     evidenceYoY: (yoy) => `vs N-1 ${Math.round(yoy * 100)}%`,
-    evidenceCover: (weeks) => `couverture ${weeks.toFixed(1)} semaines`,
-    evidenceSuppressedDemand: (confidence) => `demande sous-estimée possible ${(confidence * 100).toFixed(0)}%`,
     evidenceWeatherBoost: (boost) => `effet météo x${boost.toFixed(2)}`,
     supplierTask: (product) => `${product.displayName} -> ${product.evidence[0]}, ${product.evidence[1]}`,
     supplierSummaryOrder: (count) => `${count} articles demandent une vraie décision avant l'heure limite.`,
     supplierSummaryWatch: (count) => `Aucun réassort évident, mais ${count} articles méritent un contrôle.`,
     supplierSummaryHealthy: "Position saine. Aucun mouvement urgent aujourd'hui.",
     insightAction: { order: "à commander", watch: "à surveiller", skip: "à laisser" },
-    insightBodyStockout: (name) =>
-      `${name} a probablement été limité par le stock, pas par la demande. Les ventes récentes sont déjà fortes et le faible reliquat réduit artificiellement la courbe historique.`,
     insightBodyOrder: (name) =>
-      `${name} accélère plus vite que sa base pendant que la couverture de stock se resserre. Le tableau le traite comme un vrai candidat de commande, pas comme une tendance décorative.`,
+      `${name} progresse nettement plus vite que sa base de l'an dernier. La tendance de chiffre d'affaires et le profil de marge justifient une attention au réassort.`,
     insightBodyWatch: (name) =>
       `${name} n'est pas un réassort automatique, mais il est dans la zone où un bon week-end supplémentaire peut faire basculer la décision.`,
     insightBodySkip: (name) =>
@@ -75,7 +65,7 @@ const COPY = {
         ? `${names[0]} ressemble à un frein de place et de cash si le prochain cycle ne contredit pas ce signal.`
         : `${names.join(", ")} ressemblent à des freins de place et de cash si le prochain cycle ne contredit pas ce signal.`,
     methodologyRawVsInterpreted:
-      "Les exports bruts restent visibles. Les cartes d'interprétation sont des inférences explicites, jamais une vérité cachée."
+      "Les exports bruts restent visibles. Les cartes d'interprétation sont des inférences explicites, jamais une vérité cachée. Aucune donnée de stock n'est disponible — tous les signaux reposent sur la croissance."
   }
 };
 
@@ -311,9 +301,6 @@ function buildProducts(context, copy, productsCurrent, productsPrevious, recentM
   const corrections = JSON.parse(fs.readFileSync(path.join(configDir, "product-corrections.json"), "utf8"));
   const supplierMap = loadSupplierMap();
 
-  const hasMonthlyData = [...productsCurrent.values()].some((p) => p.monthly && p.monthly.length > 0);
-  const hasStockData = [...productsCurrent.values()].some((p) => p.stock > 0);
-
   const JUNK_PATTERNS = /^(-TARE|BON[\s.]?REMB|REMB |CARTE CADEAU|FICTIF|#ACOMPTE|RETOUR VIDANGE|RETOUR CAUTION|VIDANGE |CAUTION )/i;
 
   const allKeys = [...productsCurrent.keys()].filter((key) => {
@@ -351,10 +338,6 @@ function buildProducts(context, copy, productsCurrent, productsPrevious, recentM
     const trend = score >= 1.5 ? "hausse" : score <= -1 ? "baisse" : "stable";
     const confidence = Math.max(0.42, Math.min(0.94, 0.52 + Math.abs(score) / 6));
 
-    const demandPressure = 0;
-    const stockCoverWeeks = 0;
-    const stockoutSuspicion = 0;
-
     const action = trend;
 
     const evidence = [];
@@ -378,14 +361,10 @@ function buildProducts(context, copy, productsCurrent, productsPrevious, recentM
       totalRevenuePrevious: previous?.totalRevenue || 0,
       recentQuantity: recency.recentQuantity || current.totalQuantity,
       recentRevenue: recency.recentRevenue || current.totalRevenue,
-      stock: current.stock,
-      demandPressure,
-      stockCoverWeeks,
       yoy,
       action,
       confidence,
-      adjustedDemand: (recency.recentQuantity || current.totalQuantity) * weatherBoost,
-      stockoutSuspicion,
+      weatherAdjustedQuantity: (recency.recentQuantity || current.totalQuantity) * weatherBoost,
       marginRatio: margin.marginRatio,
       marginHt: margin.marginHt,
       evidence,
@@ -430,8 +409,7 @@ function buildProducts(context, copy, productsCurrent, productsPrevious, recentM
             : copy.insightBodySkip(product.displayName),
       confidence: product.confidence,
       evidence: product.evidence,
-      rawRevenue: product.totalRevenue,
-      interpretedDemand: product.adjustedDemand
+      rawRevenue: product.totalRevenue
     }));
 
   return { products, suppliers, insights };
@@ -544,7 +522,37 @@ function buildWeeklyMetrics(dailySales, runDate) {
   };
 }
 
-function buildTimeline(dailySales) {
+function buildTimeline(dailySales, monthlyStats) {
+  // Primary source: monthly-stats per-product series, summed by year-month.
+  // This gives complete revenue (all products), unlike daily-sales which is a
+  // partial transaction export (~40% of real revenue for years with monthly exports).
+  if (monthlyStats && monthlyStats.length > 0) {
+    const monthly = new Map();
+    for (const product of monthlyStats) {
+      for (const s of product.series) {
+        const key = `${s.year}-${String(s.month).padStart(2, "0")}`;
+        monthly.set(key, (monthly.get(key) || 0) + s.revenue);
+      }
+    }
+    if (monthly.size > 0) {
+      // Append recent months not yet covered by monthly-stats (e.g. current partial year)
+      // using daily-sales transaction data as a best-available fallback.
+      // Pre-compute which year-months are already covered so we aggregate all days correctly.
+      if (dailySales) {
+        const coveredMonths = new Set(monthly.keys());
+        for (const d of dailySales) {
+          const key = d.date.slice(0, 7);
+          if (!coveredMonths.has(key)) {
+            monthly.set(key, (monthly.get(key) || 0) + d.revenue);
+          }
+        }
+      }
+      return [...monthly.entries()]
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([month, revenue]) => ({ month, revenue: Math.round(revenue) }));
+    }
+  }
+  // Fallback: daily-sales only (partial — use when no monthly-stats exist)
   if (!dailySales || dailySales.length === 0) return [];
   const monthly = new Map();
   for (const d of dailySales) {
@@ -554,6 +562,26 @@ function buildTimeline(dailySales) {
   return [...monthly.entries()]
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([month, revenue]) => ({ month, revenue: Math.round(revenue) }));
+}
+
+function computeAbcd(products) {
+  const sorted = [...products].sort((a, b) => b.totalRevenue - a.totalRevenue);
+  const total = sorted.reduce((s, p) => s + p.totalRevenue, 0);
+  let cumulative = 0;
+  for (const p of sorted) {
+    cumulative += p.totalRevenue;
+    const share = cumulative / total;
+    if (share <= 0.20) p.rank = "A";
+    else if (share <= 0.50) p.rank = "B";
+    else if (share <= 0.80) p.rank = "C";
+    else p.rank = "D";
+  }
+}
+
+function getWeekOfYear(dateStr) {
+  const d = new Date(dateStr);
+  const start = new Date(d.getFullYear(), 0, 1);
+  return Math.ceil(((d - start) / 86400000 + start.getDay() + 1) / 7);
 }
 
 function buildFromGold() {
@@ -583,6 +611,62 @@ function buildFromGold() {
   const { products, suppliers, insights } = buildProducts(context, copy, productsCurrent, productsPrevious, recentMap, margins);
   console.log(`  Scored: ${products.length} products, ${suppliers.length} suppliers`);
 
+  // ABCD Pareto ranking
+  computeAbcd(products);
+
+  // Build monthly lookup: productName → Map<"YYYY-MM", revenue>
+  const monthlyStatsByName = new Map();
+  if (monthlyStats) {
+    for (const entry of monthlyStats) {
+      const byMonth = new Map();
+      for (const s of entry.series || []) {
+        const key = `${s.year}-${String(s.month).padStart(2, "0")}`;
+        byMonth.set(key, s.revenue);
+      }
+      monthlyStatsByName.set(entry.name, byMonth);
+    }
+  }
+
+  // 36-month history Jan 2023 → Dec 2025
+  const HISTORY_MONTHS = [];
+  for (let y = 2023; y <= 2025; y++) {
+    for (let m = 1; m <= 12; m++) {
+      HISTORY_MONTHS.push(`${y}-${String(m).padStart(2, "0")}`);
+    }
+  }
+  for (const p of products) {
+    const lookup = monthlyStatsByName.get(p.key) || monthlyStatsByName.get(p.displayName);
+    p.monthlyHistory = HISTORY_MONTHS.map(month => lookup ? (lookup.get(month) || 0) : 0);
+  }
+
+  // Suggested order for A+B products (revenue estimate in €)
+  const runMonth = new Date(context.runDate).getMonth();
+  for (const p of products) {
+    if (p.rank !== "A" && p.rank !== "B") { p.suggestedOrder = null; continue; }
+    const monthKey2024 = `2024-${String(runMonth + 1).padStart(2, "0")}`;
+    const monthKey2025 = `2025-${String(runMonth + 1).padStart(2, "0")}`;
+    const lookup = monthlyStatsByName.get(p.key) || monthlyStatsByName.get(p.displayName);
+    const rev2024 = lookup ? (lookup.get(monthKey2024) || 0) : 0;
+    const rev2025 = lookup ? (lookup.get(monthKey2025) || 0) : 0;
+    const avgMonthly = (rev2024 + rev2025) / (rev2024 > 0 && rev2025 > 0 ? 2 : 1);
+    const weeklyEst = avgMonthly / 4;
+    const trend = p.yoy != null ? 1 + p.yoy : 1;
+    const suggested = Math.round(weeklyEst * trend);
+    p.suggestedOrder = suggested > 0 ? {
+      qty: suggested,
+      basis: `Mois ${runMonth + 1}, moy. 2024–2025${p.yoy != null ? `, tendance ${p.yoy > 0 ? "+" : ""}${Math.round(p.yoy * 100)}%` : ""}`
+    } : null;
+  }
+
+  // Inject orderingDays from supplier-map into each supplier entry
+  const supplierMapData = loadSupplierMap();
+  for (const s of suppliers) {
+    const mapEntry = [...supplierMapData.values()].find(
+      v => typeof v === "object" && v.name === s.name && v.orderingDays
+    );
+    s.orderingDays = mapEntry?.orderingDays || [];
+  }
+
   const briefing = buildBriefing(products, suppliers, context, copy);
 
   // Category mix for latest year
@@ -593,9 +677,12 @@ function buildFromGold() {
     for (const ce of categoryEvolution) {
       const clean = cleanCategory(ce.category);
       if (!clean) continue;
-      const yr = ce.years.find((y) => y.year === latestYear) || ce.years[ce.years.length - 1];
-      const prevYr = yearInfo.previous ? ce.years.find((y) => y.year === yearInfo.previous) : null;
+      // Only include categories active in the latest or current year — no fallback to
+      // arbitrary past years, which caused discontinued categories to appear with 0% YoY.
+      const yr = ce.years.find((y) => y.year === latestYear)
+        || ce.years.find((y) => y.year === yearInfo.current);
       if (!yr) continue;
+      const prevYr = yearInfo.previous ? ce.years.find((y) => y.year === yearInfo.previous) : null;
       const existing = merged.get(clean);
       if (existing) {
         existing.totalRevenue += yr.revenue;
@@ -613,18 +700,25 @@ function buildFromGold() {
     }
     const totalRev = [...merged.values()].reduce((s, c) => s + c.totalRevenue, 0);
     categoryMix = [...merged.values()]
-      .map((c) => ({ ...c, share: totalRev > 0 ? (c.totalRevenue / totalRev) * 100 : 0, yoy: c.prevRevenue > 0 ? (c.totalRevenue - c.prevRevenue) / c.prevRevenue : 0 }))
+      .map((c) => ({
+        ...c,
+        share: totalRev > 0 ? (c.totalRevenue / totalRev) * 100 : 0,
+        // null signals "no prior year to compare" (new category) rather than misleading 0%
+        yoy: c.prevRevenue > 0 ? (c.totalRevenue - c.prevRevenue) / c.prevRevenue : null,
+      }))
       .sort((a, b) => b.totalRevenue - a.totalRevenue);
   }
 
   const weeklyMetrics = buildWeeklyMetrics(dailySales, context.runDate);
-  const timeline = buildTimeline(dailySales);
+  const timeline = buildTimeline(dailySales, monthlyStats);
   const supplierRanking = buildSupplierRanking(products);
 
   const macro = {
     years: storeSummary.years.map((y) => ({
       year: y.year,
-      revenue: y.totalRevenue
+      revenue: y.totalRevenue,
+      revenueSource: y.revenueSource,
+      isPartial: y.isPartial || false
     })),
     timeline,
   };
@@ -653,6 +747,23 @@ function buildFromGold() {
     suppliers,
     topProducts: products.slice().sort((left, right) => right.totalRevenue - left.totalRevenue).slice(0, 8),
     slowProducts: products.slice().sort((left, right) => left.totalRevenue - right.totalRevenue).slice(0, 6),
+    products: products
+      .filter(p => p.totalRevenue > 0)
+      .sort((a, b) => b.totalRevenue - a.totalRevenue)
+      .slice(0, 150)
+      .map(p => ({
+        name: p.displayName,
+        category: p.category,
+        supplier: p.supplier,
+        rank: p.rank,
+        revenue2025: p.totalRevenue,
+        revenue2024: p.totalRevenuePrevious || 0,
+        growth: p.yoy,
+        growthLabel: p.action,
+        marginRatio: p.marginRatio || null,
+        monthlyHistory: p.monthlyHistory,
+        suggestedOrder: p.suggestedOrder,
+      })),
     categoryMix,
     supplierRanking,
     insights,
