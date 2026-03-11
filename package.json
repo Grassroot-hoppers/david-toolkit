@@ -10,8 +10,11 @@
     "build:demo": "node scripts/build-demo.mjs",
     "build": "npm run build:demo",
     "build:full": "npm run import && npm run build:gold && npm run build:demo",
+    "update": "npm run import && npm run build:gold && npm run build:demo",
     "serve": "node scripts/serve.mjs",
+    "serve:v2": "node scripts/serve.mjs --root=public",
     "dev": "npm run build:demo && npm run serve",
+    "dev:v2": "npm run build:demo && npm run serve:v2",
     "test": "npm run build:full && node scripts/verify-data.mjs"
   },
   "repository": {

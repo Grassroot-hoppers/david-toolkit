@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1440, initial-scale=1">
+  <title>David — Tableau de Pilotage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- TOP BAR -->
+    <header class="top-bar">
+      <div class="top-bar-left">
+        <span class="store-name">David</span>
+        <span class="store-subtitle">Tableau de pilotage</span>
+      </div>
+      <div class="top-bar-right">
+        <div id="weather-widget" class="weather-widget">
+          <span class="weather-loading">chargement météo…</span>
+        </div>
+        <div id="run-date" class="run-date"></div>
+      </div>
+    </header>
+
+    <!-- TAB NAV -->
+    <nav class="tab-nav">
+      <button class="tab-btn active" data-tab="briefing">Briefing</button>
+      <button class="tab-btn" data-tab="produits">Produits</button>
+      <button class="tab-btn tab-btn--stub" data-tab="categories">Catégories</button>
+      <button class="tab-btn tab-btn--stub" data-tab="fournisseurs">Fournisseurs</button>
+      <button class="tab-btn tab-btn--stub" data-tab="tendances">Tendances</button>
+      <button class="tab-btn tab-btn--stub" data-tab="pipeline">Pipeline</button>
+      <button class="tab-btn tab-btn--stub" data-tab="donnees">Données</button>
+    </nav>
+
+    <!-- TAB CONTENT -->
+    <main class="tab-content">
+      <section id="tab-briefing" class="tab-section active"></section>
+      <section id="tab-produits" class="tab-section"></section>
+      <section id="tab-categories" class="tab-section stub-section"></section>
+      <section id="tab-fournisseurs" class="tab-section stub-section"></section>
+      <section id="tab-tendances" class="tab-section stub-section"></section>
+      <section id="tab-pipeline" class="tab-section stub-section"></section>
+      <section id="tab-donnees" class="tab-section stub-section"></section>
+    </main>
+
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
