@@ -12,7 +12,7 @@ The standard medallion pipeline uses Bronze / Silver / Gold. This project adds a
 
 | Layer | Contents | Written By | Mutability |
 |-------|----------|-----------|------------|
-| **Bronze** | Raw CSVs from MicroConcept POS | POS export | Immutable |
+| **Bronze** | Raw CSVs from POS | POS export | Immutable |
 | **Master Config** | Product identity, category overrides, supplier mappings | Julien (JSON files) | Mutable — editorial layer |
 | **Silver** | Parsed + corrected JSON | `npm run import` | Regenerated each run |
 | **Gold** | Aggregated analytics | `npm run build:gold` | Regenerated each run |
@@ -154,7 +154,7 @@ After pipeline runs clean, review key outputs together:
 
 ## 2024 Margin Integration
 
-User exports `margin-analysis-2024.csv` from MicroConcept Module 46A, drops in `data/real/`, re-runs pipeline. Existing margin importer handles it — no code changes needed.
+User exports `margin-analysis-2024.csv` from the POS, drops in `data/real/`, re-runs pipeline. Existing margin importer handles it — no code changes needed.
 
 ---
 

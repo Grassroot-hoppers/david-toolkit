@@ -146,11 +146,11 @@ When real exports arrive, verify:
 
 ### POS anatomy registry status
 
-The `pos-anatomy.json` file **does not exist** in the current tree. The design plan (`docs/plans/2026-03-09-pos-anatomy-design.md`) was written on Day 1 but the work was done on a branch (`pos-anatomy-source-of-truth`) that is not merged. The phase gate still holds: no app wiring until a real export proves the schema.
+The `pos-anatomy.json` file **does not exist** in the current tree. The design plan was written on Day 1 but the work was done on a branch that is not merged. The phase gate still holds: no app wiring until a real export proves the schema.
 
 ### What the manual research claims about 44A exports
 
-From `scraps/retail-analytics/docs/plans/2026-02-25-microconcept-pos-data-exports-research.md`:
+From earlier POS export research:
 
 - Module 44A has multiple report types: "Détails des ventes", "Quté et CA de ventes", "CA par heure/jour/période", "Tableau de bord"
 - CSV export is explicitly documented for 44A

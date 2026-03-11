@@ -408,7 +408,7 @@ Refactor from current `importMargins()`. Header: `;;Total vente tvac;Total vente
 
 **Step 1:** Create importer:
 1. Skip header
-2. Skip junk rows: `#ACOMPTE`, `Designed by Micro Concept`, zero rows, empty names
+2. Skip junk rows: `#ACOMPTE`, POS footer, zero rows, empty names
 3. Clean product names with `cleanProductName()` (weight prefixes appear here too)
 4. **Aggregate by product key** — multiple rows per product (each = one transaction)
 5. Per aggregated product:

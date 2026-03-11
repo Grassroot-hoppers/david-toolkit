@@ -2,7 +2,7 @@
 
 All real POS exports live in `data/real/` (gitignored). This document describes every file, its source, structure, and what analyses it enables.
 
-**POS system:** MicroConcept ShopConcept (Belgian bio food shop)
+**POS system:** Legacy Windows POS (Belgian bio food shop)
 **Encoding:** CP1252 (semicolon-delimited, European decimal commas)
 **Last updated:** 2026-03-10
 
@@ -121,7 +121,7 @@ categorie_tva;Nb_produits;Total_CA;;;;;
 
 ---
 
-## 4. Margin Analysis (Module 46A — Statistique Marge)
+## 4. Margin Analysis (Statistique Marge)
 
 Per-transaction margin data: sale price, purchase price, margin, ratio. Individual line items (not aggregated by product).
 
@@ -154,7 +154,7 @@ Per-transaction margin data: sale price, purchase price, margin, ratio. Individu
 - Multiple rows per product (each row = one sale transaction, not aggregated)
 - Weight/price prefixes in names: `(00106g/34,68€Kg)PRODUCT` — must be stripped
 - Contains `#ACOMPTE###` payment rows (filter out)
-- Ends with `Designed by Micro Concept Belgium (c)` footer
+- Ends with POS vendor footer row
 - **No date column** — transactions have no timestamps
 - No margin data for 2023 or 2024
 
@@ -300,7 +300,7 @@ Expr1000;article;tva;prix;categorie;EAN;temporaire8;temporaire8
 |----------|---------------|
 | Weather correlation | Open-Meteo API (free) — join with daily transaction totals |
 | Customer loyalty patterns | Module 47 or FIDEL data (GDPR-sensitive) |
-| 2023/2024 margins | 46A margin exports for those years |
+| 2023/2024 margins | Margin exports for those years |
 | Supplier order history | Module 35A ordering data |
 
 ---

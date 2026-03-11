@@ -9,3 +9,7 @@ data/silver/
 data/gold/
 data/external/
 
+# POS vendor documentation (proprietary, never commit)
+docs/POS manual/
+scraps/
+

@@ -60,7 +60,7 @@ Try in order:
 2. Try decoding as UTF-8 — if no replacement characters, use it
 3. Fall back to cp1252 (which is a superset of latin1 for all printable chars)
 
-In Node.js: read as `Buffer`, try `buffer.toString('utf8')`, check for decode errors. If clean, use UTF-8. Otherwise, use a cp1252 decoder. For the common case (MicroConcept exports), cp1252 is expected.
+In Node.js: read as `Buffer`, try `buffer.toString('utf8')`, check for decode errors. If clean, use UTF-8. Otherwise, use a cp1252 decoder. For the common case (POS exports), cp1252 is expected.
 
 Pragmatic shortcut: since Node's `latin1` encoding handles bytes 0x00-0xFF as-is and cp1252 only differs in 0x80-0x9F, we can:
 1. Read as buffer
@@ -226,7 +226,7 @@ data/normalized/
 - No live data source wiring (Open-Meteo, Todoist, Notion) — that's a separate task
 - No UI changes — the dashboard renders whatever `demo.json` contains
 - No supplier mapping expansion — that requires Notion data
-- No POS anatomy registry creation — that's the Phase 1 work from the pos-anatomy-design plan
+- No POS anatomy registry creation — out of scope for this phase
 
 ---
 

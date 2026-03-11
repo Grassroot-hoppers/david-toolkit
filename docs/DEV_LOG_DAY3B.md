@@ -37,7 +37,7 @@ Added a config-driven corrections system between Bronze and Silver:
 
 ## What's Still Open
 
-1. **2024 margin export** — Julien needs to export Module 46A from MicroConcept for 2024
+1. **2024 margin export** — Julien needs to re-export margin stats from the POS for 2024
 2. **FRAIS redistribution in Gold** — category-mix 2023 "FRAIS" €87K needs splitting into FROMAGE/CHARCUTERIE/etc using monthly-stats subcategory ratios
 3. **Category YoY** — shows 0% everywhere because category-mix entries duplicate across VAT rates. Need to align year-over-year calculation.
 4. **Trading day coverage** — transactions only have 100-114 days/year (some days may be missing or have zero transactions)

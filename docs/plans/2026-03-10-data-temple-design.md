@@ -73,7 +73,7 @@ All cleaning happens in memory during import. No intermediate files.
 - CP1252 → UTF-8 encoding
 - European decimal commas → proper floats
 - Weight/price prefixes stripped: `(1360g/2,3€Kg)POTIMARRON BIO` → `POTIMARRON BIO`
-- Summary/footer rows filtered: `total`, `nbclient`, `Designed by Micro Concept`, `#ACOMPTE`
+- Summary/footer rows filtered: `total`, `nbclient`, `POS footer`, `#ACOMPTE`
 - Category typos fixed: `02. FRA` → `02. FROMAGE`
 - Refund rows (`REMB ...`) separated but preserved
 - Product names normalized to stable uppercase key (accent-stripped, whitespace-collapsed)
@@ -176,7 +176,7 @@ Year is detected from filename pattern (`YYYY` in filename) or from column prefi
 |-----|--------|-------------|
 | Weather history (Brussels 2023–2026) | Can't do weather correlation | Open-Meteo API (free). One script writes `data/external/weather-daily.json` |
 | Belgian calendar (holidays, school breaks) | Can't explain anomalies | Static curated JSON in `data/external/calendar.json` |
-| 2023/2024 margins | No profitability data before 2025 | Only if POS can re-export Module 46A for those years |
+| 2023/2024 margins | No profitability data before 2025 | Only if POS can re-export margin stats for those years |
 | Hourly data for 2026 | No peak hour patterns for current year | Export from POS later in the year |
 | Basket grouping | Can't see which products are bought together | Derivable from Silver transactions (same timestamp = same basket). Future Gold computation. |
 

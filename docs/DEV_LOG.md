@@ -65,7 +65,7 @@ Five commits, TDD-style with a dedicated verifier (`scripts/verify-pos-anatomy.m
 
 1. **Canonical registry** — `sample-data/config/pos-anatomy.json` with governance rules, precedence order (live evidence > documentation > older notes)
 2. **Source index + report families** — 8 report families (category stats, daily closure, CA/TVA, evolutionary stats, stock movements, client segments, product listings, client listings)
-3. **Core entities + workflows + companion guide** — 6 entities (product, supplier, client, sale-ticket, stock-movement, assisted-order) and 5 operator workflows (scan-sell-pay, return, standby, stock-entry, assisted-ordering). Companion doc at `docs/research/microconcept-pos-anatomy.md`
+3. **Core entities + workflows + companion guide** — 6 entities (product, supplier, client, sale-ticket, stock-movement, assisted-order) and 5 operator workflows (scan-sell-pay, return, standby, stock-entry, assisted-ordering). Companion doc covering POS entity relationships
 4. **Phase gate + live evidence protocol** — 5 explicit unknowns that need live export verification. Phase 2 is blocked until we capture one real `44A` CSV export
 5. **Data intake structure + 3-year export SOP** — how exports get captured and stored going forward
 
@@ -103,7 +103,7 @@ Tomorrow is the data day. The goal is to go from synthetic demo data to real sho
 - **Clean and normalize the exports** — handle the usual POS export mess: semicolons, Latin-1 encoding, decimal commas, inconsistent date formats. Build or extend parsers as needed.
 - **Build the canonical database** — replace the synthetic `demo.json` with a real data pipeline. One canonical source that feeds the HTML dashboard.
 - **Wire live data sources** — Open-Meteo for weather, Todoist for daily tasks, Notion for supplier cadences. All at build time.
-- **Unblock Phase 2** — the first real `44A` CSV export lifts the phase gate on the POS anatomy registry. Once we see real columns, we can wire the registry into the build.
+- **Unblock Phase 2** — the first real CSV export lifts the phase gate on the data registry. Once we see real columns, we can wire the registry into the build.
 - **Design direction** — if time allows, brainstorm the new visual direction and write the updated Pencil prompt.
 
 ## 2026-03-10 — Day 2: The Data Day

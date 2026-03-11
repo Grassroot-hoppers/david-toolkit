@@ -720,7 +720,7 @@ git commit -m "feat: add business-logic assertions (revenue floor, FRAIS share, 
 
 **Step 1: User exports margin data**
 
-Julien: Export Module 46A (Statistique Marge) for 01/01/2024–31/12/2024 from MicroConcept. Save as `data/real/margin-analysis-2024.csv`.
+Julien: Export margin stats for 01/01/2024–31/12/2024 from the POS. Save as `data/real/margin-analysis-2024.csv`.
 
 **Step 2: Re-run full pipeline**
 
