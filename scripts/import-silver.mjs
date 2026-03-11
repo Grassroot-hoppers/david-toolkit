@@ -8,6 +8,7 @@ import { importTransactions } from "./importers/transactions.mjs";
 import { importCategoryMix } from "./importers/category-mix.mjs";
 import { importMargins } from "./importers/margins.mjs";
 import { importHourlyPatterns } from "./importers/hourly-patterns.mjs";
+import { loadMasterConfig, applyCategoryOverride, resolveSkuMerge } from "./lib/config-loader.mjs";
 
 const root = process.cwd();
 const realDir = path.join(root, "data", "real");
@@ -97,12 +98,23 @@ function run() {
     }
   }
 
+  // --- Pass 2: Apply corrections ---
+  console.log("\nApplying Master Config corrections...\n");
+  const config = loadMasterConfig();
+  const correctionLog = applyCorrections(results, config);
+
+  console.log(`  SKU merges applied: ${correctionLog.skuMerges}`);
+  console.log(`  Categories reclassified: ${correctionLog.categoryReclassified}`);
+  console.log(`    via cross-reference: ${correctionLog.crossRef}`);
+  console.log(`    via keyword: ${correctionLog.keyword}`);
+  console.log(`    unmatched FRAIS: ${correctionLog.unmatched}`);
+
   console.log("\nWriting Silver output:\n");
   fs.mkdirSync(silverDir, { recursive: true });
 
   writeSilver(results);
 
-  const report = buildReport(csvFiles, results);
+  const report = buildReport(csvFiles, results, correctionLog);
   fs.writeFileSync(path.join(silverDir, "import-report.json"), JSON.stringify(report, null, 2));
   console.log(`  import-report.json`);
 
@@ -120,6 +132,76 @@ function countRows(result) {
     || result.margins?.length
     || result.entries?.length
     || 0;
+}
+
+function applyCorrections(results, config) {
+  const log = { skuMerges: 0, categoryReclassified: 0, crossRef: 0, keyword: 0, unmatched: 0, unmatchedProducts: [] };
+
+  const sourceYears = config.crossRefConfig.sourceYears || [];
+  const categoryLookup = new Map();
+
+  for (const r of results) {
+    if (r.error || !sourceYears.includes(r.year)) continue;
+    const products = r.products || [];
+    for (const p of products) {
+      if (p.category && p.category.toUpperCase() !== "FRAIS" && !categoryLookup.has(p.key)) {
+        categoryLookup.set(p.key, p.category);
+      }
+    }
+  }
+
+  console.log(`  Category lookup built: ${categoryLookup.size} product→category mappings from years ${sourceYears.join(", ")}`);
+
+  for (const r of results) {
+    if (r.error) continue;
+
+    const products = r.products || [];
+    for (const p of products) {
+      const mergedKey = resolveSkuMerge(p.key, config.skuMerges);
+      if (mergedKey !== p.key) {
+        p.key = mergedKey;
+        log.skuMerges++;
+      }
+
+      if (p.category) {
+        const { category, source } = applyCategoryOverride(p.key, p.category, categoryLookup, config);
+        if (source !== "original") {
+          p.originalCategory = p.category;
+          p.category = category;
+          p.categorySource = source;
+          log.categoryReclassified++;
+          if (source === "cross-reference") log.crossRef++;
+          else if (source === "keyword") log.keyword++;
+          else if (source === "unmatched") {
+            log.unmatched++;
+            log.unmatchedProducts.push({ key: p.key, name: p.rawName || p.name, year: r.year });
+          }
+        }
+      }
+    }
+
+    const margins = r.margins || [];
+    for (const m of margins) {
+      const mergedKey = resolveSkuMerge(m.key, config.skuMerges);
+      if (mergedKey !== m.key) {
+        m.key = mergedKey;
+        log.skuMerges++;
+      }
+    }
+
+    const transactions = r.transactions || [];
+    for (const t of transactions) {
+      if (t.productKey) {
+        const mergedKey = resolveSkuMerge(t.productKey, config.skuMerges);
+        if (mergedKey !== t.productKey) {
+          t.productKey = mergedKey;
+          log.skuMerges++;
+        }
+      }
+    }
+  }
+
+  return log;
 }
 
 function writeSilver(results) {
@@ -232,13 +314,21 @@ function writeJson(filename, data) {
   fs.writeFileSync(path.join(silverDir, filename), JSON.stringify(data, null, 2));
 }
 
-function buildReport(csvFiles, results) {
+function buildReport(csvFiles, results, correctionLog) {
   return {
     importedAt: new Date().toISOString(),
     sourceDir: realDir,
     totalFiles: csvFiles.length,
     successful: results.filter((r) => !r.error).length,
     skipped: results.filter((r) => r.error).length,
+    corrections: correctionLog ? {
+      skuMerges: correctionLog.skuMerges,
+      categoryReclassified: correctionLog.categoryReclassified,
+      crossReference: correctionLog.crossRef,
+      keyword: correctionLog.keyword,
+      unmatchedFrais: correctionLog.unmatched,
+      unmatchedProducts: correctionLog.unmatchedProducts,
+    } : null,
     files: results.map((r) => ({
       file: r.file,
       fileType: r.fileType || "unknown",
