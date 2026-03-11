@@ -4,7 +4,10 @@ import path from "node:path";
 const root = process.cwd();
 const goldDir = path.join(root, "data", "gold");
 const configDir = path.join(root, "sample-data", "config");
-const outputPath = path.join(root, "demo", "data", "demo.json");
+const outputPaths = [
+  path.join(root, "demo", "data", "demo.json"),
+  path.join(root, "public", "data", "demo.json"),
+];
 
 const COPY = {
   en: {
@@ -751,6 +754,11 @@ function buildFromGold() {
   const timeline = buildTimeline(dailySales, monthlyStats);
   const supplierRanking = buildSupplierRanking(products);
 
+  const heatmapPath = path.join(goldDir, "hourly-heatmap.json");
+  const hourlyHeatmap = fs.existsSync(heatmapPath)
+    ? JSON.parse(fs.readFileSync(heatmapPath, "utf8"))
+    : null;
+
   const macro = {
     years: storeSummary.years.map((y) => ({
       year: y.year,
@@ -759,6 +767,9 @@ function buildFromGold() {
       isPartial: y.isPartial || false
     })),
     timeline,
+    trends: {
+      hourlyHeatmap,
+    },
   };
 
   const kpis = {
@@ -812,9 +823,11 @@ function buildFromGold() {
     }
   };
 
-  fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-  fs.writeFileSync(outputPath, JSON.stringify(payload, null, 2));
-  console.log(`  Wrote ${outputPath}`);
+  for (const p of outputPaths) {
+    fs.mkdirSync(path.dirname(p), { recursive: true });
+    fs.writeFileSync(p, JSON.stringify(payload, null, 2));
+    console.log(`  Wrote ${p}`);
+  }
 }
 
 function buildFromLegacy() {
