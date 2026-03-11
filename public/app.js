@@ -330,14 +330,20 @@ function renderProductRow(p) {
 
 function renderSparkline(history) {
   if (!history || history.length === 0) return `<svg width="80" height="24"></svg>`;
+  const clean = history.map(v => (typeof v === "number" && Number.isFinite(v)) ? v : 0);
   const W = 80, H = 24, pad = 2;
-  const max = Math.max(...history, 1);
-  const points = history.map((v, i) => {
-    const x = pad + (i / (history.length - 1)) * (W - pad * 2);
+  if (clean.length === 1) {
+    const cy = H / 2;
+    return `<svg width="${W}" height="${H}" class="sparkline"><circle cx="${W / 2}" cy="${cy}" r="2" fill="#3B82F6"/></svg>`;
+  }
+  const max = Math.max(...clean, 1);
+  const lastIndex = Math.max(clean.length - 1, 1);
+  const points = clean.map((v, i) => {
+    const x = pad + (i / lastIndex) * (W - pad * 2);
     const y = H - pad - ((v / max) * (H - pad * 2));
     return `${x.toFixed(1)},${y.toFixed(1)}`;
   }).join(" ");
-  const trend = history[history.length - 1] > history[0];
+  const trend = clean[clean.length - 1] > clean[0];
   const color = trend ? "#10B981" : "#EF4444";
   return `<svg width="${W}" height="${H}" class="sparkline"><polyline points="${points}" fill="none" stroke="${color}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 }

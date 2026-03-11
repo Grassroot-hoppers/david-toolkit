@@ -661,13 +661,29 @@ function buildFromGold() {
     } : null;
   }
 
-  // Inject orderingDays from supplier-map into each supplier entry
+  // Normalise orderingDays for every supplier.
+  // Sources (in priority order):
+  //   1. supplier-map.json  — explicit orderingDays arrays (lowercase)
+  //   2. context.json       — orderDay singular string (title-case)
+  const ALL_DAYS = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];
   const supplierMapData = loadSupplierMap();
   for (const s of suppliers) {
     const mapEntry = [...supplierMapData.values()].find(
       v => typeof v === "object" && v.name === s.name && v.orderingDays
     );
-    s.orderingDays = mapEntry?.orderingDays || [];
+    if (mapEntry?.orderingDays?.length) {
+      s.orderingDays = mapEntry.orderingDays;
+    } else if (s.orderDay) {
+      const raw = s.orderDay.toLowerCase().trim();
+      if (raw === "tous les jours") {
+        s.orderingDays = ALL_DAYS;
+      } else {
+        const day = ALL_DAYS.find(d => d === raw);
+        s.orderingDays = day ? [day] : [];
+      }
+    } else {
+      s.orderingDays = [];
+    }
   }
 
   // Resolve product groups from config

@@ -10,8 +10,11 @@
 * Revenue discrepancy resolved: €207K (wrong) → €501K (real) for 2025
 * Category count collapsed: 149 POS entries → 26 clean categories
 * 22 automated verification checks passing
+* Dashboard V2 built and deployed — Tab 1 Briefing + Tab 2 Produits + stubs for 5 future tabs
+* 3 implementation plans written for Day 4: data validation, transaction-first pipeline, dashboard V2 build
+* Workflow discovery: Perplexity deep research between brainstorming and plan execution dramatically improves output quality
 
-Day 3 was about trusting the data. The pipeline existed on paper since Day 2 but had never run end-to-end with real files. When it did, it confirmed some things and broke others. The fixes required building infrastructure that wasn't on the original plan — and that infrastructure turned out to be the most important thing built all week.
+Day 3 was supposed to be about trusting the data. It was — but it was also about losing half a day to distractions, being sick, and then grinding until 21h to make up for it.
 
 ---
 
@@ -97,7 +100,7 @@ Silver import restructured from single-pass to two-pass: parse all CSVs first, a
 `verify-data.mjs` was extended beyond structural checks into business-logic assertions:
 
 - Saturday > Tuesday revenue (if not, the pipeline is broken)
-- Hourly peak between 10h and 13h (confirms market-day pattern)
+- Hourly peak between 9h and 19h (confirms normal trading hours)
 - Revenue floor > €300K per year (catches the annual-stats-only bug)
 - No duplicate SKUs in product catalog
 - No junk categories (DIV. EAN, Fictif) in category-evolution
@@ -107,19 +110,86 @@ All 22 checks pass. These aren't just tests — they're executable documentation
 
 ---
 
-### What's still in flight today
+### Dashboard V2: built in the evening session
+
+The afternoon was supposed to be about the dashboard. Instead, it got eaten (more on that below). So the V2 build happened in the evening grind session, from the plans written during the day.
+
+**Three plans came together:**
+
+1. **Data validation plan** — structured checklist for closing the open pipeline items (FRAIS redistribution, category YoY, 2024 margins)
+2. **Transaction-first pipeline plan** — how to simplify ongoing 2026 data refreshes from 7 CSV types down to 1 (transaction lines only, with product-master and margin-analysis as periodic enrichment)
+3. **Dashboard V2 build plan** — 1,253 lines of detailed implementation across 7 phases: config files, build-demo expansion, tab framework, Tab 1 briefing, Tab 2 products, stub tabs, polish
+
+The V2 dashboard build followed the plan task-by-task:
+
+**Config layer** — `product-groups.json` seeded with 10 keyword-matched product groups (pommes, tomates, fromages, oeufs, pâtes, huiles, confitures, chocolats, biscuits, vins). Supplier ordering days added to `supplier-map.json`.
+
+**Build-demo expansion** — ABCD Pareto ranking applied to all products (top 20% cumulative revenue = A, next 30% = B, next 30% = C, bottom 20% = D). 36-month revenue history attached per product for sparklines. Ordering suggestions computed for A+B products. Hourly heatmap piped through to the payload.
+
+**Tab framework** — `public/index.html` + `public/styles.css` + `public/app.js`. Dark theme, Inter + DM Mono fonts, 7-tab navigation bar. Tab switching, data fetch at page load.
+
+**Tab 1: Briefing du jour** — date context card, weekly performance gauge with YoY zone colouring (verte/bleue/rouge), next-week revenue prediction, ordering reminders by day of week, Open-Meteo weather integration with rain signal.
+
+**Tab 2: Produits** — 150 products with ABCD badges, inline SVG sparklines (36 months), growth arrows, category and rank filters, live search. Product groups accordion at the top with 12-month seasonality bar charts. Ordering suggestions on A/B products.
+
+**Tabs 3–7** — polished stubs with real data previews: Catégories, Fournisseurs, Tendances, Pipeline de données, Données.
+
+**Repo cleanup** — POS vendor documentation removed from the repo (proprietary content that should never have been committed). References sanitized for public readability.
+
+---
+
+### The lost afternoon: three lessons
+
+Day 3 had a chunk ripped out of the middle. Three things happened that weren't on the plan.
+
+**1. Email sorting with Claude co-work** — spent a significant block trying to use Claude's collaborative mode to sort through a backlog of emails. The results were poor. The AI couldn't maintain context across email threads, kept losing the classification logic, and the manual overhead of correcting it was higher than just doing it myself. Low-value experiment that should have been abandoned after 15 minutes.
+
+**2. OpenClaw bot attempt** — tried to build an OpenClaw bot. Went nowhere. Another rabbit hole that consumed time for zero output. The pattern: interesting-sounding side project + illness-lowered judgment = wasted hours.
+
+**3. Being deeply sick while the shop performs well** — the shop is doing well and needs attention. Being ill makes every context switch between shop operations and hackathon work twice as expensive. The combination of fever-brain and ambitious side experiments is how you lose an afternoon.
+
+The fix was simple and painful: work until 21h. The evening session produced the entire Dashboard V2, all three implementation plans, and the repo cleanup. Productivity under pressure was higher than the scattered afternoon — because the scope was locked and the plan was written.
+
+---
+
+### Workflow discovery: Perplexity as a research layer
+
+The most valuable process insight of the day: **inserting a Perplexity deep research pass between writing plans and executing them dramatically improves the quality of both.**
+
+The workflow that emerged:
+
+1. **Brainstorm** (Cursor + superpowers brainstorming skill) → rough shape of what we want
+2. **Perplexity deep research** → real-world patterns, architecture precedents, edge cases we hadn't considered
+3. **Write plan** (Cursor + writing-plans skill) → now grounded in both our codebase and external knowledge
+4. **Execute plan** (Cursor + executing-plans skill) → confidence is higher, fewer mid-execution pivots
+
+The Perplexity step caught things the AI wouldn't have surfaced on its own — the Medallion Architecture pattern for the data pipeline came from this kind of research pass on Day 2. Today, the transaction-first pipeline simplification was shaped by researching how POS data pipelines work in practice.
+
+**Next step:** create a dedicated skill that generates an optimal Perplexity deep research prompt for a given planning context. The skill would take the brainstorm output + codebase context and produce a targeted research query that maximizes the value of the Perplexity pass. This turns a manual "go search for a while" step into a structured part of the pipeline.
+
+---
+
+### Experiment queued: GitHub agentic workflow for overnight code quality
+
+Another idea that emerged today: **use GitHub's agentic CI workflow to scrub the codebase overnight.** The concept: push the day's work before bed, let an automated agent review the code for consistency, dead code, naming issues, test gaps, and structural problems. Wake up to a PR with improvements.
+
+This is the Day 4 experiment. If it works, it means every morning starts with a cleaner codebase than you left the night before — compounding quality without consuming daytime attention.
+
+---
+
+### What's still in flight
 
 **1. 2024 margin export**
-The margin analysis CSVs only go back to 2025. The POS can re-export historical margin data. Dropping `margin-analysis-2024.csv` into `data/real/` and running `npm run build:full` should pick it up automatically — the Silver importer already handles the format.
+The margin analysis CSVs only go back to 2025. The POS can re-export historical margin data. Dropping `margin-analysis-2024.csv` into `data/real/` and running `npm run build:full` should pick it up automatically.
 
 **2. FRAIS redistribution in Gold**
-The Master Config cross-reference runs during Silver import, but FRAIS is an aggregated category in category-mix — there's no product-level join to make at Silver time. The redistribution needs to happen in Gold: use 2023 monthly-stats subcategory ratios (which have real FROMAGE/CHARCUTERIE/etc. product-level data) to proportionally split the €87K FRAIS bucket in category-evolution. This converts a misleading 200%+ FROMAGE growth figure into an honest one.
+The Master Config cross-reference runs during Silver import, but FRAIS is an aggregated category in category-mix — there's no product-level join to make at Silver time. The redistribution needs to happen in Gold: use 2023 monthly-stats subcategory ratios to proportionally split the €87K FRAIS bucket in category-evolution.
 
 **3. Category YoY calculations (showing 0%)**
-Category-mix exports duplicate each category across VAT rates (e.g., FROMAGE appears as both 6% and 0% VAT rows). The current YoY computation likely matches on exact category+VAT key rather than on normalized category name. Needs investigation in `build-gold.mjs` — probably a one-line groupBy change.
+Category-mix exports duplicate each category across VAT rates. The current YoY computation matches on exact category+VAT key rather than on normalized category name. Needs investigation in `build-gold.mjs`.
 
-**4. Gold data test**
-A structured read-through of all 7 Gold files against expected values. Raclette should peak in winter. Tomatoes in summer. Eggs flat. The Saturday heatmap should confirm the 11h spike. This is the final sanity check before the Gold layer can be called production-ready.
+**4. Transaction-first pipeline**
+Plan is written. Implementation simplifies ongoing 2026 refreshes from 7 CSV types to 1.
 
 ---
 
@@ -130,25 +200,34 @@ A structured read-through of all 7 Gold files against expected values. Raclette 
 - **Validation sessions come before implementation.** The morning Q&A produced better work items than any planning doc would have. The AI's blind spots become the task list.
 - **Verification assertions are part of the pipeline.** Not optional, not a nice-to-have. If the business logic fails, the build fails.
 - **FRAIS redistribution deferred to Gold.** Doing it in Silver would require product-name heuristics operating on aggregated data — fragile. Gold has the right inputs (monthly-stats subcategory ratios) to do it cleanly.
+- **Perplexity deep research is now part of the planning workflow.** Not optional — the quality delta is too large to skip.
+- **Side experiments get 15 minutes, then a kill decision.** The email sorting and OpenClaw bot would have been fine as 15-minute spikes. They became problems because the kill decision wasn't made.
 
 ## Day 3 by the numbers
 
 | Metric | Count |
 |--------|-------|
-| Commits | 7 |
+| Commits | 18 |
 | Silver files generated | 21 |
 | Gold files generated | 7 |
 | Verification checks | 22 (all passing) |
 | Revenue correction | €207K → €501K |
 | Categories collapsed | 149 → 26 |
-| Design + plan docs written | 2 |
+| Dashboard V2 tabs built | 2 live + 5 stubs |
+| Implementation plans written | 3 (~1,660 lines total) |
+| Hours lost to distractions | ~3 |
+| Hours worked to compensate | until 21h |
 
 ## What's next (Day 4)
 
-Day 4 plan is in `docs/plans/2026-03-12-day4-data-validation-plan.md`. The focus is finishing what Day 3 started:
+**Main focus:** Tab 1 and Tab 2 to MVP quality. Plan: `docs/plans/2026-03-12-day4-next-steps-plan.md`.
 
-1. Close the open items from today (FRAIS redistribution, category YoY, 2024 margins)
-2. Run structured validation on all Gold files
-3. Confirm daily-sales, hourly-heatmap, and monthly-product-stats contain what they're supposed to contain
-4. Commit a clean pipeline state with all fixes in place
-5. Begin Tab 1 of the V2 dashboard (Briefing du jour) if time allows
+- **Correct** — Fix data binding and logic (demo.json shape vs Tab 1/Tab 2, prediction week, group member match, suggested order display).
+- **Good** — Viewport and layout (responsive briefing grid, product list at 1024px), empty and error states.
+- **Usable** — Labels, tooltips, no console errors, basic a11y.
+
+Out of scope for Day 4: Tabs 3–7, new features, transaction-first pipeline. Estimate: 2–4 hours.
+
+**Backlog (other plans):** Data validation (FRAIS, category YoY), transaction-first pipeline (7 → 1 CSV), full dashboard V2 polish. Experiment: GitHub agentic overnight code review.
+
+**Personal:** Rest. Focused and bounded — not scatter-then-grind.

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-11T19:48:23.005Z",
+  "generatedAt": "2026-03-11T19:56:36.736Z",
   "productLocale": "fr-BE",
   "store": "Chez Julien",
   "location": "Bruxelles",
@@ -7423,7 +7423,9 @@
         "Link Ean :8411317301278 -> ventes récentes 38 unités, vs N-1 82%"
       ],
       "summary": "32 articles demandent une vraie décision avant l'heure limite.",
-      "orderingDays": []
+      "orderingDays": [
+        "lundi"
+      ]
     },
     {
       "name": "Affineur",
@@ -7506,7 +7508,9 @@
         "Tomme du Larzac -> ventes récentes 25724 unités, vs N-1 -1%"
       ],
       "summary": "Aucun réassort évident, mais 1 articles méritent un contrôle.",
-      "orderingDays": []
+      "orderingDays": [
+        "lundi"
+      ]
     },
     {
       "name": "Pantry",
@@ -7518,7 +7522,9 @@
       "skip": [],
       "tasks": [],
       "summary": "Position saine. Aucun mouvement urgent aujourd'hui.",
-      "orderingDays": []
+      "orderingDays": [
+        "mardi"
+      ]
     },
     {
       "name": "Interbio",
@@ -29996,7 +30002,15 @@
       "skip": [],
       "tasks": [],
       "summary": "Position saine. Aucun mouvement urgent aujourd'hui.",
-      "orderingDays": []
+      "orderingDays": [
+        "lundi",
+        "mardi",
+        "mercredi",
+        "jeudi",
+        "vendredi",
+        "samedi",
+        "dimanche"
+      ]
     }
   ],
   "topProducts": [
