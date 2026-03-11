@@ -6,19 +6,42 @@
 
 ---
 
-## Pre-Phase: Data Validation Session (Day 3 addition)
+## Pre-Phase: Data Validation Session (separate chat session)
 
-**Before writing any code**, run a live Q&A session with the operator.
+**This runs in a dedicated chat session, before any code is written.**
 
-The operator asks 10-15 questions they know the answer to from running the shop ("what was our best week last year?", "which category grew the most?", "who is our biggest supplier by revenue?"). The AI answers from the pipeline data. Any wrong answers reveal pipeline issues to fix before building on top of them.
+### Part 1 — Shop narrative (AI → operator)
 
-**How to run it:**
-- Operator asks questions one at a time in chat
-- AI reads `public/data/demo.json` and Gold files to answer
-- Discrepancies get logged and fixed in the pipeline
-- Session ends when operator trusts the data
+Read all pipeline data (`public/data/demo.json`, `data/gold/*.json`) and write a full long-form narrative summary of the shop across 3 years. This is addressed to the shop owner, in plain language. Not a list of stats — a story.
 
-**Note:** `shelf-allocation.json` will use operator estimates (fill in rough numbers from memory). Photo-based shelf mapping is optional/future — parked to avoid scope creep.
+Cover:
+- Overall revenue trajectory: what years looked like, peaks, dips, growth rate
+- Which categories define the shop (the core, what drives the business)
+- Which categories are growing vs shrinking
+- The top products — what they are, how they've moved
+- Supplier landscape — who the key partners are, any patterns
+- Seasonal shape of the business — what weeks/months matter most
+- Any anomalies or surprises visible in the data
+
+Format: flowing prose, 600–1000 words. Operator reads it and corrects anything that's wrong ("that's not right — December is actually our worst month because we close for 2 weeks"). Each correction reveals a pipeline issue or a data gap.
+
+### Part 2 — Q&A (operator → AI)
+
+Operator fires 10–15 questions they know the real answer to from running the shop. AI answers from the data. Examples:
+- "What was our best single week last year?"
+- "Which supplier do we buy the most from by volume?"
+- "What's our biggest category by revenue?"
+- "How did we do the week before Christmas vs the week before Easter?"
+
+Each wrong answer = a bug to fix before building on top of it.
+
+### Output
+
+- A list of confirmed pipeline issues or data gaps found during the session
+- Corrections applied to config files (`category-map.json`, etc.) if needed
+- A written "data trust verdict": what we can rely on, what's approximate, what's missing
+
+**Note:** `shelf-allocation.json` will use operator estimates (rough numbers from memory). Photo-based shelf mapping is optional/future — parked to avoid scope creep.
 
 ---
 
