@@ -667,6 +667,44 @@ function buildFromGold() {
     s.orderingDays = mapEntry?.orderingDays || [];
   }
 
+  // Resolve product groups from config
+  const groupsConfig = JSON.parse(fs.readFileSync(path.join(configDir, "product-groups.json"), "utf8"));
+  const productGroups = [];
+  for (const [key, cfg] of Object.entries(groupsConfig)) {
+    if (key === "_doc") continue;
+    const keywords = cfg.keywords || [];
+    const members = products.filter(p => {
+      const nameLower = (p.displayName || "").toLowerCase();
+      return keywords.some(kw => nameLower.includes(kw.toLowerCase()));
+    });
+    if (members.length === 0) continue;
+
+    const aggregateRevenue2025 = members.reduce((s, p) => s + p.totalRevenue, 0);
+    const aggregateRevenue2024 = members.reduce((s, p) => s + (p.totalRevenuePrevious || 0), 0);
+
+    // 12-month seasonality (2025 only) — indices 24-35 of monthlyHistory
+    const seasonality = Array(12).fill(0);
+    for (const p of members) {
+      if (!p.monthlyHistory) continue;
+      for (let m = 0; m < 12; m++) {
+        seasonality[m] += p.monthlyHistory[24 + m] || 0;
+      }
+    }
+
+    const topMember = [...members].sort((a, b) => b.totalRevenue - a.totalRevenue)[0];
+    productGroups.push({
+      key,
+      displayName: cfg.displayName,
+      members: members.map(p => p.displayName),
+      aggregateRevenue2025,
+      aggregateRevenue2024,
+      yoy: aggregateRevenue2024 > 0 ? (aggregateRevenue2025 - aggregateRevenue2024) / aggregateRevenue2024 : null,
+      seasonality,
+      rank: topMember.rank || "C",
+    });
+  }
+  productGroups.sort((a, b) => b.aggregateRevenue2025 - a.aggregateRevenue2025);
+
   const briefing = buildBriefing(products, suppliers, context, copy);
 
   // Category mix for latest year
@@ -747,6 +785,7 @@ function buildFromGold() {
     suppliers,
     topProducts: products.slice().sort((left, right) => right.totalRevenue - left.totalRevenue).slice(0, 8),
     slowProducts: products.slice().sort((left, right) => left.totalRevenue - right.totalRevenue).slice(0, 6),
+    productGroups,
     products: products
       .filter(p => p.totalRevenue > 0)
       .sort((a, b) => b.totalRevenue - a.totalRevenue)
