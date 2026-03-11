@@ -1,0 +1,43 @@
+{
+  "_doc": "Product groups. keywords match product name substrings (case-insensitive). members are resolved at build time.",
+  "pommes": {
+    "displayName": "Pommes",
+    "keywords": ["pomme jonagold", "pomme granny", "pomme pink", "pomme golden", "pomme boskoop", "pomme elstar", "pomme jazz"]
+  },
+  "tomates": {
+    "displayName": "Tomates",
+    "keywords": ["tomate", "cherry tom", "tomates"]
+  },
+  "fromages": {
+    "displayName": "Fromages (top)",
+    "keywords": ["raclette", "cheddar", "emmental", "gruyère", "gruyere", "comté", "comte", "brie", "camembert", "mozzarella", "parmesan", "gouda"]
+  },
+  "oeufs": {
+    "displayName": "Oeufs",
+    "keywords": ["oeuf", "oeufs"]
+  },
+  "pates": {
+    "displayName": "Pâtes",
+    "keywords": ["penne", "spaghetti", "tagliatelle", "fusilli", "rigatoni", "farfalle", "linguine", "pâtes", "pasta"]
+  },
+  "huiles": {
+    "displayName": "Huiles",
+    "keywords": ["huile d'olive", "huile olive", "huile de tournesol", "huile tournesol", "huile de noix", "huile noix"]
+  },
+  "confitures": {
+    "displayName": "Confitures & miels",
+    "keywords": ["confiture", "miel", "gelée de"]
+  },
+  "chocolats": {
+    "displayName": "Chocolats",
+    "keywords": ["chocolat", "praline", "pralinés"]
+  },
+  "biscuits": {
+    "displayName": "Biscuits & gâteaux",
+    "keywords": ["biscuit", "gâteau", "gateau", "cookie", "sablé", "speculoos", "stroopwafel"]
+  },
+  "vins": {
+    "displayName": "Vins",
+    "keywords": ["vin blanc", "vin rouge", "vin rosé", "vin rose", "champagne", "crémant", "cava"]
+  }
+}
