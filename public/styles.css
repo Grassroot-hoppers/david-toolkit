@@ -277,13 +277,74 @@ html, body {
   font-weight: 700;
   font-family: var(--font-mono);
   color: var(--zone-bleu);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .prediction-basis {
   font-size: 11px;
   color: var(--text-muted);
   line-height: 1.5;
+  margin-bottom: 6px;
+}
+
+.pred-dates,
+.perf-dates,
+.perf-yoy-dates {
+  font-weight: 400;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-left: 4px;
+}
+
+.prediction-factors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.pred-factor {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+}
+
+.pred-factor--sep {
+  color: var(--text-muted);
+}
+
+.pred-factor--holiday {
+  color: #f59e0b;
+  font-weight: 600;
+}
+
+.prediction-weather {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-style: italic;
+  margin-bottom: 4px;
+}
+
+.prediction-weather--loading {
+  color: var(--text-muted);
+}
+
+.prediction-holidays {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.holiday-badge {
+  font-size: 11px;
+  padding: 2px 7px;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: 10px;
+  color: #d97706;
+  white-space: nowrap;
 }
 
 .ordering-list {
@@ -301,6 +362,22 @@ html, body {
   background: var(--bg-card-inner);
   border-radius: 6px;
   border-left: 3px solid var(--accent);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.ordering-name {
+  flex: 1;
+}
+
+.ordering-cutoff {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  white-space: nowrap;
 }
 
 .ordering-quiet {
@@ -317,6 +394,134 @@ html, body {
   font-size: 14px;
   color: var(--text-secondary);
   line-height: 1.5;
+}
+
+.briefing-card--forecast {
+  grid-column: 1 / -1;
+}
+
+.wx-forecast-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.wx-forecast-header .card-label {
+  margin-bottom: 0;
+}
+
+.wx-radar-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 3px 8px;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  transition: color 0.12s, border-color 0.12s;
+}
+
+.wx-radar-link:hover {
+  color: var(--zone-bleu);
+  border-color: var(--zone-bleu);
+}
+
+.wx-forecast-strip {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+  padding-bottom: 4px;
+}
+
+.wx-forecast-strip::-webkit-scrollbar {
+  height: 4px;
+}
+
+.wx-forecast-strip::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.wx-forecast-strip::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+
+.wx-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 10px 8px;
+  background: var(--bg-card-inner);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  min-width: 56px;
+  flex-shrink: 0;
+}
+
+.wx-day--today {
+  border-color: var(--zone-bleu);
+  background: rgba(59, 130, 246, 0.08);
+}
+
+.wx-day--rain {
+  border-color: rgba(96, 165, 250, 0.25);
+}
+
+.wx-day-name {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.wx-day--today .wx-day-name {
+  color: var(--zone-bleu);
+}
+
+.wx-day-num {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+  line-height: 1;
+}
+
+.wx-day-emoji {
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.wx-day-max {
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.wx-day-min {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  line-height: 1;
+}
+
+.wx-day-rain {
+  font-size: 9px;
+  font-family: var(--font-mono);
+  color: #60a5fa;
+  line-height: 1;
+}
+
+.wx-day-rain--empty {
+  height: 11px;
 }
 
 /* ========================================

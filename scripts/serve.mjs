@@ -4,7 +4,7 @@ import path from "node:path";
 
 const rootArg = process.argv.find(a => a.startsWith("--root="));
 const portArg = process.argv.find(a => a.startsWith("--port="));
-const root = path.join(process.cwd(), rootArg ? rootArg.split("=")[1] : "demo");
+const root = path.join(process.cwd(), rootArg ? rootArg.split("=")[1] : "public");
 const port = Number(portArg ? portArg.split("=")[1] : (process.env.PORT || 4173));
 
 const types = {

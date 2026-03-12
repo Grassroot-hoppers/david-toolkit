@@ -16,6 +16,11 @@
     "displayName": "Oeufs",
     "keywords": ["oeuf", "oeufs"]
   },
+  "boeuf": {
+    "displayName": "Boeuf & Viandes",
+    "keywords": ["boeuf", "veau", "steak", "entrecote", "entrecôte", "hamburger de boeuf", "filet mignon", "brochette", "hache boeuf", "bouilli de boeuf", "bouillon de boeuf"],
+    "excludeKeywords": ["tomate"]
+  },
   "pates": {
     "displayName": "Pâtes",
     "keywords": ["penne", "spaghetti", "tagliatelle", "fusilli", "rigatoni", "farfalle", "linguine", "pâtes", "pasta"]

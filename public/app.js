@@ -43,9 +43,131 @@ function formatDate(d) {
   });
 }
 
+// ISO 8601 week number (week 1 = first Thursday, weeks start Monday)
 function getWeekNumber(d) {
-  const start = new Date(d.getFullYear(), 0, 1);
-  return Math.ceil(((d - start) / 86400000 + start.getDay() + 1) / 7);
+  const utc = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  const day = utc.getUTCDay() || 7; // Mon=1 … Sun=7
+  utc.setUTCDate(utc.getUTCDate() + 4 - day); // shift to Thursday
+  const yearStart = new Date(Date.UTC(utc.getUTCFullYear(), 0, 1));
+  return Math.ceil(((utc - yearStart) / 86400000 + 1) / 7);
+}
+
+// ── Belgian public holidays (client-side) ─────────────────────────────────────
+
+function easterDate(year) {
+  const a = year % 19, b = Math.floor(year / 100), c = year % 100;
+  const d = Math.floor(b / 4), e = b % 4, f = Math.floor((b + 8) / 25);
+  const g = Math.floor((b - f + 1) / 3);
+  const h = (19 * a + b - d - g + 15) % 30;
+  const i = Math.floor(c / 4), k = c % 4;
+  const l = (32 + 2 * e + 2 * i - h - k) % 7;
+  const m = Math.floor((a + 11 * h + 22 * l) / 451);
+  const month = Math.floor((h + l - 7 * m + 114) / 31) - 1;
+  const day = ((h + l - 7 * m + 114) % 31) + 1;
+  return new Date(Date.UTC(year, month, day));
+}
+
+function belgianHolidays(year) {
+  const easter = easterDate(year);
+  const add = (dt, n) => { const r = new Date(dt); r.setUTCDate(r.getUTCDate() + n); return r; };
+  const fmt = (dt) => dt.toISOString().slice(0, 10);
+  return [
+    { date: `${year}-01-01`, name: "Jour de l'An",                   region: "national" },
+    { date: fmt(add(easter, 1)),  name: "Lundi de Pâques",            region: "national" },
+    { date: `${year}-05-01`, name: "Fête du Travail",                 region: "national" },
+    { date: fmt(add(easter, 39)), name: "Ascension",                  region: "national" },
+    { date: fmt(add(easter, 50)), name: "Lundi de Pentecôte",         region: "national" },
+    { date: `${year}-07-11`, name: "Fête Communauté flamande",        region: "flanders" },
+    { date: `${year}-07-21`, name: "Fête nationale belge",            region: "national" },
+    { date: `${year}-08-15`, name: "Assomption",                      region: "national" },
+    { date: `${year}-09-27`, name: "Fête Communauté française",       region: "wallonia" },
+    { date: `${year}-11-01`, name: "Toussaint",                       region: "national" },
+    { date: `${year}-11-11`, name: "Armistice",                       region: "national" },
+    { date: `${year}-12-25`, name: "Noël",                            region: "national" },
+  ];
+}
+
+function holidaysInRange(startStr, endStr) {
+  const sy = parseInt(startStr.slice(0, 4), 10);
+  const ey = parseInt(endStr.slice(0, 4), 10);
+  const result = [];
+  for (let y = sy; y <= ey; y++) {
+    for (const h of belgianHolidays(y)) {
+      if (h.date >= startStr && h.date <= endStr) result.push(h);
+    }
+  }
+  return result.sort((a, b) => a.date.localeCompare(b.date));
+}
+
+// ── Prediction engine ─────────────────────────────────────────────────────────
+
+function computePrediction(wm, yearlyGrowth, weatherDaily = null) {
+  const base = wm?.nextWeekSameWeekLastYear;
+  if (!base) return null;
+
+  // Local weekly trend: how did last week this year compare to last year's same week?
+  const localFactor = wm.sameWeekLastYear > 0
+    ? wm.lastWeekRevenue / wm.sameWeekLastYear
+    : 1 + yearlyGrowth;
+
+  // Blended trend: 60% local (more responsive), 40% full-year trend
+  const annualFactor  = 1 + yearlyGrowth;
+  const blendedFactor = 0.6 * localFactor + 0.4 * annualFactor;
+
+  // Holiday factor: Belgian public holidays in the target week drive foot traffic up
+  const holidays = wm.nextWeekHolidays?.length
+    ? wm.nextWeekHolidays
+    : holidaysInRange(wm.nextWeekStart, wm.nextWeekEnd);
+  const holidayCount  = holidays.length;
+  const holidayFactor = holidayCount > 0 ? 1 + holidayCount * 0.05 : 1.0;
+
+  // Weather factor: derived from the 14-day forecast for next week
+  let weatherFactor = 1.0;
+  let weatherNote   = null;
+  if (weatherDaily && wm.nextWeekStart && wm.nextWeekEnd) {
+    const nextWeekDays = weatherDaily.time
+      .map((t, i) => ({
+        date:  t,
+        tmax:  weatherDaily.temperature_2m_max[i],
+        rain:  weatherDaily.precipitation_sum?.[i] || 0,
+        code:  weatherDaily.weathercode[i],
+      }))
+      .filter(d => d.date >= wm.nextWeekStart && d.date <= wm.nextWeekEnd);
+
+    if (nextWeekDays.length > 0) {
+      const avgMax    = nextWeekDays.reduce((s, d) => s + d.tmax, 0) / nextWeekDays.length;
+      const totalRain = nextWeekDays.reduce((s, d) => s + d.rain, 0);
+      const sunDays   = nextWeekDays.filter(d => d.code <= 3).length;
+
+      if (sunDays >= 4 && avgMax >= 18) {
+        weatherFactor = 1.05;
+        weatherNote   = "beau temps prévu ☀️";
+      } else if (sunDays >= 3 && avgMax >= 14) {
+        weatherFactor = 1.02;
+        weatherNote   = "temps clément prévu";
+      } else if (totalRain > 25 || (avgMax < 3)) {
+        weatherFactor = 0.96;
+        weatherNote   = totalRain > 25 ? "semaine pluvieuse 🌧" : "temps très froid ❄️";
+      } else if (totalRain > 12) {
+        weatherFactor = 0.98;
+        weatherNote   = "pluie modérée prévue";
+      }
+    }
+  }
+
+  return {
+    predictedRevenue: Math.round(base * blendedFactor * holidayFactor * weatherFactor),
+    base,
+    localFactor,
+    annualFactor,
+    blendedFactor,
+    holidayFactor,
+    holidayCount,
+    holidays,
+    weatherFactor,
+    weatherNote,
+    yearlyGrowth,
+  };
 }
 
 function formatEuro(n) {
@@ -62,6 +184,62 @@ const DAY_NAMES_FR = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendre
 // Tab 1 — Briefing du jour
 // ============================================================
 
+// Full-year YoY growth rate (filters partial years)
+function annualGrowthRate(data) {
+  const fullYears = (data.macro?.years || []).filter(y => !y.isPartial);
+  return fullYears.length >= 2
+    ? (fullYears[fullYears.length - 1].revenue / fullYears[fullYears.length - 2].revenue) - 1
+    : 0;
+}
+
+// Renders the prediction card HTML (called initially without weather, then updated)
+function renderPredictionCard(wm, pred, nextWeekNum) {
+  if (!pred) return "";
+
+  const signPct = (f) => `${f > 1 ? "+" : ""}${Math.round((f - 1) * 100)}%`;
+  const localLabel  = signPct(pred.localFactor);
+  const annualLabel = signPct(pred.annualFactor);
+
+  const holidayHtml = pred.holidays.length > 0
+    ? `<div class="prediction-holidays">
+        ${pred.holidays.map(h => {
+          const flag = h.region === "flanders" ? "🇧🇪🟡" : h.region === "wallonia" ? "🇧🇪🔴" : "🇧🇪";
+          return `<span class="holiday-badge">${flag} ${h.name}</span>`;
+        }).join(" ")}
+       </div>`
+    : "";
+
+  const weatherHtml = pred.weatherNote
+    ? `<div class="prediction-weather">${pred.weatherNote} → ${signPct(pred.weatherFactor)}</div>`
+    : `<div class="prediction-weather prediction-weather--loading">météo S${nextWeekNum} en cours…</div>`;
+
+  const factorsHtml = `
+    <div class="prediction-factors">
+      <span class="pred-factor">tendance locale ${localLabel}</span>
+      <span class="pred-factor pred-factor--sep">·</span>
+      <span class="pred-factor">tendance annuelle ${annualLabel}</span>
+      ${pred.holidayCount > 0 ? `<span class="pred-factor pred-factor--sep">·</span><span class="pred-factor pred-factor--holiday">+${pred.holidayCount} férié${pred.holidayCount > 1 ? "s" : ""}</span>` : ""}
+    </div>`;
+
+  return `
+    <div class="briefing-card briefing-card--prediction" id="prediction-card">
+      <div class="card-label">PRÉVISION SEMAINE ${nextWeekNum}
+        <span class="pred-dates">(${formatShortDate(wm.nextWeekStart)} – ${formatShortDate(wm.nextWeekEnd)})</span>
+      </div>
+      <div class="prediction-value">${formatEuro(pred.predictedRevenue)}</div>
+      <div class="prediction-basis">Base S${nextWeekNum} N-1 : ${formatEuro(pred.base)}</div>
+      ${factorsHtml}
+      ${weatherHtml}
+      ${holidayHtml}
+    </div>`;
+}
+
+function formatShortDate(dateStr) {
+  if (!dateStr) return "";
+  const d = new Date(dateStr + "T12:00:00Z");
+  return d.toLocaleDateString("fr-BE", { day: "numeric", month: "short" });
+}
+
 function renderBriefing(data) {
   const section = document.getElementById("tab-briefing");
   const now = new Date();
@@ -73,14 +251,21 @@ function renderBriefing(data) {
   const zone = yoy == null ? "neutre" : yoy > 0.10 ? "verte" : yoy < -0.10 ? "rouge" : "bleue";
   const zoneColor = { verte: "#22C55E", bleue: "#3B82F6", rouge: "#EF4444", neutre: "#6B7280" }[zone];
 
-  const yearlyGrowth = data.macro?.years && data.macro.years.length >= 2
-    ? (data.macro.years[data.macro.years.length - 1].revenue / data.macro.years[data.macro.years.length - 2].revenue) - 1
-    : 0;
-  const predictedRevenue = wm?.sameWeekLastYear
-    ? Math.round(wm.sameWeekLastYear * (1 + yearlyGrowth))
-    : null;
+  const yearlyGrowth = annualGrowthRate(data);
+  const nextWeekNum  = weekNum + 1;
+
+  // Initial prediction without weather (weather updates the card asynchronously)
+  const pred = wm ? computePrediction(wm, yearlyGrowth, null) : null;
 
   const orderingReminders = getOrderingReminders(data, dayName);
+
+  // Dates label for last week
+  const lastWeekLabel = wm
+    ? `${formatShortDate(wm.lastWeekStart)} – ${formatShortDate(wm.lastWeekEnd)}`
+    : "";
+  const lastYearLabel = wm?.sameWeekLastYearStart
+    ? `${formatShortDate(wm.sameWeekLastYearStart)} – ${formatShortDate(wm.sameWeekLastYearEnd)}`
+    : "";
 
   section.innerHTML = `
     <div class="briefing-grid">
@@ -91,12 +276,17 @@ function renderBriefing(data) {
       </div>
 
       <div class="briefing-card briefing-card--perf">
-        <div class="card-label">PERFORMANCE CETTE SEMAINE</div>
+        <div class="card-label">SEMAINE ÉCOULÉE
+          ${lastWeekLabel ? `<span class="perf-dates">(${lastWeekLabel})</span>` : ""}
+        </div>
         <div class="perf-numbers">
           <span class="perf-main" style="color: ${zoneColor}">
             ${wm ? formatEuro(wm.lastWeekRevenue) : "—"}
           </span>
-          <span class="perf-vs">vs ${wm ? formatEuro(wm.sameWeekLastYear) : "—"} l'an passé</span>
+          <span class="perf-vs">
+            vs ${wm ? formatEuro(wm.sameWeekLastYear) : "—"} N-1
+            ${lastYearLabel ? `<span class="perf-yoy-dates">(${lastYearLabel})</span>` : ""}
+          </span>
         </div>
         <div class="perf-yoy" style="color: ${zoneColor}">
           ${yoy != null ? `${yoy > 0 ? "+" : ""}${Math.round(yoy * 100)}% · Zone ${zone}` : "Données insuffisantes"}
@@ -107,21 +297,17 @@ function renderBriefing(data) {
         </div>
       </div>
 
-      ${predictedRevenue ? `
-      <div class="briefing-card briefing-card--prediction">
-        <div class="card-label">PRÉVISION SEMAINE ${weekNum + 1}</div>
-        <div class="prediction-value">${formatEuro(predictedRevenue)}</div>
-        <div class="prediction-basis">
-          Base: ${formatEuro(wm.sameWeekLastYear)} (sem. ${weekNum} 2025)
-          × tendance ${yearlyGrowth > 0 ? "+" : ""}${Math.round(yearlyGrowth * 100)}%
-        </div>
-      </div>` : ""}
+      ${renderPredictionCard(wm, pred, nextWeekNum)}
 
       ${orderingReminders.length > 0 ? `
       <div class="briefing-card briefing-card--ordering">
         <div class="card-label">COMMANDES AUJOURD'HUI</div>
         <ul class="ordering-list">
-          ${orderingReminders.map(s => `<li class="ordering-item">${s}</li>`).join("")}
+          ${orderingReminders.map(s => `
+            <li class="ordering-item">
+              <span class="ordering-name">${s.name}</span>
+              ${s.cutoff ? `<span class="ordering-cutoff">avant ${s.cutoff}</span>` : ""}
+            </li>`).join("")}
         </ul>
       </div>` : `
       <div class="briefing-card briefing-card--ordering briefing-card--quiet">
@@ -134,48 +320,100 @@ function renderBriefing(data) {
 }
 
 function getOrderingReminders(data, dayName) {
-  if (!data.suppliers) return [];
-  return data.suppliers
-    .filter(s => s.orderingDays && s.orderingDays.includes(dayName))
-    .map(s => s.name || s.supplier);
+  // Use orderSchedule (built from supplier-map.json) — authoritative source
+  if (data.orderSchedule && data.orderSchedule[dayName]) {
+    return data.orderSchedule[dayName];
+  }
+  return [];
 }
 
 // ============================================================
 // Tab 1 — Weather
 // ============================================================
 
+const DAY_ABBR_FR = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
+
 async function fetchWeather(location) {
   try {
     const lat = (location && location.lat) ? location.lat : 50.8503;
     const lon = (location && location.lon) ? location.lon : 4.3517;
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBrussels&forecast_days=3`;
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBrussels&forecast_days=14`;
     const res = await fetch(url);
     const wx = await res.json();
+
     const temp = wx.current.temperature_2m;
     const code = wx.current.weathercode;
     const emoji = weatherEmoji(code);
     document.getElementById("weather-widget").innerHTML =
       `<span class="wx-emoji">${emoji}</span> <span class="wx-temp">${temp}°C</span> · Bruxelles`;
 
-    const rainToday = wx.daily?.precipitation_sum?.[0] > 2;
-    if (rainToday) {
-      const briefingSection = document.getElementById("tab-briefing");
-      const rainCard = document.createElement("div");
-      rainCard.className = "briefing-card briefing-card--weather";
-      rainCard.innerHTML = `
-        <div class="card-label">SIGNAL MÉTÉO</div>
-        <div class="weather-signal">🌧 Pluie prévue aujourd'hui — historiquement +8% de passage en période pluvieuse</div>
-      `;
-      briefingSection.querySelector(".briefing-grid")?.appendChild(rainCard);
+    renderWeatherForecast(wx.daily);
+
+    // Refresh prediction card now that we have the 14-day forecast
+    if (DATA?.weeklyMetrics) {
+      const wm      = DATA.weeklyMetrics;
+      const growth  = annualGrowthRate(DATA);
+      const weekNum = getWeekNumber(new Date());
+      const pred    = computePrediction(wm, growth, wx.daily);
+      const card    = document.getElementById("prediction-card");
+      if (card) {
+        card.outerHTML = renderPredictionCard(wm, pred, weekNum + 1);
+      }
     }
   } catch {
     document.getElementById("weather-widget").textContent = "météo indisponible";
   }
 }
 
+function renderWeatherForecast(daily) {
+  const briefingGrid = document.querySelector(".briefing-grid");
+  if (!briefingGrid) return;
+
+  const today = new Date().toISOString().slice(0, 10);
+
+  const dayCards = daily.time.map((dateStr, i) => {
+    const dt = new Date(dateStr + "T12:00:00");
+    const dayAbbr = DAY_ABBR_FR[dt.getDay()];
+    const dayNum = dt.getDate();
+    const tmax = Math.round(daily.temperature_2m_max[i]);
+    const tmin = Math.round(daily.temperature_2m_min[i]);
+    const rain = daily.precipitation_sum?.[i] || 0;
+    const code = daily.weathercode[i];
+    const emoji = weatherEmoji(code);
+    const isToday = dateStr === today;
+    const isRainy = rain > 2;
+
+    return `
+      <div class="wx-day${isToday ? " wx-day--today" : ""}${isRainy ? " wx-day--rain" : ""}">
+        <span class="wx-day-name">${dayAbbr}</span>
+        <span class="wx-day-num">${dayNum}</span>
+        <span class="wx-day-emoji">${emoji}</span>
+        <span class="wx-day-max">${tmax}°</span>
+        <span class="wx-day-min">${tmin}°</span>
+        ${isRainy ? `<span class="wx-day-rain">${rain.toFixed(0)} mm</span>` : `<span class="wx-day-rain wx-day-rain--empty"></span>`}
+      </div>`;
+  }).join("");
+
+  const card = document.createElement("div");
+  card.className = "briefing-card briefing-card--forecast";
+  card.innerHTML = `
+    <div class="wx-forecast-header">
+      <span class="card-label">MÉTÉO 14 JOURS — BRUXELLES</span>
+      <a class="wx-radar-link" href="https://www.meteoetradar.be/" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+        Radar
+      </a>
+    </div>
+    <div class="wx-forecast-strip">${dayCards}</div>
+  `;
+
+  briefingGrid.appendChild(card);
+}
+
 function weatherEmoji(code) {
   if (code === 0) return "☀️";
   if (code <= 3) return "⛅";
+  if (code <= 48) return "🌫";
   if (code <= 67) return "🌧";
   if (code <= 77) return "❄️";
   if (code <= 82) return "🌦";

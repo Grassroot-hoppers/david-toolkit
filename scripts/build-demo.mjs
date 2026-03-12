@@ -5,7 +5,6 @@ const root = process.cwd();
 const goldDir = path.join(root, "data", "gold");
 const configDir = path.join(root, "sample-data", "config");
 const outputPaths = [
-  path.join(root, "demo", "data", "demo.json"),
   path.join(root, "public", "data", "demo.json"),
 ];
 
@@ -463,62 +462,175 @@ function buildSupplierRanking(products) {
     .map((s, i) => ({ ...s, rank: i + 1 }));
 }
 
+// ── ISO week helpers ──────────────────────────────────────────────────────────
+
+// Returns { week, year } per ISO 8601 (week starts Monday, week 1 = first Thursday)
+function isoWeek(date) {
+  const d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+  const dayOfWeek = d.getUTCDay() || 7; // Mon=1 … Sun=7
+  d.setUTCDate(d.getUTCDate() + 4 - dayOfWeek); // shift to Thursday of this ISO week
+  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+  const week = Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
+  return { week, year: d.getUTCFullYear() };
+}
+
+// Returns UTC Date of the Monday of ISO week `week` of `year`
+function mondayOfIsoWeek(week, year) {
+  // Jan 4 is always in ISO week 1
+  const jan4 = new Date(Date.UTC(year, 0, 4));
+  const jan4Day = jan4.getUTCDay() || 7; // Mon=1 … Sun=7
+  const monday = new Date(jan4);
+  monday.setUTCDate(jan4.getUTCDate() - (jan4Day - 1) + (week - 1) * 7);
+  return monday;
+}
+
+// ── Belgian public holidays ───────────────────────────────────────────────────
+
+// Easter Sunday for a given year (Meeus/Jones/Butcher algorithm)
+function easterDate(year) {
+  const a = year % 19;
+  const b = Math.floor(year / 100);
+  const c = year % 100;
+  const d = Math.floor(b / 4);
+  const e = b % 4;
+  const f = Math.floor((b + 8) / 25);
+  const g = Math.floor((b - f + 1) / 3);
+  const h = (19 * a + b - d - g + 15) % 30;
+  const i = Math.floor(c / 4);
+  const k = c % 4;
+  const l = (32 + 2 * e + 2 * i - h - k) % 7;
+  const m = Math.floor((a + 11 * h + 22 * l) / 451);
+  const month = Math.floor((h + l - 7 * m + 114) / 31) - 1; // 0-based
+  const day = ((h + l - 7 * m + 114) % 31) + 1;
+  return new Date(Date.UTC(year, month, day));
+}
+
+// Returns all Belgian public holidays for a given year.
+// region: "national" = both communities, "flanders" = Flandre only, "wallonia" = Wallonie/Bruxelles only
+function belgianHolidays(year) {
+  const easter = easterDate(year);
+  const add = (d, n) => { const r = new Date(d); r.setUTCDate(r.getUTCDate() + n); return r; };
+  const fmt = (d) => d.toISOString().slice(0, 10);
+  return [
+    { date: `${year}-01-01`, name: "Jour de l'An",                          region: "national"  },
+    { date: fmt(add(easter, 1)),  name: "Lundi de Pâques",                   region: "national"  },
+    { date: `${year}-05-01`, name: "Fête du Travail",                        region: "national"  },
+    { date: fmt(add(easter, 39)), name: "Ascension",                         region: "national"  },
+    { date: fmt(add(easter, 50)), name: "Lundi de Pentecôte",                region: "national"  },
+    { date: `${year}-07-11`, name: "Fête de la Communauté flamande",         region: "flanders"  },
+    { date: `${year}-07-21`, name: "Fête nationale belge",                   region: "national"  },
+    { date: `${year}-08-15`, name: "Assomption",                             region: "national"  },
+    { date: `${year}-09-27`, name: "Fête de la Communauté française",        region: "wallonia"  },
+    { date: `${year}-11-01`, name: "Toussaint",                              region: "national"  },
+    { date: `${year}-11-11`, name: "Armistice",                              region: "national"  },
+    { date: `${year}-12-25`, name: "Noël",                                   region: "national"  },
+  ];
+}
+
+// Returns holidays within [startDateStr, endDateStr] (inclusive, "YYYY-MM-DD")
+function holidaysInRange(startStr, endStr) {
+  const years = new Set();
+  const sy = parseInt(startStr.slice(0, 4), 10);
+  const ey = parseInt(endStr.slice(0, 4), 10);
+  for (let y = sy; y <= ey; y++) years.add(y);
+  const result = [];
+  for (const yr of years) {
+    for (const h of belgianHolidays(yr)) {
+      if (h.date >= startStr && h.date <= endStr) result.push(h);
+    }
+  }
+  return result.sort((a, b) => a.date.localeCompare(b.date));
+}
+
+// ── Weekly metrics ────────────────────────────────────────────────────────────
+
 function buildWeeklyMetrics(dailySales, runDate) {
   if (!dailySales || dailySales.length === 0) return null;
 
   const salesByDate = new Map(dailySales.map((d) => [d.date, d.revenue]));
-  const ref = new Date(runDate);
+  // Use noon UTC so timezone shifts don't accidentally flip the date
+  const ref = new Date(runDate + "T12:00:00Z");
 
+  // Last completed Mon–Sat window.
+  // ISO day: Mon=1 … Sat=6 … Sun=7
+  const refDay = ref.getUTCDay() || 7;
+  // Days to subtract from ref to reach the most recent past Saturday:
+  //   Sun(7)→1, Mon(1)→2, Tue(2)→3, Wed(3)→4, Thu(4)→5, Fri(5)→6, Sat(6)→7
+  const daysToLastSat = (refDay % 7) + 1;
   const lastSat = new Date(ref);
-  lastSat.setDate(ref.getDate() - ref.getDay());
-  lastSat.setDate(lastSat.getDate() - 1);
+  lastSat.setUTCDate(ref.getUTCDate() - daysToLastSat);
   const lastMon = new Date(lastSat);
-  lastMon.setDate(lastSat.getDate() - 5);
+  lastMon.setUTCDate(lastSat.getUTCDate() - 5); // Sat−5 = Mon
 
   let lastWeekRev = 0;
-  for (let d = new Date(lastMon); d <= lastSat; d.setDate(d.getDate() + 1)) {
-    const key = d.toISOString().slice(0, 10);
-    lastWeekRev += salesByDate.get(key) || 0;
+  for (let d = new Date(lastMon); d <= lastSat; d.setUTCDate(d.getUTCDate() + 1)) {
+    lastWeekRev += salesByDate.get(d.toISOString().slice(0, 10)) || 0;
   }
 
-  const lastYearMon = new Date(lastMon);
-  lastYearMon.setFullYear(lastYearMon.getFullYear() - 1);
+  // Same ISO week last year — use ISO week number so day-of-week always aligns
+  const { week: lastWeekNum, year: lastWeekYear } = isoWeek(lastMon);
+  const lastYearMon = mondayOfIsoWeek(lastWeekNum, lastWeekYear - 1);
   const lastYearSat = new Date(lastYearMon);
-  lastYearSat.setDate(lastYearMon.getDate() + 5);
+  lastYearSat.setUTCDate(lastYearMon.getUTCDate() + 5);
 
   let sameWeekLastYear = 0;
-  for (let d = new Date(lastYearMon); d <= lastYearSat; d.setDate(d.getDate() + 1)) {
-    const key = d.toISOString().slice(0, 10);
-    sameWeekLastYear += salesByDate.get(key) || 0;
+  for (let d = new Date(lastYearMon); d <= lastYearSat; d.setUTCDate(d.getUTCDate() + 1)) {
+    sameWeekLastYear += salesByDate.get(d.toISOString().slice(0, 10)) || 0;
   }
 
   const weekYoY = sameWeekLastYear > 0 ? (lastWeekRev - sameWeekLastYear) / sameWeekLastYear : 0;
 
-  const monthStart = new Date(ref.getFullYear(), ref.getMonth(), 1);
-  let mtdRevenue = 0;
-  for (let d = new Date(monthStart); d < ref; d.setDate(d.getDate() + 1)) {
-    const key = d.toISOString().slice(0, 10);
-    mtdRevenue += salesByDate.get(key) || 0;
+  // Next week (the week after the last completed one)
+  const nextMon = new Date(lastMon);
+  nextMon.setUTCDate(lastMon.getUTCDate() + 7);
+  const nextSat = new Date(nextMon);
+  nextSat.setUTCDate(nextMon.getUTCDate() + 5);
+
+  // Same ISO week last year for next week — the prediction base
+  const { week: nextWeekNum, year: nextWeekYear } = isoWeek(nextMon);
+  const nextYearMon = mondayOfIsoWeek(nextWeekNum, nextWeekYear - 1);
+  const nextYearSat = new Date(nextYearMon);
+  nextYearSat.setUTCDate(nextYearMon.getUTCDate() + 5);
+
+  let nextWeekSameWeekLastYear = 0;
+  for (let d = new Date(nextYearMon); d <= nextYearSat; d.setUTCDate(d.getUTCDate() + 1)) {
+    nextWeekSameWeekLastYear += salesByDate.get(d.toISOString().slice(0, 10)) || 0;
   }
 
-  const lastYearMonthStart = new Date(ref.getFullYear() - 1, ref.getMonth(), 1);
+  const nextWeekStartStr = nextMon.toISOString().slice(0, 10);
+  const nextWeekEndStr   = nextSat.toISOString().slice(0, 10);
+  const nextWeekHolidays = holidaysInRange(nextWeekStartStr, nextWeekEndStr);
+
+  // Month-to-date
+  const monthStart = new Date(Date.UTC(ref.getUTCFullYear(), ref.getUTCMonth(), 1));
+  let mtdRevenue = 0;
+  for (let d = new Date(monthStart); d < ref; d.setUTCDate(d.getUTCDate() + 1)) {
+    mtdRevenue += salesByDate.get(d.toISOString().slice(0, 10)) || 0;
+  }
+
+  const lastYearMonthStart = new Date(Date.UTC(ref.getUTCFullYear() - 1, ref.getUTCMonth(), 1));
   const lastYearRef = new Date(ref);
-  lastYearRef.setFullYear(ref.getFullYear() - 1);
+  lastYearRef.setUTCFullYear(ref.getUTCFullYear() - 1);
   let mtdLastYear = 0;
-  for (let d = new Date(lastYearMonthStart); d < lastYearRef; d.setDate(d.getDate() + 1)) {
-    const key = d.toISOString().slice(0, 10);
-    mtdLastYear += salesByDate.get(key) || 0;
+  for (let d = new Date(lastYearMonthStart); d < lastYearRef; d.setUTCDate(d.getUTCDate() + 1)) {
+    mtdLastYear += salesByDate.get(d.toISOString().slice(0, 10)) || 0;
   }
 
   const zone = lastWeekRev >= 10500 ? "bleu" : lastWeekRev >= 9000 ? "vert" : lastWeekRev >= 7500 ? "orange" : "rouge";
 
   return {
-    lastWeekRevenue: Math.round(lastWeekRev),
-    lastWeekStart: lastMon.toISOString().slice(0, 10),
-    lastWeekEnd: lastSat.toISOString().slice(0, 10),
-    sameWeekLastYear: Math.round(sameWeekLastYear),
+    lastWeekRevenue:           Math.round(lastWeekRev),
+    lastWeekStart:             lastMon.toISOString().slice(0, 10),
+    lastWeekEnd:               lastSat.toISOString().slice(0, 10),
+    sameWeekLastYear:          Math.round(sameWeekLastYear),
+    sameWeekLastYearStart:     lastYearMon.toISOString().slice(0, 10),
+    sameWeekLastYearEnd:       lastYearSat.toISOString().slice(0, 10),
     weekYoY,
-    mtdRevenue: Math.round(mtdRevenue),
+    nextWeekStart:             nextWeekStartStr,
+    nextWeekEnd:               nextWeekEndStr,
+    nextWeekSameWeekLastYear:  Math.round(nextWeekSameWeekLastYear),
+    nextWeekHolidays,
+    mtdRevenue:  Math.round(mtdRevenue),
     mtdLastYear: Math.round(mtdLastYear),
     mtdYoY: mtdLastYear > 0 ? (mtdRevenue - mtdLastYear) / mtdLastYear : 0,
     zone,
@@ -686,15 +798,43 @@ function buildFromGold() {
     }
   }
 
+  // Build order schedule from supplier-map (authoritative, day → [{name, cutoff}])
+  const FR_DAYS = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];
+  const orderSchedule = Object.fromEntries(FR_DAYS.map(d => [d, []]));
+  const seenNames = new Set();
+  for (const entry of supplierMapData.values()) {
+    if (!entry.orderingDays || entry.orderingDays.length === 0) continue;
+    if (!entry.name || seenNames.has(entry.name)) continue;
+    seenNames.add(entry.name);
+    for (const day of entry.orderingDays) {
+      if (orderSchedule[day]) {
+        orderSchedule[day].push({ name: entry.name, cutoff: entry.cutoff || null });
+      }
+    }
+  }
+  // Sort each day's list alphabetically by name
+  for (const day of FR_DAYS) {
+    orderSchedule[day].sort((a, b) => a.name.localeCompare(b.name, "fr"));
+  }
+
   // Resolve product groups from config
   const groupsConfig = JSON.parse(fs.readFileSync(path.join(configDir, "product-groups.json"), "utf8"));
   const productGroups = [];
   for (const [key, cfg] of Object.entries(groupsConfig)) {
     if (key === "_doc") continue;
     const keywords = cfg.keywords || [];
+    // Use word-boundary matching to avoid false positives like "oeuf" matching inside "boeuf"
+    const kwPatterns = keywords.map(kw => {
+      const escaped = kw.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      return new RegExp(`(?<![a-z])${escaped}(?![a-z])`, "i");
+    });
+    const excludeKeywords = cfg.excludeKeywords || [];
+    const exPatterns = excludeKeywords.map(kw => new RegExp(kw.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"));
     const members = products.filter(p => {
-      const nameLower = (p.displayName || "").toLowerCase();
-      return keywords.some(kw => nameLower.includes(kw.toLowerCase()));
+      const name = p.displayName || "";
+      if (!kwPatterns.some(re => re.test(name))) return false;
+      if (exPatterns.some(re => re.test(name))) return false;
+      return true;
     });
     if (members.length === 0) continue;
 
@@ -809,6 +949,7 @@ function buildFromGold() {
     kpis,
     weeklyMetrics,
     briefing,
+    orderSchedule,
     suppliers,
     topProducts: products.slice().sort((left, right) => right.totalRevenue - left.totalRevenue).slice(0, 8),
     slowProducts: products.slice().sort((left, right) => left.totalRevenue - right.totalRevenue).slice(0, 6),

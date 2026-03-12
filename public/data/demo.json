@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-12T10:45:09.181Z",
+  "generatedAt": "2026-03-12T14:22:28.894Z",
   "productLocale": "fr-BE",
   "store": "Chez Julien",
   "location": "Bruxelles",
@@ -60,11 +60,17 @@
     "lastWeekRevenue": 11360,
     "lastWeekStart": "2026-03-02",
     "lastWeekEnd": "2026-03-07",
-    "sameWeekLastYear": 6610,
-    "weekYoY": 0.7187824816060493,
-    "mtdRevenue": 13858,
-    "mtdLastYear": 12817,
-    "mtdYoY": 0.08120853124941471,
+    "sameWeekLastYear": 9401,
+    "sameWeekLastYearStart": "2025-03-03",
+    "sameWeekLastYearEnd": "2025-03-08",
+    "weekYoY": 0.20835208036172986,
+    "nextWeekStart": "2026-03-09",
+    "nextWeekEnd": "2026-03-14",
+    "nextWeekSameWeekLastYear": 10889,
+    "nextWeekHolidays": [],
+    "mtdRevenue": 11360,
+    "mtdLastYear": 11614,
+    "mtdYoY": -0.02182156652378995,
     "zone": "bleu"
   },
   "briefing": [
@@ -73,6 +79,79 @@
     "Mayonnaise BIO 310gr, L'esprit Triple 33cl + Vid 0.10 Ct, Shropshire Bleu, Tentation Chevre Frais sont les candidats de décision les plus forts ce matin.",
     "Sac Noir, Laurier Feuilles Vrac 500g, Grisette Blanche 25cl + Vid 0.10 Ct ressemblent à des freins de place et de cash si le prochain cycle ne contredit pas ce signal."
   ],
+  "orderSchedule": {
+    "lundi": [],
+    "mardi": [
+      {
+        "name": "Délibio",
+        "cutoff": null
+      },
+      {
+        "name": "Di Santo",
+        "cutoff": null
+      },
+      {
+        "name": "From Un",
+        "cutoff": null
+      },
+      {
+        "name": "Schietekat",
+        "cutoff": null
+      },
+      {
+        "name": "Vajra",
+        "cutoff": null
+      }
+    ],
+    "mercredi": [],
+    "jeudi": [
+      {
+        "name": "Confiserie Gourmande",
+        "cutoff": null
+      },
+      {
+        "name": "Le Gâteau sur la Cerise",
+        "cutoff": null
+      }
+    ],
+    "vendredi": [
+      {
+        "name": "Coprosain",
+        "cutoff": "12:00"
+      }
+    ],
+    "samedi": [
+      {
+        "name": "Gros Chêne",
+        "cutoff": "14:00"
+      },
+      {
+        "name": "Interbio",
+        "cutoff": null
+      },
+      {
+        "name": "Jumi",
+        "cutoff": "14:00"
+      },
+      {
+        "name": "Lalero",
+        "cutoff": "14:00"
+      },
+      {
+        "name": "Levain",
+        "cutoff": null
+      },
+      {
+        "name": "Pasta Mobil",
+        "cutoff": "15:00"
+      },
+      {
+        "name": "Seminibus",
+        "cutoff": null
+      }
+    ],
+    "dimanche": []
+  },
   "suppliers": [
     {
       "name": "Terra",
@@ -29989,7 +30068,7 @@
       ],
       "summary": "115 articles demandent une vraie décision avant l'heure limite.",
       "orderingDays": [
-        "mardi"
+        "samedi"
       ]
     },
     {
@@ -30948,14 +31027,12 @@
         "Gouda AOP Jeune",
         "Gouda AOP Mi-Vieux",
         "Camembert St-Loup",
-        "Appelfabriek Cubis 3l",
         "Cheddar Snowdonia",
         "Mozzarella",
         "Mozzarella Bufala DOP",
         "Cheddar",
         "Camembert Vache",
         "Gruyere Suisse",
-        "Emmentaler Suisse AOP",
         "Comté 16 Mois",
         "Brie De Meaux",
         "Raclette Suisse Nature",
@@ -31005,7 +31082,6 @@
         "1/2 Camembert De Chevre Jouvenceau",
         "Camembert Tremblaye",
         "1/2 Camembert Tremblaye",
-        "Comtesse De Vichy",
         "Gruyere De Chevre",
         "Raclette Speck",
         "Raclette Moreilles & Cèpes",
@@ -31014,27 +31090,26 @@
         "Raclette Au Basilic Royal",
         "Raclette Brebis",
         "Raclette Port Charlotte Wiskhey",
-        "Old Emmentaler Suisse AOP",
         "Raclette Black Chili",
         "Comté Mp Elegance 8 Mois",
         "Raclette Pur Ail Des Ours"
       ],
-      "aggregateRevenue2025": 39546.51999999998,
-      "aggregateRevenue2024": 23511.119999999995,
-      "yoy": 0.6820347137864972,
+      "aggregateRevenue2025": 38491.49999999998,
+      "aggregateRevenue2024": 22949.839999999997,
+      "yoy": 0.6772012353898756,
       "seasonality": [
         1887.3000000000002,
-        1943.6599999999999,
-        1951.55,
-        1671.2200000000005,
-        1596.7100000000003,
-        1444.1,
-        1195.18,
-        1001.71,
-        1671.5600000000004,
-        2676.9200000000005,
-        4293.29,
-        8421.05
+        1932.6599999999999,
+        1878.2100000000003,
+        1587.7900000000002,
+        1503.4300000000003,
+        1393.36,
+        1176.12,
+        963.0100000000001,
+        1557.4800000000005,
+        2497.7000000000007,
+        4095.27,
+        8226.9
       ],
       "rank": "A"
     },
@@ -31042,50 +31117,33 @@
       "key": "oeufs",
       "displayName": "Oeufs",
       "members": [
-        "Filet Mignon De Boeuf",
         "Oeuf BIO",
         "Boite 6 Oeufs BIO",
         "10 Oeufs BIO",
         "Lapin Avec Oeufs",
         "Oeufs Caraque",
         "Tarama Aux Oeufs De Truite 100g",
-        "Hache De Boeuf",
-        "Steak Hache De Boeuf 300g",
-        "Filet Pur De Boeuf",
-        "Saucisse Porc  Boeuf",
-        "Hache Porc Boeuf",
         "Crepe Aux Oeufs BIO",
-        "Brochettes De Boeuf Marinees",
-        "Hache Boeuf Epice",
-        "Tomate Coeur De Boeuf BIO",
         "Gaufres Aux Oeufs BIO",
         "Gaufres Aux Oeufs Choco BIO",
-        "Bouillon Sportif Boeuf",
-        "Bouilli De Boeuf Avec Os",
-        "Oeufs Mousse Chocolat",
-        "Bouillon De Boeuf Fermier",
-        "Filet Pur De Boeuf Rouge De Flandre",
-        "Hache Boeuf Veau",
-        "Hamburger Boeuf Rouge Des Flandres",
-        "Entrecote Boeuf Rouge De Flandre",
-        "Mignon De Boeuf"
+        "Oeufs Mousse Chocolat"
       ],
-      "aggregateRevenue2025": 16615.91000000002,
-      "aggregateRevenue2024": 12121.1,
-      "yoy": 0.37082525513361175,
+      "aggregateRevenue2025": 12519.170000000022,
+      "aggregateRevenue2024": 7373.85,
+      "yoy": 0.6977793147406065,
       "seasonality": [
-        1130.139999999999,
-        1282.6299999999978,
-        1359.639999999997,
-        1702.2999999999963,
-        2031.9699999999962,
-        2109.6799999999957,
-        1252.969999999999,
-        1010.6200000000018,
-        1887.7600000000039,
-        1117.5600000000009,
-        1170.330000000001,
-        1326.7900000000013
+        770.849999999999,
+        949.699999999998,
+        1048.139999999997,
+        1273.7499999999961,
+        1021.2899999999959,
+        1080.899999999996,
+        755.0899999999989,
+        650.9300000000019,
+        1137.820000000004,
+        602.580000000001,
+        521.220000000001,
+        744.280000000001
       ],
       "rank": "A"
     },
@@ -31152,68 +31210,6 @@
         612.51
       ],
       "rank": "B"
-    },
-    {
-      "key": "biscuits",
-      "displayName": "Biscuits & gâteaux",
-      "members": [
-        "Grand Speculoos Aux Amandes",
-        "Biscuits Apero Michel Augustin",
-        "Cookie  - Gateau Sur La Cerise",
-        "Biscuits Apero",
-        "Biscuits Amaretti",
-        "Cookies Oat Lemon",
-        "Cookies Oat Caramel",
-        "Speculoos Pur Beurre",
-        "Ptit Biscuit Et Sucre D'orge",
-        "Sablés Noix De Pecan Caramelise",
-        "Sablés Cheddar Cave Aged",
-        "Sablés Feve De Tonka",
-        "Sablés Citron Vert",
-        "Sablés Piment Citronelle Galangal",
-        "Strawberry Oat Cookie",
-        "Protein Oat Cookie",
-        "Almond Orange Cookie",
-        "Almond Pecan Cookie",
-        "Milk Chocalate Butter Biscuit",
-        "Biscuits Caramel Crunch",
-        "Biscuits Cacao",
-        "Biscuit Lemon Curd",
-        "Coconut Ginger Cookies",
-        "Blueberry Oat Cookies",
-        "Boite Biscuits 3 Gouts",
-        "Cookie A L'argousier",
-        "Biscuits Noisette Fouree Chocolat",
-        "Grand Speculoos Nature BIO",
-        "Mini Speculoos Nature BIO",
-        "Raw Apple Cookie",
-        "Sablés Au Chocolat Noir",
-        "Sablés Au Lemon Curd",
-        "Sablés A La Creme De Pistache",
-        "Sablés Pur Beurre Pepites Caramel - Framboise",
-        "Sablés Pur Beurre Abricot - Chocolat",
-        "Biscuit Fromage De Brebis Piment D'espelette",
-        "Biscuit Fromage De Brebis",
-        "Biscuits Fondant The Earl Grey"
-      ],
-      "aggregateRevenue2025": 8791.67,
-      "aggregateRevenue2024": 7214.009999999998,
-      "yoy": 0.21869390255904858,
-      "seasonality": [
-        63.44,
-        157.55,
-        129.78,
-        310.28000000000003,
-        219.12999999999997,
-        229.02,
-        208.62,
-        69.6,
-        173.16000000000003,
-        118.47999999999999,
-        101.08,
-        118.18
-      ],
-      "rank": "A"
     },
     {
       "key": "confitures",
@@ -31289,6 +31285,95 @@
       "rank": "A"
     },
     {
+      "key": "boeuf",
+      "displayName": "Boeuf & Viandes",
+      "members": [
+        "Filet Mignon De Boeuf",
+        "Hache Porc Veau",
+        "Entrecote Coprosain",
+        "Hache De Boeuf",
+        "Steak Hache De Boeuf 300g",
+        "Filet Pur De Boeuf",
+        "Steak Qualite I",
+        "Saucisse Porc  Boeuf",
+        "Hache Porc Boeuf",
+        "Brochette De Volaille Marinee",
+        "Brochettes De Boeuf Marinees",
+        "Hache Boeuf Epice",
+        "Saucisse Porc Et Veau",
+        "Steak Fromage",
+        "Bouillon Sportif Boeuf",
+        "Bouilli De Boeuf Avec Os",
+        "Bouillon De Boeuf Fermier",
+        "Filet Pur De Boeuf Rouge De Flandre",
+        "Chipolata Veau",
+        "Hache Boeuf Veau",
+        "Chipolata Porc/Veau",
+        "Saucisse Porc Veau",
+        "Hamburger Boeuf Rouge Des Flandres",
+        "Entrecote Boeuf Rouge De Flandre",
+        "Mignon De Boeuf"
+      ],
+      "aggregateRevenue2025": 7563.610000000001,
+      "aggregateRevenue2024": 7230.08,
+      "yoy": 0.046130886518544835,
+      "seasonality": [
+        633.06,
+        613.5799999999999,
+        544.24,
+        863.8,
+        1150.3899999999999,
+        1363.49,
+        626.78,
+        520.29,
+        1037.15,
+        1144.6299999999999,
+        866.54,
+        800.1700000000001
+      ],
+      "rank": "B"
+    },
+    {
+      "key": "biscuits",
+      "displayName": "Biscuits & gâteaux",
+      "members": [
+        "Grand Speculoos Aux Amandes",
+        "Cookie  - Gateau Sur La Cerise",
+        "Speculoos Pur Beurre",
+        "Ptit Biscuit Et Sucre D'orge",
+        "Strawberry Oat Cookie",
+        "Protein Oat Cookie",
+        "Almond Orange Cookie",
+        "Almond Pecan Cookie",
+        "Milk Chocalate Butter Biscuit",
+        "Biscuit Lemon Curd",
+        "Cookie A L'argousier",
+        "Grand Speculoos Nature BIO",
+        "Mini Speculoos Nature BIO",
+        "Raw Apple Cookie",
+        "Biscuit Fromage De Brebis Piment D'espelette",
+        "Biscuit Fromage De Brebis"
+      ],
+      "aggregateRevenue2025": 7202.320000000001,
+      "aggregateRevenue2024": 6757.2699999999995,
+      "yoy": 0.06586239709231703,
+      "seasonality": [
+        42.849999999999994,
+        108,
+        80.68,
+        80.5,
+        36.1,
+        75.1,
+        63.6,
+        39.9,
+        96.86,
+        33.88,
+        66.28,
+        59.580000000000005
+      ],
+      "rank": "A"
+    },
+    {
       "key": "chocolats",
       "displayName": "Chocolats",
       "members": [
@@ -31296,14 +31381,9 @@
         "Pate A Tartiner Chocolat Ss Sucre",
         "Pate A Tartiner Chocolat Artisanale",
         "Finger Sesame Chocolat",
-        "Pralines De Paques",
         "Mendiants Chocolat Vrac",
-        "Buddy Buddy- Chocolate Hazelnut",
         "Sable Chocolat Noir Fleur De Sel",
         "Praline Lot 6e",
-        "Pralines Noix",
-        "Pralines De Noel",
-        "Pralines Fines",
         "Chocolat Latte Macchiato Praline BIO",
         "Muesli Chocolat Noir Grillon D Or",
         "Chocolat Blanc",
@@ -31323,7 +31403,6 @@
         "Buddy Buddy- Beurre Cacahuete Au Chocolat Noir",
         "Chocolat Cru 70% De Cacao",
         "Oeufs Mousse Chocolat",
-        "Bar Protein No Sugar Chocolate Peanut",
         "Croustillant Double Chocolat & Creme Nougat",
         "Chocolat Noir 86",
         "Biscuits Noisette Fouree Chocolat",
@@ -31342,22 +31421,22 @@
         "Chocolat Noir Noisettes Entières BIO",
         "Chocolat Lait Praliné"
       ],
-      "aggregateRevenue2025": 6655.85,
-      "aggregateRevenue2024": 4939.98,
-      "yoy": 0.34734351151219256,
+      "aggregateRevenue2025": 5822.3499999999985,
+      "aggregateRevenue2024": 3672.08,
+      "yoy": 0.5855727544062217,
       "seasonality": [
-        586.24,
-        533.13,
-        557.39,
-        396.0900000000001,
-        472.11000000000007,
-        635.16,
+        469.70000000000005,
+        363.71000000000004,
+        444.6799999999999,
+        379.79,
+        469.4100000000001,
+        610.05,
         426.50000000000006,
-        359.04,
-        643.6999999999999,
-        659.53,
-        661.16,
-        553.72
+        345.54,
+        595.0999999999999,
+        627.6700000000001,
+        642.26,
+        470.6
       ],
       "rank": "C"
     },
@@ -31368,17 +31447,14 @@
         "Maquerau A L'huile D'olive BIO",
         "Sardines A L'huile D'olive BIO",
         "Filets Anchois Huile D'olive",
-        "Huile D'olives Extra 500ml",
         "Huile De Noix De Coco",
         "Huile D'olive Extra Vierge BIO Beniquei",
         "Filet De Thon A L'huile D'olive BIO",
         "Filets De Thon A L'huile D'olive 195g",
         "Aioli Huile D'olive Fumee",
         "Olives Gordal Huile D'olive Fumee",
-        "Huile D'olives Eleas Extra 750 Ml",
         "Huile D'olive Vierge Paprika 200ml",
         "Huile D'olive DOP Tenuta Arcamone",
-        "Huile D'olives Extra 3l",
         "Huile D'olive BIO Epikouros Extra Virge",
         "Huile De Noix De Coco 300ml",
         "Huile D'olive Ayo Y Pimientas",
@@ -31388,15 +31464,13 @@
         "Huile D'olive Fumee Spray",
         "Olives Gordal Huile D'olive Fumee & Paprika",
         "Chips A L'huile D'olive BIO",
-        "Huile D'olives Extra 1l",
-        "Huile D'olives Extra Vierge 1l Canoliva",
         "Huile D'olive Kalamata 5l BIO",
         "Huile D'olive Lagar De Soto",
         "Sardines Fumee A L'huile D'olive Piquante"
       ],
-      "aggregateRevenue2025": 6030.540000000001,
-      "aggregateRevenue2024": 2978.45,
-      "yoy": 1.0247242693347216,
+      "aggregateRevenue2025": 4657.22,
+      "aggregateRevenue2024": 2110.5499999999997,
+      "yoy": 1.2066380801212957,
       "seasonality": [
         17.97,
         5.99,
@@ -31469,26 +31543,25 @@
         "Cava Brut Anyal",
         "Vin Rouge Ortola Sans Sulfites",
         "Cava Brut Chenine",
-        "Levin Blanc De Blanc Ss Alcool",
         "Vinaigre D'orleans De Vin Blanc À L'estragon",
         "Vinaigre D'orleans De Vin Blanc Au Jus D'agrumes"
       ],
-      "aggregateRevenue2025": 1377.22,
+      "aggregateRevenue2025": 1057.52,
       "aggregateRevenue2024": 1044.15,
-      "yoy": 0.3189867356222764,
+      "yoy": 0.012804673657999224,
       "seasonality": [
         64.05,
         10,
         10.9,
         158.4,
-        196.32,
-        174.32,
+        112.92,
+        21.42,
         32,
         56,
         69.7,
-        93.7,
-        184.79999999999998,
-        247.78
+        79.8,
+        129.2,
+        233.88
       ],
       "rank": "C"
     },
@@ -32046,7 +32119,7 @@
     {
       "name": "Fuetec",
       "category": "Charcuterie",
-      "supplier": "Schietse",
+      "supplier": "Schietekat",
       "rank": "A",
       "revenue2025": 3409.25,
       "revenue2024": 3169.41,
@@ -34766,7 +34839,7 @@
     {
       "name": "Viande Des Grisons Suisse IGP",
       "category": "Charcuterie",
-      "supplier": "Schietse",
+      "supplier": "Schietekat",
       "rank": "B",
       "revenue2025": 1513.81,
       "revenue2024": 11.72,
@@ -39637,7 +39710,7 @@
       "rank": 19
     },
     {
-      "name": "Schietse",
+      "name": "Schietekat",
       "notionUrl": "",
       "totalRevenue": 7259.75,
       "productCount": 13,
