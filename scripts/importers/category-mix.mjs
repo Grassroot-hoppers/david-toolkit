@@ -1,5 +1,6 @@
 import {
-  splitCsvLines, splitCsvRow, parseEuroDecimal, parsePercentage, isJunkRow
+  splitCsvLines, splitCsvRow, parseEuroDecimal, parsePercentage, isJunkRow,
+  detectYearFromFilename
 } from '../lib/csv-utils.mjs';
 
 const TYPO_FIXES = {
@@ -14,7 +15,7 @@ export function importCategoryMix(text, filename) {
   const lines = splitCsvLines(text);
   if (lines.length < 2) return { type: "category-mix", year: null, categories: [], warnings: ["File too short"] };
 
-  const year = filename ? detectYearFromName(filename) : null;
+  const year = filename ? detectYearFromFilename(filename) : null;
   const warnings = [];
   const categories = [];
   let skipped = 0;
@@ -63,9 +64,4 @@ function parseCategoryVat(raw, vatCol) {
 
   category = TYPO_FIXES[category] || category;
   return { category, vatRate };
-}
-
-function detectYearFromName(filename) {
-  const match = String(filename).match(/(\d{4})/);
-  return match ? parseInt(match[1], 10) : null;
 }

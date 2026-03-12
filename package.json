@@ -15,6 +15,7 @@
     "serve:v2": "node scripts/serve.mjs --root=public --port=4174",
     "dev": "npm run build:demo && npm run serve",
     "dev:v2": "npm run build:demo && npm run serve:v2",
+    "test:unit": "node scripts/lib/csv-utils.test.mjs && node scripts/lib/importers.test.mjs",
     "test": "npm run build:full && node scripts/verify-data.mjs"
   },
   "repository": {

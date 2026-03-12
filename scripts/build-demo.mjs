@@ -86,15 +86,6 @@ function getCopy(locale) {
   return COPY[getLanguage(locale)];
 }
 
-function normalizeKey(value) {
-  return String(value || "")
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^A-Z0-9]+/gi, " ")
-    .trim()
-    .toUpperCase();
-}
-
 const CATEGORY_FILTERS = /^(DIV\. EAN|Fictif|CARTE CADEAUX|\(uncategorized\))/i;
 
 const CATEGORY_DISPLAY = {

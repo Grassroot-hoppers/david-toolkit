@@ -1,5 +1,6 @@
 import {
-  splitCsvLines, splitCsvRow, parseEuroDecimal, normalizeKey, cleanProductName
+  splitCsvLines, splitCsvRow, parseEuroDecimal, normalizeKey, cleanProductName,
+  detectYearFromFilename
 } from '../lib/csv-utils.mjs';
 
 /**
@@ -56,6 +57,7 @@ export function importTransactions(text, filename) {
     });
   }
 
+  if (!year && filename) year = detectYearFromFilename(filename);
   return { type: "transactions", year, transactions, warnings };
 }
 
