@@ -32,6 +32,8 @@
 
 **Files:** `scripts/build-demo.mjs` (reference), `public/app.js` (Tab 1).
 
+- **Optional (validation):** Add top-level `schemaVersion: "0.1"` to payload in build-demo.mjs for future compatibility checks.
+
 - Confirm `weeklyMetrics`: `lastWeekRevenue`, `sameWeekLastYear`, `weekYoY`, `mtdRevenue`, `mtdYoY`.
 - Confirm `macro.years[]` for prediction (year-over-year trend).
 - Confirm `suppliers[]`: each has `name` or `supplier` and `orderingDays` (array of French day names).
@@ -39,11 +41,13 @@
 
 **Verification:** Run `npm run build:full`, open Tab 1; check ordering reminders and prediction numbers against a known week.
 
-### 1.2 — Prediction week label
+### 1.2 — Prediction week label (ISO week)
 
 **Files:** `public/app.js`.
 
-- Use an explicit ISO 8601 week function (validation: ISO matches Belgian/French retail). Replace or augment getWeekNumber with an ISO week calculator so the prediction label is unambiguously next week. Card says "PRÉVISION SEMAINE ${weekNum + 1}". If we’re in week 11, that’s “Semaine 12” — confirm that’s “next week” in your locale (ISO week vs local). If wrong, use explicit “Semaine prochaine” or compute next week number.
+- **Validation:** Use an explicit ISO 8601 week function (see `docs/references/perplexity-day4-mvp-polish-validation.md` for `getISOWeek` example). Ensures "PRÉVISION SEMAINE N" is unambiguously next week (Monday–Sunday) and works at year boundaries.
+
+- Confirm card says "PRÉVISION SEMAINE ${weekNum + 1}". If we’re in week 11, that’s “Semaine 12” — confirm that’s “next week” in your locale (ISO week vs local). If wrong, use explicit “Semaine prochaine” or compute next week number.
 
 **Verification:** Check that the label matches the intended week at year boundaries.
 
