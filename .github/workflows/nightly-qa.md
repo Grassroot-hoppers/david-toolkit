@@ -1,6 +1,9 @@
 ---
 name: Nightly QA — David Toolkit
 description: Autonomous nightly code quality sweep
+# Engine: default is copilot (needs COPILOT_GITHUB_TOKEN = fine-grained PAT with "Copilot Requests" + active Copilot license).
+# To use Claude instead: set engine: claude and add repo secret ANTHROPIC_API_KEY.
+engine: claude
 
 on:
   schedule: daily
