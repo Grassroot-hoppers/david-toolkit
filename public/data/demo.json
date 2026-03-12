@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-12T14:22:28.894Z",
+  "generatedAt": "2026-03-12T14:26:58.589Z",
   "productLocale": "fr-BE",
   "store": "Chez Julien",
   "location": "Bruxelles",
@@ -57,14 +57,14 @@
     "avgMargin": 1.6723682864450102
   },
   "weeklyMetrics": {
-    "lastWeekRevenue": 11360,
-    "lastWeekStart": "2026-03-02",
+    "lastWeekRevenue": 11352,
+    "lastWeekStart": "2026-03-03",
     "lastWeekEnd": "2026-03-07",
     "sameWeekLastYear": 9401,
-    "sameWeekLastYearStart": "2025-03-03",
+    "sameWeekLastYearStart": "2025-03-04",
     "sameWeekLastYearEnd": "2025-03-08",
-    "weekYoY": 0.20835208036172986,
-    "nextWeekStart": "2026-03-09",
+    "weekYoY": 0.20751710633101786,
+    "nextWeekStart": "2026-03-10",
     "nextWeekEnd": "2026-03-14",
     "nextWeekSameWeekLastYear": 10889,
     "nextWeekHolidays": [],
@@ -31114,40 +31114,6 @@
       "rank": "A"
     },
     {
-      "key": "oeufs",
-      "displayName": "Oeufs",
-      "members": [
-        "Oeuf BIO",
-        "Boite 6 Oeufs BIO",
-        "10 Oeufs BIO",
-        "Lapin Avec Oeufs",
-        "Oeufs Caraque",
-        "Tarama Aux Oeufs De Truite 100g",
-        "Crepe Aux Oeufs BIO",
-        "Gaufres Aux Oeufs BIO",
-        "Gaufres Aux Oeufs Choco BIO",
-        "Oeufs Mousse Chocolat"
-      ],
-      "aggregateRevenue2025": 12519.170000000022,
-      "aggregateRevenue2024": 7373.85,
-      "yoy": 0.6977793147406065,
-      "seasonality": [
-        770.849999999999,
-        949.699999999998,
-        1048.139999999997,
-        1273.7499999999961,
-        1021.2899999999959,
-        1080.899999999996,
-        755.0899999999989,
-        650.9300000000019,
-        1137.820000000004,
-        602.580000000001,
-        521.220000000001,
-        744.280000000001
-      ],
-      "rank": "A"
-    },
-    {
       "key": "tomates",
       "displayName": "Tomates",
       "members": [
@@ -31210,6 +31176,33 @@
         612.51
       ],
       "rank": "B"
+    },
+    {
+      "key": "oeufs",
+      "displayName": "Oeufs",
+      "members": [
+        "Oeuf BIO",
+        "Boite 6 Oeufs BIO",
+        "10 Oeufs BIO"
+      ],
+      "aggregateRevenue2025": 10659.33000000002,
+      "aggregateRevenue2024": 6665.320000000001,
+      "yoy": 0.5992225429536795,
+      "seasonality": [
+        656.599999999999,
+        732.099999999998,
+        898.039999999997,
+        948.879999999996,
+        907.829999999996,
+        926.739999999996,
+        645.989999999999,
+        608.1300000000019,
+        951.720000000004,
+        454.080000000001,
+        427.320000000001,
+        539.280000000001
+      ],
+      "rank": "A"
     },
     {
       "key": "confitures",
