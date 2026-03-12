@@ -1,6 +1,54 @@
 import fs from "node:fs";
 import path from "node:path";
 
+function loadProductMaster(configDir) {
+  const csvPath = path.join(configDir, "product-master.csv");
+  if (!fs.existsSync(csvPath)) {
+    console.warn("  ⚠ product-master.csv not found — product groups will be empty");
+    return { productToGroup: new Map(), groupDefs: new Map() };
+  }
+  const lines = fs.readFileSync(csvPath, "utf8").trim().split("\n");
+  const header = lines[0].split(",");
+  const nameIdx = header.indexOf("product_name");
+  const groupKeyIdx = header.indexOf("group_key");
+  const groupDisplayIdx = header.indexOf("group_display");
+
+  // Keys are normalized to uppercase so lookup is case-insensitive
+  const productToGroup = new Map();
+  const groupDefs = new Map();
+
+  for (let i = 1; i < lines.length; i++) {
+    const fields = parseCSVLine(lines[i]);
+    const name = fields[nameIdx]?.trim();
+    const groupKey = fields[groupKeyIdx]?.trim();
+    const groupDisplay = fields[groupDisplayIdx]?.trim();
+    if (!name || !groupKey) continue;
+    productToGroup.set(name.toUpperCase(), { key: groupKey, displayName: groupDisplay || groupKey });
+    if (!groupDefs.has(groupKey) && groupDisplay) groupDefs.set(groupKey, groupDisplay);
+  }
+  return { productToGroup, groupDefs };
+}
+
+function parseCSVLine(line) {
+  const fields = [];
+  let current = "";
+  let inQuotes = false;
+  for (let i = 0; i < line.length; i++) {
+    const ch = line[i];
+    if (inQuotes) {
+      if (ch === '"' && line[i + 1] === '"') { current += '"'; i++; }
+      else if (ch === '"') { inQuotes = false; }
+      else { current += ch; }
+    } else {
+      if (ch === '"') { inQuotes = true; }
+      else if (ch === ",") { fields.push(current); current = ""; }
+      else { current += ch; }
+    }
+  }
+  fields.push(current);
+  return fields;
+}
+
 const root = process.cwd();
 const goldDir = path.join(root, "data", "gold");
 const configDir = path.join(root, "sample-data", "config");
@@ -551,7 +599,7 @@ function buildWeeklyMetrics(dailySales, runDate) {
   // Use noon UTC so timezone shifts don't accidentally flip the date
   const ref = new Date(runDate + "T12:00:00Z");
 
-  // Last completed Mon–Sat window.
+  // Last completed Tue–Sat window (shop is closed Sun and Mon).
   // ISO day: Mon=1 … Sat=6 … Sun=7
   const refDay = ref.getUTCDay() || 7;
   // Days to subtract from ref to reach the most recent past Saturday:
@@ -559,45 +607,50 @@ function buildWeeklyMetrics(dailySales, runDate) {
   const daysToLastSat = (refDay % 7) + 1;
   const lastSat = new Date(ref);
   lastSat.setUTCDate(ref.getUTCDate() - daysToLastSat);
-  const lastMon = new Date(lastSat);
-  lastMon.setUTCDate(lastSat.getUTCDate() - 5); // Sat−5 = Mon
+  const lastTue = new Date(lastSat);
+  lastTue.setUTCDate(lastSat.getUTCDate() - 4); // Sat−4 = Tue
 
   let lastWeekRev = 0;
-  for (let d = new Date(lastMon); d <= lastSat; d.setUTCDate(d.getUTCDate() + 1)) {
+  for (let d = new Date(lastTue); d <= lastSat; d.setUTCDate(d.getUTCDate() + 1)) {
     lastWeekRev += salesByDate.get(d.toISOString().slice(0, 10)) || 0;
   }
 
-  // Same ISO week last year — use ISO week number so day-of-week always aligns
-  const { week: lastWeekNum, year: lastWeekYear } = isoWeek(lastMon);
-  const lastYearMon = mondayOfIsoWeek(lastWeekNum, lastWeekYear - 1);
-  const lastYearSat = new Date(lastYearMon);
-  lastYearSat.setUTCDate(lastYearMon.getUTCDate() + 5);
+  // Same ISO week last year — use ISO week number so day-of-week always aligns.
+  // We anchor on the ISO week of lastTue, then pick Tue–Sat of that ISO week.
+  const { week: lastWeekNum, year: lastWeekYear } = isoWeek(lastTue);
+  const lastYearIsoMon = mondayOfIsoWeek(lastWeekNum, lastWeekYear - 1);
+  const lastYearTue = new Date(lastYearIsoMon);
+  lastYearTue.setUTCDate(lastYearIsoMon.getUTCDate() + 1); // Mon+1 = Tue
+  const lastYearSat = new Date(lastYearTue);
+  lastYearSat.setUTCDate(lastYearTue.getUTCDate() + 4); // Tue+4 = Sat
 
   let sameWeekLastYear = 0;
-  for (let d = new Date(lastYearMon); d <= lastYearSat; d.setUTCDate(d.getUTCDate() + 1)) {
+  for (let d = new Date(lastYearTue); d <= lastYearSat; d.setUTCDate(d.getUTCDate() + 1)) {
     sameWeekLastYear += salesByDate.get(d.toISOString().slice(0, 10)) || 0;
   }
 
   const weekYoY = sameWeekLastYear > 0 ? (lastWeekRev - sameWeekLastYear) / sameWeekLastYear : 0;
 
-  // Next week (the week after the last completed one)
-  const nextMon = new Date(lastMon);
-  nextMon.setUTCDate(lastMon.getUTCDate() + 7);
-  const nextSat = new Date(nextMon);
-  nextSat.setUTCDate(nextMon.getUTCDate() + 5);
+  // Next week Tue–Sat (the week after the last completed one)
+  const nextTue = new Date(lastTue);
+  nextTue.setUTCDate(lastTue.getUTCDate() + 7);
+  const nextSat = new Date(nextTue);
+  nextSat.setUTCDate(nextTue.getUTCDate() + 4); // Tue+4 = Sat
 
   // Same ISO week last year for next week — the prediction base
-  const { week: nextWeekNum, year: nextWeekYear } = isoWeek(nextMon);
-  const nextYearMon = mondayOfIsoWeek(nextWeekNum, nextWeekYear - 1);
-  const nextYearSat = new Date(nextYearMon);
-  nextYearSat.setUTCDate(nextYearMon.getUTCDate() + 5);
+  const { week: nextWeekNum, year: nextWeekYear } = isoWeek(nextTue);
+  const nextYearIsoMon = mondayOfIsoWeek(nextWeekNum, nextWeekYear - 1);
+  const nextYearTue = new Date(nextYearIsoMon);
+  nextYearTue.setUTCDate(nextYearIsoMon.getUTCDate() + 1);
+  const nextYearSat = new Date(nextYearTue);
+  nextYearSat.setUTCDate(nextYearTue.getUTCDate() + 4);
 
   let nextWeekSameWeekLastYear = 0;
-  for (let d = new Date(nextYearMon); d <= nextYearSat; d.setUTCDate(d.getUTCDate() + 1)) {
+  for (let d = new Date(nextYearTue); d <= nextYearSat; d.setUTCDate(d.getUTCDate() + 1)) {
     nextWeekSameWeekLastYear += salesByDate.get(d.toISOString().slice(0, 10)) || 0;
   }
 
-  const nextWeekStartStr = nextMon.toISOString().slice(0, 10);
+  const nextWeekStartStr = nextTue.toISOString().slice(0, 10);
   const nextWeekEndStr   = nextSat.toISOString().slice(0, 10);
   const nextWeekHolidays = holidaysInRange(nextWeekStartStr, nextWeekEndStr);
 
@@ -620,10 +673,10 @@ function buildWeeklyMetrics(dailySales, runDate) {
 
   return {
     lastWeekRevenue:           Math.round(lastWeekRev),
-    lastWeekStart:             lastMon.toISOString().slice(0, 10),
+    lastWeekStart:             lastTue.toISOString().slice(0, 10),
     lastWeekEnd:               lastSat.toISOString().slice(0, 10),
     sameWeekLastYear:          Math.round(sameWeekLastYear),
-    sameWeekLastYearStart:     lastYearMon.toISOString().slice(0, 10),
+    sameWeekLastYearStart:     lastYearTue.toISOString().slice(0, 10),
     sameWeekLastYearEnd:       lastYearSat.toISOString().slice(0, 10),
     weekYoY,
     nextWeekStart:             nextWeekStartStr,
@@ -817,27 +870,25 @@ function buildFromGold() {
     orderSchedule[day].sort((a, b) => a.name.localeCompare(b.name, "fr"));
   }
 
-  // Resolve product groups from config
-  const groupsConfig = JSON.parse(fs.readFileSync(path.join(configDir, "product-groups.json"), "utf8"));
-  const productGroups = [];
-  for (const [key, cfg] of Object.entries(groupsConfig)) {
-    if (key === "_doc") continue;
-    const keywords = cfg.keywords || [];
-    // Use word-boundary matching to avoid false positives like "oeuf" matching inside "boeuf"
-    const kwPatterns = keywords.map(kw => {
-      const escaped = kw.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      return new RegExp(`(?<![a-z])${escaped}(?![a-z])`, "i");
-    });
-    const excludeKeywords = cfg.excludeKeywords || [];
-    const exPatterns = excludeKeywords.map(kw => new RegExp(kw.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"));
-    const members = products.filter(p => {
-      const name = p.displayName || "";
-      if (!kwPatterns.some(re => re.test(name))) return false;
-      if (exPatterns.some(re => re.test(name))) return false;
-      return true;
-    });
-    if (members.length === 0) continue;
+  // Resolve product groups from product-master.csv (no keyword matching)
+  const { productToGroup } = loadProductMaster(configDir);
 
+  // Most products won't be in any group — that's expected.
+  // Only warn about products that appear NEW (not yet in the CSV at all).
+
+  const groupMap = new Map();
+  for (const p of products) {
+    const entry = productToGroup.get((p.displayName || "").toUpperCase());
+    if (!entry) continue;
+    if (!groupMap.has(entry.key)) {
+      groupMap.set(entry.key, { key: entry.key, displayName: entry.displayName, members: [] });
+    }
+    groupMap.get(entry.key).members.push(p);
+  }
+
+  const productGroups = [];
+  for (const [, g] of groupMap) {
+    const members = g.members;
     const aggregateRevenue2025 = members.reduce((s, p) => s + p.totalRevenue, 0);
     const aggregateRevenue2024 = members.reduce((s, p) => s + (p.totalRevenuePrevious || 0), 0);
 
@@ -852,8 +903,8 @@ function buildFromGold() {
 
     const topMember = [...members].sort((a, b) => b.totalRevenue - a.totalRevenue)[0];
     productGroups.push({
-      key,
-      displayName: cfg.displayName,
+      key: g.key,
+      displayName: g.displayName,
       members: members.map(p => p.displayName),
       aggregateRevenue2025,
       aggregateRevenue2024,
@@ -954,11 +1005,11 @@ function buildFromGold() {
     topProducts: products.slice().sort((left, right) => right.totalRevenue - left.totalRevenue).slice(0, 8),
     slowProducts: products.slice().sort((left, right) => left.totalRevenue - right.totalRevenue).slice(0, 6),
     productGroups,
-    products: products
-      .filter(p => p.totalRevenue > 0)
-      .sort((a, b) => b.totalRevenue - a.totalRevenue)
-      .slice(0, 150)
-      .map(p => ({
+    products: (() => {
+      // All group member names — must always be included for group expansion to work
+      const groupMemberNames = new Set(productGroups.flatMap(g => g.members));
+
+      const mapProduct = p => ({
         name: p.displayName,
         category: p.category,
         supplier: p.supplier,
@@ -970,7 +1021,21 @@ function buildFromGold() {
         marginRatio: p.marginRatio || null,
         monthlyHistory: p.monthlyHistory,
         suggestedOrder: p.suggestedOrder,
-      })),
+      });
+
+      const scored = products.filter(p => p.totalRevenue > 0);
+      const top150 = scored
+        .sort((a, b) => b.totalRevenue - a.totalRevenue)
+        .slice(0, 150);
+      const top150Names = new Set(top150.map(p => p.displayName));
+
+      // Include any group member not already in the top-150
+      const groupMemberExtras = scored.filter(
+        p => groupMemberNames.has(p.displayName) && !top150Names.has(p.displayName)
+      );
+
+      return [...top150, ...groupMemberExtras].map(mapProduct);
+    })(),
     categoryMix,
     supplierRanking,
     insights,

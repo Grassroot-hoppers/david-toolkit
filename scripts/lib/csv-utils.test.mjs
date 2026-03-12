@@ -1,6 +1,6 @@
 import {
   parseEuroDecimal, parseMonthlyCell, parsePercentage,
-  cleanProductName, detectFileType, normalizeKey, isJunkRow,
+  cleanProductName, parseProductName, detectFileType, normalizeKey, isJunkRow,
   splitCsvLines, splitCsvRow, detectYearFromFilename
 } from './csv-utils.mjs';
 import assert from 'node:assert/strict';
@@ -25,11 +25,18 @@ assert.equal(parsePercentage("17,69 %"), 17.69);
 assert.equal(parsePercentage("0 %"), 0);
 assert.equal(parsePercentage(null), 0);
 
-// cleanProductName
+// cleanProductName (backwards-compat wrapper)
 assert.equal(cleanProductName("(1360g/2,3€Kg)POTIMARRON BIO"), "POTIMARRON BIO");
 assert.equal(cleanProductName("(00106g/34,68€Kg)FILET DE POULET"), "FILET DE POULET");
 assert.equal(cleanProductName("BRIE DE MEAUX"), "BRIE DE MEAUX");
 assert.equal(cleanProductName("(122g/5,8€Kg)POMME NATYRA BIO"), "POMME NATYRA BIO");
+
+// parseProductName — name + weightKg extraction
+assert.deepEqual(parseProductName("(1360g/2,3€Kg)POTIMARRON BIO"), { name: "POTIMARRON BIO", weightKg: 1.360 });
+assert.deepEqual(parseProductName("(00106g/34,68€Kg)GRUYERE"), { name: "GRUYERE", weightKg: 0.106 });
+assert.deepEqual(parseProductName("(250g)BEURRE"), { name: "BEURRE", weightKg: 0.250 });
+assert.deepEqual(parseProductName("CONFITURE FRAISE"), { name: "CONFITURE FRAISE", weightKg: null });
+assert.deepEqual(parseProductName("BRIE DE MEAUX"), { name: "BRIE DE MEAUX", weightKg: null });
 
 // detectFileType
 assert.equal(

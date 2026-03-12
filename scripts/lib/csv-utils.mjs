@@ -72,14 +72,39 @@ export function normalizeKey(value) {
     .toUpperCase();
 }
 
-export function cleanProductName(rawName) {
+/**
+ * Parses a raw product name, extracting an optional weight prefix.
+ * Returns the cleaned name and the weight in kg (null for non-weighed items).
+ *
+ * Handles formats like:
+ *   (1360g/2,3€Kg)POTIMARRON BIO  → { name: "POTIMARRON BIO", weightKg: 1.360 }
+ *   (00106g/34,68€Kg)GRUYERE      → { name: "GRUYERE", weightKg: 0.106 }
+ *   (250g)BEURRE                  → { name: "BEURRE", weightKg: 0.250 }
+ *   CONFITURE FRAISE              → { name: "CONFITURE FRAISE", weightKg: null }
+ */
+export function parseProductName(rawName) {
   let name = String(rawName || "").trim();
-  // Strip weight/price prefix: (00106g/34,68€Kg)PRODUCT or (1360g/2,3€Kg)PRODUCT
-  // Also handle euro sign appearing as ? due to encoding
-  name = name.replace(/^\(\d+g\/[\d,]+.?(?:€Kg|€\/Kg|Kg)\)/i, "");
-  // Strip weight prefix without price: (123g)PRODUCT
-  name = name.replace(/^\(\d+g\)/i, "");
-  return name.trim();
+  let weightKg = null;
+
+  // Weight + price prefix: (1360g/2,3€Kg)PRODUCT or (00106g/34,68€Kg)PRODUCT
+  const weightPriceMatch = name.match(/^\((\d+)g\/[\d,]+.?(?:€Kg|€\/Kg|Kg)\)/i);
+  if (weightPriceMatch) {
+    weightKg = parseInt(weightPriceMatch[1], 10) / 1000;
+    name = name.slice(weightPriceMatch[0].length).trim();
+  } else {
+    // Weight-only prefix: (123g)PRODUCT
+    const weightOnlyMatch = name.match(/^\((\d+)g\)/i);
+    if (weightOnlyMatch) {
+      weightKg = parseInt(weightOnlyMatch[1], 10) / 1000;
+      name = name.slice(weightOnlyMatch[0].length).trim();
+    }
+  }
+
+  return { name, weightKg };
+}
+
+export function cleanProductName(rawName) {
+  return parseProductName(rawName).name;
 }
 
 // --- File Type Detection ---

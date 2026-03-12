@@ -1,5 +1,5 @@
 import {
-  splitCsvLines, splitCsvRow, parseEuroDecimal, normalizeKey, cleanProductName
+  splitCsvLines, splitCsvRow, parseEuroDecimal, normalizeKey, parseProductName
 } from '../lib/csv-utils.mjs';
 
 /**
@@ -32,7 +32,7 @@ export function importTransactions(text, filename) {
 
     if (!year) year = parsed.year;
 
-    const cleaned = cleanProductName(rawName);
+    const { name: cleaned, weightKg } = parseProductName(rawName);
     const payCol = (cols[6] || "").trim();
     let paymentMethod = "unknown";
     if (payCol.includes("MC/BC") || payCol.includes("MC") || payCol.includes("BC")) {
@@ -52,7 +52,10 @@ export function importTransactions(text, filename) {
       price: parseEuroDecimal(cols[3]),
       category: (cols[4] || "").trim(),
       ean: (cols[5] || "").trim(),
-      paymentMethod
+      paymentMethod,
+      // For weighed items: quantity in kg (e.g. 1.360 for 1360g of cheese).
+      // For unit items: null — the aggregator defaults to 1 per transaction line.
+      quantity: weightKg
     });
   }
 

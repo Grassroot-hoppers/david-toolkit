@@ -14,7 +14,8 @@
     "serve": "node scripts/serve.mjs",
     "dev": "npm run build:demo && npm run serve",
     "test": "npm run build:full && node scripts/verify-data.mjs",
-    "test:unit": "node scripts/lib/csv-utils.test.mjs && node scripts/lib/transaction-aggregator.test.mjs"
+    "test:unit": "node scripts/lib/csv-utils.test.mjs && node scripts/lib/transaction-aggregator.test.mjs",
+    "classify": "node scripts/classify-products.mjs"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,7 @@
   "author": "Julien Thibaut",
   "license": "AGPL-3.0-only",
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "playwright": "^1.58.2"
   }
 }

@@ -14,7 +14,8 @@
   },
   "oeufs": {
     "displayName": "Oeufs",
-    "keywords": ["oeuf", "oeufs"]
+    "keywords": ["oeuf", "oeufs"],
+    "excludeKeywords": ["gaufre", "crepe", "crêpe", "tarama", "mousse", "lapin", "caraque", "chocolat"]
   },
   "boeuf": {
     "displayName": "Boeuf & Viandes",

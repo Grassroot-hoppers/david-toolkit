@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   initTabs();
   renderBriefing(DATA);
   renderProducts(DATA);
+  renderCategories(DATA);
+  renderFournisseurs(DATA);
   renderStubs(DATA);
   fetchWeather(DATA.location);
   document.getElementById("run-date").textContent = formatDate(new Date());
@@ -227,7 +229,7 @@ function renderPredictionCard(wm, pred, nextWeekNum) {
         <span class="pred-dates">(${formatShortDate(wm.nextWeekStart)} – ${formatShortDate(wm.nextWeekEnd)})</span>
       </div>
       <div class="prediction-value">${formatEuro(pred.predictedRevenue)}</div>
-      <div class="prediction-basis">Base S${nextWeekNum} N-1 : ${formatEuro(pred.base)}</div>
+      <div class="prediction-basis">Même semaine l'an dernier : ${formatEuro(pred.base)}</div>
       ${factorsHtml}
       ${weatherHtml}
       ${holidayHtml}
@@ -240,6 +242,24 @@ function formatShortDate(dateStr) {
   return d.toLocaleDateString("fr-BE", { day: "numeric", month: "short" });
 }
 
+// Cap 2026 zones: absolute weekly revenue thresholds (TTC)
+const ZONE_THRESHOLDS = { rouge: 7500, orange: 9000, vert: 10500 };
+const ZONE_CONFIG = {
+  rouge:  { color: "#EF4444", label: "Rouge",  emoji: "🔴", signal: "Alerte. Commandez le strict minimum." },
+  orange: { color: "#F97316", label: "Orange", emoji: "🟠", signal: "Zone critique. Réduisez les quantités." },
+  vert:   { color: "#22C55E", label: "Vert",   emoji: "🟢", signal: "Semaine saine. Commandes normales." },
+  bleu:   { color: "#3B82F6", label: "Bleu",   emoji: "🔵", signal: "Semaine forte. Commandez en confiance." },
+  neutre: { color: "#6B7280", label: "—",      emoji: "⚪", signal: "Données insuffisantes pour évaluer la semaine." },
+};
+
+function computeZone(weeklyRevenue) {
+  if (weeklyRevenue == null) return "neutre";
+  if (weeklyRevenue < ZONE_THRESHOLDS.rouge)  return "rouge";
+  if (weeklyRevenue < ZONE_THRESHOLDS.orange) return "orange";
+  if (weeklyRevenue < ZONE_THRESHOLDS.vert)   return "vert";
+  return "bleu";
+}
+
 function renderBriefing(data) {
   const section = document.getElementById("tab-briefing");
   const now = new Date();
@@ -247,19 +267,15 @@ function renderBriefing(data) {
   const weekNum = getWeekNumber(now);
   const wm = data.weeklyMetrics;
 
+  const zone = computeZone(wm?.lastWeekRevenue);
+  const zc = ZONE_CONFIG[zone];
   const yoy = wm ? wm.weekYoY : null;
-  const zone = yoy == null ? "neutre" : yoy > 0.10 ? "verte" : yoy < -0.10 ? "rouge" : "bleue";
-  const zoneColor = { verte: "#22C55E", bleue: "#3B82F6", rouge: "#EF4444", neutre: "#6B7280" }[zone];
 
   const yearlyGrowth = annualGrowthRate(data);
   const nextWeekNum  = weekNum + 1;
-
-  // Initial prediction without weather (weather updates the card asynchronously)
   const pred = wm ? computePrediction(wm, yearlyGrowth, null) : null;
-
   const orderingReminders = getOrderingReminders(data, dayName);
 
-  // Dates label for last week
   const lastWeekLabel = wm
     ? `${formatShortDate(wm.lastWeekStart)} – ${formatShortDate(wm.lastWeekEnd)}`
     : "";
@@ -267,37 +283,38 @@ function renderBriefing(data) {
     ? `${formatShortDate(wm.sameWeekLastYearStart)} – ${formatShortDate(wm.sameWeekLastYearEnd)}`
     : "";
 
+  const yoyText = yoy != null
+    ? `${yoy > 0 ? "+" : ""}${Math.round(yoy * 100)}% par rapport à la même semaine l'an dernier`
+    : "";
+
+  const mtdText = wm
+    ? `Depuis le début du mois : ${formatEuro(wm.mtdRevenue)}${wm.mtdYoY != null ? ` (${wm.mtdYoY > 0 ? "+" : ""}${Math.round(wm.mtdYoY * 100)}% vs l'an dernier)` : ""}`
+    : "";
+
   section.innerHTML = `
     <div class="briefing-grid">
 
-      <div class="briefing-card briefing-card--date">
-        <div class="briefing-date-main">${formatDate(now)}</div>
-        <div class="briefing-date-sub">Semaine ${weekNum} · ${data.store || "Boutique"}</div>
+      <!-- HERO: ordering confidence signal -->
+      <div class="briefing-card briefing-card--signal" style="border-left: 5px solid ${zc.color}; background: linear-gradient(135deg, var(--bg-card) 0%, ${zc.color}11 100%);">
+        <div class="signal-header">
+          <span class="signal-zone-badge" style="background: ${zc.color}">${zc.emoji} ZONE ${zc.label.toUpperCase()}</span>
+          <span class="signal-date">${formatDate(now)} · Semaine ${weekNum}</span>
+        </div>
+        <div class="signal-message" style="color: ${zc.color}">${zc.signal}</div>
+        <div class="signal-details">
+          <span class="signal-revenue">${wm ? formatEuro(wm.lastWeekRevenue) : "—"} la semaine dernière</span>
+          ${lastWeekLabel ? `<span class="signal-period">(${lastWeekLabel})</span>` : ""}
+        </div>
+        ${yoyText ? `<div class="signal-yoy">${yoyText}</div>` : ""}
       </div>
 
-      <div class="briefing-card briefing-card--perf">
-        <div class="card-label">SEMAINE ÉCOULÉE
-          ${lastWeekLabel ? `<span class="perf-dates">(${lastWeekLabel})</span>` : ""}
+      <!-- Zone gauge: visual reference of where we stand -->
+      <div class="briefing-card briefing-card--gauge">
+        <div class="zone-gauge">
+          ${renderZoneGauge(wm?.lastWeekRevenue)}
         </div>
-        <div class="perf-numbers">
-          <span class="perf-main" style="color: ${zoneColor}">
-            ${wm ? formatEuro(wm.lastWeekRevenue) : "—"}
-          </span>
-          <span class="perf-vs">
-            vs ${wm ? formatEuro(wm.sameWeekLastYear) : "—"} N-1
-            ${lastYearLabel ? `<span class="perf-yoy-dates">(${lastYearLabel})</span>` : ""}
-          </span>
-        </div>
-        <div class="perf-yoy" style="color: ${zoneColor}">
-          ${yoy != null ? `${yoy > 0 ? "+" : ""}${Math.round(yoy * 100)}% · Zone ${zone}` : "Données insuffisantes"}
-        </div>
-        <div class="perf-mtd">
-          MTD: ${wm ? formatEuro(wm.mtdRevenue) : "—"}
-          (${wm?.mtdYoY != null ? `${wm.mtdYoY > 0 ? "+" : ""}${Math.round(wm.mtdYoY * 100)}% vs N-1` : "—"})
-        </div>
+        ${mtdText ? `<div class="gauge-mtd">${mtdText}</div>` : ""}
       </div>
-
-      ${renderPredictionCard(wm, pred, nextWeekNum)}
 
       ${orderingReminders.length > 0 ? `
       <div class="briefing-card briefing-card--ordering">
@@ -305,8 +322,14 @@ function renderBriefing(data) {
         <ul class="ordering-list">
           ${orderingReminders.map(s => `
             <li class="ordering-item">
-              <span class="ordering-name">${s.name}</span>
-              ${s.cutoff ? `<span class="ordering-cutoff">avant ${s.cutoff}</span>` : ""}
+              <div class="ordering-item-header">
+                <span class="ordering-name">${s.name}</span>
+                ${s.cutoff ? `<span class="ordering-cutoff">avant ${s.cutoff}</span>` : ""}
+              </div>
+              ${s.topItems && s.topItems.length > 0 ? `
+                <ul class="ordering-products">
+                  ${s.topItems.map(p => `<li class="ordering-product">${p.name}${p.qty ? ` <span class="ordering-qty">×${p.qty}</span>` : ""}</li>`).join("")}
+                </ul>` : ""}
             </li>`).join("")}
         </ul>
       </div>` : `
@@ -315,16 +338,76 @@ function renderBriefing(data) {
         <div class="ordering-quiet">Pas de commandes prévues aujourd'hui</div>
       </div>`}
 
+      ${renderPredictionCard(wm, pred, nextWeekNum)}
+
     </div>
   `;
 }
 
+function renderZoneGauge(revenue) {
+  const zones = [
+    { key: "rouge",  label: "Rouge",  min: 0,     max: 7500,  color: "#EF4444" },
+    { key: "orange", label: "Orange", min: 7500,  max: 9000,  color: "#F97316" },
+    { key: "vert",   label: "Vert",   min: 9000,  max: 10500, color: "#22C55E" },
+    { key: "bleu",   label: "Bleu",   min: 10500, max: 14000, color: "#3B82F6" },
+  ];
+  const gaugeMax = 14000;
+  const current = computeZone(revenue);
+
+  const segments = zones.map(z => {
+    const widthPct = ((z.max - z.min) / gaugeMax * 100).toFixed(1);
+    const isActive = z.key === current;
+    return `<div class="gauge-segment ${isActive ? "gauge-segment--active" : ""}" style="width:${widthPct}%;background:${z.color};opacity:${isActive ? 1 : 0.25}">
+      <span class="gauge-label">${z.label}</span>
+      <span class="gauge-range">${z.min > 0 ? formatEuro(z.min) : ""} – ${formatEuro(z.max)}</span>
+    </div>`;
+  }).join("");
+
+  const markerPct = revenue != null
+    ? Math.min(100, Math.max(0, (revenue / gaugeMax) * 100)).toFixed(1)
+    : null;
+  const marker = markerPct != null
+    ? `<div class="gauge-marker" style="left:${markerPct}%"><div class="gauge-marker-dot"></div><div class="gauge-marker-label">${formatEuro(revenue)}</div></div>`
+    : "";
+
+  return `<div class="gauge-bar">${segments}</div>${marker}`;
+}
+
 function getOrderingReminders(data, dayName) {
-  // Use orderSchedule (built from supplier-map.json) — authoritative source
-  if (data.orderSchedule && data.orderSchedule[dayName]) {
-    return data.orderSchedule[dayName];
+  if (!data.orderSchedule || !data.orderSchedule[dayName]) return [];
+
+  const scheduledSuppliers = data.orderSchedule[dayName];
+  if (!scheduledSuppliers.length) return [];
+
+  // Primary: use the scored suppliers array (has weather-adjusted quantities)
+  const suppliersArr = data.suppliers || [];
+  const supMap = new Map(suppliersArr.map(s => [s.name, s]));
+
+  // Fallback: top products per supplier from the full products list
+  const prodsBySupplier = new Map();
+  for (const p of data.products || []) {
+    if (!p.supplier) continue;
+    if (!prodsBySupplier.has(p.supplier)) prodsBySupplier.set(p.supplier, []);
+    prodsBySupplier.get(p.supplier).push(p);
   }
-  return [];
+
+  return scheduledSuppliers.map(entry => {
+    const sup = supMap.get(entry.name) || {};
+    let topItems;
+    if (sup.order && sup.order.length > 0) {
+      topItems = sup.order.slice(0, 3).map(p => ({
+        name: p.displayName,
+        qty: p.weatherAdjustedQuantity || p.recentQuantity,
+      }));
+    } else {
+      // Fallback: show top revenue products for this supplier
+      topItems = (prodsBySupplier.get(entry.name) || [])
+        .sort((a, b) => b.revenue2025 - a.revenue2025)
+        .slice(0, 3)
+        .map(p => ({ name: p.name, qty: null }));
+    }
+    return { ...entry, topItems };
+  });
 }
 
 // ============================================================
@@ -597,26 +680,141 @@ function renderSeasonBar(seasonality) {
 }
 
 // ============================================================
-// Tabs 3–7 — Stub sections
+// Tab 3 — Catégories
+// ============================================================
+
+function renderCategories(data) {
+  const section = document.getElementById("tab-categories");
+  const cats = data.categoryMix || [];
+  if (!cats.length) {
+    section.innerHTML = `<div class="stub-content"><p class="stub-description">Données catégories non disponibles.</p></div>`;
+    return;
+  }
+
+  const totalRev = cats.reduce((s, c) => s + c.totalRevenue, 0);
+
+  const rows = cats.map(c => {
+    let yoy, yoyColor;
+    if (c.yoy == null) {
+      yoy = "—"; yoyColor = "#6B7280";
+    } else if (Math.abs(c.yoy) > 9.99) {
+      // Cap extreme YoY — likely new category with near-zero prior year
+      yoy = c.yoy > 0 ? ">+999%" : "<-999%";
+      yoyColor = "#6B7280";
+    } else {
+      yoy = `${c.yoy > 0 ? "+" : ""}${Math.round(c.yoy * 100)}%`;
+      yoyColor = c.yoy > 0.05 ? "#10B981" : c.yoy < -0.05 ? "#EF4444" : "#6B7280";
+    }
+    const sharePct = ((c.totalRevenue / totalRev) * 100).toFixed(1);
+    const barWidth = Math.round((c.totalRevenue / cats[0].totalRevenue) * 100);
+
+    return `
+      <div class="cat-row">
+        <div class="cat-name-col">
+          <span class="cat-name">${c.category}</span>
+          <div class="cat-bar-bg"><div class="cat-bar-fill" style="width:${barWidth}%"></div></div>
+        </div>
+        <span class="cat-revenue">${formatEuro(c.totalRevenue)}</span>
+        <span class="cat-share">${sharePct}%</span>
+        <span class="cat-yoy" style="color:${yoyColor}">${yoy}</span>
+        <span class="cat-count">${c.productCount.toLocaleString("fr-BE")} ventes</span>
+      </div>`;
+  }).join("");
+
+  section.innerHTML = `
+    <div class="categories-layout">
+      <div class="categories-header">
+        <div class="cat-col-name">Catégorie</div>
+        <div class="cat-col-rev">CA 2025</div>
+        <div class="cat-col-share">Part</div>
+        <div class="cat-col-yoy">vs N-1</div>
+        <div class="cat-col-count">Transactions</div>
+      </div>
+      <div class="categories-rows">${rows}</div>
+    </div>
+  `;
+}
+
+// ============================================================
+// Tab 4 — Fournisseurs
+// ============================================================
+
+function renderFournisseurs(data) {
+  const section = document.getElementById("tab-fournisseurs");
+  const ranking = data.supplierRanking || [];
+  const suppliersArr = data.suppliers || [];
+  const products = data.products || [];
+
+  if (!ranking.length) {
+    section.innerHTML = `<div class="stub-content"><p class="stub-description">Données fournisseurs non disponibles.</p></div>`;
+    return;
+  }
+
+  // Build supplier schedule map from the suppliers array (has order days/cutoffs)
+  const schedMap = new Map();
+  for (const s of suppliersArr) {
+    if (s.name) schedMap.set(s.name, s);
+  }
+
+  // Build top products per supplier from the products list (already sorted by revenue)
+  const prodsBySupplier = new Map();
+  for (const p of products) {
+    if (!p.supplier) continue;
+    if (!prodsBySupplier.has(p.supplier)) prodsBySupplier.set(p.supplier, []);
+    prodsBySupplier.get(p.supplier).push(p.name);
+  }
+
+  const rows = ranking.map((r) => {
+    const sched = schedMap.get(r.name) || {};
+    const days = sched.orderingDays?.join(", ") || sched.orderDay || null;
+    const cutoff = sched.cutoff ? `avant ${sched.cutoff}` : null;
+    const trend = r.enHausse > r.enBaisse ? "#10B981" : r.enBaisse > r.enHausse ? "#EF4444" : "#6B7280";
+    const trendLabel = r.enHausse > r.enBaisse
+      ? `↑ ${r.enHausse} en hausse`
+      : r.enBaisse > r.enHausse
+        ? `↓ ${r.enBaisse} en baisse`
+        : "→ stable";
+    const topProds = (prodsBySupplier.get(r.name) || []).slice(0, 3)
+      .map(p => `<span class="sup-prod">${p}</span>`).join("");
+
+    return `
+      <div class="sup-row">
+        <span class="sup-rank">${r.rank}</span>
+        <div class="sup-info">
+          <span class="sup-name">${r.name}</span>
+          ${topProds ? `<div class="sup-products">${topProds}</div>` : ""}
+        </div>
+        <span class="sup-revenue">${formatEuro(r.totalRevenue)}</span>
+        <span class="sup-trend" style="color:${trend}">${trendLabel}</span>
+        <div class="sup-order">
+          ${days ? `<span class="sup-order-day">${days}</span>` : ""}
+          ${cutoff ? `<span class="sup-order-cutoff">${cutoff}</span>` : ""}
+        </div>
+        <span class="sup-refs">${r.productCount} réf.</span>
+      </div>`;
+  }).join("");
+
+  section.innerHTML = `
+    <div class="suppliers-layout">
+      <div class="suppliers-header">
+        <div class="sup-col-rank">#</div>
+        <div class="sup-col-info">Fournisseur</div>
+        <div class="sup-col-rev">CA 2025</div>
+        <div class="sup-col-trend">Tendance</div>
+        <div class="sup-col-order">Commande</div>
+        <div class="sup-col-refs">Références</div>
+      </div>
+      <div class="suppliers-rows">${rows}</div>
+    </div>
+  `;
+}
+
+// ============================================================
+// Tabs 5–7 — Stub sections
 // ============================================================
 
 function renderStubs(data) {
   const stubs = [
-    {
-      id: "categories",
-      title: "Catégories",
-      description: "Analyse revenu par rayon — chiffre d'affaires par mètre linéaire, signaux de suppression/expansion par catégorie, hiérarchie actionnable en remplacement des catégories brutes du POS.",
-      preview: [
-        { label: "Fromages", value: "14 000€/rayon" },
-        { label: "Pâtes", value: "3 000€/rayon" },
-      ]
-    },
-    {
-      id: "fournisseurs",
-      title: "Fournisseurs",
-      description: "Vue par fournisseur — CA annuel, nombre de références, top 3 produits, jours de commande, lien Notion. Classement par contribution au CA.",
-      preview: data.supplierRanking?.slice(0, 2).map(s => ({ label: s.supplier, value: formatEuro(s.revenue) })) || []
-    },
     {
       id: "tendances",
       title: "Tendances",
@@ -641,13 +839,14 @@ function renderStubs(data) {
       description: "Audit de la qualité des données — mappings catégories, corrections noms produits, signaux d'anomalie. La surface d'audit pour valider ce que le pipeline a interprété.",
       preview: [
         { label: "Catégories mappées", value: data.categoryMix?.length || "—" },
-        { label: "Produits traités", value: data.products?.length || "—" },
+        { label: "Produits traités", value: data.kpis?.productCount || "—" },
       ]
     }
   ];
 
   for (const stub of stubs) {
     const section = document.getElementById(`tab-${stub.id}`);
+    if (!section) continue;
     section.innerHTML = `
       <div class="stub-content">
         <div class="stub-header">
