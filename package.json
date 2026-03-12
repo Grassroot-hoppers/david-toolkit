@@ -15,7 +15,8 @@
     "serve:v2": "node scripts/serve.mjs --root=public --port=4174",
     "dev": "npm run build:demo && npm run serve",
     "dev:v2": "npm run build:demo && npm run serve:v2",
-    "test": "npm run build:full && node scripts/verify-data.mjs"
+    "test": "npm run build:full && node scripts/verify-data.mjs",
+    "test:unit": "node scripts/lib/csv-utils.test.mjs && node scripts/lib/transaction-aggregator.test.mjs"
   },
   "repository": {
     "type": "git",

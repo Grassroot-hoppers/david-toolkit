@@ -5,6 +5,8 @@
 
 **Out of scope:** Tabs 3–7 (stay stubs), new features, transaction-first pipeline. Only Tab 1 and Tab 2.
 
+**Validation:** Cross-analysis report in `docs/references/perplexity-day4-mvp-polish-validation.md`. Key changes incorporated below: CSS Grid `min()` wrapper, ISO week function, error-state hierarchy, optional schemaVersion.
+
 ---
 
 ## 1. Current state
@@ -41,16 +43,16 @@
 
 **Files:** `public/app.js`.
 
-- Card says "PRÉVISION SEMAINE ${weekNum + 1}". If we’re in week 11, that’s “Semaine 12” — confirm that’s “next week” in your locale (ISO week vs local). If wrong, use explicit “Semaine prochaine” or compute next week number.
+- Use an explicit ISO 8601 week function (validation: ISO matches Belgian/French retail). Replace or augment getWeekNumber with an ISO week calculator so the prediction label is unambiguously next week. Card says "PRÉVISION SEMAINE ${weekNum + 1}". If we’re in week 11, that’s “Semaine 12” — confirm that’s “next week” in your locale (ISO week vs local). If wrong, use explicit “Semaine prochaine” or compute next week number.
 
-**Verification:** Check that the label matches the intended week.
+**Verification:** Check that the label matches the intended week at year boundaries.
 
 ### 1.3 — Tab 2: product field names and group member match
 
 **Files:** `public/app.js`, `scripts/build-demo.mjs`.
 
 - Products in payload: `name`, `category`, `rank`, `revenue2025`, `growth`, `monthlyHistory`, `suggestedOrder`. Confirm `renderProductRow` and filters use these (not `displayName` unless payload sends it).
-- Group members: `productGroups[].members` — are they product names as in `products[].name`? If build-demo emits `displayName` in members but payload products use `name`, expand will show no rows. Fix: either align payload to use same key for product name everywhere, or in app.js match `g.members.includes(p.name)` and also try `p.displayName` if present.
+- Group members: `productGroups[].members` are displayNames (build-demo). Match to products via fallback `(p.displayName || p.name)` in filters and expand. For robustness, optional: build a `Map` from both `name` and `displayName` to product and resolve `group.members` with `productMap.get(key)` so both keys work.
 
 **Verification:** Expand a product group; members listed in the group should appear.
 
@@ -70,8 +72,8 @@
 
 **Files:** `public/index.html`, `public/styles.css`.
 
-- Replace fixed viewport `width=1440` with `width=device-width, initial-scale=1` so mobile/narrow works.
-- Briefing grid: ensure 2 columns on wide, 1 on narrow (e.g. `grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))` or media query). Cards should wrap, not overflow.
+- **Viewport (critical):** Replace `width=1440` with `width=device-width, initial-scale=1`. Without this, no responsive work takes effect on mobile.
+- Briefing grid: use `grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr))` so items never overflow when container is narrower than 280px (validation: plain `minmax(280px, 1fr)` can cause horizontal scroll below 280px).
 
 **Verification:** Resize to ~360px and ~768px; no horizontal scroll; cards stack.
 
@@ -84,9 +86,11 @@
 
 **Verification:** Resize; product rows readable; filters usable.
 
-### 2.3 — Empty and error states
+### 2.3 — Empty and error states (hierarchy)
 
 **Files:** `public/app.js`.
+
+Apply in order (validation: fetch failure must block all tab rendering). (1) **Fetch failure:** Add `.catch()` to the demo.json fetch; on failure render full-page "Données indisponibles. Vérifiez que le pipeline a été exécuté." and do not call renderBriefing/renderProducts/renderStubs. (2) **Missing section:** Tab-level "Données insuffisantes" in Briefing; hide prediction card if no macro. (3) **Empty filter:** Tab 2 inline "Aucun produit" or "Aucun produit pour ce filtre".
 
 - Tab 1: If `weeklyMetrics` is null or missing, show “Données insuffisantes” (or similar) instead of “— —” everywhere; same for missing macro (prediction card can hide).
 - Tab 2: If `products.length === 0` or filtered list is empty, show “Aucun produit” (or “Aucun produit pour ce filtre”) instead of a blank area.
@@ -109,12 +113,13 @@
 
 ### 3.2 — Console and a11y
 
-**Files:** `public/app.js`, `public/index.html`.
+**Files:** `public/app.js`, `public/index.html`, `public/styles.css`.
 
 - No JavaScript errors in console when loading and switching tabs.
-- Buttons (tabs, rank filters, group expand) have focus styles; optional: one key piece of ARIA (e.g. active tab `aria-selected`).
+- Focus styles: use `:focus-visible` so keyboard users get a visible outline without focus ring on mouse click. Example: `button:focus-visible, [role="tab"]:focus-visible { outline: 2px solid var(--zone-bleu); outline-offset: 2px; }` for tab buttons, rank filters, group expand.
+- ARIA: set `aria-selected="true"` on active tab, `aria-selected="false"` on others; ensure tab buttons have `role="tab"` if not native semantics.
 
-**Verification:** Open DevTools; run through Tab 1 and Tab 2; fix any errors.
+**Verification:** Open DevTools; run through Tab 1 and Tab 2 with keyboard; fix any errors.
 
 ---
 

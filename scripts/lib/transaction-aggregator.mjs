@@ -33,6 +33,7 @@ export function aggregateFromTransactions(transactions, year) {
     const { productKey, rawName, category, vatRate, price, hour, dayOfWeek } = tx;
     const qty = tx.quantity || 1;
     const date = tx.date; // "YYYY-MM-DD"
+    if (!date) continue; // skip malformed transaction
     const month = parseInt(date.slice(5, 7), 10);
 
     if (!price || price <= 0) continue;
