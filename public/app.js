@@ -396,7 +396,7 @@ function getOrderingReminders(data, dayName) {
     let topItems;
     if (sup.order && sup.order.length > 0) {
       topItems = sup.order.slice(0, 3).map(p => ({
-        name: p.displayName,
+        name: p.name,
         qty: p.weatherAdjustedQuantity || p.recentQuantity,
       }));
     } else {
@@ -565,7 +565,7 @@ function updateProductList(products, groups, rankFilter, searchQuery, categoryFi
   const filtered = products.filter(p => {
     if (rankFilter !== "all" && p.rank !== rankFilter) return false;
     if (categoryFilter && p.category !== categoryFilter) return false;
-    if (searchQuery && !(p.displayName || p.name || "").toLowerCase().includes(searchQuery)) return false;
+    if (searchQuery && !(p.name || "").toLowerCase().includes(searchQuery)) return false;
     return true;
   });
 
@@ -614,7 +614,7 @@ function updateProductList(products, groups, rankFilter, searchQuery, categoryFi
       btn.textContent = expanded ? "▶" : "▼";
       if (!expanded) {
         const g = groups.find(g => g.key === key);
-        const memberProducts = products.filter(p => g.members.includes(p.displayName || p.name));
+        const memberProducts = products.filter(p => g.members.includes(p.name));
         membersDiv.innerHTML = memberProducts.map(renderProductRow).join("");
         membersDiv.style.display = "block";
       } else {
@@ -639,7 +639,7 @@ function renderProductRow(p) {
   return `
     <div class="product-row">
       <span class="rank-badge rank-${p.rank}">${p.rank}</span>
-      <span class="product-name">${p.displayName || p.name}</span>
+      <span class="product-name">${p.name}</span>
       <span class="product-category">${p.category || ""}</span>
       <span class="product-revenue">${formatEuro(p.revenue2025)}</span>
       <span class="product-growth">${growthText}</span>
