@@ -74,8 +74,10 @@ The point of David Toolkit is not just “source visible.” It is a real common
 
 ## Status
 
-`v0.1` is a serious demo, not a production system.
+**v0.1.0 — Shipped 2026-03-13 after a 5-day solo hackathon.**
 
-- It is strong enough to show the concept clearly.
-- It is not yet a live ordering engine.
-- All “AI-corrected” interpretations remain visible as **inference** with confidence tags, never hidden truth.
+Tabs 1–4 are functional with real data. Tabs 5–7 are documented stubs. The pipeline works on the main workstation with POS CSV exports.
+
+→ [Live dashboard](https://[your-github-pages-url])
+→ [Contributor Guide](docs/CONTRIBUTOR_GUIDE.md) — start here if you want to continue this
+→ [Day 4 Devlog](docs/DEV_LOG_DAY4.md) — the honest technical brief
