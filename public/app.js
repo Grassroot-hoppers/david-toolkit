@@ -652,6 +652,7 @@ function renderProductRow(p) {
 function renderSparkline(history) {
   if (!history || history.length === 0) return `<svg width="80" height="24"></svg>`;
   const clean = history.map(v => (typeof v === "number" && Number.isFinite(v)) ? v : 0);
+  if (clean.every(v => v === 0)) return `<svg width="80" height="24" class="sparkline sparkline--empty"></svg>`;
   const W = 80, H = 24, pad = 2;
   if (clean.length === 1) {
     const cy = H / 2;
