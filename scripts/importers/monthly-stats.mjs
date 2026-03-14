@@ -1,5 +1,5 @@
 import {
-  splitCsvLines, splitCsvRow, parseEuroDecimal, parseMonthlyCell, normalizeKey
+  splitCsvLines, splitCsvRow, parseEuroDecimal, parseMonthlyCell, normalizeKey, isJunkRow
 } from '../lib/csv-utils.mjs';
 
 /**
@@ -37,7 +37,7 @@ export function importMonthlyStats(text, filename) {
   for (let r = 1; r < lines.length; r++) {
     const cols = splitCsvRow(lines[r]);
     const libelle = (cols[colIndex["libelle"]] || "").trim();
-    if (!libelle) continue;
+    if (!libelle || isJunkRow(libelle)) continue;
 
     const monthly = monthlyCols.map(({ month, index }) => {
       const cell = parseMonthlyCell(cols[index]);
