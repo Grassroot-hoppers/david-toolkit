@@ -51,7 +51,7 @@ export function importMonthlyStats(text, filename) {
       supplier: (cols[colIndex["famille"]] || "").trim(),
       mainType: (cols[colIndex["type"]] || "").trim(),
       origin: (cols[colIndex["C3"]] || "").trim(),
-      stock: Math.abs(parseEuroDecimal(cols[colIndex["STOCK"]])),
+      stock: parseEuroDecimal(cols[colIndex["STOCK"]]),
       internalRef: (cols[colIndex["IDINTERN"]] || "").trim(),
       category: (cols[colIndex["categorie"]] || "").trim(),
       conditioning: parseEuroDecimal(cols[colIndex["conditionnement"]]),

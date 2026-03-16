@@ -94,6 +94,8 @@ function buildProductCatalog() {
       lifecycle = "dead";
     } else if (!prev && latest) {
       lifecycle = "new";
+    } else if (prev && !latest) {
+      lifecycle = "declining";
     } else if (prev && latest) {
       const change = prevRevenue > 0 ? (latestRevenue - prevRevenue) / prevRevenue : 0;
       if (change > 0.10) lifecycle = "growing";
