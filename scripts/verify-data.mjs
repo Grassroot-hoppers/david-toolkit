@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 
 const root = process.cwd();
 const goldDir = path.join(root, "data", "gold");
-const demoPath = path.join(root, "demo", "data", "demo.json");
+const demoPath = path.join(root, "public", "data", "demo.json");
 
 let errors = 0;
 
@@ -42,6 +42,11 @@ for (const gf of goldFiles) {
     assert.ok(fs.existsSync(fp), "file does not exist");
     JSON.parse(fs.readFileSync(fp, "utf8"));
   });
+}
+
+if (errors > 0) {
+  console.log(`\nFAILED: ${errors} gold file(s) missing or invalid — cannot continue.\n`);
+  process.exit(1);
 }
 
 const catalog = readJson(path.join(goldDir, "product-catalog.json"));
@@ -204,6 +209,19 @@ check("has generatedAt and kpis", () => {
   assert.ok(payload.kpis);
   assert.ok(typeof payload.kpis.totalRevenue === "number", "missing kpis.totalRevenue");
   assert.ok(payload.kpis.totalRevenue > 0, "totalRevenue is zero");
+});
+
+check("top products have non-zero monthlyHistory (catches map key mismatch in build-demo)", () => {
+  const sample = (payload.topProducts || []).slice(0, 5);
+  assert.ok(sample.length > 0, "no topProducts to check");
+  const allZero = sample.filter((p) => {
+    const h = p.monthlyHistory || [];
+    return h.length === 0 || h.every((v) => v === 0);
+  });
+  assert.ok(
+    allZero.length === 0,
+    `${allZero.length}/${sample.length} top products have all-zero monthlyHistory — check monthlyStatsByName key in build-demo.mjs`
+  );
 });
 
 // --- Summary ---
