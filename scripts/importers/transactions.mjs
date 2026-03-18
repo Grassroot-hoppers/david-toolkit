@@ -80,6 +80,8 @@ function parseTimestamp(raw) {
 
   // dayOfWeek: 1=Monday ... 7=Sunday (ISO 8601)
   const d = new Date(year, month - 1, day);
+  // Reject dates that JS silently rolls over (e.g. Feb 30 → Mar 2)
+  if (d.getMonth() !== month - 1 || d.getDate() !== day) return null;
   const dow = d.getDay();
   const dayOfWeek = dow === 0 ? 7 : dow;
 

@@ -49,6 +49,7 @@ export function applyCategoryOverride(productKey, currentCategory, categoryLooku
 
   if (
     config.crossRefConfig.enabled &&
+    currentCategory != null &&
     currentCategory.toUpperCase() === (config.crossRefConfig.targetCategory || "").toUpperCase()
   ) {
     const crossRefCat = categoryLookup.get(productKey);
@@ -72,5 +73,10 @@ export function resolveSkuMerge(key, skuMerges) {
 
 function readJsonSafe(fp, fallback) {
   if (!fs.existsSync(fp)) return fallback;
-  return JSON.parse(fs.readFileSync(fp, "utf8"));
+  try {
+    return JSON.parse(fs.readFileSync(fp, "utf8"));
+  } catch {
+    console.warn(`[config-loader] Failed to parse ${fp} — using fallback`);
+    return fallback;
+  }
 }

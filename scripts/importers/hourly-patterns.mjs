@@ -22,10 +22,16 @@ export function importHourlyPatterns(text, filename) {
     const dayName = (cols[0] || "").trim().toLowerCase();
     if (!dayName || !FRENCH_DAYS[dayName]) continue;
 
+    const hour = parseInt(cols[1], 10);
+    if (!Number.isFinite(hour) || hour < 0 || hour > 23) {
+      warnings.push(`Skipping row with invalid hour: "${(cols[1] || "").trim()}" (day: ${dayName})`);
+      continue;
+    }
+
     entries.push({
       dayOfWeek: FRENCH_DAYS[dayName],
       dayName,
-      hour: parseInt(cols[1], 10),
+      hour,
       revenue: parseEuroDecimal(cols[2])
     });
   }
