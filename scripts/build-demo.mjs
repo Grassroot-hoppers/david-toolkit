@@ -782,8 +782,8 @@ function buildFromGold() {
   // ABCD Pareto ranking
   computeAbcd(products);
 
-  // Build monthly lookup: productName → Map<"YYYY-MM", revenue>
-  const monthlyStatsByName = new Map();
+  // Build monthly lookup: normalizedKey → Map<"YYYY-MM", revenue>
+  const monthlyStatsByKey = new Map();
   if (monthlyStats) {
     for (const entry of monthlyStats) {
       const byMonth = new Map();
@@ -791,7 +791,7 @@ function buildFromGold() {
         const key = `${s.year}-${String(s.month).padStart(2, "0")}`;
         byMonth.set(key, s.revenue);
       }
-      monthlyStatsByName.set(entry.name, byMonth);
+      monthlyStatsByKey.set(entry.key, byMonth);
     }
   }
 
@@ -803,7 +803,7 @@ function buildFromGold() {
     }
   }
   for (const p of products) {
-    const lookup = monthlyStatsByName.get(p.key) || monthlyStatsByName.get(p.displayName);
+    const lookup = monthlyStatsByKey.get(p.key);
     p.monthlyHistory = HISTORY_MONTHS.map(month => lookup ? (lookup.get(month) || 0) : 0);
   }
 
@@ -813,7 +813,7 @@ function buildFromGold() {
     if (p.rank !== "A" && p.rank !== "B") { p.suggestedOrder = null; continue; }
     const monthKey2024 = `2024-${String(runMonth + 1).padStart(2, "0")}`;
     const monthKey2025 = `2025-${String(runMonth + 1).padStart(2, "0")}`;
-    const lookup = monthlyStatsByName.get(p.key) || monthlyStatsByName.get(p.displayName);
+    const lookup = monthlyStatsByKey.get(p.key);
     const rev2024 = lookup ? (lookup.get(monthKey2024) || 0) : 0;
     const rev2025 = lookup ? (lookup.get(monthKey2025) || 0) : 0;
     const avgMonthly = (rev2024 + rev2025) / (rev2024 > 0 && rev2025 > 0 ? 2 : 1);

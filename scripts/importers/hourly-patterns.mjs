@@ -1,4 +1,4 @@
-import { splitCsvLines, splitCsvRow, parseEuroDecimal } from '../lib/csv-utils.mjs';
+import { splitCsvLines, splitCsvRow, parseEuroDecimal, detectYearFromFilename } from '../lib/csv-utils.mjs';
 
 const FRENCH_DAYS = {
   lundi: 1, mardi: 2, mercredi: 3, jeudi: 4,
@@ -13,7 +13,7 @@ export function importHourlyPatterns(text, filename) {
   const lines = splitCsvLines(text);
   if (lines.length < 2) return { type: "hourly-by-weekday", year: null, entries: [], warnings: ["File too short"] };
 
-  const year = filename ? detectYearFromName(filename) : null;
+  const year = filename ? detectYearFromFilename(filename) : null;
   const warnings = [];
   const entries = [];
 
@@ -22,10 +22,12 @@ export function importHourlyPatterns(text, filename) {
     const dayName = (cols[0] || "").trim().toLowerCase();
     if (!dayName || !FRENCH_DAYS[dayName]) continue;
 
+    const hour = parseInt(cols[1], 10);
+    if (!Number.isFinite(hour)) continue;
     entries.push({
       dayOfWeek: FRENCH_DAYS[dayName],
       dayName,
-      hour: parseInt(cols[1], 10),
+      hour,
       revenue: parseEuroDecimal(cols[2])
     });
   }
@@ -33,7 +35,3 @@ export function importHourlyPatterns(text, filename) {
   return { type: "hourly-by-weekday", year, entries, warnings };
 }
 
-function detectYearFromName(filename) {
-  const match = String(filename).match(/(\d{4})/);
-  return match ? parseInt(match[1], 10) : null;
-}
