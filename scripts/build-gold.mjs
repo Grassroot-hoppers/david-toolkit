@@ -10,7 +10,12 @@ const goldDir = path.join(root, "data", "gold");
 function readSilver(filename) {
   const fp = path.join(silverDir, filename);
   if (!fs.existsSync(fp)) return null;
-  return JSON.parse(fs.readFileSync(fp, "utf8"));
+  try {
+    return JSON.parse(fs.readFileSync(fp, "utf8"));
+  } catch {
+    console.warn(`[build-gold] Failed to parse Silver JSON: ${filename}`);
+    return null;
+  }
 }
 
 function readSilverGlob(prefix) {
