@@ -13,6 +13,8 @@ assert.equal(parseEuroDecimal(null), 0);
 assert.equal(parseEuroDecimal(undefined), 0);
 assert.equal(parseEuroDecimal("0"), 0);
 assert.equal(parseEuroDecimal(" 3,50 "), 3.5);
+assert.equal(parseEuroDecimal("1.234,56"), 1234.56);
+assert.equal(parseEuroDecimal("1.031.293,00"), 1031293);
 
 // parseMonthlyCell
 assert.deepEqual(parseMonthlyCell("26  (0)"), { quantity: 26, revenue: 0 });

@@ -40,7 +40,13 @@ export function splitCsvRow(line) {
 
 export function parseEuroDecimal(value) {
   if (value === undefined || value === null || value === "") return 0;
-  const cleaned = String(value).replace(/\s/g, "").replace(",", ".");
+  let cleaned = String(value).replace(/\s/g, "");
+  // European locale: if both '.' and ',' are present, '.' is the thousand separator
+  if (cleaned.includes(".") && cleaned.includes(",")) {
+    cleaned = cleaned.replace(/\./g, "").replace(",", ".");
+  } else {
+    cleaned = cleaned.replace(",", ".");
+  }
   const num = Number(cleaned);
   return Number.isFinite(num) ? num : 0;
 }
