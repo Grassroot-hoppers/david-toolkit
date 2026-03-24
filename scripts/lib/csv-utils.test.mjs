@@ -90,5 +90,9 @@ assert.deepEqual(splitCsvRow("a;b;"), ["a", "b", ""]);
 assert.equal(detectYearFromFilename("stat-vente-monthly-2025.csv"), 2025);
 assert.equal(detectYearFromFilename("margin-analysis-2025-h1.csv"), 2025);
 assert.equal(detectYearFromFilename("no-year.csv"), null);
+// out-of-range: 4-digit sequence that is not a plausible year
+assert.equal(detectYearFromFilename("export-0125-data.csv"), null);   // 0125 = 125, out of range
+assert.equal(detectYearFromFilename("report-9999.csv"), null);         // 9999 > 2099
+assert.equal(detectYearFromFilename("margin-1999-legacy.csv"), null);  // 1999 < 2000
 
 console.log("csv-utils: all tests passed");

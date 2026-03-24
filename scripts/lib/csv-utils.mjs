@@ -141,7 +141,9 @@ export function detectFileType(firstLine) {
 
 export function detectYearFromFilename(filename) {
   const match = String(filename).match(/(\d{4})/);
-  return match ? parseInt(match[1], 10) : null;
+  if (!match) return null;
+  const year = parseInt(match[1], 10);
+  return year >= 2000 && year <= 2099 ? year : null;
 }
 
 // --- Junk Row Detection ---

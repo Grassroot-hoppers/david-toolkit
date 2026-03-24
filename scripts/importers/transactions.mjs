@@ -72,7 +72,7 @@ function parseTimestamp(raw) {
   const shortYear = parseInt(match[3], 10);
   const hour = parseInt(match[4], 10);
   const minute = parseInt(match[5], 10);
-  const year = 2000 + shortYear;
+  const year = shortYear >= 70 ? 1900 + shortYear : 2000 + shortYear;
 
   const pad = (n) => String(n).padStart(2, "0");
   const date = `${year}-${pad(month)}-${pad(day)}`;
