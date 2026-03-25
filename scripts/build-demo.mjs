@@ -475,6 +475,10 @@ function buildBriefing(products, suppliers, context, copy) {
     .slice()
     .sort((left, right) => right.order.length - left.order.length)[0];
 
+  if (!hottestSupplier) {
+    return [copy.briefingOpening(context.weather.headline)];
+  }
+
   return [
     copy.briefingOpening(context.weather.headline),
     copy.briefingSupplier(hottestSupplier.name, hottestSupplier.summary),
@@ -744,12 +748,6 @@ function computeAbcd(products) {
     else if (share <= 0.80) p.rank = "C";
     else p.rank = "D";
   }
-}
-
-function getWeekOfYear(dateStr) {
-  const d = new Date(dateStr);
-  const start = new Date(d.getFullYear(), 0, 1);
-  return Math.ceil(((d - start) / 86400000 + start.getDay() + 1) / 7);
 }
 
 function buildFromGold() {

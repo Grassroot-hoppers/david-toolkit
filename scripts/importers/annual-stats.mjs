@@ -1,5 +1,6 @@
 import {
-  splitCsvLines, splitCsvRow, parseEuroDecimal, normalizeKey, isJunkRow
+  splitCsvLines, splitCsvRow, parseEuroDecimal, normalizeKey, isJunkRow,
+  detectYearFromFilename
 } from '../lib/csv-utils.mjs';
 
 /**
@@ -10,7 +11,7 @@ export function importAnnualStats(text, filename) {
   if (lines.length < 2) return { type: "annual-stats", year: null, products: [], refunds: [], warnings: ["File too short"] };
 
   const dataRows = lines.slice(1);
-  const year = filename ? detectYearFromName(filename) : null;
+  const year = filename ? detectYearFromFilename(filename) : null;
   const warnings = [];
   const products = [];
   const refunds = [];
@@ -52,7 +53,3 @@ export function importAnnualStats(text, filename) {
   return { type: "annual-stats", year, products, refunds, warnings };
 }
 
-function detectYearFromName(filename) {
-  const match = String(filename).match(/(\d{4})/);
-  return match ? parseInt(match[1], 10) : null;
-}
