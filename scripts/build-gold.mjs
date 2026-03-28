@@ -341,7 +341,7 @@ function buildMarginRanking(catalog) {
 
 // --- Task 17: Store Summary ---
 
-function buildStoreSummary(dailySales, catalog, categoryEvolution) {
+function buildStoreSummary(dailySales) {
   const monthlyFiles = readSilverGlob("monthly-stats-");
   const annualFiles = readSilverGlob("annual-stats-");
   const txFiles = readSilverGlob("transactions-");
