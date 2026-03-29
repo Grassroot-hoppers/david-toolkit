@@ -746,12 +746,6 @@ function computeAbcd(products) {
   }
 }
 
-function getWeekOfYear(dateStr) {
-  const d = new Date(dateStr);
-  const start = new Date(d.getFullYear(), 0, 1);
-  return Math.ceil(((d - start) / 86400000 + start.getDay() + 1) / 7);
-}
-
 function buildFromGold() {
   const catalog = readGold("product-catalog.json");
   const monthlyStats = readGold("monthly-product-stats.json");

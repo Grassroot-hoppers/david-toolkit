@@ -5,7 +5,12 @@
 let DATA = null;
 
 document.addEventListener("DOMContentLoaded", async () => {
-  DATA = await fetch("data/demo.json").then(r => r.json());
+  try {
+    DATA = await fetch("data/demo.json").then(r => r.json());
+  } catch {
+    document.body.innerHTML = `<div style="padding:2rem;font-family:monospace;color:#EF4444">Impossible de charger les données. Lancez <code>npm run dev</code> depuis le terminal.</div>`;
+    return;
+  }
   initTabs();
   renderBriefing(DATA);
   renderProducts(DATA);
