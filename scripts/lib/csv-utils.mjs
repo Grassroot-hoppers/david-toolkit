@@ -40,7 +40,12 @@ export function splitCsvRow(line) {
 
 export function parseEuroDecimal(value) {
   if (value === undefined || value === null || value === "") return 0;
-  const cleaned = String(value).replace(/\s/g, "").replace(",", ".");
+  let cleaned = String(value).replace(/\s/g, "");
+  // European format: period = thousands separator, comma = decimal ("1.234,56")
+  // Only strip periods when a comma is also present (comma is the decimal marker).
+  if (cleaned.includes(",")) {
+    cleaned = cleaned.replace(/\./g, "").replace(",", ".");
+  }
   const num = Number(cleaned);
   return Number.isFinite(num) ? num : 0;
 }
