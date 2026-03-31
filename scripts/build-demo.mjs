@@ -782,7 +782,10 @@ function buildFromGold() {
   // ABCD Pareto ranking
   computeAbcd(products);
 
-  // Build monthly lookup: productName → Map<"YYYY-MM", revenue>
+  // Build monthly lookup: normalizedKey → Map<"YYYY-MM", revenue>
+  // Keyed by entry.key (normalized, no accents) so it matches p.key in the scored products.
+  // entry.name is the raw POS name and may contain accents that normalizeKey strips,
+  // so using entry.name here caused lookups to silently return undefined for accented products.
   const monthlyStatsByName = new Map();
   if (monthlyStats) {
     for (const entry of monthlyStats) {
@@ -791,7 +794,7 @@ function buildFromGold() {
         const key = `${s.year}-${String(s.month).padStart(2, "0")}`;
         byMonth.set(key, s.revenue);
       }
-      monthlyStatsByName.set(entry.name, byMonth);
+      monthlyStatsByName.set(entry.key, byMonth);
     }
   }
 
@@ -979,14 +982,15 @@ function buildFromGold() {
     },
   };
 
+  const productsWithMargin = products.filter((p) => p.marginRatio > 0);
   const kpis = {
     totalRevenue: products.reduce((sum, p) => sum + p.totalRevenue, 0),
     productCount: products.length,
     enHausse: products.filter((p) => p.action === "hausse").length,
     stable: products.filter((p) => p.action === "stable").length,
     enBaisse: products.filter((p) => p.action === "baisse").length,
-    avgMargin: products.filter((p) => p.marginRatio > 0).length > 0
-      ? products.filter((p) => p.marginRatio > 0).reduce((s, p) => s + p.marginRatio, 0) / products.filter((p) => p.marginRatio > 0).length
+    avgMargin: productsWithMargin.length > 0
+      ? productsWithMargin.reduce((s, p) => s + p.marginRatio, 0) / productsWithMargin.length
       : 0,
   };
 

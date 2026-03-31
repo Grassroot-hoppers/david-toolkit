@@ -5,7 +5,19 @@
 let DATA = null;
 
 document.addEventListener("DOMContentLoaded", async () => {
-  DATA = await fetch("data/demo.json").then(r => r.json());
+  try {
+    const res = await fetch("data/demo.json");
+    if (!res.ok) throw new Error(`HTTP ${res.status} — ${res.statusText}`);
+    DATA = await res.json();
+  } catch (err) {
+    document.body.innerHTML = `
+      <div style="padding:2rem;color:#EF4444;font-family:monospace;background:#0A0A0B;min-height:100vh">
+        <strong>Impossible de charger les données du tableau de bord.</strong><br>
+        <small style="color:#9CA3AF">${err.message}</small><br><br>
+        <span style="color:#6B7280">Lancez <code>npm run build:full</code> puis <code>npm run serve</code>.</span>
+      </div>`;
+    return;
+  }
   initTabs();
   renderBriefing(DATA);
   renderProducts(DATA);

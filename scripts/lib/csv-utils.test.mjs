@@ -37,6 +37,11 @@ assert.deepEqual(parseProductName("(00106g/34,68€Kg)GRUYERE"), { name: "GRUYER
 assert.deepEqual(parseProductName("(250g)BEURRE"), { name: "BEURRE", weightKg: 0.250 });
 assert.deepEqual(parseProductName("CONFITURE FRAISE"), { name: "CONFITURE FRAISE", weightKg: null });
 assert.deepEqual(parseProductName("BRIE DE MEAUX"), { name: "BRIE DE MEAUX", weightKg: null });
+// parseProductName — null / undefined / empty input (no throw)
+assert.deepEqual(parseProductName(null), { name: "", weightKg: null });
+assert.deepEqual(parseProductName(undefined), { name: "", weightKg: null });
+assert.deepEqual(parseProductName(""), { name: "", weightKg: null });
+assert.deepEqual(parseProductName("  "), { name: "", weightKg: null });
 
 // detectFileType
 assert.equal(
