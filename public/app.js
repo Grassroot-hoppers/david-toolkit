@@ -396,7 +396,7 @@ function getOrderingReminders(data, dayName) {
     let topItems;
     if (sup.order && sup.order.length > 0) {
       topItems = sup.order.slice(0, 3).map(p => ({
-        name: p.name,
+        name: p.displayName,
         qty: p.weatherAdjustedQuantity || p.recentQuantity,
       }));
     } else {

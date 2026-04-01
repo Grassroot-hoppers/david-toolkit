@@ -40,8 +40,14 @@ export function splitCsvRow(line) {
 
 export function parseEuroDecimal(value) {
   if (value === undefined || value === null || value === "") return 0;
-  const cleaned = String(value).replace(/\s/g, "").replace(",", ".");
-  const num = Number(cleaned);
+  let s = String(value).replace(/\s/g, "");
+  // European format: dots are thousands separators, comma is decimal separator.
+  // Strip dots only when a comma is present, otherwise leave the string as-is
+  // (integers like "30796" have no separator at all).
+  if (s.includes(",")) {
+    s = s.replace(/\./g, "").replace(",", ".");
+  }
+  const num = Number(s);
   return Number.isFinite(num) ? num : 0;
 }
 
