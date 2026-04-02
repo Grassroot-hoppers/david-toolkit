@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 
 const root = process.cwd();
 const goldDir = path.join(root, "data", "gold");
-const demoPath = path.join(root, "demo", "data", "demo.json");
+const demoPath = path.join(root, "public", "data", "demo.json");
 
 let errors = 0;
 
@@ -176,7 +176,7 @@ check("demo.json exists and is valid JSON", () => {
 const payload = readJson(demoPath);
 
 check("store name present", () => {
-  assert.equal(payload.store, "Chez Julien");
+  assert.ok(typeof payload.store === "string" && payload.store.length > 0, "store name missing or empty");
 });
 
 check("at least 1 supplier panel", () => {

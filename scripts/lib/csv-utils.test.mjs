@@ -77,6 +77,8 @@ assert.equal(isJunkRow(""), true);
 assert.equal(isJunkRow(null), true);
 assert.equal(isJunkRow("BRIE DE MEAUX"), false);
 assert.equal(isJunkRow("#ACOMPTE"), true);
+assert.equal(isJunkRow("Designed by Infovision"), true);
+assert.equal(isJunkRow("Designed by"), true);
 
 // splitCsvLines
 assert.deepEqual(splitCsvLines("a\nb\nc\n"), ["a", "b", "c"]);

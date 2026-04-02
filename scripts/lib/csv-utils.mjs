@@ -146,7 +146,7 @@ export function detectYearFromFilename(filename) {
 
 // --- Junk Row Detection ---
 
-const JUNK_PATTERNS = /^(total|nbclient|nb client|moyenne|moyenne par client|fictif|carte cadeaux|div\. ean|Designed by|#ACOMPTE)\s*$/i;
+const JUNK_PATTERNS = /^(total|nbclient|nb client|moyenne|moyenne par client|fictif|carte cadeaux|div\. ean|#ACOMPTE)\s*$|^designed by(\s|$)/i;
 
 export function isJunkRow(firstCell) {
   if (!firstCell || !String(firstCell).trim()) return true;
