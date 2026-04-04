@@ -19,6 +19,9 @@ assert.deepEqual(parseMonthlyCell("26  (0)"), { quantity: 26, revenue: 0 });
 assert.deepEqual(parseMonthlyCell("7418  (218,88)"), { quantity: 7418, revenue: 218.88 });
 assert.deepEqual(parseMonthlyCell(""), { quantity: 0, revenue: 0 });
 assert.deepEqual(parseMonthlyCell(null), { quantity: 0, revenue: 0 });
+// space-separated thousands in quantity (e.g. "7 418  (218,88)") — regression guard
+assert.deepEqual(parseMonthlyCell("7 418  (218,88)"), { quantity: 7418, revenue: 218.88 });
+assert.deepEqual(parseMonthlyCell("12 045  (0)"), { quantity: 12045, revenue: 0 });
 
 // parsePercentage
 assert.equal(parsePercentage("17,69 %"), 17.69);

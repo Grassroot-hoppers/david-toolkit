@@ -473,14 +473,19 @@ function buildBriefing(products, suppliers, context, copy) {
     .slice(0, 3);
   const hottestSupplier = suppliers
     .slice()
-    .sort((left, right) => right.order.length - left.order.length)[0];
+    .sort((left, right) => right.order.length - left.order.length)[0]; // undefined when no suppliers
 
-  return [
-    copy.briefingOpening(context.weather.headline),
-    copy.briefingSupplier(hottestSupplier.name, hottestSupplier.summary),
-    copy.briefingTop(topOrder.map((product) => product.displayName)),
-    copy.briefingSlow(slow.map((product) => product.displayName))
-  ];
+  const lines = [copy.briefingOpening(context.weather.headline)];
+  if (hottestSupplier) {
+    lines.push(copy.briefingSupplier(hottestSupplier.name, hottestSupplier.summary));
+  }
+  if (topOrder.length > 0) {
+    lines.push(copy.briefingTop(topOrder.map((product) => product.displayName)));
+  }
+  if (slow.length > 0) {
+    lines.push(copy.briefingSlow(slow.map((product) => product.displayName)));
+  }
+  return lines;
 }
 
 // --- Main ---
@@ -791,7 +796,10 @@ function buildFromGold() {
         const key = `${s.year}-${String(s.month).padStart(2, "0")}`;
         byMonth.set(key, s.revenue);
       }
-      monthlyStatsByName.set(entry.name, byMonth);
+      // Use the normalized key (accent-stripped) so lookups by p.key always match.
+      // entry.name keeps the raw accented spelling (e.g. "GRUYÈRE") while p.key is
+      // NFD-normalized (e.g. "GRUYERE"), causing misses for all accented products.
+      monthlyStatsByName.set(entry.key, byMonth);
     }
   }
 
@@ -803,7 +811,7 @@ function buildFromGold() {
     }
   }
   for (const p of products) {
-    const lookup = monthlyStatsByName.get(p.key) || monthlyStatsByName.get(p.displayName);
+    const lookup = monthlyStatsByName.get(p.key);
     p.monthlyHistory = HISTORY_MONTHS.map(month => lookup ? (lookup.get(month) || 0) : 0);
   }
 
@@ -813,7 +821,7 @@ function buildFromGold() {
     if (p.rank !== "A" && p.rank !== "B") { p.suggestedOrder = null; continue; }
     const monthKey2024 = `2024-${String(runMonth + 1).padStart(2, "0")}`;
     const monthKey2025 = `2025-${String(runMonth + 1).padStart(2, "0")}`;
-    const lookup = monthlyStatsByName.get(p.key) || monthlyStatsByName.get(p.displayName);
+    const lookup = monthlyStatsByName.get(p.key);
     const rev2024 = lookup ? (lookup.get(monthKey2024) || 0) : 0;
     const rev2025 = lookup ? (lookup.get(monthKey2025) || 0) : 0;
     const avgMonthly = (rev2024 + rev2025) / (rev2024 > 0 && rev2025 > 0 ? 2 : 1);

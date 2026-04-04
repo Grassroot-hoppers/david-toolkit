@@ -48,11 +48,15 @@ export function parseEuroDecimal(value) {
 export function parseMonthlyCell(value) {
   if (!value || !String(value).trim()) return { quantity: 0, revenue: 0 };
   const str = String(value).trim();
-  const match = str.match(/^\s*(\S+)\s+\((\S+)\)\s*$/);
-  if (!match) return { quantity: parseEuroDecimal(str), revenue: 0 };
+  // Split on the opening parenthesis so space-separated thousands (e.g. "7 418  (218,88)")
+  // are handled correctly — the previous regex (\S+) stopped at the first space.
+  const parenIdx = str.indexOf("(");
+  if (parenIdx === -1) return { quantity: parseEuroDecimal(str), revenue: 0 };
+  const quantityPart = str.slice(0, parenIdx);
+  const revenuePart = str.slice(parenIdx + 1).replace(")", "");
   return {
-    quantity: parseEuroDecimal(match[1]),
-    revenue: parseEuroDecimal(match[2])
+    quantity: parseEuroDecimal(quantityPart),
+    revenue: parseEuroDecimal(revenuePart)
   };
 }
 
