@@ -1,7 +1,7 @@
 import {
   parseEuroDecimal, parseMonthlyCell, parsePercentage,
   cleanProductName, parseProductName, detectFileType, normalizeKey, isJunkRow,
-  splitCsvLines, splitCsvRow, detectYearFromFilename
+  splitCsvLines, splitCsvRow, detectYearFromFilename, decodeBuffer
 } from './csv-utils.mjs';
 import assert from 'node:assert/strict';
 
@@ -90,5 +90,26 @@ assert.deepEqual(splitCsvRow("a;b;"), ["a", "b", ""]);
 assert.equal(detectYearFromFilename("stat-vente-monthly-2025.csv"), 2025);
 assert.equal(detectYearFromFilename("margin-analysis-2025-h1.csv"), 2025);
 assert.equal(detectYearFromFilename("no-year.csv"), null);
+
+// decodeBuffer
+// UTF-8 BOM: 3-byte prefix (EF BB BF) decoded to single U+FEFF, then stripped
+const bomBuf = Buffer.from([0xEF, 0xBB, 0xBF, 0x48, 0x65, 0x6C, 0x6C, 0x6F]); // BOM + "Hello"
+assert.equal(decodeBuffer(bomBuf).encoding, "utf8-bom");
+assert.equal(decodeBuffer(bomBuf).text, "Hello");
+
+// Plain UTF-8: no BOM, valid UTF-8 sequence → no replacement chars
+const utf8Buf = Buffer.from("Bonjour", "utf8");
+assert.equal(decodeBuffer(utf8Buf).encoding, "utf8");
+assert.equal(decodeBuffer(utf8Buf).text, "Bonjour");
+
+// CP1252: byte 0x80 is invalid UTF-8 → triggers fallback; maps to U+20AC (€)
+const cp1252Buf = Buffer.from([0x80, 0x41]); // € + "A" in CP1252
+assert.equal(decodeBuffer(cp1252Buf).encoding, "cp1252");
+assert.equal(decodeBuffer(cp1252Buf).text, "\u20ACA");
+
+// CP1252: byte 0x9C maps to U+0153 (œ), common in French product names
+const oeBuf = Buffer.from([0x9C, 0x75, 0x66]); // œ + "uf"
+assert.equal(decodeBuffer(oeBuf).encoding, "cp1252");
+assert.equal(decodeBuffer(oeBuf).text, "\u0153uf");
 
 console.log("csv-utils: all tests passed");

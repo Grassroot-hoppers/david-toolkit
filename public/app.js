@@ -189,8 +189,10 @@ const DAY_NAMES_FR = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendre
 // Full-year YoY growth rate (filters partial years)
 function annualGrowthRate(data) {
   const fullYears = (data.macro?.years || []).filter(y => !y.isPartial);
-  return fullYears.length >= 2
-    ? (fullYears[fullYears.length - 1].revenue / fullYears[fullYears.length - 2].revenue) - 1
+  if (fullYears.length < 2) return 0;
+  const prevRev = fullYears[fullYears.length - 2].revenue;
+  return prevRev > 0
+    ? (fullYears[fullYears.length - 1].revenue / prevRev) - 1
     : 0;
 }
 
