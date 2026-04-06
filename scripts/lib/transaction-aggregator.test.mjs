@@ -95,4 +95,30 @@ assert.ok(out.monthlyStats && out.annualStats && out.categoryMix && out.hourlyPa
 assert.equal(out.monthlyStats.source, 'transactions');
 assert.equal(out.annualStats.refunds.length, 0);
 
+// --- Accented product name: key is normalized, rawName preserves original ---
+// Regression for build-demo.mjs monthlyStatsByName lookup: map must be keyed by
+// the normalized key (entry.key) not the raw name (entry.name), otherwise products
+// with accented names like "CRÈME FRAÎCHE" would get all-zero monthly histories.
+import { normalizeKey } from './csv-utils.mjs';
+const accentedTx = [{
+  productKey: normalizeKey('CRÈME FRAÎCHE'), // "CREME FRAICHE"
+  rawName: 'CRÈME FRAÎCHE',
+  category: 'FRAIS',
+  vatRate: 6,
+  price: 3.5,
+  date: '2025-06-10',
+  hour: 11,
+  dayOfWeek: 2,
+  quantity: 1
+}];
+const accentedResult = aggregateFromTransactions(accentedTx, 2025);
+assert.equal(accentedResult.monthlyStats.products.length, 1);
+const accentedProduct = accentedResult.monthlyStats.products[0];
+// The product key must be the normalizeKey output, not the raw accented string.
+// This key is used as the index into monthlyStatsByName in build-demo.mjs.
+assert.equal(accentedProduct.key, 'CREME FRAICHE');
+assert.equal(accentedProduct.rawName, 'CRÈME FRAÎCHE');
+// Monthly entry for June (month 6) must carry the revenue
+assert.equal(accentedProduct.monthly[5].revenue, 3.5);
+
 console.log('transaction-aggregator: all tests passed');
