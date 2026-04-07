@@ -475,12 +475,13 @@ function buildBriefing(products, suppliers, context, copy) {
     .slice()
     .sort((left, right) => right.order.length - left.order.length)[0];
 
-  return [
-    copy.briefingOpening(context.weather.headline),
-    copy.briefingSupplier(hottestSupplier.name, hottestSupplier.summary),
-    copy.briefingTop(topOrder.map((product) => product.displayName)),
-    copy.briefingSlow(slow.map((product) => product.displayName))
-  ];
+  const lines = [copy.briefingOpening(context.weather.headline)];
+  if (hottestSupplier) {
+    lines.push(copy.briefingSupplier(hottestSupplier.name, hottestSupplier.summary));
+  }
+  lines.push(copy.briefingTop(topOrder.map((product) => product.displayName)));
+  lines.push(copy.briefingSlow(slow.map((product) => product.displayName)));
+  return lines;
 }
 
 // --- Main ---

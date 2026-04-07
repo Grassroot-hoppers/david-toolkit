@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 
 const root = process.cwd();
 const goldDir = path.join(root, "data", "gold");
-const demoPath = path.join(root, "demo", "data", "demo.json");
+const demoPath = path.join(root, "public", "data", "demo.json");
 
 let errors = 0;
 
@@ -173,21 +173,25 @@ check("demo.json exists and is valid JSON", () => {
   JSON.parse(fs.readFileSync(demoPath, "utf8"));
 });
 
-const payload = readJson(demoPath);
+const payload = fs.existsSync(demoPath) ? readJson(demoPath) : null;
 
 check("store name present", () => {
+  assert.ok(payload, "demo.json not found — skipping payload checks");
   assert.equal(payload.store, "Chez Julien");
 });
 
 check("at least 1 supplier panel", () => {
+  assert.ok(payload, "demo.json not found");
   assert.ok(payload.suppliers.length >= 1);
 });
 
 check("at least 1 top product", () => {
+  assert.ok(payload, "demo.json not found");
   assert.ok(payload.topProducts.length >= 1);
 });
 
 check("insights have evidence (3+ items each)", () => {
+  assert.ok(payload, "demo.json not found");
   assert.ok(
     payload.insights.every((card) => card.evidence.length >= 3),
     "some insights have <3 evidence items"
@@ -195,11 +199,13 @@ check("insights have evidence (3+ items each)", () => {
 });
 
 check("has products and category mix", () => {
+  assert.ok(payload, "demo.json not found");
   assert.ok(payload.topProducts.length > 0);
   assert.ok(payload.categoryMix.length > 0);
 });
 
 check("has generatedAt and kpis", () => {
+  assert.ok(payload, "demo.json not found");
   assert.ok(payload.generatedAt);
   assert.ok(payload.kpis);
   assert.ok(typeof payload.kpis.totalRevenue === "number", "missing kpis.totalRevenue");
@@ -218,5 +224,5 @@ if (errors > 0) {
   console.log(`  Daily sales: ${dailySales.length} days`);
   console.log(`  Monthly stats: ${monthlyStats.length} products`);
   console.log(`  Store years: ${storeSummary.years.map((y) => y.year).join(", ")}`);
-  console.log(`  Demo: ${payload.topProducts.length} top, ${payload.slowProducts.length} slow, ${payload.suppliers.length} suppliers`);
+  if (payload) console.log(`  Demo: ${payload.topProducts.length} top, ${payload.slowProducts.length} slow, ${payload.suppliers.length} suppliers`);
 }
