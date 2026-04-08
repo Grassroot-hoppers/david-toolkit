@@ -5,7 +5,15 @@
 let DATA = null;
 
 document.addEventListener("DOMContentLoaded", async () => {
-  DATA = await fetch("data/demo.json").then(r => r.json());
+  try {
+    DATA = await fetch("data/demo.json").then(r => {
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return r.json();
+    });
+  } catch (err) {
+    document.body.innerHTML = `<div style="padding:2rem;color:#EF4444">Erreur de chargement des données : ${err.message}</div>`;
+    return;
+  }
   initTabs();
   renderBriefing(DATA);
   renderProducts(DATA);

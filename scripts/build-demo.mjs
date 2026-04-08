@@ -471,16 +471,17 @@ function buildBriefing(products, suppliers, context, copy) {
     .filter((product) => product.action === "baisse")
     .sort((left, right) => left.totalRevenue - right.totalRevenue)
     .slice(0, 3);
-  const hottestSupplier = suppliers
-    .slice()
-    .sort((left, right) => right.order.length - left.order.length)[0];
+  const hottestSupplier = suppliers.length > 0
+    ? suppliers.slice().sort((left, right) => right.order.length - left.order.length)[0]
+    : null;
 
-  return [
-    copy.briefingOpening(context.weather.headline),
-    copy.briefingSupplier(hottestSupplier.name, hottestSupplier.summary),
-    copy.briefingTop(topOrder.map((product) => product.displayName)),
-    copy.briefingSlow(slow.map((product) => product.displayName))
-  ];
+  const lines = [copy.briefingOpening(context.weather.headline)];
+  if (hottestSupplier) {
+    lines.push(copy.briefingSupplier(hottestSupplier.name, hottestSupplier.summary));
+  }
+  lines.push(copy.briefingTop(topOrder.map((product) => product.displayName)));
+  lines.push(copy.briefingSlow(slow.map((product) => product.displayName)));
+  return lines;
 }
 
 // --- Main ---
@@ -735,6 +736,7 @@ function buildTimeline(dailySales, monthlyStats) {
 function computeAbcd(products) {
   const sorted = [...products].sort((a, b) => b.totalRevenue - a.totalRevenue);
   const total = sorted.reduce((s, p) => s + p.totalRevenue, 0);
+  if (total === 0) return;
   let cumulative = 0;
   for (const p of sorted) {
     cumulative += p.totalRevenue;
@@ -744,12 +746,6 @@ function computeAbcd(products) {
     else if (share <= 0.80) p.rank = "C";
     else p.rank = "D";
   }
-}
-
-function getWeekOfYear(dateStr) {
-  const d = new Date(dateStr);
-  const start = new Date(d.getFullYear(), 0, 1);
-  return Math.ceil(((d - start) / 86400000 + start.getDay() + 1) / 7);
 }
 
 function buildFromGold() {
