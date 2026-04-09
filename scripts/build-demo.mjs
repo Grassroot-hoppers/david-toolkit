@@ -475,12 +475,17 @@ function buildBriefing(products, suppliers, context, copy) {
     .slice()
     .sort((left, right) => right.order.length - left.order.length)[0];
 
-  return [
-    copy.briefingOpening(context.weather.headline),
-    copy.briefingSupplier(hottestSupplier.name, hottestSupplier.summary),
-    copy.briefingTop(topOrder.map((product) => product.displayName)),
-    copy.briefingSlow(slow.map((product) => product.displayName))
-  ];
+  const paragraphs = [copy.briefingOpening(context.weather.headline)];
+  if (hottestSupplier) {
+    paragraphs.push(copy.briefingSupplier(hottestSupplier.name, hottestSupplier.summary));
+  }
+  if (topOrder.length > 0) {
+    paragraphs.push(copy.briefingTop(topOrder.map((product) => product.displayName)));
+  }
+  if (slow.length > 0) {
+    paragraphs.push(copy.briefingSlow(slow.map((product) => product.displayName)));
+  }
+  return paragraphs;
 }
 
 // --- Main ---
@@ -746,12 +751,6 @@ function computeAbcd(products) {
   }
 }
 
-function getWeekOfYear(dateStr) {
-  const d = new Date(dateStr);
-  const start = new Date(d.getFullYear(), 0, 1);
-  return Math.ceil(((d - start) / 86400000 + start.getDay() + 1) / 7);
-}
-
 function buildFromGold() {
   const catalog = readGold("product-catalog.json");
   const monthlyStats = readGold("monthly-product-stats.json");
@@ -782,8 +781,10 @@ function buildFromGold() {
   // ABCD Pareto ranking
   computeAbcd(products);
 
-  // Build monthly lookup: productName → Map<"YYYY-MM", revenue>
-  const monthlyStatsByName = new Map();
+  // Build monthly lookup: productKey → Map<"YYYY-MM", revenue>
+  // Must be keyed by entry.key (normalized, accent-stripped) so lookups by p.key succeed.
+  // entry.name (rawName) contains accented characters that don't match normalizeKey output.
+  const monthlyStatsByKey = new Map();
   if (monthlyStats) {
     for (const entry of monthlyStats) {
       const byMonth = new Map();
@@ -791,38 +792,41 @@ function buildFromGold() {
         const key = `${s.year}-${String(s.month).padStart(2, "0")}`;
         byMonth.set(key, s.revenue);
       }
-      monthlyStatsByName.set(entry.name, byMonth);
+      monthlyStatsByKey.set(entry.key, byMonth);
     }
   }
 
-  // 36-month history Jan 2023 → Dec 2025
+  // 36-month history: 3 years ending at context.runDate's year
+  const runYear = new Date(context.runDate).getFullYear();
   const HISTORY_MONTHS = [];
-  for (let y = 2023; y <= 2025; y++) {
+  for (let y = runYear - 2; y <= runYear; y++) {
     for (let m = 1; m <= 12; m++) {
       HISTORY_MONTHS.push(`${y}-${String(m).padStart(2, "0")}`);
     }
   }
   for (const p of products) {
-    const lookup = monthlyStatsByName.get(p.key) || monthlyStatsByName.get(p.displayName);
+    const lookup = monthlyStatsByKey.get(p.key);
     p.monthlyHistory = HISTORY_MONTHS.map(month => lookup ? (lookup.get(month) || 0) : 0);
   }
 
   // Suggested order for A+B products (revenue estimate in €)
   const runMonth = new Date(context.runDate).getMonth();
+  const orderYearCurr = yearInfo.current || runYear;
+  const orderYearPrev = yearInfo.previous || (runYear - 1);
   for (const p of products) {
     if (p.rank !== "A" && p.rank !== "B") { p.suggestedOrder = null; continue; }
-    const monthKey2024 = `2024-${String(runMonth + 1).padStart(2, "0")}`;
-    const monthKey2025 = `2025-${String(runMonth + 1).padStart(2, "0")}`;
-    const lookup = monthlyStatsByName.get(p.key) || monthlyStatsByName.get(p.displayName);
-    const rev2024 = lookup ? (lookup.get(monthKey2024) || 0) : 0;
-    const rev2025 = lookup ? (lookup.get(monthKey2025) || 0) : 0;
-    const avgMonthly = (rev2024 + rev2025) / (rev2024 > 0 && rev2025 > 0 ? 2 : 1);
+    const monthKeyPrev = `${orderYearPrev}-${String(runMonth + 1).padStart(2, "0")}`;
+    const monthKeyCurr = `${orderYearCurr}-${String(runMonth + 1).padStart(2, "0")}`;
+    const lookup = monthlyStatsByKey.get(p.key);
+    const revPrev = lookup ? (lookup.get(monthKeyPrev) || 0) : 0;
+    const revCurr = lookup ? (lookup.get(monthKeyCurr) || 0) : 0;
+    const avgMonthly = (revPrev + revCurr) / (revPrev > 0 && revCurr > 0 ? 2 : 1);
     const weeklyEst = avgMonthly / 4;
     const trend = p.yoy != null ? 1 + p.yoy : 1;
     const suggested = Math.round(weeklyEst * trend);
     p.suggestedOrder = suggested > 0 ? {
       qty: suggested,
-      basis: `Mois ${runMonth + 1}, moy. 2024–2025${p.yoy != null ? `, tendance ${p.yoy > 0 ? "+" : ""}${Math.round(p.yoy * 100)}%` : ""}`
+      basis: `Mois ${runMonth + 1}, moy. ${orderYearPrev}–${orderYearCurr}${p.yoy != null ? `, tendance ${p.yoy > 0 ? "+" : ""}${Math.round(p.yoy * 100)}%` : ""}`
     } : null;
   }
 
