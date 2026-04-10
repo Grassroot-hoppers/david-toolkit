@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 
 const root = process.cwd();
 const goldDir = path.join(root, "data", "gold");
-const demoPath = path.join(root, "demo", "data", "demo.json");
+const demoPath = path.join(root, "public", "data", "demo.json");
 
 let errors = 0;
 
@@ -173,6 +173,10 @@ check("demo.json exists and is valid JSON", () => {
   JSON.parse(fs.readFileSync(demoPath, "utf8"));
 });
 
+if (!fs.existsSync(demoPath)) {
+  console.log(`\nFAILED: ${errors} check(s) failed.`);
+  process.exit(1);
+}
 const payload = readJson(demoPath);
 
 check("store name present", () => {

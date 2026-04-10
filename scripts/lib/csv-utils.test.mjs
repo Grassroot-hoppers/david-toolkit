@@ -90,5 +90,19 @@ assert.deepEqual(splitCsvRow("a;b;"), ["a", "b", ""]);
 assert.equal(detectYearFromFilename("stat-vente-monthly-2025.csv"), 2025);
 assert.equal(detectYearFromFilename("margin-analysis-2025-h1.csv"), 2025);
 assert.equal(detectYearFromFilename("no-year.csv"), null);
+// when two years appear in a filename the first match wins
+assert.equal(detectYearFromFilename("export-2024-2025.csv"), 2024);
+
+// parseEuroDecimal — non-numeric input returns 0 (no silent NaN propagation)
+assert.equal(parseEuroDecimal("abc"), 0);
+assert.equal(parseEuroDecimal("€12,50"), 0); // € stripped by replace(/\s/g,"") but "€12.50" is NaN
+// thousands separator (French space) round-trips correctly
+assert.equal(parseEuroDecimal("1 234,56"), 1234.56);
+
+// isJunkRow — "Designed by" POS footer is filtered
+assert.equal(isJunkRow("Designed by"), true);
+assert.equal(isJunkRow("Designed by SomeCorp"), false); // partial match is NOT junk
+// whitespace-only is junk
+assert.equal(isJunkRow("   "), true);
 
 console.log("csv-utils: all tests passed");
