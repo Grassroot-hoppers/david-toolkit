@@ -475,12 +475,13 @@ function buildBriefing(products, suppliers, context, copy) {
     .slice()
     .sort((left, right) => right.order.length - left.order.length)[0];
 
-  return [
-    copy.briefingOpening(context.weather.headline),
-    copy.briefingSupplier(hottestSupplier.name, hottestSupplier.summary),
-    copy.briefingTop(topOrder.map((product) => product.displayName)),
-    copy.briefingSlow(slow.map((product) => product.displayName))
-  ];
+  const lines = [copy.briefingOpening(context.weather.headline)];
+  if (hottestSupplier) {
+    lines.push(copy.briefingSupplier(hottestSupplier.name, hottestSupplier.summary));
+  }
+  lines.push(copy.briefingTop(topOrder.map((product) => product.displayName)));
+  lines.push(copy.briefingSlow(slow.map((product) => product.displayName)));
+  return lines;
 }
 
 // --- Main ---
@@ -746,12 +747,6 @@ function computeAbcd(products) {
   }
 }
 
-function getWeekOfYear(dateStr) {
-  const d = new Date(dateStr);
-  const start = new Date(d.getFullYear(), 0, 1);
-  return Math.ceil(((d - start) / 86400000 + start.getDay() + 1) / 7);
-}
-
 function buildFromGold() {
   const catalog = readGold("product-catalog.json");
   const monthlyStats = readGold("monthly-product-stats.json");
@@ -782,7 +777,9 @@ function buildFromGold() {
   // ABCD Pareto ranking
   computeAbcd(products);
 
-  // Build monthly lookup: productName → Map<"YYYY-MM", revenue>
+  // Build monthly lookup: normalised product key → Map<"YYYY-MM", revenue>
+  // Must use entry.key (normalised, accent-stripped) not entry.name (raw) so
+  // that p.key lookups below succeed for products with accented names.
   const monthlyStatsByName = new Map();
   if (monthlyStats) {
     for (const entry of monthlyStats) {
@@ -791,7 +788,7 @@ function buildFromGold() {
         const key = `${s.year}-${String(s.month).padStart(2, "0")}`;
         byMonth.set(key, s.revenue);
       }
-      monthlyStatsByName.set(entry.name, byMonth);
+      monthlyStatsByName.set(entry.key, byMonth);
     }
   }
 

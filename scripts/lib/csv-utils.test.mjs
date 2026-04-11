@@ -91,4 +91,16 @@ assert.equal(detectYearFromFilename("stat-vente-monthly-2025.csv"), 2025);
 assert.equal(detectYearFromFilename("margin-analysis-2025-h1.csv"), 2025);
 assert.equal(detectYearFromFilename("no-year.csv"), null);
 
+// Regression: build-demo.mjs monthlyStatsByName must be keyed by entry.key (normalised),
+// not entry.name (raw). Products with accented names have entry.name !== entry.key, so
+// a map keyed by raw name would silently miss every p.key lookup and return all-zero
+// monthly history and null suggested orders.
+// Verify the invariant: normalizeKey strips accents, so raw ≠ normalised for French names.
+assert.notEqual("CÔTE DE BOEUF", normalizeKey("CÔTE DE BOEUF"));
+assert.equal(normalizeKey("CÔTE DE BOEUF"), "COTE DE BOEUF");
+assert.notEqual("Mozzarella di Bufala", normalizeKey("Mozzarella di Bufala"));
+assert.equal(normalizeKey("Mozzarella di Bufala"), "MOZZARELLA DI BUFALA");
+// A normalised key round-trips: normalizeKey(normalizeKey(x)) === normalizeKey(x)
+assert.equal(normalizeKey(normalizeKey("CÔTE DE BOEUF")), normalizeKey("CÔTE DE BOEUF"));
+
 console.log("csv-utils: all tests passed");
