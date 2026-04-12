@@ -48,7 +48,7 @@ export function parseEuroDecimal(value) {
 export function parseMonthlyCell(value) {
   if (!value || !String(value).trim()) return { quantity: 0, revenue: 0 };
   const str = String(value).trim();
-  const match = str.match(/^\s*(\S+)\s+\((\S+)\)\s*$/);
+  const match = str.match(/^\s*(\S+)\s+\(([^)]+)\)\s*$/);
   if (!match) return { quantity: parseEuroDecimal(str), revenue: 0 };
   return {
     quantity: parseEuroDecimal(match[1]),

@@ -19,6 +19,8 @@ assert.deepEqual(parseMonthlyCell("26  (0)"), { quantity: 26, revenue: 0 });
 assert.deepEqual(parseMonthlyCell("7418  (218,88)"), { quantity: 7418, revenue: 218.88 });
 assert.deepEqual(parseMonthlyCell(""), { quantity: 0, revenue: 0 });
 assert.deepEqual(parseMonthlyCell(null), { quantity: 0, revenue: 0 });
+// space as thousands separator inside parentheses (Belgian/French format)
+assert.deepEqual(parseMonthlyCell("26  (1 234,88)"), { quantity: 26, revenue: 1234.88 });
 
 // parsePercentage
 assert.equal(parsePercentage("17,69 %"), 17.69);

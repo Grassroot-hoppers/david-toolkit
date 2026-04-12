@@ -47,12 +47,13 @@ export function applyCategoryOverride(productKey, currentCategory, categoryLooku
     return { category: config.productCategoryOverrides[productKey], source: "product-override" };
   }
 
+  const cat = currentCategory || "";
   if (
     config.crossRefConfig.enabled &&
-    currentCategory.toUpperCase() === (config.crossRefConfig.targetCategory || "").toUpperCase()
+    cat.toUpperCase() === (config.crossRefConfig.targetCategory || "").toUpperCase()
   ) {
     const crossRefCat = categoryLookup.get(productKey);
-    if (crossRefCat && crossRefCat.toUpperCase() !== currentCategory.toUpperCase()) {
+    if (crossRefCat && crossRefCat.toUpperCase() !== cat.toUpperCase()) {
       return { category: crossRefCat, source: "cross-reference" };
     }
     for (const rule of config.keywordRules) {
@@ -60,10 +61,10 @@ export function applyCategoryOverride(productKey, currentCategory, categoryLooku
         return { category: rule.target, source: "keyword" };
       }
     }
-    return { category: currentCategory, source: "unmatched" };
+    return { category: cat, source: "unmatched" };
   }
 
-  return { category: currentCategory, source: "original" };
+  return { category: cat, source: "original" };
 }
 
 export function resolveSkuMerge(key, skuMerges) {

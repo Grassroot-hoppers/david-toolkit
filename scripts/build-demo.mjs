@@ -471,16 +471,16 @@ function buildBriefing(products, suppliers, context, copy) {
     .filter((product) => product.action === "baisse")
     .sort((left, right) => left.totalRevenue - right.totalRevenue)
     .slice(0, 3);
-  const hottestSupplier = suppliers
-    .slice()
-    .sort((left, right) => right.order.length - left.order.length)[0];
+  const hottestSupplier = suppliers.length > 0
+    ? suppliers.slice().sort((left, right) => right.order.length - left.order.length)[0]
+    : null;
 
   return [
     copy.briefingOpening(context.weather.headline),
-    copy.briefingSupplier(hottestSupplier.name, hottestSupplier.summary),
-    copy.briefingTop(topOrder.map((product) => product.displayName)),
-    copy.briefingSlow(slow.map((product) => product.displayName))
-  ];
+    hottestSupplier ? copy.briefingSupplier(hottestSupplier.name, hottestSupplier.summary) : null,
+    topOrder.length > 0 ? copy.briefingTop(topOrder.map((product) => product.displayName)) : null,
+    slow.length > 0 ? copy.briefingSlow(slow.map((product) => product.displayName)) : null,
+  ].filter(Boolean);
 }
 
 // --- Main ---
@@ -746,12 +746,6 @@ function computeAbcd(products) {
   }
 }
 
-function getWeekOfYear(dateStr) {
-  const d = new Date(dateStr);
-  const start = new Date(d.getFullYear(), 0, 1);
-  return Math.ceil(((d - start) / 86400000 + start.getDay() + 1) / 7);
-}
-
 function buildFromGold() {
   const catalog = readGold("product-catalog.json");
   const monthlyStats = readGold("monthly-product-stats.json");
@@ -791,38 +785,47 @@ function buildFromGold() {
         const key = `${s.year}-${String(s.month).padStart(2, "0")}`;
         byMonth.set(key, s.revenue);
       }
-      monthlyStatsByName.set(entry.name, byMonth);
+      monthlyStatsByName.set(entry.key, byMonth);
     }
   }
 
-  // 36-month history Jan 2023 → Dec 2025
+  // 36-month history: 3 years ending with the current (most recent complete) year
+  const historyEndYear = yearInfo.current;
   const HISTORY_MONTHS = [];
-  for (let y = 2023; y <= 2025; y++) {
-    for (let m = 1; m <= 12; m++) {
-      HISTORY_MONTHS.push(`${y}-${String(m).padStart(2, "0")}`);
+  if (historyEndYear) {
+    for (let y = historyEndYear - 2; y <= historyEndYear; y++) {
+      for (let m = 1; m <= 12; m++) {
+        HISTORY_MONTHS.push(`${y}-${String(m).padStart(2, "0")}`);
+      }
     }
   }
   for (const p of products) {
-    const lookup = monthlyStatsByName.get(p.key) || monthlyStatsByName.get(p.displayName);
+    const lookup = monthlyStatsByName.get(p.key);
     p.monthlyHistory = HISTORY_MONTHS.map(month => lookup ? (lookup.get(month) || 0) : 0);
   }
 
   // Suggested order for A+B products (revenue estimate in €)
   const runMonth = new Date(context.runDate).getMonth();
+  const orderPrevYear = yearInfo.previous;
+  const orderCurrYear = yearInfo.current;
+  const yearRangeLabel = orderPrevYear && orderCurrYear
+    ? `${orderPrevYear}–${orderCurrYear}`
+    : String(orderCurrYear || orderPrevYear || "");
   for (const p of products) {
     if (p.rank !== "A" && p.rank !== "B") { p.suggestedOrder = null; continue; }
-    const monthKey2024 = `2024-${String(runMonth + 1).padStart(2, "0")}`;
-    const monthKey2025 = `2025-${String(runMonth + 1).padStart(2, "0")}`;
-    const lookup = monthlyStatsByName.get(p.key) || monthlyStatsByName.get(p.displayName);
-    const rev2024 = lookup ? (lookup.get(monthKey2024) || 0) : 0;
-    const rev2025 = lookup ? (lookup.get(monthKey2025) || 0) : 0;
-    const avgMonthly = (rev2024 + rev2025) / (rev2024 > 0 && rev2025 > 0 ? 2 : 1);
+    const monthSuffix = String(runMonth + 1).padStart(2, "0");
+    const monthKeyPrev = orderPrevYear ? `${orderPrevYear}-${monthSuffix}` : null;
+    const monthKeyCurr = orderCurrYear ? `${orderCurrYear}-${monthSuffix}` : null;
+    const lookup = monthlyStatsByName.get(p.key);
+    const revPrev = monthKeyPrev && lookup ? (lookup.get(monthKeyPrev) || 0) : 0;
+    const revCurr = monthKeyCurr && lookup ? (lookup.get(monthKeyCurr) || 0) : 0;
+    const avgMonthly = (revPrev + revCurr) / (revPrev > 0 && revCurr > 0 ? 2 : 1);
     const weeklyEst = avgMonthly / 4;
     const trend = p.yoy != null ? 1 + p.yoy : 1;
     const suggested = Math.round(weeklyEst * trend);
     p.suggestedOrder = suggested > 0 ? {
       qty: suggested,
-      basis: `Mois ${runMonth + 1}, moy. 2024–2025${p.yoy != null ? `, tendance ${p.yoy > 0 ? "+" : ""}${Math.round(p.yoy * 100)}%` : ""}`
+      basis: `Mois ${runMonth + 1}, moy. ${yearRangeLabel}${p.yoy != null ? `, tendance ${p.yoy > 0 ? "+" : ""}${Math.round(p.yoy * 100)}%` : ""}`
     } : null;
   }
 
@@ -892,7 +895,7 @@ function buildFromGold() {
     const aggregateRevenue2025 = members.reduce((s, p) => s + p.totalRevenue, 0);
     const aggregateRevenue2024 = members.reduce((s, p) => s + (p.totalRevenuePrevious || 0), 0);
 
-    // 12-month seasonality (2025 only) — indices 24-35 of monthlyHistory
+    // 12-month seasonality (current year only) — indices 24-35 of monthlyHistory (last 12 of 36)
     const seasonality = Array(12).fill(0);
     for (const p of members) {
       if (!p.monthlyHistory) continue;
