@@ -466,6 +466,9 @@ function buildProducts(context, copy, productsCurrent, productsPrevious, recentM
 }
 
 function buildBriefing(products, suppliers, context, copy) {
+  if (suppliers.length === 0) {
+    return [copy.briefingOpening(context.weather.headline)];
+  }
   const topOrder = products.filter((product) => product.action === "hausse").slice(0, 4);
   const slow = products
     .filter((product) => product.action === "baisse")
@@ -744,12 +747,6 @@ function computeAbcd(products) {
     else if (share <= 0.80) p.rank = "C";
     else p.rank = "D";
   }
-}
-
-function getWeekOfYear(dateStr) {
-  const d = new Date(dateStr);
-  const start = new Date(d.getFullYear(), 0, 1);
-  return Math.ceil(((d - start) / 86400000 + start.getDay() + 1) / 7);
 }
 
 function buildFromGold() {
@@ -1061,7 +1058,7 @@ function buildFromLegacy() {
   process.exit(1);
 }
 
-async function run() {
+function run() {
   console.log("\nBuilding demo.json...\n");
 
   const hasGold = fs.existsSync(goldDir) &&

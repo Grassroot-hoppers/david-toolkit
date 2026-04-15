@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 
 const root = process.cwd();
 const goldDir = path.join(root, "data", "gold");
-const demoPath = path.join(root, "demo", "data", "demo.json");
+const demoPath = path.join(root, "public", "data", "demo.json");
 
 let errors = 0;
 

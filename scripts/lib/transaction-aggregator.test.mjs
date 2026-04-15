@@ -89,6 +89,14 @@ const withZeroPrice = [
 const noZero = aggregateFromTransactions(withZeroPrice, 2025);
 assert.equal(noZero.annualStats.products.length, 0);
 
+// --- Missing/null quantity: defaults to 1 per transaction line ---
+const noQty = aggregateFromTransactions([
+  { ...singleTx[0], quantity: null },
+  { ...singleTx[0], quantity: undefined },
+  { ...singleTx[0], quantity: 0 }
+], 2025);
+assert.equal(noQty.annualStats.products[0].quantity, 3); // three lines × default qty 1
+
 // --- All four output shapes present ---
 const out = aggregateFromTransactions(singleTx, 2025);
 assert.ok(out.monthlyStats && out.annualStats && out.categoryMix && out.hourlyPatterns);
