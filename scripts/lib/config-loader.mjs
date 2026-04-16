@@ -72,5 +72,10 @@ export function resolveSkuMerge(key, skuMerges) {
 
 function readJsonSafe(fp, fallback) {
   if (!fs.existsSync(fp)) return fallback;
-  return JSON.parse(fs.readFileSync(fp, "utf8"));
+  try {
+    return JSON.parse(fs.readFileSync(fp, "utf8"));
+  } catch {
+    console.warn(`[config-loader] Malformed JSON in ${fp} — using fallback`);
+    return fallback;
+  }
 }
