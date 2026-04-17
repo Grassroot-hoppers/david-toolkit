@@ -471,16 +471,16 @@ function buildBriefing(products, suppliers, context, copy) {
     .filter((product) => product.action === "baisse")
     .sort((left, right) => left.totalRevenue - right.totalRevenue)
     .slice(0, 3);
-  const hottestSupplier = suppliers
-    .slice()
-    .sort((left, right) => right.order.length - left.order.length)[0];
+  const hottestSupplier = suppliers.length > 0
+    ? suppliers.slice().sort((left, right) => right.order.length - left.order.length)[0]
+    : null;
 
   return [
     copy.briefingOpening(context.weather.headline),
-    copy.briefingSupplier(hottestSupplier.name, hottestSupplier.summary),
-    copy.briefingTop(topOrder.map((product) => product.displayName)),
-    copy.briefingSlow(slow.map((product) => product.displayName))
-  ];
+    hottestSupplier && copy.briefingSupplier(hottestSupplier.name, hottestSupplier.summary),
+    topOrder.length > 0 && copy.briefingTop(topOrder.map((product) => product.displayName)),
+    slow.length > 0 && copy.briefingSlow(slow.map((product) => product.displayName)),
+  ].filter(Boolean);
 }
 
 // --- Main ---
@@ -735,6 +735,7 @@ function buildTimeline(dailySales, monthlyStats) {
 function computeAbcd(products) {
   const sorted = [...products].sort((a, b) => b.totalRevenue - a.totalRevenue);
   const total = sorted.reduce((s, p) => s + p.totalRevenue, 0);
+  if (total <= 0) { sorted.forEach(p => p.rank = "D"); return; }
   let cumulative = 0;
   for (const p of sorted) {
     cumulative += p.totalRevenue;
@@ -744,12 +745,6 @@ function computeAbcd(products) {
     else if (share <= 0.80) p.rank = "C";
     else p.rank = "D";
   }
-}
-
-function getWeekOfYear(dateStr) {
-  const d = new Date(dateStr);
-  const start = new Date(d.getFullYear(), 0, 1);
-  return Math.ceil(((d - start) / 86400000 + start.getDay() + 1) / 7);
 }
 
 function buildFromGold() {
@@ -782,7 +777,7 @@ function buildFromGold() {
   // ABCD Pareto ranking
   computeAbcd(products);
 
-  // Build monthly lookup: productName → Map<"YYYY-MM", revenue>
+  // Build monthly lookup: normalizedKey → Map<"YYYY-MM", revenue>
   const monthlyStatsByName = new Map();
   if (monthlyStats) {
     for (const entry of monthlyStats) {
@@ -791,7 +786,7 @@ function buildFromGold() {
         const key = `${s.year}-${String(s.month).padStart(2, "0")}`;
         byMonth.set(key, s.revenue);
       }
-      monthlyStatsByName.set(entry.name, byMonth);
+      monthlyStatsByName.set(entry.key, byMonth);
     }
   }
 
@@ -803,7 +798,7 @@ function buildFromGold() {
     }
   }
   for (const p of products) {
-    const lookup = monthlyStatsByName.get(p.key) || monthlyStatsByName.get(p.displayName);
+    const lookup = monthlyStatsByName.get(p.key);
     p.monthlyHistory = HISTORY_MONTHS.map(month => lookup ? (lookup.get(month) || 0) : 0);
   }
 
@@ -813,7 +808,7 @@ function buildFromGold() {
     if (p.rank !== "A" && p.rank !== "B") { p.suggestedOrder = null; continue; }
     const monthKey2024 = `2024-${String(runMonth + 1).padStart(2, "0")}`;
     const monthKey2025 = `2025-${String(runMonth + 1).padStart(2, "0")}`;
-    const lookup = monthlyStatsByName.get(p.key) || monthlyStatsByName.get(p.displayName);
+    const lookup = monthlyStatsByName.get(p.key);
     const rev2024 = lookup ? (lookup.get(monthKey2024) || 0) : 0;
     const rev2025 = lookup ? (lookup.get(monthKey2025) || 0) : 0;
     const avgMonthly = (rev2024 + rev2025) / (rev2024 > 0 && rev2025 > 0 ? 2 : 1);
