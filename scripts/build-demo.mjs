@@ -348,7 +348,11 @@ function buildMarginMap(marginRanking) {
 // --- Scoring Engine (preserved from build-data.mjs) ---
 
 function buildProducts(context, copy, productsCurrent, productsPrevious, recentMap, margins) {
-  const corrections = JSON.parse(fs.readFileSync(path.join(configDir, "product-corrections.json"), "utf8"));
+  const correctionsPath = path.join(configDir, "product-corrections.json");
+  let corrections = {};
+  if (fs.existsSync(correctionsPath)) {
+    try { corrections = JSON.parse(fs.readFileSync(correctionsPath, "utf8")); } catch { /* use empty fallback */ }
+  }
   const supplierMap = loadSupplierMap();
 
   const JUNK_PATTERNS = /^(-TARE|BON[\s.]?REMB|REMB |CARTE CADEAU|FICTIF|#ACOMPTE|RETOUR VIDANGE|RETOUR CAUTION|VIDANGE |CAUTION )/i;
@@ -471,13 +475,15 @@ function buildBriefing(products, suppliers, context, copy) {
     .filter((product) => product.action === "baisse")
     .sort((left, right) => left.totalRevenue - right.totalRevenue)
     .slice(0, 3);
-  const hottestSupplier = suppliers
-    .slice()
-    .sort((left, right) => right.order.length - left.order.length)[0];
+  const hottestSupplier = suppliers.length > 0
+    ? suppliers.slice().sort((left, right) => right.order.length - left.order.length)[0]
+    : null;
 
   return [
     copy.briefingOpening(context.weather.headline),
-    copy.briefingSupplier(hottestSupplier.name, hottestSupplier.summary),
+    hottestSupplier
+      ? copy.briefingSupplier(hottestSupplier.name, hottestSupplier.summary)
+      : "",
     copy.briefingTop(topOrder.map((product) => product.displayName)),
     copy.briefingSlow(slow.map((product) => product.displayName))
   ];
@@ -746,12 +752,6 @@ function computeAbcd(products) {
   }
 }
 
-function getWeekOfYear(dateStr) {
-  const d = new Date(dateStr);
-  const start = new Date(d.getFullYear(), 0, 1);
-  return Math.ceil(((d - start) / 86400000 + start.getDay() + 1) / 7);
-}
-
 function buildFromGold() {
   const catalog = readGold("product-catalog.json");
   const monthlyStats = readGold("monthly-product-stats.json");
@@ -782,7 +782,8 @@ function buildFromGold() {
   // ABCD Pareto ranking
   computeAbcd(products);
 
-  // Build monthly lookup: productName → Map<"YYYY-MM", revenue>
+  // Build monthly lookup: productKey → Map<"YYYY-MM", revenue>
+  // Keyed by entry.key (normalized) so accented product names resolve correctly.
   const monthlyStatsByName = new Map();
   if (monthlyStats) {
     for (const entry of monthlyStats) {
@@ -791,24 +792,28 @@ function buildFromGold() {
         const key = `${s.year}-${String(s.month).padStart(2, "0")}`;
         byMonth.set(key, s.revenue);
       }
-      monthlyStatsByName.set(entry.name, byMonth);
+      monthlyStatsByName.set(entry.key, byMonth);
     }
   }
 
-  // 36-month history Jan 2023 → Dec 2025
+  // Monthly history window: Jan of oldest known year → Dec of latest year (partial included).
+  // Keeping the window dynamic means 2026+ data appears in sparklines automatically.
+  const historyStartYear = Math.min(...(yearInfo.all.length ? yearInfo.all : [2023]));
+  const historyEndYear = yearInfo.recent || yearInfo.current || new Date().getUTCFullYear();
   const HISTORY_MONTHS = [];
-  for (let y = 2023; y <= 2025; y++) {
+  for (let y = historyStartYear; y <= historyEndYear; y++) {
     for (let m = 1; m <= 12; m++) {
       HISTORY_MONTHS.push(`${y}-${String(m).padStart(2, "0")}`);
     }
   }
   for (const p of products) {
-    const lookup = monthlyStatsByName.get(p.key) || monthlyStatsByName.get(p.displayName);
+    const lookup = monthlyStatsByName.get(p.key);
     p.monthlyHistory = HISTORY_MONTHS.map(month => lookup ? (lookup.get(month) || 0) : 0);
   }
 
   // Suggested order for A+B products (revenue estimate in €)
-  const runMonth = new Date(context.runDate).getMonth();
+  // getUTCMonth() avoids a date-shift on servers west of UTC.
+  const runMonth = new Date(context.runDate).getUTCMonth();
   for (const p of products) {
     if (p.rank !== "A" && p.rank !== "B") { p.suggestedOrder = null; continue; }
     const monthKey2024 = `2024-${String(runMonth + 1).padStart(2, "0")}`;
@@ -892,12 +897,13 @@ function buildFromGold() {
     const aggregateRevenue2025 = members.reduce((s, p) => s + p.totalRevenue, 0);
     const aggregateRevenue2024 = members.reduce((s, p) => s + (p.totalRevenuePrevious || 0), 0);
 
-    // 12-month seasonality (2025 only) — indices 24-35 of monthlyHistory
+    // 12-month seasonality for yearInfo.current — offset computed from HISTORY_MONTHS
+    const seasonalityOffset = (yearInfo.current - historyStartYear) * 12;
     const seasonality = Array(12).fill(0);
     for (const p of members) {
       if (!p.monthlyHistory) continue;
       for (let m = 0; m < 12; m++) {
-        seasonality[m] += p.monthlyHistory[24 + m] || 0;
+        seasonality[m] += p.monthlyHistory[seasonalityOffset + m] || 0;
       }
     }
 

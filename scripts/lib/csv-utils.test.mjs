@@ -91,4 +91,13 @@ assert.equal(detectYearFromFilename("stat-vente-monthly-2025.csv"), 2025);
 assert.equal(detectYearFromFilename("margin-analysis-2025-h1.csv"), 2025);
 assert.equal(detectYearFromFilename("no-year.csv"), null);
 
+// parseEuroDecimal — additional edge cases
+assert.equal(parseEuroDecimal("NaN"), 0);
+assert.equal(parseEuroDecimal("Infinity"), 0);
+
+// normalizeKey — French accents stripped (critical for monthlyStatsByName lookup)
+assert.equal(normalizeKey("PÂTÉ EN CROÛTE"), "PATE EN CROUTE");
+assert.equal(normalizeKey("Crème fraîche"), "CREME FRAICHE");
+assert.equal(normalizeKey("Müesli"), "MUESLI");
+
 console.log("csv-utils: all tests passed");
