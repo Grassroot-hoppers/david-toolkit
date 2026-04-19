@@ -10,7 +10,12 @@ const goldDir = path.join(root, "data", "gold");
 function readSilver(filename) {
   const fp = path.join(silverDir, filename);
   if (!fs.existsSync(fp)) return null;
-  return JSON.parse(fs.readFileSync(fp, "utf8"));
+  try {
+    return JSON.parse(fs.readFileSync(fp, "utf8"));
+  } catch {
+    console.error(`  [warning] Could not parse ${filename} — skipping`);
+    return null;
+  }
 }
 
 function readSilverGlob(prefix) {
@@ -41,7 +46,7 @@ function buildProductCatalog() {
 
   const marginsByKey = new Map();
   for (const mf of marginFiles) {
-    for (const m of mf.margins) {
+    for (const m of (mf.margins || [])) {
       if (!marginsByKey.has(m.key)) marginsByKey.set(m.key, m);
       else {
         const existing = marginsByKey.get(m.key);
@@ -302,7 +307,7 @@ function buildMarginRanking(catalog) {
 
   const merged = new Map();
   for (const mf of marginFiles) {
-    for (const m of mf.margins) {
+    for (const m of (mf.margins || [])) {
       if (merged.has(m.key)) {
         const existing = merged.get(m.key);
         existing.salesTtc += m.salesTtc;

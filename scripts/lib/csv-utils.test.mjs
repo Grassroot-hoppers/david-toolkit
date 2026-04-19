@@ -13,12 +13,17 @@ assert.equal(parseEuroDecimal(null), 0);
 assert.equal(parseEuroDecimal(undefined), 0);
 assert.equal(parseEuroDecimal("0"), 0);
 assert.equal(parseEuroDecimal(" 3,50 "), 3.5);
+assert.equal(parseEuroDecimal("abc"), 0);
+assert.equal(parseEuroDecimal("1.234,56"), 0); // multiple dots → NaN → 0
 
 // parseMonthlyCell
 assert.deepEqual(parseMonthlyCell("26  (0)"), { quantity: 26, revenue: 0 });
 assert.deepEqual(parseMonthlyCell("7418  (218,88)"), { quantity: 7418, revenue: 218.88 });
 assert.deepEqual(parseMonthlyCell(""), { quantity: 0, revenue: 0 });
 assert.deepEqual(parseMonthlyCell(null), { quantity: 0, revenue: 0 });
+// regex fallback: quantity only (no parenthesized revenue)
+assert.deepEqual(parseMonthlyCell("26"), { quantity: 26, revenue: 0 });
+assert.deepEqual(parseMonthlyCell("3,50"), { quantity: 3.5, revenue: 0 });
 
 // parsePercentage
 assert.equal(parsePercentage("17,69 %"), 17.69);

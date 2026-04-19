@@ -89,6 +89,27 @@ const withZeroPrice = [
 const noZero = aggregateFromTransactions(withZeroPrice, 2025);
 assert.equal(noZero.annualStats.products.length, 0);
 
+// --- Two products in different categories: both appear in categoryMix ---
+const twoCategories = [
+  { ...singleTx[0] },
+  {
+    productKey: 'BREAD',
+    rawName: 'Bread',
+    category: 'BOULANGERIE',
+    vatRate: 0,
+    price: 2,
+    date: '2025-03-10',
+    hour: 9,
+    dayOfWeek: 1,
+    quantity: 1
+  }
+];
+const twoCats = aggregateFromTransactions(twoCategories, 2025);
+assert.equal(twoCats.annualStats.products.length, 2);
+assert.equal(twoCats.categoryMix.categories.length, 2);
+const catNames = twoCats.categoryMix.categories.map((c) => c.category).sort();
+assert.deepEqual(catNames, ['BOULANGERIE', 'FROMAGE']);
+
 // --- All four output shapes present ---
 const out = aggregateFromTransactions(singleTx, 2025);
 assert.ok(out.monthlyStats && out.annualStats && out.categoryMix && out.hourlyPatterns);
