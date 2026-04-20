@@ -65,7 +65,6 @@ export function importMargins(text, filename) {
   }));
 
   if (skipped > 0) warnings.push(`${skipped} junk/zero rows filtered`);
-  warnings.push(`Aggregated into ${margins.length} products`);
 
   return { type: "margin-analysis", year, margins, warnings };
 }
