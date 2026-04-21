@@ -475,12 +475,11 @@ function buildBriefing(products, suppliers, context, copy) {
     .slice()
     .sort((left, right) => right.order.length - left.order.length)[0];
 
-  return [
-    copy.briefingOpening(context.weather.headline),
-    copy.briefingSupplier(hottestSupplier.name, hottestSupplier.summary),
-    copy.briefingTop(topOrder.map((product) => product.displayName)),
-    copy.briefingSlow(slow.map((product) => product.displayName))
-  ];
+  const lines = [copy.briefingOpening(context.weather.headline)];
+  if (hottestSupplier) lines.push(copy.briefingSupplier(hottestSupplier.name, hottestSupplier.summary));
+  lines.push(copy.briefingTop(topOrder.map((product) => product.displayName)));
+  lines.push(copy.briefingSlow(slow.map((product) => product.displayName)));
+  return lines;
 }
 
 // --- Main ---
@@ -809,20 +808,23 @@ function buildFromGold() {
 
   // Suggested order for A+B products (revenue estimate in €)
   const runMonth = new Date(context.runDate).getMonth();
+  const orderRefYear = yearInfo.current;
+  const orderPrevYear = yearInfo.previous;
   for (const p of products) {
     if (p.rank !== "A" && p.rank !== "B") { p.suggestedOrder = null; continue; }
-    const monthKey2024 = `2024-${String(runMonth + 1).padStart(2, "0")}`;
-    const monthKey2025 = `2025-${String(runMonth + 1).padStart(2, "0")}`;
+    const monthKeyCur  = orderRefYear  ? `${orderRefYear}-${String(runMonth + 1).padStart(2, "0")}`  : null;
+    const monthKeyPrev = orderPrevYear ? `${orderPrevYear}-${String(runMonth + 1).padStart(2, "0")}` : null;
     const lookup = monthlyStatsByName.get(p.key) || monthlyStatsByName.get(p.displayName);
-    const rev2024 = lookup ? (lookup.get(monthKey2024) || 0) : 0;
-    const rev2025 = lookup ? (lookup.get(monthKey2025) || 0) : 0;
-    const avgMonthly = (rev2024 + rev2025) / (rev2024 > 0 && rev2025 > 0 ? 2 : 1);
+    const revCur  = (monthKeyCur  && lookup) ? (lookup.get(monthKeyCur)  || 0) : 0;
+    const revPrev = (monthKeyPrev && lookup) ? (lookup.get(monthKeyPrev) || 0) : 0;
+    const avgMonthly = (revCur + revPrev) / (revCur > 0 && revPrev > 0 ? 2 : 1);
     const weeklyEst = avgMonthly / 4;
     const trend = p.yoy != null ? 1 + p.yoy : 1;
     const suggested = Math.round(weeklyEst * trend);
+    const yearRange = orderPrevYear ? `${orderPrevYear}–${orderRefYear}` : String(orderRefYear);
     p.suggestedOrder = suggested > 0 ? {
       qty: suggested,
-      basis: `Mois ${runMonth + 1}, moy. 2024–2025${p.yoy != null ? `, tendance ${p.yoy > 0 ? "+" : ""}${Math.round(p.yoy * 100)}%` : ""}`
+      basis: `Mois ${runMonth + 1}, moy. ${yearRange}${p.yoy != null ? `, tendance ${p.yoy > 0 ? "+" : ""}${Math.round(p.yoy * 100)}%` : ""}`
     } : null;
   }
 
