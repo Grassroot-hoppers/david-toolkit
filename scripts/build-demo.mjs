@@ -746,12 +746,6 @@ function computeAbcd(products) {
   }
 }
 
-function getWeekOfYear(dateStr) {
-  const d = new Date(dateStr);
-  const start = new Date(d.getFullYear(), 0, 1);
-  return Math.ceil(((d - start) / 86400000 + start.getDay() + 1) / 7);
-}
-
 function buildFromGold() {
   const catalog = readGold("product-catalog.json");
   const monthlyStats = readGold("monthly-product-stats.json");
@@ -782,7 +776,8 @@ function buildFromGold() {
   // ABCD Pareto ranking
   computeAbcd(products);
 
-  // Build monthly lookup: productName → Map<"YYYY-MM", revenue>
+  // Build monthly lookup: normalizedKey → Map<"YYYY-MM", revenue>
+  // Keyed by entry.key (normalized) so lookups by p.key are consistent for accented names.
   const monthlyStatsByName = new Map();
   if (monthlyStats) {
     for (const entry of monthlyStats) {
@@ -791,7 +786,7 @@ function buildFromGold() {
         const key = `${s.year}-${String(s.month).padStart(2, "0")}`;
         byMonth.set(key, s.revenue);
       }
-      monthlyStatsByName.set(entry.name, byMonth);
+      monthlyStatsByName.set(entry.key, byMonth);
     }
   }
 
@@ -803,26 +798,29 @@ function buildFromGold() {
     }
   }
   for (const p of products) {
-    const lookup = monthlyStatsByName.get(p.key) || monthlyStatsByName.get(p.displayName);
+    const lookup = monthlyStatsByName.get(p.key);
     p.monthlyHistory = HISTORY_MONTHS.map(month => lookup ? (lookup.get(month) || 0) : 0);
   }
 
   // Suggested order for A+B products (revenue estimate in €)
-  const runMonth = new Date(context.runDate).getMonth();
+  // Use UTC month to avoid timezone-sensitive date shifts on "YYYY-MM-DD" strings.
+  const runMonth = new Date(context.runDate + "T12:00:00Z").getUTCMonth();
+  const padMonth = String(runMonth + 1).padStart(2, "0");
+  const prevMonthKey = yearInfo.previous ? `${yearInfo.previous}-${padMonth}` : null;
+  const currMonthKey = yearInfo.current  ? `${yearInfo.current}-${padMonth}`  : null;
+  const yearRange = [yearInfo.previous, yearInfo.current].filter(Boolean).join("–");
   for (const p of products) {
     if (p.rank !== "A" && p.rank !== "B") { p.suggestedOrder = null; continue; }
-    const monthKey2024 = `2024-${String(runMonth + 1).padStart(2, "0")}`;
-    const monthKey2025 = `2025-${String(runMonth + 1).padStart(2, "0")}`;
-    const lookup = monthlyStatsByName.get(p.key) || monthlyStatsByName.get(p.displayName);
-    const rev2024 = lookup ? (lookup.get(monthKey2024) || 0) : 0;
-    const rev2025 = lookup ? (lookup.get(monthKey2025) || 0) : 0;
-    const avgMonthly = (rev2024 + rev2025) / (rev2024 > 0 && rev2025 > 0 ? 2 : 1);
+    const lookup = monthlyStatsByName.get(p.key);
+    const revPrev = (prevMonthKey && lookup) ? (lookup.get(prevMonthKey) || 0) : 0;
+    const revCurr = (currMonthKey && lookup) ? (lookup.get(currMonthKey) || 0) : 0;
+    const avgMonthly = (revPrev + revCurr) / (revPrev > 0 && revCurr > 0 ? 2 : 1);
     const weeklyEst = avgMonthly / 4;
     const trend = p.yoy != null ? 1 + p.yoy : 1;
     const suggested = Math.round(weeklyEst * trend);
     p.suggestedOrder = suggested > 0 ? {
       qty: suggested,
-      basis: `Mois ${runMonth + 1}, moy. 2024–2025${p.yoy != null ? `, tendance ${p.yoy > 0 ? "+" : ""}${Math.round(p.yoy * 100)}%` : ""}`
+      basis: `Mois ${runMonth + 1}, moy. ${yearRange}${p.yoy != null ? `, tendance ${p.yoy > 0 ? "+" : ""}${Math.round(p.yoy * 100)}%` : ""}`
     } : null;
   }
 

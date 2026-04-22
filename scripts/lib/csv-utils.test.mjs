@@ -68,6 +68,14 @@ assert.equal(
 assert.equal(normalizeKey("Brie de Meaux"), "BRIE DE MEAUX");
 assert.equal(normalizeKey("PÂTÉ EN CROÛTE"), "PATE EN CROUTE");
 assert.equal(normalizeKey("  café  latte  "), "CAFE LATTE");
+// Accent stripping must be symmetric: the accented form and its ASCII equivalent
+// normalize to the same key. This invariant is relied on by the pipeline: monthly
+// history Maps are indexed by entry.key (normalized), so p.key lookups succeed even
+// when the raw product name and the display name differ in casing or diacritics.
+assert.equal(normalizeKey("Gruyère de Comté"), "GRUYERE DE COMTE");
+assert.equal(normalizeKey("GRUYERE DE COMTE"), "GRUYERE DE COMTE");
+assert.equal(normalizeKey("Mozzarella di Bufala"), "MOZZARELLA DI BUFALA");
+assert.equal(normalizeKey("MOZZARELLA DI BUFALA"), "MOZZARELLA DI BUFALA");
 
 // isJunkRow
 assert.equal(isJunkRow("total"), true);
