@@ -7,7 +7,7 @@ function loadProductMaster(configDir) {
     console.warn("  ⚠ product-master.csv not found — product groups will be empty");
     return { productToGroup: new Map(), groupDefs: new Map() };
   }
-  const lines = fs.readFileSync(csvPath, "utf8").trim().split("\n");
+  const lines = fs.readFileSync(csvPath, "utf8").trim().replace(/\r/g, "").split("\n");
   const header = lines[0].split(",");
   const nameIdx = header.indexOf("product_name");
   const groupKeyIdx = header.indexOf("group_key");
@@ -393,6 +393,7 @@ function buildProducts(context, copy, productsCurrent, productsPrevious, recentM
     const evidence = [];
     evidence.push(copy.evidenceRecent(recency.recentQuantity || current.totalQuantity));
     evidence.push(copy.evidenceYoY(yoy));
+    evidence.push(copy.evidenceWeatherBoost(weatherBoost));
     if (margin.marginRatio > 0) evidence.push(`marge x${margin.marginRatio.toFixed(2)}`);
 
     const resolvedSupplier = resolveSupplier(
@@ -475,12 +476,13 @@ function buildBriefing(products, suppliers, context, copy) {
     .slice()
     .sort((left, right) => right.order.length - left.order.length)[0];
 
-  return [
-    copy.briefingOpening(context.weather.headline),
-    copy.briefingSupplier(hottestSupplier.name, hottestSupplier.summary),
-    copy.briefingTop(topOrder.map((product) => product.displayName)),
-    copy.briefingSlow(slow.map((product) => product.displayName))
-  ];
+  const lines = [copy.briefingOpening(context.weather.headline)];
+  if (hottestSupplier) {
+    lines.push(copy.briefingSupplier(hottestSupplier.name, hottestSupplier.summary));
+  }
+  lines.push(copy.briefingTop(topOrder.map((product) => product.displayName)));
+  lines.push(copy.briefingSlow(slow.map((product) => product.displayName)));
+  return lines;
 }
 
 // --- Main ---
@@ -744,12 +746,6 @@ function computeAbcd(products) {
     else if (share <= 0.80) p.rank = "C";
     else p.rank = "D";
   }
-}
-
-function getWeekOfYear(dateStr) {
-  const d = new Date(dateStr);
-  const start = new Date(d.getFullYear(), 0, 1);
-  return Math.ceil(((d - start) / 86400000 + start.getDay() + 1) / 7);
 }
 
 function buildFromGold() {
