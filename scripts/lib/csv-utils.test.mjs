@@ -91,4 +91,11 @@ assert.equal(detectYearFromFilename("stat-vente-monthly-2025.csv"), 2025);
 assert.equal(detectYearFromFilename("margin-analysis-2025-h1.csv"), 2025);
 assert.equal(detectYearFromFilename("no-year.csv"), null);
 
+// normalizeKey must produce the canonical key for both accented and plain names.
+// This is the invariant that makes monthlyStatsByName (keyed by entry.key) look up
+// correctly: a rawName like "PÂTÉ EN CROÛTE" normalizes to the same key as "PATE EN CROUTE".
+assert.equal(normalizeKey("PÂTÉ EN CROÛTE"), normalizeKey("PATE EN CROUTE"));
+assert.equal(normalizeKey("Beurre frais (bio)"), normalizeKey("BEURRE FRAIS BIO"));
+assert.notEqual(normalizeKey("PÂTÉ EN CROÛTE"), "PÂTÉ EN CROÛTE"); // raw name ≠ key
+
 console.log("csv-utils: all tests passed");

@@ -1,5 +1,6 @@
 import {
-  splitCsvLines, splitCsvRow, parseEuroDecimal, normalizeKey, cleanProductName
+  splitCsvLines, splitCsvRow, parseEuroDecimal, normalizeKey, cleanProductName,
+  detectYearFromFilename
 } from '../lib/csv-utils.mjs';
 
 const MARGIN_JUNK = /^(#ACOMPTE|Designed by|;\s*$|\s*$)/i;
@@ -12,7 +13,7 @@ export function importMargins(text, filename) {
   const lines = splitCsvLines(text);
   if (lines.length < 2) return { type: "margin-analysis", year: null, margins: [], warnings: ["File too short"] };
 
-  const year = filename ? detectYearFromName(filename) : null;
+  const year = filename ? detectYearFromFilename(filename) : null;
   const warnings = [];
   let skipped = 0;
   const aggregated = new Map();
@@ -70,7 +71,3 @@ export function importMargins(text, filename) {
   return { type: "margin-analysis", year, margins, warnings };
 }
 
-function detectYearFromName(filename) {
-  const match = String(filename).match(/(\d{4})/);
-  return match ? parseInt(match[1], 10) : null;
-}
