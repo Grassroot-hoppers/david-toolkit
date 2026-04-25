@@ -475,12 +475,17 @@ function buildBriefing(products, suppliers, context, copy) {
     .slice()
     .sort((left, right) => right.order.length - left.order.length)[0];
 
-  return [
-    copy.briefingOpening(context.weather.headline),
-    copy.briefingSupplier(hottestSupplier.name, hottestSupplier.summary),
-    copy.briefingTop(topOrder.map((product) => product.displayName)),
-    copy.briefingSlow(slow.map((product) => product.displayName))
-  ];
+  const lines = [copy.briefingOpening(context.weather.headline)];
+  if (hottestSupplier) {
+    lines.push(copy.briefingSupplier(hottestSupplier.name, hottestSupplier.summary));
+  }
+  if (topOrder.length > 0) {
+    lines.push(copy.briefingTop(topOrder.map((product) => product.displayName)));
+  }
+  if (slow.length > 0) {
+    lines.push(copy.briefingSlow(slow.map((product) => product.displayName)));
+  }
+  return lines;
 }
 
 // --- Main ---
@@ -746,12 +751,6 @@ function computeAbcd(products) {
   }
 }
 
-function getWeekOfYear(dateStr) {
-  const d = new Date(dateStr);
-  const start = new Date(d.getFullYear(), 0, 1);
-  return Math.ceil(((d - start) / 86400000 + start.getDay() + 1) / 7);
-}
-
 function buildFromGold() {
   const catalog = readGold("product-catalog.json");
   const monthlyStats = readGold("monthly-product-stats.json");
@@ -795,9 +794,11 @@ function buildFromGold() {
     }
   }
 
-  // 36-month history Jan 2023 → Dec 2025
+  // 36-month history: 3 years ending with the last full year from yearInfo
+  const historyEndYear = yearInfo.current || (new Date().getFullYear() - 1);
+  const historyStartYear = historyEndYear - 2;
   const HISTORY_MONTHS = [];
-  for (let y = 2023; y <= 2025; y++) {
+  for (let y = historyStartYear; y <= historyEndYear; y++) {
     for (let m = 1; m <= 12; m++) {
       HISTORY_MONTHS.push(`${y}-${String(m).padStart(2, "0")}`);
     }
@@ -809,20 +810,22 @@ function buildFromGold() {
 
   // Suggested order for A+B products (revenue estimate in €)
   const runMonth = new Date(context.runDate).getMonth();
+  const orderPrevYear = yearInfo.previous;
+  const orderCurrYear = yearInfo.current;
+  const orderYearRange = [orderPrevYear, orderCurrYear].filter(Boolean).join("–");
   for (const p of products) {
     if (p.rank !== "A" && p.rank !== "B") { p.suggestedOrder = null; continue; }
-    const monthKey2024 = `2024-${String(runMonth + 1).padStart(2, "0")}`;
-    const monthKey2025 = `2025-${String(runMonth + 1).padStart(2, "0")}`;
+    const monthPad = String(runMonth + 1).padStart(2, "0");
     const lookup = monthlyStatsByName.get(p.key) || monthlyStatsByName.get(p.displayName);
-    const rev2024 = lookup ? (lookup.get(monthKey2024) || 0) : 0;
-    const rev2025 = lookup ? (lookup.get(monthKey2025) || 0) : 0;
-    const avgMonthly = (rev2024 + rev2025) / (rev2024 > 0 && rev2025 > 0 ? 2 : 1);
+    const revPrev = (orderPrevYear && lookup) ? (lookup.get(`${orderPrevYear}-${monthPad}`) || 0) : 0;
+    const revCurr = (orderCurrYear && lookup) ? (lookup.get(`${orderCurrYear}-${monthPad}`) || 0) : 0;
+    const avgMonthly = (revPrev + revCurr) / (revPrev > 0 && revCurr > 0 ? 2 : 1);
     const weeklyEst = avgMonthly / 4;
     const trend = p.yoy != null ? 1 + p.yoy : 1;
     const suggested = Math.round(weeklyEst * trend);
     p.suggestedOrder = suggested > 0 ? {
       qty: suggested,
-      basis: `Mois ${runMonth + 1}, moy. 2024–2025${p.yoy != null ? `, tendance ${p.yoy > 0 ? "+" : ""}${Math.round(p.yoy * 100)}%` : ""}`
+      basis: `Mois ${runMonth + 1}${orderYearRange ? `, moy. ${orderYearRange}` : ""}${p.yoy != null ? `, tendance ${p.yoy > 0 ? "+" : ""}${Math.round(p.yoy * 100)}%` : ""}`
     } : null;
   }
 

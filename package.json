@@ -14,7 +14,7 @@
     "serve": "node scripts/serve.mjs",
     "dev": "npm run build:demo && npm run serve",
     "test": "npm run build:full && node scripts/verify-data.mjs",
-    "test:unit": "node scripts/lib/csv-utils.test.mjs && node scripts/lib/transaction-aggregator.test.mjs",
+    "test:unit": "node scripts/lib/csv-utils.test.mjs && node scripts/lib/transaction-aggregator.test.mjs && node scripts/importers/importers.test.mjs",
     "classify": "node scripts/classify-products.mjs"
   },
   "repository": {
