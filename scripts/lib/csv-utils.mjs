@@ -40,8 +40,13 @@ export function splitCsvRow(line) {
 
 export function parseEuroDecimal(value) {
   if (value === undefined || value === null || value === "") return 0;
-  const cleaned = String(value).replace(/\s/g, "").replace(",", ".");
-  const num = Number(cleaned);
+  let s = String(value).replace(/\s/g, "");
+  // Belgian/French format: comma = decimal separator, dot = thousands separator.
+  // When a comma is present, all dots are thousands separators → strip them first.
+  if (s.includes(",")) {
+    s = s.replace(/\./g, "").replace(",", ".");
+  }
+  const num = Number(s);
   return Number.isFinite(num) ? num : 0;
 }
 
