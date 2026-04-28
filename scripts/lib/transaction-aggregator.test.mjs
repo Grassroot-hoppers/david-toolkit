@@ -95,4 +95,36 @@ assert.ok(out.monthlyStats && out.annualStats && out.categoryMix && out.hourlyPa
 assert.equal(out.monthlyStats.source, 'transactions');
 assert.equal(out.annualStats.refunds.length, 0);
 
+// --- null quantity defaults to 1 (weighed items have weightKg, unit items pass null) ---
+const nullQty = [{
+  productKey: 'JAMBON',
+  rawName: 'Jambon',
+  category: 'CHARCUTERIE',
+  vatRate: 6,
+  price: 3.2,
+  date: '2025-05-01',
+  hour: 11,
+  dayOfWeek: 4,
+  quantity: null
+}];
+const nullQtyResult = aggregateFromTransactions(nullQty, 2025);
+assert.equal(nullQtyResult.annualStats.products[0].quantity, 1);
+assert.equal(nullQtyResult.monthlyStats.products[0].totalQuantity, 1);
+
+// --- Accumulation across two different months for the same product ---
+const twoMonths = [
+  { ...singleTx[0], date: '2025-02-10', price: 4, quantity: 2 },
+  { ...singleTx[0], date: '2025-04-15', price: 6, quantity: 3 }
+];
+const twoMonthsResult = aggregateFromTransactions(twoMonths, 2025);
+assert.equal(twoMonthsResult.annualStats.products.length, 1);
+assert.equal(twoMonthsResult.annualStats.products[0].revenue, 10);
+assert.equal(twoMonthsResult.annualStats.products[0].quantity, 5);
+const febEntry = twoMonthsResult.monthlyStats.products[0].monthly[1]; // index 1 = month 2
+assert.equal(febEntry.revenue, 4);
+assert.equal(febEntry.quantity, 2);
+const aprEntry = twoMonthsResult.monthlyStats.products[0].monthly[3]; // index 3 = month 4
+assert.equal(aprEntry.revenue, 6);
+assert.equal(aprEntry.quantity, 3);
+
 console.log('transaction-aggregator: all tests passed');

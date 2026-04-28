@@ -393,7 +393,13 @@ function buildProducts(context, copy, productsCurrent, productsPrevious, recentM
     const evidence = [];
     evidence.push(copy.evidenceRecent(recency.recentQuantity || current.totalQuantity));
     evidence.push(copy.evidenceYoY(yoy));
-    if (margin.marginRatio > 0) evidence.push(`marge x${margin.marginRatio.toFixed(2)}`);
+    if (margin.marginRatio > 0) {
+      evidence.push(`marge x${margin.marginRatio.toFixed(2)}`);
+    } else if (weatherBoost > 1) {
+      evidence.push(copy.evidenceWeatherBoost(weatherBoost));
+    } else {
+      evidence.push(`rotation ${correction.perishability || "medium"}`);
+    }
 
     const resolvedSupplier = resolveSupplier(
       correction.supplier || current.supplierHint,
@@ -744,12 +750,6 @@ function computeAbcd(products) {
     else if (share <= 0.80) p.rank = "C";
     else p.rank = "D";
   }
-}
-
-function getWeekOfYear(dateStr) {
-  const d = new Date(dateStr);
-  const start = new Date(d.getFullYear(), 0, 1);
-  return Math.ceil(((d - start) / 86400000 + start.getDay() + 1) / 7);
 }
 
 function buildFromGold() {
