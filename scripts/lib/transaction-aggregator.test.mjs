@@ -95,4 +95,18 @@ assert.ok(out.monthlyStats && out.annualStats && out.categoryMix && out.hourlyPa
 assert.equal(out.monthlyStats.source, 'transactions');
 assert.equal(out.annualStats.refunds.length, 0);
 
+// --- Multi-month accumulation: revenue stays in correct month bucket ---
+// Verifies that transactions in different months are NOT merged together.
+const multiMonth = [
+  { productKey: 'PROD', rawName: 'Product', category: 'CAT', vatRate: 6, price: 10, date: '2025-01-15', hour: 10, dayOfWeek: 3, quantity: 1 },
+  { productKey: 'PROD', rawName: 'Product', category: 'CAT', vatRate: 6, price: 5,  date: '2025-06-20', hour: 11, dayOfWeek: 5, quantity: 1 },
+];
+const mm = aggregateFromTransactions(multiMonth, 2025);
+assert.equal(mm.monthlyStats.products.length, 1);
+assert.equal(mm.monthlyStats.products[0].monthly[0].revenue, 10);  // Jan = index 0
+assert.equal(mm.monthlyStats.products[0].monthly[5].revenue, 5);   // Jun = index 5
+assert.equal(mm.monthlyStats.products[0].monthly[1].revenue, 0);   // Feb = 0
+assert.equal(mm.monthlyStats.products[0].totalRevenue, 15);
+assert.equal(mm.annualStats.products[0].revenue, 15);
+
 console.log('transaction-aggregator: all tests passed');

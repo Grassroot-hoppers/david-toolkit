@@ -68,6 +68,10 @@ assert.equal(
 assert.equal(normalizeKey("Brie de Meaux"), "BRIE DE MEAUX");
 assert.equal(normalizeKey("PÂTÉ EN CROÛTE"), "PATE EN CROUTE");
 assert.equal(normalizeKey("  café  latte  "), "CAFE LATTE");
+// Raw POS names with accents do NOT equal their normalizeKey() result.
+// Any lookup map must be keyed by normalizeKey(name), not by name directly.
+assert.notEqual("PÂTÉ EN CROÛTE", normalizeKey("PÂTÉ EN CROÛTE"));
+assert.notEqual("Mozzarella di Bufala", normalizeKey("Mozzarella di Bufala"));
 
 // isJunkRow
 assert.equal(isJunkRow("total"), true);
