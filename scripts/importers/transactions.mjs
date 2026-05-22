@@ -1,5 +1,6 @@
 import {
-  splitCsvLines, splitCsvRow, parseEuroDecimal, normalizeKey, parseProductName
+  splitCsvLines, splitCsvRow, parseEuroDecimal, normalizeKey, parseProductName,
+  requireColumnCount
 } from '../lib/csv-utils.mjs';
 
 /**
@@ -16,7 +17,8 @@ export function importTransactions(text, filename) {
   const transactions = [];
   let year = null;
 
-  for (const line of dataRows) {
+  for (let i = 0; i < dataRows.length; i++) {
+    const line = dataRows[i];
     const cols = splitCsvRow(line);
     const rawTimestamp = (cols[0] || "").trim();
     if (!rawTimestamp) continue;
@@ -24,9 +26,11 @@ export function importTransactions(text, filename) {
     const rawName = (cols[1] || "").trim();
     if (!rawName) continue;
 
+    requireColumnCount(cols, 7, { filename, rowNumber: i + 2, family: "transactions" });
+
     const parsed = parseTimestamp(rawTimestamp);
     if (!parsed) {
-      warnings.push(`Unparseable timestamp: ${rawTimestamp}`);
+      warnings.push(`${filename || "transactions"} row ${i + 2} transactions: unparseable timestamp "${rawTimestamp}"`);
       continue;
     }
 

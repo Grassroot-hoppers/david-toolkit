@@ -36,6 +36,18 @@ export function splitCsvRow(line) {
   return line.split(";");
 }
 
+export function requireColumnCount(cols, expectedMin, { filename, rowNumber, family } = {}) {
+  if (cols.length >= expectedMin) return;
+
+  const filePrefix = filename ? `${filename} ` : "";
+  const rowPrefix = Number.isInteger(rowNumber) ? `row ${rowNumber} ` : "";
+  const familyPrefix = family ? `${family}: ` : "";
+
+  throw new Error(
+    `${filePrefix}${rowPrefix}${familyPrefix}expected at least ${expectedMin} semicolon columns, got ${cols.length}`
+  );
+}
+
 // --- Number Parsing ---
 
 export function parseEuroDecimal(value) {

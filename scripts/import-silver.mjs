@@ -60,7 +60,7 @@ function run() {
       let result;
       switch (fileType) {
         case "product-master":
-          result = importProductMaster(text);
+          result = importProductMaster(text, file);
           break;
         case "monthly-stats":
           result = importMonthlyStats(text, file);
