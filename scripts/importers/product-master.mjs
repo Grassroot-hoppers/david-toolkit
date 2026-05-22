@@ -1,4 +1,6 @@
-import { splitCsvLines, splitCsvRow, parseEuroDecimal, normalizeKey } from '../lib/csv-utils.mjs';
+import {
+  splitCsvLines, splitCsvRow, parseEuroDecimal, normalizeKey, requireColumnCount
+} from '../lib/csv-utils.mjs';
 
 /**
  * No header row. 74 columns, semicolon-delimited, positional.
@@ -17,16 +19,19 @@ import { splitCsvLines, splitCsvRow, parseEuroDecimal, normalizeKey } from '../l
  * col 44:  last sold date
  * col 49:  BIO label ("BIO" or empty)
  */
-export function importProductMaster(text) {
+export function importProductMaster(text, filename) {
   const lines = splitCsvLines(text);
   const products = [];
   const warnings = [];
 
-  for (const line of lines) {
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
     const cols = splitCsvRow(line);
     const name = (cols[3] || "").trim();
 
     if (!name || name.startsWith("LINK EAN")) continue;
+
+    requireColumnCount(cols, 50, { filename, rowNumber: i + 1, family: "product-master" });
 
     products.push({
       key: normalizeKey(name),
